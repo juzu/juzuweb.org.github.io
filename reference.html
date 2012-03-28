@@ -1,0 +1,264 @@
+
+<!DOCTYPE html
+  SYSTEM "">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Juzu Web Framework 0.4.5-SNAPSHOT</title><link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css"><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"><script src="js/bootstrap/jquery-1.7.1.min.js"></script><script src="js/bootstrap/bootstrap-2.0.2.min.js"></script><script src="js/bootstrap/docbook.js"></script><script src="js/bootstrap/google-code-prettify/prettify.js"></script></head><body onload="if (prettyPrint) { prettyPrint() }"><div class="book container" title="Juzu Web Framework 0.4.5-SNAPSHOT"><div class="titlepage"><div><div><h1 class="title"><a name="UTF-8"></a>Juzu Web Framework 0.4.5-SNAPSHOT</h1></div><div><h2 class="subtitle">Reference</h2></div><div><div class="authorgroup">
+    <div class="author"><h3 class="author"><span class="firstname">Julien</span> <span class="surname">Viet</span></h3><div class="affiliation">
+        <span class="shortaffil">eXo Platform<br></span>
+      </div></div>
+  </div></div><div><p class="copyright">Copyright &copy; 2012 eXo Platform SAS</p></div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="preface"><a href="#d5e18">Preface</a></span></dt><dt><span class="chapter"><a href="#concepts">1. Concepts </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e31">Request Life Cycle</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e35">Phases</a></span></dt><dt><span class="section"><a href="#d5e58">Interactions</a></span></dt><dt><span class="section"><a href="#d5e76">Mapping onto HTTP</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#controllers">2. Controllers </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e143">Overview</a></span></dt><dt><span class="section"><a href="#d5e179">Controller phases</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e197">View controllers</a></span></dt><dt><span class="section"><a href="#d5e223">Action controllers</a></span></dt><dt><span class="section"><a href="#d5e242">Resource controllers</a></span></dt><dt><span class="section"><a href="#d5e250">Event controllers</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e254">Controller classes</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e257">Controller life cycle</a></span></dt></dl></dd></dl></dd></dl></div><div class="list-of-figures"><p><b>List of Figures</b></p><dl><dt>1.1. <a href="#d5e62">Interaction between phases</a></dt><dt>1.2. <a href="#d5e92">View phase</a></dt><dt>1.3. <a href="#d5e114">Action phase</a></dt><dt>1.4. <a href="#d5e125">View phase after action phase</a></dt><dt>2.1. <a href="#d5e265">Life cycle of a controller object</a></dt></dl></div>
+  
+  <div class="preface" title="Preface"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e18"></a>Preface</h1></div></div></div></div>
+    
+    <p>Juzu is a web framework based on MVC concepts for developing Portlet applications. Juzu is an open source project developed on GitHub <a class="ulink" href="https://github.com/juzu/juzu" target="_top">project</a> licensed under the <a class="ulink" href="http://www.gnu.org/licenses/lgpl-2.1.html" target="_top">LGPL 2.1</a> license.</p>
+  </div>
+  <div class="chapter" title="Chapter&nbsp;1.&nbsp;Concepts"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="concepts"></a>Chapter&nbsp;1.&nbsp;Concepts </h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e31">Request Life Cycle</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e35">Phases</a></span></dt><dt><span class="section"><a href="#d5e58">Interactions</a></span></dt><dt><span class="section"><a href="#d5e76">Mapping onto HTTP</a></span></dt></dl></dd></dl></div>
+    
+    <p>In this chapter we will study important concepts used by Juzu:</p>
+    <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+        <p>Request life cycles: the various phases composing an application</p>
+      </li><li class="listitem">
+        <p>anyting else ???</p>
+      </li></ul></div>
+    <div class="section" title="Request Life Cycle"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e31"></a>Request Life Cycle</h2></div></div></div>
+      
+      <p>Request life cycle is the most important concept to get right when developping a web application, whether it is a Juzu application or not.</p>
+      <p>Juzu is born from the need of a great framework for building Portlet applications, therefore Juzu reuses the phase  concepts defined by the Portlet specification. The various phases of a Portlet have a natural mapping on HTTP  requests, it means that this abstraction can work very well with both a Portlet or standalone application.</p>
+      <div class="section" title="Phases"><div class="titlepage"><div><div><h3 class="title"><a name="d5e35"></a>Phases</h3></div></div></div>
+        
+        <p>Juzu request life cycle is composed of four phases, we will explain three of them in this chapter, the last one will be explained in another chapter of this guide.</p>
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>The view phase : invoke the application to produce markup output aggregated within a page</p>
+          </li><li class="listitem">
+            <p>The action phase : invoke the application to process an action</p>
+          </li><li class="listitem">
+            <p>The resource phase : invoke the application to produce any kind of output as a full response (i.e not in a page)</p>
+          </li></ul></div>
+        <p>During the execution of a phase, parameters are provided by Juzu to execute the phase. Those parameters are set by the application itself, for instance when it creates a link. The scope of the parameters (i.e when the validity of the parameters) depends on the phase.</p>
+        <div class="section" title="View phase"><div class="titlepage"><div><div><h4 class="title"><a name="d5e46"></a>View phase</h4></div></div></div>
+          
+          <p>The view phase invokes the application for the purpose of creating markup. This phase is indempotent, it means that repeated invocation of the same phase with the same parameters should produce the same markup (supposing than the application does not depend on some other state, like a database that could change over time).</p>
+          <p>View parameters are associated with the current URL, it means that they are somehow persistent. For instance you interact with an application to change its view parameters on each request and then you interact with another application on the same page: the view parameters will remain the same accross the invocation of the view phase of the application when the second application is used.</p>
+        </div>
+        <div class="section" title="Action phase"><div class="titlepage"><div><div><h4 class="title"><a name="d5e50"></a>Action phase</h4></div></div></div>
+          
+          <p>The action phase invokes the application for processing an action. During the invocation, action parameters are provided and their validity is limited to the current action phase being executed, after they will not be anymore available.</p>
+          <p>The action phase is not idempotent, invoking several times an action phase could have side effects such as inserting several times the same data in a database.</p>
+          <p>Juzu does not expect markup returned during this phase, however it provides the opportunity to configure the view parameters of the next view phase.</p>
+        </div>
+        <div class="section" title="Resource phase"><div class="titlepage"><div><div><h4 class="title"><a name="d5e55"></a>Resource phase</h4></div></div></div>
+          
+          <p>The resource phase allows the application to produce a web resource such as an image or a full page. When this phase is invoked, a set of resources parameters are provided in the URL producing the resource.</p>
+        </div>
+      </div>
+      <div class="section" title="Interactions"><div class="titlepage"><div><div><h3 class="title"><a name="d5e58"></a>Interactions</h3></div></div></div>
+        
+        <p>Now that we have an overview of the phase, it is time to connect them and explain the interactions between the phases.</p>
+        <p>
+          </p><div class="figure"><a name="d5e62"></a><p class="title"><b>Figure&nbsp;1.1.&nbsp;Interaction between phases</b></p><div class="figure-contents">
+            
+            <div class="mediaobject" align="center"><img src="images/concepts/phases.png" align="middle" width="378" alt="Interaction between phases"></div>
+          </div></div><p><br class="figure-break">
+        </p>
+        <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+            <p>An action phase is invoked by an URL produced during a view phase, this URL contains the action parameters</p>
+          </li><li class="listitem">
+            <p>After an action phase a view phase is executed and the view parameters are updated</p>
+          </li><li class="listitem">
+            <p>A resource phase is invoked by anURL produced during a view phase, this URL contains the resource parameters</p>
+          </li></ol></div>
+      </div>
+      <div class="section" title="Mapping onto HTTP"><div class="titlepage"><div><div><h3 class="title"><a name="d5e76"></a>Mapping onto HTTP</h3></div></div></div>
+        
+        <p>As said before, phases and interactions have a natural mapping with the HTTP protocol. It is worthy to explain it because it will  help you to understand fully the interations managed by Juzu.</p>
+        <div class="section" title="View phase"><div class="titlepage"><div><div><h4 class="title"><a name="d5e79"></a>View phase</h4></div></div></div>
+          
+          <p>View phases are mapped on <span class="italic">GET</span> requests:</p>
+          <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+              <p>The view phase is idempotent like GET</p>
+            </li><li class="listitem">
+              <p>View parameters are identified to query parameters</p>
+            </li><li class="listitem">
+              <p>The response returned by a GET request should remain identical for the same parameters</p>
+            </li></ul></div>
+          <p>During a view phase, the application produces URL which can invoke any application phase.</p>
+          <p>
+            </p><div class="figure"><a name="d5e92"></a><p class="title"><b>Figure&nbsp;1.2.&nbsp;View phase</b></p><div class="figure-contents">
+              
+              <div class="mediaobject" align="center"><img src="images/concepts/interaction1.png" align="middle" width="162" alt="View phase"></div>
+            </div></div><p><br class="figure-break">
+          </p>
+          <p>In this example the view phase produce markup parameterized by the <code class="code">color</code> parameter having the <span class="italic">red</span> value.</p>
+        </div>
+        <div class="section" title="Action phase"><div class="titlepage"><div><div><h4 class="title"><a name="d5e102"></a>Action phase</h4></div></div></div>
+          
+          <p>Action phase are created from view phase by processing a link that was found in the markup response. The action phase is mapped on <span class="italic">POST</span> requests:</p>
+          <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+              <p>Both action phases and POST request are not idempotent</p>
+            </li><li class="listitem">
+              <p>Action parameters are identified to form parameters</p>
+            </li><li class="listitem">
+              <p>Action phase and POST requests should not be invoked more than one time</p>
+            </li></ul></div>
+          <p>
+            </p><div class="figure"><a name="d5e114"></a><p class="title"><b>Figure&nbsp;1.3.&nbsp;Action phase</b></p><div class="figure-contents">
+              
+              <div class="mediaobject" align="center"><img src="images/concepts/interaction2.png" align="middle" width="162" alt="Action phase"></div>
+            </div></div><p><br class="figure-break">
+          </p>
+          <p>Now let's update our example and suppose that the application returns markup with a form that invokes an action phase. When the user submits the form it triggers the action phase, which in returns updates the <code class="code">color</code> view parameter of the next  view phase to the value <span class="italic">blue</span>.</p>
+          <p>
+            </p><div class="figure"><a name="d5e125"></a><p class="title"><b>Figure&nbsp;1.4.&nbsp;View phase after action phase</b></p><div class="figure-contents">
+              
+              <div class="mediaobject" align="center"><img src="images/concepts/interaction3.png" align="middle" width="162" alt="View phase after action phase"></div>
+            </div></div><p><br class="figure-break">
+          </p>
+          <p>The HTTP redirection will update the browser to show the next view phase with the expected view parameters.</p>
+          <p>During the action phase, the application configures the parameters of the next view phase. When the invocation of the phase is over, the server redirects the browser (with an HTTP temporary redirection) to the next view phase URL. This URL  contains the view parameters. This mechanism is well known as <a class="ulink" href="http://fr.wikipedia.org/wiki/Post-Redirect-Get" target="_top">
+              <span class="italic">Redirect After Post</span>
+            </a>  pattern and is often used to ensure that a POST request is not triggered several times when the refresh button of the  browser is used.</p>
+        </div>
+        <div class="section" title="Resource phase"><div class="titlepage"><div><div><h4 class="title"><a name="d5e136"></a>Resource phase</h4></div></div></div>
+          
+          <p>Resource phases are trivially mapped on <span class="italic">GET</span> request pretty much like a view phase. The main difference is that the resource phase is responsible for managing the entire response instead of just a fragment of the response.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="chapter" title="Chapter&nbsp;2.&nbsp;Controllers"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="controllers"></a>Chapter&nbsp;2.&nbsp;Controllers </h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e143">Overview</a></span></dt><dt><span class="section"><a href="#d5e179">Controller phases</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e197">View controllers</a></span></dt><dt><span class="section"><a href="#d5e223">Action controllers</a></span></dt><dt><span class="section"><a href="#d5e242">Resource controllers</a></span></dt><dt><span class="section"><a href="#d5e250">Event controllers</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e254">Controller classes</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e257">Controller life cycle</a></span></dt></dl></dd></dl></div>
+    
+    <p>Controllers play an essential role in a Juzu application: they contain the code executed when Juzu processes a request, this chapter provides an in depth study of Juzu controllers.</p>
+    <div class="section" title="Overview"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e143"></a>Overview</h2></div></div></div>
+      
+      <p>Juzu controllers are simply annotated methods of the application, here is the most basic controller declaration:</p>
+      <div class="programlistingco"><pre class="prettyprint language-java">public class Controller {
+  @View public Response.Content index() {
+     return Response.render("hello world");
+  }
+}}</pre></div>
+      <p>The annotation <code class="code">@org.juzu.View</code> declares a <span class="italic">view</span> controller, the name <code class="code">index</code> has a special meaning as it will be used when no other controller is specifed in a Juzu request.</p>
+      <p>Controller methods can declare parameters for receiving request parameters:</p>
+      <div class="programlistingco"><pre class="prettyprint language-java">public class Controller {
+  @View public Response.Content index(String person) {
+     return Response.render("Hello " + person == null ? "world" : person);
+  }
+}</pre></div>
+      <p>Like previously, the <code class="code">index</code> controller returns the <span class="italic">hello world</span> value when it is called the first time. When the controller is called with the <code class="code">person</code> parameter it returns the hello string personalized with the corresponding parameter value: Juzu use the declared method parameter name to match against the request parameters, in our case  the <code class="code">person</code> request parameter.</p>
+      <p>Any controller class (any class containing at least one controller method) generates a <span class="italic">companion</span> class during the compilation of the project. Such companion class extends the original controller class to provider companion methods for the controller method. The companion class has the same name than the original class appended with the <span class="italic">_</span> character:</p>
+      <div class="programlistingco"><pre class="prettyprint language-java">public class Controller_ {
+  public static URLBuilder indexURL() { /* Generated code */ }
+  public static URLBuilder indexURL(String person) { /* Generated code */ }
+}</pre></div>
+      <p>Each <code class="code">index</code> methods generated a corresponding <code class="code">indexURL</code> url companion. When any <code class="code">indexURL</code> method is invoked it returns an <code class="code">URLBuilder</code> object that represents the URL invoking the corresponding phase. When parameters are provided they are already encoded in the returned URL. Calling the <code class="code">toString()</code> method of the URLBuilder returns the URL.</p>
+      <div class="programlistingco"><pre class="prettyprint language-java">@View public Response.Content index() {
+  return Response.render("Hello word. &lt;a href='" + Controller_.index("Juzu") + "'&gt;Say hello to Juzu&lt;/a&gt;";
+}</pre></div>
+      <p>URL companion methods have the name of the originating method appended with the <span class="italic">URL</span> suffix. The method parameter  types are the same.</p>
+    </div>
+    <div class="section" title="Controller phases"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e179"></a>Controller phases</h2></div></div></div>
+      
+      <p>There are several kinds of controllers bound to a request phase studied in the <a class="xref" href="#concepts" title="Chapter&nbsp;1.&nbsp;Concepts">Chapter&nbsp;1, <i>Concepts </i></a>:</p>
+      <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+          <p>View controllers annoted with the <code class="code">@org.juzu.View</code> annotation</p>
+        </li><li class="listitem">
+          <p>Action controllers annotated with the <code class="code">@org.juzu.Action</code> annotation</p>
+        </li><li class="listitem">
+          <p>Resource controllers annotated with the <code class="code">@org.juzu.Resource</code> annotation</p>
+        </li><li class="listitem">
+          <p>Event controllers annotated with the <code class="code">@org.juzu.Event</code> annotation (<span class="italic">not yet implemented</span>)</p>
+        </li></ul></div>
+      <div class="section" title="View controllers"><div class="titlepage"><div><div><h3 class="title"><a name="d5e197"></a>View controllers</h3></div></div></div>
+        
+        <p>A view controller method produces aggregated markup for the application, the invocation of the method should produce markup that will be aggregated in larger page, therefore it should not care about the overall HTML structure.</p>
+        <p>View parameters describe the current parameters of the view, they are often used for navigation purpose in the application. Juzu supports simple data types such as string and structured data types modelled by Java objects.</p>
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>Simple data types can be the following types <code class="code">String</code>, <code class="code">List&lt;String&gt;</code> and <code class="code">String[]</code>. Later this will be expanded to more simple types such as number, etc..</p>
+          </li><li class="listitem">
+            <p>Structured data types : todo</p>
+          </li></ul></div>
+        <p>View controller method should return a <code class="code">org.juzu.Response</code> object that is the content produced by the method. To be more precise  it should return a <code class="code">Response.Content</code> or <code class="code">Response.Render</code> object (the latter being a subclass of the former) that contains  everything Juzu needs to display the application.</p>
+        <p>
+          <code class="code">Response.Content</code> is a base class for content, it defines the <code class="code">send</code> method. Juzu invokes this method when it needs to render the response produced by the view method. The invocation of the <code class="code">send</code> method will be performed after the view method is invoked.</p>
+        <div class="programlistingco"><pre class="prettyprint language-java">      public void send(S stream) throws IOException
+      {
+         // Do nothing
+      }</pre></div>
+        <p>During the view phase a controller can generate URLs to other phases (except the event phase) by using companion  url methods. Companion url methods returns a <code class="code">org.juzu.URLBuilder</code> object to represent the URL. The final  URL is returned by the <code class="code">toString()</code> method of the builder.</p>
+      </div>
+      <div class="section" title="Action controllers"><div class="titlepage"><div><div><h3 class="title"><a name="d5e223"></a>Action controllers</h3></div></div></div>
+        
+        <p>Action controller are executed during the action phase of a Juzu application. Usually action methods perform two tasks</p>
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>implement the logic of the application processing, for instance inserting an entity in the database</p>
+          </li><li class="listitem">
+            <p>configure the next view phase: setting the next view controller to display and configuring its view parameters of the method when they exist</p>
+          </li></ul></div>
+        <p>In the following example, the controller method <code class="code">createUser</code>  creates a user and returns a <code class="code">Response.Update</code> object that will tell Juzu to use the <code class="code">showUser</code> view controller during the next view phase:</p>
+        <div class="programlistingco"><pre class="prettyprint language-java">@Action
+public Response.Update addUser(String userName, String password) {
+  orgService.createUser(userName, password);
+  return Controller_.showUser(userName);
+}</pre></div>
+        <p>
+          <code class="code">showUser</code> is a companion <span class="italic">update</span> method that creates a <code class="code">Response.Update</code> object configured with the controller and arguments to use. Like url companion methods, update companion methods are generated during the compilation of the project by Juzu.</p>
+      </div>
+      <div class="section" title="Resource controllers"><div class="titlepage"><div><div><h3 class="title"><a name="d5e242"></a>Resource controllers</h3></div></div></div>
+        
+        <p>Resource controllers are similar to view controllers, however the resource has full control over the target page. It means that a resource controller must produce the entire resource and it can also chose the mime type returned. Resource controllers have several use cases:</p>
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>Implement ajax resource serving</p>
+          </li><li class="listitem">
+            <p>Produce an application resource, such as an image, a script, etc...</p>
+          </li></ul></div>
+      </div>
+      <div class="section" title="Event controllers"><div class="titlepage"><div><div><h3 class="title"><a name="d5e250"></a>Event controllers</h3></div></div></div>
+        
+        <p>
+          <span class="italic">not yet implemented</span>
+        </p>
+      </div>
+    </div>
+    <div class="section" title="Controller classes"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e254"></a>Controller classes</h2></div></div></div>
+      
+      <p>Controller methods belongs to Java classes known as controller classes. Controller classes are ordinary java classes, any class can be turned into a controller by declaring a controller method. Controller classes are registered in the IOC container of the Juzu application, we will study later the benefits.</p>
+      <div class="section" title="Controller life cycle"><div class="titlepage"><div><div><h3 class="title"><a name="d5e257"></a>Controller life cycle</h3></div></div></div>
+        
+        <p>We will study in this section the complete life cycle of a controller object. Juzu relies on the IOC container for managing the life cycle of controller objects, based on the <code class="code">@javax.inject.Inject</code> annotation. If the  controller desires, it can receive life cycle callbacks thanks to the <code class="code">@javax.annotation.PostConstruct</code>  and <code class="code">@javax.annotation.PreDestroy</code> annotations.</p>
+        <p>Let's have a look at the complete life cycle of a controller object during a Juzu request:</p>
+        <p>
+          </p><div class="figure"><a name="d5e265"></a><p class="title"><b>Figure&nbsp;2.1.&nbsp;Life cycle of a controller object</b></p><div class="figure-contents">
+            
+            <div class="mediaobject" align="center"><img src="images/controllers/lifecycle.png" align="middle" width="378" alt="Life cycle of a controller object"></div>
+          </div></div><p><br class="figure-break">
+        </p>
+        <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+            <p>Juzu begins the request, it will need an controller instance for the request and asks the IOC container an instance</p>
+          </li><li class="listitem">
+            <p>The IOC container creates a fully operational controller instance in several stesp</p>
+            <div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem">
+                <p>It gets a controller object instance either by creating a new instance by using the default constructor or the constructor annotated with <code class="code">@Inject</code>
+                </p>
+              </li><li class="listitem">
+                <p>It injects the controller declared dependencies by the <code class="code">@Inject</code> annotation</p>
+              </li><li class="listitem">
+                <p>It invokes any method annotated with <code class="code">@PostConstruct</code>
+                </p>
+              </li></ol></div>
+          </li><li class="listitem">
+            <p>Juzu obtains a valid controller instance and simply invokes the controller method</p>
+          </li><li class="listitem">
+            <p>After the invocation, Juzu releases the controller instance and delegates it to the IOC container again</p>
+            <div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem">
+                <p>It invokes any method annotated with <code class="code">@PreDestroy</code>
+                </p>
+              </li><li class="listitem">
+                <p>It makes the instance available to the garbage collector</p>
+              </li></ol></div>
+          </li><li class="listitem">
+            <p>Juzu ends the request and use the <code class="code">Response</code> objet returned by the controller method</p>
+          </li></ol></div>
+      </div>
+    </div>
+  </div>
+</div></body></html>

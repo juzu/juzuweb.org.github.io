@@ -1,0 +1,19 @@
+@import "cerulean-2.0.2.min.css";
+
+/* Padding for nav bar */
+body {
+  padding-top: 64px;
+}
+
+.center {
+  text-align: center;
+}
+
+/* Give some extra space to chapters */
+div.chapter {
+    padding-top: 120px;
+}
+
+.done {
+    text-decoration: line-through;
+}
