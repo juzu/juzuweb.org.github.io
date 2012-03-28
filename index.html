@@ -17,10 +17,8 @@
     <script>
       $(document).ready(function() {
 
-
         // The page navigation
         $.address.change(function(event){
-
 
           // Get anchor
           var anchor = event.value.substring(1);
@@ -29,13 +27,20 @@
 
           //
           var page = $(".page:has(a[name=" + anchor + "])");
-          if (page.length > 0) {
-            $(".page").hide();
-            page.each(function() {
-                $(this).show();
+          if (page.length == 1) {
+            page.filter(function() {
+              return this != window.previous;
+            }).each(function() {
 
-                // Reset page to top
-                $(window).scrollTop(0);
+              // Do show/hide
+              $(".page").hide();
+              $(this).show();
+
+              // Reset page to top
+              $(window).scrollTop(0);
+
+              // Update previous
+              window.previous = this;
             });
           } else {
             // Should log something somehow
