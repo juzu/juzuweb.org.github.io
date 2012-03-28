@@ -10,10 +10,14 @@ body {
 }
 
 /* Give some extra space to chapters */
-div.chapter {
+.chapter {
     padding-top: 120px;
 }
 
 .done {
     text-decoration: line-through;
+}
+
+#logo {
+  padding-bottom: 40px;
 }

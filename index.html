@@ -88,7 +88,7 @@
       <div class="page">
         <a name="home"></a>
         <div class="hero-unit">
-          <div class="center">
+          <div id="logo" class="center">
             <h1>Juzu Web Framework</h1>
           </div>
           <p>Develop powerful web applications</p>
@@ -110,7 +110,7 @@
           </div>
           <div class="span4">
             <h3>Portal enabled</h3>
-            <p>Juzu works on GateIn and Liferay portals.</p>
+            <p>Juzu deploys on <a href="http://www.gatein.org">GateIn</a> and <a href="http://www.liferay.com">Liferay</a> portals.</p>
           </div>
         </div>
       </div>
@@ -118,16 +118,16 @@
       <div class="page">
         <a name="features"></a>
 
-        <h1>Deployment</h1>
+        <h1 class="page-header">Deployment</h1>
         <p>Juzu deploys on
          <ul>
             <li>GateIn/Tomcat</li>
             <li>GateIn/JBoss 5.1: requires to remove the seam and cdi deployer in AS5.1</li>
-            <li>Lifera/Tomcat: tested on Liferay 6.10 and 5.x</li>
+            <li>Liferay/Tomcat: tested on Liferay 6.10 and 5.x</li>
           </ul>
         </p>
 
-        <h1>Dependency Injection integration</h1>
+        <h1 class="page-header">Dependency Injection integration</h1>
         <p>
           Juzu leverages the JSR-330 specification to perform dependency injection, this specification is supported by the most
           popular dependency injection frameworks such as Weld, Spring and Guice. At the moment the Weld and Spring
@@ -160,7 +160,7 @@
   --&gt;
 &lt;/init-param&gt;</pre>
 
-        <h1>Programming</h1>
+        <h1 class="page-header">Programming</h1>
         <h2>Controller</h2>
         <p>Juzu programming model is inspired by the Play! Framework that provides a simple and efficient programming
           model for the web. Portlet programming model is very close to Play! programming model and thus it makes a lot
@@ -212,7 +212,7 @@ private Template template;</pre>
         </ul>
         <p>The taglib API is not yet pluggable but will be.</p>
 
-        <h1>Maven archetype</h1>
+        <h1 class="page-header">Maven archetype</h1>
         <p>
           The command line to use for creating a simple Juzu application using the Maven archetype
         </p>
@@ -223,7 +223,7 @@ private Template template;</pre>
   -DgroupId=&lt;my.groupid&gt; \
   -DartifactId=&lt;my-artifactId&gt;</pre>
 
-        <h1>Building your app <small>Universal build</small></h1>
+        <h1 class="page-header">Building your app <small>Universal build</small></h1>
         <p>Juzu integrates at the heart of the Java compiler thanks to Annotation Processing Tools (APT). APT allows to
           perform code generation in a fully portable manner, it just work with the Java compiler in a very transparent
           manner and thus is integrated with any build system or IDE that uses a Java 6 compiler.
