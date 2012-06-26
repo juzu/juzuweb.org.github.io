@@ -74,6 +74,7 @@
               <ul class="dropdown-menu">
                 <li><a href="#tutorial">Tutorial</a></li>
                 <li><a href="#reference">Reference</a></li>
+                <li><a href="javadoc/index.html" target="blank_">Javadoc</a></li>
               </ul>
             </li>
 
@@ -105,7 +106,7 @@
           </div>
           <div class="span4">
             <h3>Download</h3>
-              The latest 0.4.4 release is available, <a href="https://github.com/juzu/juzu/downloads">download it</a>.
+              The latest 0.5 release is available, <a href="https://github.com/juzu/juzu/downloads">download it</a>.
             </p>
           </div>
           <div class="span4">
@@ -121,9 +122,8 @@
         <h1 class="page-header">Deployment</h1>
         <p>Juzu deploys on
          <ul>
-            <li>GateIn/Tomcat</li>
-            <li>GateIn/JBoss 5.1: requires to remove the seam and cdi deployer in AS5.1</li>
-            <li>Liferay/Tomcat: tested on Liferay 6.10 and 5.x</li>
+            <li><a href="http://www.gatein.org">GateIn</a>: 3.2 and 3.3</li>
+            <li><a href="http://www.liferay.com">Liferay</a>: tested on Liferay 6.10 and 5.x</li>
           </ul>
         </p>
 
@@ -142,11 +142,11 @@
           <li>Session scope</li>
           <li>Flash scope</li>
         </ul>
-        <h2>IOC flavor <small>Your church</small></h2>
+        <h2>Inversion Of Control</h2>
         <h3>CDI</h3>
-        <p>Weld is the default dependency injection framework.</p>
+        <p>Weld is enabled by default.</p>
         <h3>Spring</h3>
-        <p>Spring is used by setting the <code>spring</code> value for the <code>juzu.inject</code> portlet init parameter.
+        <p>Spring can be enabled by setting the <code>spring</code> value for the <code>juzu.inject</code> portlet init parameter.
           Spring beans are declared in the <code>spring.xml</code> file.</p>
         <h3>Configuration</h3>
         <p>
@@ -182,6 +182,7 @@
 &lt;/form&gt;</pre>
         <p>Controller method takes String argument at the moment, later support for other types will be added.
           Multivalued string are supported with the <code>String[]</code> or <code>List&lt;String&gt;</code> types.</p>
+
         <h2>Templating</h2>
         <p>Juzu templates engine is based on Groovy and provide a powerful set of instructions.</p>
         <h3>Template URL resolution</h3>
@@ -205,12 +206,31 @@ private Template template;</pre>
         <h3>Tag library</h3>
         <p>The Tab library supports a few tags at the moment</p>
         <ul>
-          <li>decorate : decorate a template with another template</li>
-          <li>template parameter : declare a template parameter and provide a typed interface for invoking a template from a controller</li>
-          <li>include : include a template in a template</li>
-          <li>title : set the portlet title</li>
+          <li><em>decorate</em> : decorate a template with another template</li>
+          <li><em>param</em> : declare a template parameter and provide a typed interface for invoking a template from a controller</li>
+          <li><em>include</em> : include a template in a template</li>
+          <li><em>title</em> : set the portlet title</li>
         </ul>
         <p>The taglib API is not yet pluggable but will be.</p>
+
+        <h2>Modular support</h2>
+        <p>Juzu can be extended with plugins and template engines.</p>
+
+        <h3>LESS plugin</h3>
+        <p>The LESS plugin compiles <em>.less</em> files to <em>.css</em> files during the compilation of the project:</p>
+        <pre>@Less(value = "bootstrap.less", minify = true)
+package my.app;
+</pre>
+
+        <h3>Portlet plugin</h3>
+        <p>The portlet plugin is able to generate a Portlet class for running the Juzu application. It also provides
+          dependency injection for Portlet Preferences:</p>
+        <pre>@Inject
+PortletPreferences prefs;
+</pre>
+
+        <h3>Mustache templates</h3>
+        <p>The <a href="http://mustache.github.com/">Mustache</a> template engine provides logic-free templating.</p>
 
         <h1 class="page-header">Maven archetype</h1>
         <p>
@@ -219,7 +239,7 @@ private Template template;</pre>
         <pre>mvn archetype:generate \
   -DarchetypeGroupId=org.juzu \
   -DarchetypeArtifactId=juzu-archetype \
-  -DarchetypeVersion=0.4.4 \
+  -DarchetypeVersion=0.5.0 \
   -DgroupId=&lt;my.groupid&gt; \
   -DartifactId=&lt;my-artifactId&gt;</pre>
 
@@ -317,24 +337,32 @@ public static URLBuilder showProduct(String productId) { ... }
         <blockquote>
           <p>1.0</p>
           <small>Cross site scripting (xss) support</small>
-          <small>Servlet support & Routing engine</small>
           <small>Request context stacking</small>
           <small>Extensible taglib</small>
           <small>Application import</small>
-          <small>Form bean validation</small>
           <small>Portlet Eventing Support</small>
           <small>Controller inheritance</small>
         </blockquote>
 
+        <blockquote><p>...</p></blockquote>
+
         <blockquote>
-          <p>Next 0.5</p>
+          <p><strong>Next 0.6</strong></p>
+          <small>Standalone mode (plain servlet support)</small>
+          <small>Bean validation support (JSR-303)</small>
+        </blockquote>
+
+        <blockquote class="pull-right">
+          <p class="done">0.5.0</p>
           <small>Form bean</small>
           <small>Reference guide</small>
+          <small>Mustache template engine</small>
+          <small>Template engine Service Provide Interface</small>
+          <small>IOC lifecycle support with @PostConstruct and @PreDestroy</small>
           <small>Plugin support</small>
           <small>Asset plugin</small>
           <small>Ajax plugin</small>
-          <small>Lifecycle support with @PostConstruct and @PreDestroy</small>
-          <small>Portlet preferences injection</small>
+          <small>Portlet Plugin</small>
         </blockquote>
 
         <blockquote class="pull-right">

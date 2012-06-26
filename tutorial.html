@@ -3,18 +3,18 @@
   SYSTEM "">
 <html><head>
       <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-   <title>Juzu Web Framework 0.4.5-SNAPSHOT</title><link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css"><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"><script src="js/bootstrap/jquery-1.7.1.min.js"></script><script src="js/bootstrap/bootstrap-2.0.2.min.js"></script><script src="js/bootstrap/docbook.js"></script><script src="js/bootstrap/google-code-prettify/prettify.js"></script></head><body onload="if (prettyPrint) { prettyPrint() }"><div class="book container" title="Juzu Web Framework 0.4.5-SNAPSHOT"><div class="titlepage"><div><div><h1 class="title"><a name="UTF-8"></a>Juzu Web Framework 0.4.5-SNAPSHOT</h1></div><div><h2 class="subtitle">Tutorial</h2></div><div><div class="authorgroup">
+   <title>Juzu Web Framework 0.5.0</title><link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css"><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"><script src="js/bootstrap/jquery-1.7.1.min.js"></script><script src="js/bootstrap/bootstrap-2.0.3.min.js"></script><script src="js/bootstrap/docbook.js"></script><script src="js/bootstrap/google-code-prettify/prettify.js"></script></head><body onload="if (prettyPrint) { prettyPrint() }"><div class="book container" title="Juzu Web Framework 0.5.0"><div class="titlepage"><div><div><h1 class="title"><a name="UTF-8"></a>Juzu Web Framework 0.5.0</h1></div><div><h2 class="subtitle">Tutorial</h2></div><div><div class="authorgroup">
     <div class="author"><h3 class="author"><span class="firstname">Julien</span> <span class="surname">Viet</span></h3><div class="affiliation">
         <span class="shortaffil">eXo Platform<br></span>
       </div></div>
-  </div></div><div><p class="copyright">Copyright &copy; 2011 eXo Platform SAS</p></div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="preface"><a href="#d5e18">Preface</a></span></dt><dt><span class="chapter"><a href="#quickstart">1. Quickstart </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e26">Deploy the applications</a></span></dt><dt><span class="section"><a href="#d5e62">Interacting with the application</a></span></dt></dl></dd><dt><span class="chapter"><a href="#template_overview">2. Template overwiew </a></span></dt><dt><span class="chapter"><a href="#dependency_injection">3. Dependency Injection </a></span></dt><dt><span class="chapter"><a href="#views">4. Views </a></span></dt><dt><span class="chapter"><a href="#actions">5. Actions </a></span></dt><dt><span class="chapter"><a href="#type_safe_templating">6. Type safe templating </a></span></dt><dt><span class="chapter"><a href="#preferences">7. Using portlet preferences </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e249">Reading preferences</a></span></dt><dt><span class="section"><a href="#d5e259">Writing preferences</a></span></dt></dl></dd><dt><span class="chapter"><a href="#d5e273">8. Wrap up</a></span></dt></dl></div>
+  </div></div><div><p class="copyright">Copyright &copy; 2011 eXo Platform SAS</p></div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="preface"><a href="#d5e18">Preface</a></span></dt><dt><span class="chapter"><a href="#quickstart">1. Quickstart </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e26">Deploy the applications</a></span></dt><dt><span class="section"><a href="#d5e68">Interacting with the application</a></span></dt></dl></dd><dt><span class="chapter"><a href="#template_overview">2. Template overwiew </a></span></dt><dt><span class="chapter"><a href="#dependency_injection">3. Dependency Injection </a></span></dt><dt><span class="chapter"><a href="#views">4. Views </a></span></dt><dt><span class="chapter"><a href="#actions">5. Actions </a></span></dt><dt><span class="chapter"><a href="#type_safe_templating">6. Type safe templating </a></span></dt><dt><span class="chapter"><a href="#preferences">7. Using portlet preferences </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e275">Reading preferences</a></span></dt><dt><span class="section"><a href="#d5e285">Writing preferences</a></span></dt></dl></dd><dt><span class="chapter"><a href="#styled">8. Styling the application </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e303">The style</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e313">A la carte</a></span></dt><dt><span class="section"><a href="#d5e324">Scoping the styles</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e353">Plugins in action</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e361">Less compilation</a></span></dt><dt><span class="section"><a href="#d5e382">Injecting CSS</a></span></dt><dt><span class="section"><a href="#d5e397">Bringing CSS to life</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#ajax">9. Adding Ajax </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e444">Javascript to the rescue</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e456">Adding scripts</a></span></dt><dt><span class="section"><a href="#d5e499">The collapse plugin</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e516">Bridge the gap with Ajax</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e519">Resource controller</a></span></dt><dt><span class="section"><a href="#d5e533">JQuery</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#d5e587">10. Wrap up</a></span></dt></dl></div><div class="list-of-figures"><p><b>List of Figures</b></p><dl><dt>8.1. <a href="#d5e401">The Bootstrapized application</a></dt></dl></div><div class="list-of-examples"><p><b>List of Examples</b></p><dl><dt>8.1. <a href="#d5e318">The necessary Bootstrap less files</a></dt><dt>8.2. <a href="#d5e328">The rule to scope</a></dt><dt>8.3. <a href="#d5e337">The rule scoped</a></dt><dt>8.4. <a href="#d5e346">The rule scoped</a></dt><dt>8.5. <a href="#d5e387">Injecting Bootstrap CSS in our application</a></dt></dl></div>
   
   <div class="preface" title="Preface"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e18"></a>Preface</h1></div></div></div></div>
     
     <p>Juzu is a web framework based on MVC concepts for developing Portlet applications. Juzu is an open source project developed on GitHub <a class="ulink" href="https://github.com/juzu/juzu" target="_top">project</a> licensed under the <a class="ulink" href="http://www.gnu.org/licenses/lgpl-2.1.html" target="_top">LGPL 2.1</a> license.</p>
     <p>This tutorial will make you familliar with Juzu, to reach our objective we will develop a weather application in several steps, each step introducing a new feature to gradually improve the application.</p>
   </div>
-  <div class="chapter" title="Chapter&nbsp;1.&nbsp;Quickstart"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="quickstart"></a>Chapter&nbsp;1.&nbsp;Quickstart </h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e26">Deploy the applications</a></span></dt><dt><span class="section"><a href="#d5e62">Interacting with the application</a></span></dt></dl></div>
+  <div class="chapter" title="Chapter&nbsp;1.&nbsp;Quickstart"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="quickstart"></a>Chapter&nbsp;1.&nbsp;Quickstart </h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e26">Deploy the applications</a></span></dt><dt><span class="section"><a href="#d5e68">Interacting with the application</a></span></dt></dl></div>
     
     <div class="section" title="Deploy the applications"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e26"></a>Deploy the applications</h2></div></div></div>
       
@@ -28,27 +28,20 @@
         </li></ul></div>
       <p>The main reason we have two servers is that the jars are not exactly the same, each is adapted to the portal server you will use. When you deploy the applications, the deployment process will print information in the console, similar to:</p>
       <pre class="screen">INFO: Deploying web application archive juzu-tutorial-gatein.war
-[Weather4Portlet] Building application
-[Weather4Portlet] Using injection org.juzu.impl.spi.inject.cdi.CDIBootstrap
-[Weather4Portlet] Starting Weather4Application
-[Weather4Portlet] Dev mode scanner monitoring /java/gatein/webapps/juzu-tutorial-gatein/WEB-INF/src
-[Weather3Portlet] Building application
-[Weather3Portlet] Using injection org.juzu.impl.spi.inject.spring.SpringBootstrap
-[Weather3Portlet] Starting Weather3Application
-[Weather3Portlet] Dev mode scanner monitoring /java/gatein/webapps/juzu-tutorial-gatein/WEB-INF/src
-[Weather5Portlet] Building application
-[Weather5Portlet] Using injection org.juzu.impl.spi.inject.cdi.CDIBootstrap
-[Weather5Portlet] Starting Weather5Application
-[Weather5Portlet] Dev mode scanner monitoring /java/gatein/webapps/juzu-tutorial-gatein/WEB-INF/src
-[Weather2Portlet] Building application
-[Weather2Portlet] Using injection org.juzu.impl.spi.inject.cdi.CDIBootstrap
-[Weather2Portlet] Starting Weather2Application
-[Weather2Portlet] Dev mode scanner monitoring /java/gatein/webapps/juzu-tutorial-gatein/WEB-INF/src
+[Weather1Portlet] Using injection CDI_WELD
+[Weather1Portlet] Dev mode scanner monitoring /Users/julien/java/gatein-server/webapps/juzu-tutorial-gatein/WEB-INF/src
 [Weather1Portlet] Building application
-[Weather1Portlet] Using injection org.juzu.impl.spi.inject.cdi.CDIBootstrap
 [Weather1Portlet] Starting Weather1Application
-[Weather1Portlet] Dev mode scanner monitoring /java/gatein/webapps/juzu-tutorial-gatein/WEB-INF/src</pre>
-      <p>As we can notice, there are 5 applications deployed, one for each of the topic of this tutorial</p>
+[Weather2Portlet] Using injection CDI_WELD
+[Weather2Portlet] Dev mode scanner monitoring /Users/julien/java/gatein-server/webapps/juzu-tutorial-gatein/WEB-INF/src
+[Weather2Portlet] Building application
+[Weather2Portlet] Starting Weather2Application
+[Weather3Portlet] Using injection INJECT_SPRING
+[Weather3Portlet] Dev mode scanner monitoring /Users/julien/java/gatein-server/webapps/juzu-tutorial-gatein/WEB-INF/src
+[Weather3Portlet] Building application
+[Weather3Portlet] Starting Weather3Application
+....</pre>
+      <p>As we can notice, there are 7 applications deployed, one for each of the topic of this tutorial</p>
       <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
           <p>Weather1Application: <a class="xref" href="#quickstart" title="Chapter&nbsp;1.&nbsp;Quickstart">Chapter&nbsp;1, <i>Quickstart </i></a>
           </p>
@@ -70,24 +63,42 @@
         </li><li class="listitem">
           <p>Weather7Application: <a class="xref" href="#preferences" title="Chapter&nbsp;7.&nbsp;Using portlet preferences">Chapter&nbsp;7, <i>Using portlet preferences </i></a>
           </p>
+        </li><li class="listitem">
+          <p>Weather8Application: <a class="xref" href="#styled" title="Chapter&nbsp;8.&nbsp;Styling the application">Chapter&nbsp;8, <i>Styling the application </i></a>
+          </p>
+        </li><li class="listitem">
+          <p>Weather9Application: <a class="xref" href="#ajax" title="Chapter&nbsp;9.&nbsp;Adding Ajax">Chapter&nbsp;9, <i>Adding Ajax </i></a>
+          </p>
         </li></ul></div>
     </div>
-    <div class="section" title="Interacting with the application"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e62"></a>Interacting with the application</h2></div></div></div>
+    <div class="section" title="Interacting with the application"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e68"></a>Interacting with the application</h2></div></div></div>
       
       <p>In this tutorial, Juzu applications are deployed in the <span class="bold"><strong>
           <span class="italic">dev</span>
         </strong></span> mode. This runtime mode allows you to modify the source code of the application, Juzu will pick up the modifications and update the running application almost instantanesouly.</p>
       <p>The source code for the five applications is in the <code class="code">/WEB-INF/src</code> directory of the war file, each application has its own package, for instance the quickstart application uses the package <code class="code">examples.tutorial.weather1</code>. The first version of the application shows the most basic Juzu application. Our application is declared in the <code class="code">examples.tutorial.weather1</code> package package annotated with the <code class="code">@Application</code> annotation This annotation declares a Juzu application and does not require any mandatory value. Like classes, methods or fields, Java packages can be annotated, such packages declaration are represented by a special file named <code class="code">package-info.java</code>.</p>
+      <p>The first think to do when developping a Juzu application is to declare the application. The package of the application must be annotated with the <code class="code">@juzu.Application</code> annotation to declare the application. The Java file <span class="italic">examples/tutorial/weather1/package-info.java</span> contains the package declaration along with the annotation:</p>
+      <div class="programlistingco"><pre class="prettyprint language-java">@juzu.Application
+package examples.tutorial.weather1;</pre></div>
+      <p>We can even go further and also annotate the package with the <code class="code">juzu.plugin.portlet.Portlet</code> annotation, this annotation has the very simple purpose to generate a Java Portlet that will be used in the <span class="italic">portlet.xml</span> deployment descriptor:</p>
+      <div class="programlistingco"><pre class="prettyprint language-java">@juzu.Application
+@juzu.plugin.portlet.Portlet
+package examples.tutorial.weather1;</pre></div>
+      <p>The <code class="code">@Portlet</code> annotation generates a Java class <code class="code">examples.tutorial.weather1.Weather1Portlet</code> that we specifies in the <span class="italic">WEB-INF/portlet.xml</span> deployment descriptor of the web application:</p>
+      <div class="programlistingco"><pre class="prettyprint language-xml">&lt;portlet&gt;
+  &lt;portlet-name&gt;Weather1Portlet&lt;/portlet-name&gt;
+  &lt;portlet-class&gt;examples.tutorial.weather1.Weather1Portlet&lt;/portlet-class&gt;
+&lt;/portlet&gt;</pre></div>
+      <p>This is enough to create an empty Juzu application, now let's see the application itself!</p>
       <p>Usually an application is made of controllers and templates, in this example, the <code class="code">Weather</code> Java class contains a method annotated with the <code class="code">@View</code> annotation, which turns the <code class="code">Weather</code> class into a Juzu controller. The controller method <code class="code">index()</code> is the name of the default method that Juzu will call.</p>
-      <div class="programlistingco"><pre class="prettyprint language-java">   @View
-   public void index()
-   {
-      index.render();
-   }</pre></div>
+      <div class="programlistingco"><pre class="prettyprint language-java">  @View
+  public void index() {
+    index.render();
+  }</pre></div>
       <p>Methods annotated by <code class="code">@View</code> have the unique purpose of providing markup, they are called <span class="italic">view</span>. In our case, the method delegates the rendering to the <code class="code">index.gtmpl</code> template. The template is injected in the controller thanks to the <code class="code">@Inject</code> annotation and the <code class="code">@Path("index.gtmpl")</code> annotation.</p>
-      <div class="programlistingco"><pre class="prettyprint language-java">   @Inject
-   @Path("index.gtmpl")
-   Template index;</pre></div>
+      <div class="programlistingco"><pre class="prettyprint language-java">  @Inject
+  @Path("index.gtmpl")
+  Template index;</pre></div>
       <p>By default templates are located in the <code class="code">templates</code> package of the application, in our case the <code class="code">examples.tutorial.weather1.templates</code> package. The <code class="code">@Path</code> annotation specifies the path of the template in this package. The templates are located in the same source tree than the java classes because the files must be available for the Java compiler.</p>
     </div>
   </div>
@@ -97,56 +108,49 @@
     <p>The application shows how a view can provide variable input for a dynamic template with parameters. Our application has  a view controller and a template, but now the template contains the <code class="code">${ }</code> expression that makes it dynamic.</p>
     <div class="programlistingco"><pre class="prettyprint">The weather temperature in ${location} is ${temperature} degrees.</pre></div>
     <p>Like before the template is used in the view controller but now we use a <code class="code">Map</code> containing the <code class="code">location</code> and <code class="code">temperature</code> parameters.</p>
-    <div class="programlistingco"><pre class="prettyprint language-java">   @View
-   public void index()
-   {
-      Map&lt;String, Object&gt; parameters = new HashMap&lt;String, Object&gt;();
-      parameters.put("location", "Marseille");
-      parameters.put("temperature", "20");
-      index.render(parameters);
-   }</pre></div>
+    <div class="programlistingco"><pre class="prettyprint language-java">  @View
+  public void index() {
+    Map&lt;String, Object&gt; parameters = new HashMap&lt;String, Object&gt;();
+    parameters.put("location", "Marseille");
+    parameters.put("temperature", "20");
+    index.render(parameters);
+  }</pre></div>
     <p>During the template rendering, the <code class="code">location</code> and <code class="code">temperature</code> expressions are resolved to the value provided by the view controller. When a template is rendered, an optional map can be provided, this map will be available during the rendering of the template for resolving expression.</p>
   </div>
   <div class="chapter" title="Chapter&nbsp;3.&nbsp;Dependency Injection"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="dependency_injection"></a>Chapter&nbsp;3.&nbsp;Dependency Injection </h1></div></div></div></div>
     
     <p>The next step is to make our application obtain real data instead of the hardcoded values we used in the previous section. For this matter we use a remote service that we encapsulate into the <code class="code">WeatherService</code>.</p>
-    <div class="programlistingco"><pre class="prettyprint language-java">public class WeatherService
-{
+    <div class="programlistingco"><pre class="prettyprint language-java">public class WeatherService {
 
-   public String getTemperature(String location)
-   {
-      return getTemperature(location, "c");
-   }
+  public String getTemperature(String location) {
+    return getTemperature(location, "c");
+  }
 
-   public String getTemperature(String location, String grade)
-   {
-      try
-      {
-         XPath xpath = XPathFactory.newInstance().newXPath();
-         XPathExpression expr = xpath.compile("//temp_" + grade + "/@data");
-         String url = "http://www.google.com/ig/api?weather=" + location;
-         InputSource src = new InputSource(url);
-         src.setEncoding("ISO-8859-1");
-         return expr.evaluate(src);
-      }
-      catch (XPathExpressionException e)
-      {
-         return "unavailable";
-      }
-   }
+  public String getTemperature(String location, String grade) {
+    try {
+      XPath xpath = XPathFactory.newInstance().newXPath();
+      XPathExpression expr = xpath.compile("//temp_" + grade + "/@data");
+      String url = "http://www.google.com/ig/api?weather=" + location;
+      InputSource src = new InputSource(url);
+      src.setEncoding("ISO-8859-1");
+      return expr.evaluate(src);
+    }
+    catch (XPathExpressionException e) {
+      return "unavailable";
+    }
+  }
 }</pre></div>
     <p>Juzu uses dependency injection to interact with a service layer. The <a class="ulink" href="http://jcp.org/en/jsr/detail?id=330" target="_top">JSR-330</a>,  also knowns as <code class="code">@Inject</code>, defines an API for dependency injection. The <code class="code">WeatherService</code> is injected in the  controller with the <code class="code">weatherService</code> field annotated with the <code class="code">@Inject</code> annotation:</p>
-    <div class="programlistingco"><pre class="prettyprint language-java">   @Inject
-   WeatherService weatherService;</pre></div>
+    <div class="programlistingco"><pre class="prettyprint language-java">  @Inject
+  WeatherService weatherService;</pre></div>
     <p>This service is then simply used into our controller <code class="code">index()</code> method:</p>
-    <div class="programlistingco"><pre class="prettyprint language-java">   @View
-   public void index()
-   {
-      Map&lt;String, Object&gt; parameters = new HashMap&lt;String, Object&gt;();
-      parameters.put("location", "Marseille");
-      parameters.put("temperature", weatherService.getTemperature("marseille"));
-      index.render(parameters);
-   }</pre></div>
+    <div class="programlistingco"><pre class="prettyprint language-java">  @View
+  public void index() {
+    Map&lt;String, Object&gt; parameters = new HashMap&lt;String, Object&gt;();
+    parameters.put("location", "Marseille");
+    parameters.put("temperature", weatherService.getTemperature("marseille"));
+    index.render(parameters);
+  }</pre></div>
     <p>As we can see, Juzu relies on the portable <code class="code">@Inject</code> annotation to declare sinjections. Injection is performed by the dependency injection container. At the moment the following containers are supported:</p>
     <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
         <p>
@@ -171,14 +175,13 @@
     
     <p>Until now we have seen a basic view controller, in this section we will study more in depth view controllers. A view controller is invoked by Juzu when the application needs to be rendered, which can happen anytime during the lifecycle of an application.</p>
     <p>This version has still the <code class="code">index()</code> view controller, but now it has also an overloaded <code class="code">index(String location)</code> method that accept a <code class="code">location</code> argument as a view parameter.</p>
-    <div class="programlistingco"><pre class="prettyprint language-java">   @View
-   public void index(String location)
-   {
-      Map&lt;String, Object&gt; parameters = new HashMap&lt;String, Object&gt;();
-      parameters.put("location", location);
-      parameters.put("temperature", weatherService.getTemperature("marseille"));
-      index.render(parameters);
-   }</pre></div>
+    <div class="programlistingco"><pre class="prettyprint language-java">  @View
+  public void index(String location) {
+    Map&lt;String, Object&gt; parameters = new HashMap&lt;String, Object&gt;();
+    parameters.put("location", location);
+    parameters.put("temperature", weatherService.getTemperature("marseille"));
+    index.render(parameters);
+  }</pre></div>
     <p>View parameters are bound to the current navigation of the application and their value are managed by the framework. At this point it is normal to wonder how a view parameter value can change. Let's have a closer look at the <code class="code">index.gtmpl</code> application template.</p>
     <div class="programlistingco"><pre class="prettyprint">The weather temperature in ${location} is ${temperature} degrees.
 &lt;a href="@{index(location = 'marseille')}"&gt;Marseille&lt;/a&gt;
@@ -186,11 +189,10 @@
 </pre></div>
     <p>The template now has two links that change the view parameters when they are processed. The links are created by a special syntax that references the view method, for instance the script fragment <code class="code">@{index(location = 'paris')}</code> generates an url that updates the <code class="code">location</code> view parameter to the <code class="code">paris</code> value when it is processed.</p>
     <p>The initial controller method <code class="code">index()</code> is still there but now it simply invokes the <code class="code">index(String location)</code> controller with a predefined value.</p>
-    <div class="programlistingco"><pre class="prettyprint language-java">   @View
-   public void index()
-   {
-      index("marseille");
-   }</pre></div>
+    <div class="programlistingco"><pre class="prettyprint language-java">  @View
+  public void index() {
+    index("marseille");
+  }</pre></div>
     <p>We could't close this section without talking a bit about <span class="bold"><strong>safe urls</strong></span>. Juzu is deeply integrated at the heart of the Java compiler and performs many checks to detect applications bugs during the application compilation. Among those checks, templates are validated and the url syntax <code class="code">@{ }</code> is checked against the application controllers. In fact Juzu will resolve an url syntax until it finds one controller that resolves the specified name and parameters. If not Juzu will make the compilation fail and give detailled information about the error. This kind of feature makes Juzu really unique among all other web frameworks, we will see some other later.</p>
     <div class="alert alert-success alert-block" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
       <p>Juzu leverages the <a class="ulink" href="http://download.oracle.com/javase/6/docs/technotes/guides/apt/index.html" target="_top">Annotation Processing Tool</a> (APT) facility standardized since Java 6. APT works with any Java compiler and is not specific to a build system or IDE, it just works anywhere, we will see later that it even works with Eclipse incremental compiler.</p>
@@ -213,12 +215,11 @@
 &lt;/form&gt;</pre></div>
     <p>In our example, we use a form which contains the the #location# action parameters. In order to create an action url we use the same syntax shown for view url <code class="code">@{add()}</code> but this time we don't need to set any parameter, instead the form parameters will be used when the form is submitted. However this is not mandatory and instead we could have url parameters such as <code class="code">@{add(location = 'washington'}</code>, such syntax is valid specially when it is used without a form. Obviously there is the possibility to mix form and action parameters.</p>
     <p>When the url is processed, the following action controller method will be invoked:</p>
-    <div class="programlistingco"><pre class="prettyprint language-java">   @Action
-   public Response add(String location)
-   {
-      locations.add(location);
-      return Weather_.index(location);
-   }</pre></div>
+    <div class="programlistingco"><pre class="prettyprint language-java">  @Action
+  public Response add(String location) {
+    locations.add(location);
+    return Weather_.index(location);
+  }</pre></div>
     <p>The method process the <code class="code">location</code> parameter and add it to the <code class="code">locations</code> set. After this the portal will proceed to the page rendering phase and will call the <code class="code">index()</code> method to refresh the application.</p>
   </div>
   <div class="chapter" title="Chapter&nbsp;6.&nbsp;Type safe templating"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="type_safe_templating"></a>Chapter&nbsp;6.&nbsp;Type safe templating </h1></div></div></div></div>
@@ -242,49 +243,47 @@ The weather temperature in ${location} is ${temperature} degrees.
 &lt;/form&gt;</pre></div>
     <p>For instance the <code class="code">location</code> parameter is declared by the <code class="code">#{param name=location/}</code> tag. During the Java compilation, Juzu leverage those parameter declarations to provide a more convenient way to render a template.</p>
     <p>Indeed the tight integration with the Java compiler allows Juzu to generate a template class for each template of the application, such template class inherits the <code class="code">Template</code> class and adds specific methods for passing parameters to a template in a safe manner.</p>
-    <div class="programlistingco"><pre class="prettyprint language-java">   @View
-   public void index(String location)
-   {
-      index.
-         with().
-         location(location).
-         temperature(weatherService.getTemperature(location)).
-         locations(locations).
-         render();
-   }</pre></div>
+    <div class="programlistingco"><pre class="prettyprint language-java">  @View
+  public void index(String location) {
+    index.
+      with().
+      location(location).
+      temperature(weatherService.getTemperature(location)).
+      locations(locations).
+      render();
+  }</pre></div>
     <p>As we can see, the <code class="code">HashMap</code> is not used anymore and now we use a type safe and compact expression for rendering the template. Each declared parameter generates a method named by the parameter name, for the <code class="code">location</code> parameter, we do have now a <code class="code">location(String location)</code> method that can be used. To make the syntax fluent, the parameter methods can be chained, finally the <code class="code">render()</code> method is invoked to render the template, however it does not require any parameter since all parameters where passed thanks to the parameter methods.</p>
     <p>The Java name of the generated template class is the name of the template in the <code class="code">templates</code> package of the application. In our case we do obtain the <code class="code">examples.tutorial.weather6.templates.index</code> class name. It is very easy to use our subclass by injecting the template subclass instead of the generic <code class="code">Template</code> class.</p>
-    <div class="programlistingco"><pre class="prettyprint language-java">   @Inject
-   @Path("index.gtmpl")
-   examples.tutorial.weather6.templates.index index;</pre></div>
+    <div class="programlistingco"><pre class="prettyprint language-java">  @Inject
+  @Path("index.gtmpl")
+  examples.tutorial.weather6.templates.index index;</pre></div>
     <p>Of course it is possible to import this value and use directly the <code class="code">index</code> class name. We used directly the full qualified name of the class for the sake of the clarity.</p>
   </div>
-  <div class="chapter" title="Chapter&nbsp;7.&nbsp;Using portlet preferences"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="preferences"></a>Chapter&nbsp;7.&nbsp;Using portlet preferences </h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e249">Reading preferences</a></span></dt><dt><span class="section"><a href="#d5e259">Writing preferences</a></span></dt></dl></div>
+  <div class="chapter" title="Chapter&nbsp;7.&nbsp;Using portlet preferences"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="preferences"></a>Chapter&nbsp;7.&nbsp;Using portlet preferences </h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e275">Reading preferences</a></span></dt><dt><span class="section"><a href="#d5e285">Writing preferences</a></span></dt></dl></div>
     
     <p>A portlet provides a <code class="code">PortletPreferences</code> object for loading and saveing user preferences, it is a collection of key and values of type string, very much like a map. Juzu does not wrap the preferences object, instead it can be injected via the <code class="code">@Inject</code> annotation:</p>
-    <div class="programlistingco"><pre class="prettyprint language-java">   @Inject
-   PortletPreferences preferences;</pre></div>
+    <div class="programlistingco"><pre class="prettyprint language-java">  @Inject
+  PortletPreferences preferences;</pre></div>
     <p>The preferences object is available during the various phases of the application and can be used to retrieve and store user preferences, but keep in mind that storing preferences can only be done an action phase.</p>
     <div class="alert alert-success alert-block" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
       <p>The preferences object is bound in the IOC container with the request scope, since the validity of the preferences object is associated with a portlet request. There is no need to declared the request scope in the preferences injection.</p>
     </div>
-    <div class="section" title="Reading preferences"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e249"></a>Reading preferences</h2></div></div></div>
+    <div class="section" title="Reading preferences"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e275"></a>Reading preferences</h2></div></div></div>
       
       <p>To use the preferences in the templates we have modified the template to contain an additional <code class="code">grade</code> parameter that will be configured by the <code class="code">index</code> method when it renders the template. The grade value is obtained from the <code class="code">preferences</code> field at the beginning of the <code class="code">index</code> method:</p>
-      <div class="programlistingco"><pre class="prettyprint language-java">   @View
-   public void index(String location)
-   {
-      String grade = preferences.getValue("grade", "c");
-      index.
-         with().
-         location(location).
-         temperature(weatherService.getTemperature(location, grade)).
-         grade(grade).
-         locations(locations).
-         render();
-   }</pre></div>
+      <div class="programlistingco"><pre class="prettyprint language-java">  @View
+  public void index(String location) {
+    String grade = preferences.getValue("grade", "c");
+    index.
+      with().
+      location(location).
+      temperature(weatherService.getTemperature(location, grade)).
+      grade(grade).
+      locations(locations).
+      render();
+  }</pre></div>
     </div>
-    <div class="section" title="Writing preferences"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e259"></a>Writing preferences</h2></div></div></div>
+    <div class="section" title="Writing preferences"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e285"></a>Writing preferences</h2></div></div></div>
       
       <p>Preferences can be updated during the action phase of the application. The action phase is triggered by a form in the template:</p>
       <div class="programlistingco"><pre class="prettyprint">#{param name=location/}
@@ -311,17 +310,372 @@ The weather temperature in ${location} is ${temperature} degrees.
     &lt;input type="submit"/&gt;
 &lt;/form&gt;</pre></div>
       <p>The form action value is set to <code class="code">@{updateGrade()}</code> URL that will invoke the corresponding method in the controller:</p>
-      <div class="programlistingco"><pre class="prettyprint language-java">   @Action
-   public void updateGrade(String grade) throws java.io.IOException,
-      javax.portlet.PortletException
-   {
-      preferences.setValue("grade", grade);
-      preferences.store();
-   }</pre></div>
+      <div class="programlistingco"><pre class="prettyprint language-java">  @Action
+  public void updateGrade(String grade) throws java.io.IOException,
+    javax.portlet.PortletException {
+    preferences.setValue("grade", grade);
+    preferences.store();
+  }</pre></div>
       <p>The <code class="code">updateGrade</code> action updates the preferences and then invoke the <code class="code">store()</code> method to persist the changes.</p>
     </div>
   </div>
-  <div class="chapter" title="Chapter&nbsp;8.&nbsp;Wrap up"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e273"></a>Chapter&nbsp;8.&nbsp;Wrap up</h1></div></div></div></div>
+  <div class="chapter" title="Chapter&nbsp;8.&nbsp;Styling the application"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="styled"></a>Chapter&nbsp;8.&nbsp;Styling the application </h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e303">The style</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e313">A la carte</a></span></dt><dt><span class="section"><a href="#d5e324">Scoping the styles</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e353">Plugins in action</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e361">Less compilation</a></span></dt><dt><span class="section"><a href="#d5e382">Injecting CSS</a></span></dt><dt><span class="section"><a href="#d5e397">Bringing CSS to life</a></span></dt></dl></dd></dl></div>
+    
+    <p>Our application is almost complete, in this section we will work on the look and feel to make the application appealing. We will use the famous <a class="ulink" href="http://twitter.github.com/bootstrap/" target="_top">Twitter Bootstrap</a> framework and show how it integrates well in Juzu applications.</p>
+    <div class="section" title="The style"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e303"></a>The style</h2></div></div></div>
+      
+      <p>Bootstrap provides a solid fundation for building quickly attractive applications. However the default look and feel does not perfectly fit our needs:</p>
+      <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+          <p>The default stylesheet does not work very well in a portal application as it applies to the entire screen and we need to operate only on our application</p>
+        </li><li class="listitem">
+          <p>We don't need all the out of the box components and only a subset providing a smaller stylesheet than the default stylesheet</p>
+        </li></ul></div>
+      <p>Fortunately Bootstrap is based on the dynamic stylesheet language <a class="ulink" href="http://lesscss.org/" target="_top">Less</a> and provides a very modular organization. We will perform trivial modifications to a subset of the Less files and integrate them in our application.</p>
+      <div class="section" title="A la carte"><div class="titlepage"><div><div><h3 class="title"><a name="d5e313"></a>A la carte</h3></div></div></div>
+        
+        <p>We will then modify the <code class="code">bootstrap.less</code> file to keep only what is necessary for our application:</p>
+        <p>
+          </p><div class="example"><a name="d5e318"></a><p class="title"><b>Example&nbsp;8.1.&nbsp;The necessary Bootstrap less files</b></p><div class="example-contents">
+            
+            <div class="programlistingco"><pre class="prettyprint">/*!
+ * Bootstrap v2.0.3
+ *
+ * Copyright 2012 Twitter, Inc
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Designed and built with all the love in the world @twitter by @mdo and @fat.
+ */
+
+// CSS Reset
+@import "reset.less";
+
+// Core variables and mixins
+@import "variables.less"; // Modify this for custom colors, font-sizes, etc
+@import "mixins.less";
+
+// Grid system and page structure
+@import "scaffolding.less";
+
+// Base CSS
+@import "type.less";
+@import "forms.less";
+
+// Components: common
+@import "component-animations.less";
+
+// Components: Buttons &amp; Alerts
+@import "buttons.less";
+@import "button-groups.less";
+
+// Components: Misc
+@import "accordion.less";
+</pre></div>
+          </div></div><p><br class="example-break">
+        </p>
+        <p>This version of bootstrap.less is a trimmed down of the original files.</p>
+      </div>
+      <div class="section" title="Scoping the styles"><div class="titlepage"><div><div><h3 class="title"><a name="d5e324"></a>Scoping the styles</h3></div></div></div>
+        
+        <p>By default, the Bootstrap rules will affect the entire page, we want it to affect only our application. We can modify the CSS rules to operate on a portion of the page based on a specific class name with a very simple pattern: add a class prefix to a rule to reduce the scope of that rule. For example:</p>
+        <p>
+          </p><div class="example"><a name="d5e328"></a><p class="title"><b>Example&nbsp;8.2.&nbsp;The rule to scope</b></p><div class="example-contents">
+            
+            <div class="programlistingco"><pre class="prettyprint">div.red { color:red; }</pre></div>
+          </div></div><p><br class="example-break">
+        </p>
+        <p>Adding to the rule the <code class="code">.tutorial</code> prefix transforms the rule and reduce its scope to an area boxed by the <code class="code">tutorial</code> class name:</p>
+        <p>
+          </p><div class="example"><a name="d5e337"></a><p class="title"><b>Example&nbsp;8.3.&nbsp;The rule scoped</b></p><div class="example-contents">
+            
+            <div class="programlistingco"><pre class="prettyprint">.tutorial div.red { color:red; }</pre></div>
+          </div></div><p><br class="example-break">
+        </p>
+        <p>In the previous example we modified a single CSS rule, in reality we should modify all the rules of a stylesheet, which means many rules. To achieve our goal we need a global approach, here again the Less framework provides what we need: great power at a very tiny cost.</p>
+        <p>Indeed the Less language provides <a class="ulink" href="http://lesscss.org/#-nested-rules" target="_top">nested rules</a>, our previous example can be rewritten in the Less language as:</p>
+        <p>
+          </p><div class="example"><a name="d5e346"></a><p class="title"><b>Example&nbsp;8.4.&nbsp;The rule scoped</b></p><div class="example-contents">
+            
+            <div class="programlistingco"><pre class="prettyprint">.tutorial {
+  div.red { color:red; }
+}</pre></div>
+          </div></div><p><br class="example-break">
+        </p>
+        <p>This approach allows us to encapsulate an entire stylesheet and mass prefix all the rules contained within the scope of the outter rule. For this reason all the Bootstrap less sources have been modified to be scoped with the <code class="code">tutorial</code> class name.</p>
+      </div>
+    </div>
+    <div class="section" title="Plugins in action"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e353"></a>Plugins in action</h2></div></div></div>
+      
+      <p>Juzu can be extended with plugins, in this section we will use two of them</p>
+      <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+          <p>The Less plugin compiles less files into css files</p>
+        </li><li class="listitem">
+          <p>The Asset plugin inject asset such as stylesheet or javascript in the application page</p>
+        </li></ul></div>
+      <div class="section" title="Less compilation"><div class="titlepage"><div><div><h3 class="title"><a name="d5e361"></a>Less compilation</h3></div></div></div>
+        
+        <p>Juzu provides native support for the Less language via the Less plugin and the <code class="code">@Less</code> annotation. It allows a set of less files to be transformed into the corresponding css files during the java compilation, achieving two important steps during the compilation phase:</p>
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>The less files are transformed into ready to use css files</p>
+          </li><li class="listitem">
+            <p>It ensures a maximum of safety: the Less parser will report any error in the source</p>
+          </li></ul></div>
+        <p>Our first step is to create the <code class="code">examples.tutorial.assets</code> package, we copy the Bootstrap Less files into this package and annotate the <code class="code">examples.tutorial</code> package with the <code class="code">@Less</code> annotation to trigger the compilation of the stylesheet  in the <code class="code">assets</code> package:</p>
+        <div class="programlistingco"><pre class="prettyprint language-java">@Less(value = "bootstrap.less", minify = true)
+package examples.tutorial;
+
+import juzu.plugin.less.Less;</pre></div>
+        <p>This annotation triggers the compilation of the <code class="code">bootstrap.less</code> in the <code class="code">assets</code> package, the <code class="code">minified</code> parameter instruct Less to minify the resulting css.</p>
+      </div>
+      <div class="section" title="Injecting CSS"><div class="titlepage"><div><div><h3 class="title"><a name="d5e382"></a>Injecting CSS</h3></div></div></div>
+        
+        <p>Now that we have worked out the CSS details we need to make our stylesheet available in the application page. The <span class="italic">asset</span> plugin will achieve this result for us. This plugin provides declarative configuration for the various assets required by an application. It works both for stylesheets and javascript, in this section we use it for stylesheet:</p>
+        <p>
+          </p><div class="example"><a name="d5e387"></a><p class="title"><b>Example&nbsp;8.5.&nbsp;Injecting Bootstrap CSS in our application</b></p><div class="example-contents">
+            
+            <div class="programlistingco"><pre class="prettyprint language-java">@Application
+@Assets(stylesheets = @Stylesheet(
+  src = "/examples/tutorial/assets/bootstrap.css",
+  location = AssetLocation.CLASSPATH)
+)
+package examples.tutorial.weather8;</pre></div>
+          </div></div><p><br class="example-break">
+        </p>
+        <p>The usage is fairly straightforward with the <code class="code">@Assets</code> and <code class="code">Stylesheet</code> annotations. We configure the <code class="code">location</code> parameter to be <code class="code">CLASSPATH</code> because the Less plugin created it there.</p>
+      </div>
+      <div class="section" title="Bringing CSS to life"><div class="titlepage"><div><div><h3 class="title"><a name="d5e397"></a>Bringing CSS to life</h3></div></div></div>
+        
+        <p>After this step we need to modify our application template to use the various styles provided by Bootstrap:</p>
+        <p>
+          </p><div class="figure"><a name="d5e401"></a><p class="title"><b>Figure&nbsp;8.1.&nbsp;The Bootstrapized application</b></p><div class="figure-contents">
+            
+            <div class="mediaobject" align="center"><img src="images/bootstrap.png" align="middle" width="378" alt="The Bootstrapized application"></div>
+          </div></div><p><br class="figure-break">
+        </p>
+        <p>We will not explain that in details, however we will study the important modifications:</p>
+        <div class="section" title="Scoping the rules"><div class="titlepage"><div><div><h4 class="title"><a name="d5e409"></a>Scoping the rules</h4></div></div></div>
+          
+          <p>As seen previously we need to scope our markup with the <code class="code">tutorial</code> class, it is achieved by wrapping our application markup with a <code class="code">div</code> tag:</p>
+          <div class="programlistingco"><pre class="prettyprint">&lt;div class="tutorial"&gt;
+  ...
+&lt;/div&gt;</pre></div>
+        </div>
+        <div class="section" title="Accordion"><div class="titlepage"><div><div><h4 class="title"><a name="d5e417"></a>Accordion</h4></div></div></div>
+          
+          <p>The Bootstrap provides the <a class="ulink" href="http://twitter.github.com/bootstrap/javascript.html#collapse" target="_top">Collapse component</a>. We will not use the entire Collapse component here but instead reuse the CSS rules to display the available cities:</p>
+          <div class="programlistingco"><pre class="prettyprint">&lt;div class="accordion-group"&gt;
+  &lt;div class="accordion-heading"&gt;&lt;a class="accordion-toggle" href="@{index(location = current)}"&gt;${current}&lt;/a&gt;&lt;/div&gt;
+  &lt;div class="accordion-body"&gt;
+    &lt;div class="accordion-inner"&gt;The weather temperature in ${current} is ${temperature}&amp;deg; ${grade.toUpperCase()}.&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div>
+        </div>
+        <div class="section" title="Temperature selection"><div class="titlepage"><div><div><h4 class="title"><a name="d5e424"></a>Temperature selection</h4></div></div></div>
+          
+          <p>The switch between Celsius and Fahrenheit is done thanks to Boostrap <span class="italic">button groups</span> and <span class="italic">inverse</span> rules:</p>
+          <div class="programlistingco"><pre class="prettyprint">  &lt;a class="btn &lt;%=grade=='c'?'btn-inverse':''%&gt;"
+    href="@{updateGrade(grade='c',location=location)}"&gt;C&lt;/a&gt;
+  &lt;a class="btn &lt;%=grade=='f'?'btn-inverse':''%&gt;"
+    href="@{updateGrade(grade='f',location=location)}"&gt;F&lt;/a&gt;</pre></div>
+        </div>
+        <div class="section" title="Adding a city"><div class="titlepage"><div><div><h4 class="title"><a name="d5e432"></a>Adding a city</h4></div></div></div>
+          
+          <p>Finally the form for adding is modified to reuse <a class="ulink" href="http://twitter.github.com/bootstrap/base-css.html#forms" target="_top">Bootstrap form support</a>:</p>
+          <div class="programlistingco"><pre class="prettyprint">&lt;form action="@{add()}" method="post"&gt;
+  &lt;fieldset&gt;
+    &lt;div class="controls"&gt;
+      &lt;div class="input-append"&gt;
+         &lt;input class="span2" type="text" size="16"name="location" value=""/&gt;
+         &lt;button type="submit" class="btn"&gt;Add&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/fieldset&gt;
+&lt;/form&gt;</pre></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="chapter" title="Chapter&nbsp;9.&nbsp;Adding Ajax"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="ajax"></a>Chapter&nbsp;9.&nbsp;Adding Ajax </h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e444">Javascript to the rescue</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e456">Adding scripts</a></span></dt><dt><span class="section"><a href="#d5e499">The collapse plugin</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e516">Bridge the gap with Ajax</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e519">Resource controller</a></span></dt><dt><span class="section"><a href="#d5e533">JQuery</a></span></dt></dl></dd></dl></div>
+    
+    <p>Now that our application look great, we are going to add a final touch to our application and make it more dynamic.</p>
+    <p>In the previous section we introduced the accordion user interface component, but it was used in a static way. In this section we will make it dynamic and introduce the Ajax plugin.</p>
+    <p>The accordion component can be combined to the JQuery collapse plugin providing the capability to unfold an item to display the weather of the location. When the item is unfolded an ajax request is performed to the application to retrieve the markup that will be inserted.</p>
+    <div class="section" title="Javascript to the rescue"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e444"></a>Javascript to the rescue</h2></div></div></div>
+      
+      <p>The application will use several Javascript libraries:</p>
+      <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+          <p>The JQuery library provides the fundations for building our application</p>
+        </li><li class="listitem">
+          <p>The Bootstrap accordion component provides scripts as a JQuery plugin</p>
+        </li><li class="listitem">
+          <p>Juzu provides Ajax helpers as a JQuery plugin</p>
+        </li><li class="listitem">
+          <p>A small custom script to setup the accordion plugin with the ajax plugin</p>
+        </li></ul></div>
+      <div class="section" title="Adding scripts"><div class="titlepage"><div><div><h3 class="title"><a name="d5e456"></a>Adding scripts</h3></div></div></div>
+        
+        <p>The Asset plugin was introduced in the previous section to handle the serving of the Bootstrap stylesheets. The <code class="code">@Asset</code> annotation can be used also for embedding scripts, but it provides more control about the script, in particular a dependency mechanism to control the order of scripts that we will use: indeed JQuery plugins have to be loaded after the JQuery library is loaded.</p>
+        <p>We extend the <code class="code">@Asset</code> annotation to add our scripts:</p>
+        <div class="programlistingco"><pre class="prettyprint language-java">@Assets(
+   scripts = {
+      @Script(
+         id = "jquery", <span class="co" id="callout-0__"><img src="images/callouts/1.png" alt="(1)"></span> 
+         src = "jquery-1.7.1.min.js",
+         location = AssetLocation.CLASSPATH),
+      @Script(
+         id = "transition",
+         src = "bootstrap-transition.js", <span class="co" id="callout-1__"><img src="images/callouts/2.png" alt="(2)"></span> 
+         location = AssetLocation.CLASSPATH,
+         depends = "jquery"), <span class="co" id="callout-2__"><img src="images/callouts/1.png" alt="(1)"></span> 
+      @Script(
+         id = "collapse",
+         src = "bootstrap-collapse.js",
+         location = AssetLocation.CLASSPATH,
+         depends = {
+            "jquery", // 1
+            "transition"}), <span class="co" id="callout-3__"><img src="images/callouts/2.png" alt="(2)"></span> 
+      @Script(
+         src = "weather.js",
+         location = AssetLocation.CLASSPATH,
+         depends = {
+            "jquery",  <span class="co" id="callout-4__"><img src="images/callouts/1.png" alt="(1)"></span> 
+            "collapse"}) <span class="co" id="callout-5_"><img src="images/callouts/3.png" alt="(3)"></span> 
+   },
+   stylesheets = @Stylesheet(src = "/examples/tutorial/assets/bootstrap.css", location = AssetLocation.CLASSPATH)
+)
+package examples.tutorial.weather9;
+
+
+</pre><div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/1.png" alt="1" border="0"></p></td><td valign="top" align="left">
+              <p>All other scripts than JQuery depends on JQuery</p>
+            </td></tr><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/2.png" alt="2" border="0"></p></td><td valign="top" align="left">
+              <p>The <span class="italic">collapse</span> JQuery plugin depends on the <span class="italic">transition</span> script</p>
+            </td></tr><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/3.png" alt="3" border="0"></p></td><td valign="top" align="left">
+              <p>Our <span class="italic">weather</span> script depends also on the JQuery <span class="italic">collapse</span> plugin</p>
+            </td></tr></table></div></div>
+        <p>The declaration is straightforward, any <code class="code">@Script</code> annotation may configure</p>
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>an optional <code class="code">id</code> used for creating dependencies between scripts</p>
+          </li><li class="listitem">
+            <p>a mandatory <code class="code">src</code> for the script name</p>
+          </li><li class="listitem">
+            <p>an optional <code class="code">location</code> for resolving the script</p>
+          </li><li class="listitem">
+            <p>an optional <code class="code">depends</code> that declares the ids a script depends on</p>
+          </li></ul></div>
+      </div>
+      <div class="section" title="The collapse plugin"><div class="titlepage"><div><div><h3 class="title"><a name="d5e499"></a>The collapse plugin</h3></div></div></div>
+        
+        <p>The Bootstrap collapse plugin allows the user to unfold a city to display its weather, you can see how it works in the <a class="ulink" href="http://twitter.github.com/bootstrap/javascript.html#collapse" target="_top">Bootstrap manual</a>. In our case we modify the <code class="code">index.gtmpl</code> to use it, in particular the <code class="code">accordion-group</code> part:</p>
+        <div class="programlistingco"><pre class="prettyprint">&lt;div class="accordion-group"&gt;
+  &lt;div class="accordion-heading"&gt;
+    &lt;a class="accordion-toggle" href="#${current}" data-parent="${id}" data-toggle="collapse"&gt;${current}&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;% def expanded = i != index ? 'in' : ''; %&gt;
+  &lt;div id="${current}" class="accordion-body collapse ${expanded}"&gt;
+    &lt;div class="accordion-inner"&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div>
+        <p>There are two noticeable points to explain:</p>
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>The <code class="code">accordion-inner</code> is empty now, the reason is that the weather will be loaded using JQuery ajax capabilities</p>
+          </li><li class="listitem">
+            <p>The <code class="code">div.collapse</code> element id is set to the current item location, this value will be reused during an ajax interaction, we will see more about this later.</p>
+          </li></ul></div>
+      </div>
+    </div>
+    <div class="section" title="Bridge the gap with Ajax"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e516"></a>Bridge the gap with Ajax</h2></div></div></div>
+      
+      <p>Now our application loads a set of dynamic tabs managed by JQuery and the collapse plugin, it's time to develop the ajax part: our goal is to load a markup fragment to insert in an accordion item when it is unfolded. We will develop a bit of client side Javascript and a resource controller on the Weather controller.</p>
+      <div class="section" title="Resource controller"><div class="titlepage"><div><div><h3 class="title"><a name="d5e519"></a>Resource controller</h3></div></div></div>
+        
+        <p>We need a controller method to server the markup of the weather of a particular city. Until now we have studied view and action controllers, for this use case we will use a new type of controller : the <span class="italic">resource</span> controller.</p>
+        <p>Resource controllers are pretty much like a view controllers except that they must produce the entire response sent to the client and that is precisely what we want to achieve on the server side.</p>
+        <p>Our application requires a single resource controller method that we will call <code class="code">getFragment</code>, it will render a markup fragment for a specific city location:</p>
+        <div class="programlistingco"><pre class="prettyprint language-java">  @Inject
+  @Path("fragment.gtmpl")
+  examples.tutorial.weather9.templates.fragment fragment;
+
+  @Ajax
+  @Resource
+  public void getFragment(String location) {
+    String grade = preferences.getValue("grade", "c");
+    String temperature = weatherService.getTemperature(location, grade);
+    fragment.
+      with().
+      location(location).
+      temperature(weatherService.getTemperature(location, grade)).
+      grade(grade).
+      render();
+  }</pre></div>
+        <p>The fragment template is very simple and only renders the portion of the screen that will be updated by the client side javascript code when an item is unfolded:</p>
+        <div class="programlistingco"><pre class="prettyprint language-java">#{param name=location/}
+#{param name=temperature/}
+#{param name=grade/}
+The weather temperature in ${location} is ${temperature}&amp;deg;
+${grade.toUpperCase()}.</pre></div>
+      </div>
+      <div class="section" title="JQuery"><div class="titlepage"><div><div><h3 class="title"><a name="d5e533"></a>JQuery</h3></div></div></div>
+        
+        <p>The last part of our application is the javascript part that will react on the collapse plugin component to load the markup from the <code class="code">getFragment</code> controller when the item is unfolded. We create the javascript file <code class="code">weather.js</code> in the <code class="code">examples.tutorial.weather9.assets</code>:</p>
+        <div class="programlistingco"><pre class="prettyprint language-java">$(function () {
+
+  // Setup an event listener on the .collapse element when it is shown
+  $('.collapse').on('show', function () {
+
+    // Get the location attribute from the dom
+    var location = $(this).attr("id");
+
+    // Update the .accordion-inner fragment
+    $(this).
+      closest(".accordion-group").
+      find(".accordion-inner").
+      each(function () {
+
+      // Load the fragment from the resource controller
+      $(this).jzLoad(
+        "Weather.getFragment()",
+        {"location":location});
+
+    });
+  });
+
+  // Setup the collapse component
+  $(".collapse").collapse();
+});
+</pre></div>
+        <p>The following construct is important because it ensures that the code inside the function will be executed  when JQuery is loaded:</p>
+        <div class="programlistingco"><pre class="prettyprint">$(function() {
+  //
+});</pre></div>
+        <p>If you take time to read the collapse plugin component <a class="ulink" href="http://twitter.github.com/bootstrap/javascript.html#collapse" target="_top">documentation</a> you will see that there are two important things to do for integrating it in our application:</p>
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>We must setup an event listener on <code class="code">.collapse</code> elements to react to the <code class="code">shown</code> event</p>
+          </li><li class="listitem">
+            <p>The collapase component is setup with the <code class="code">$(".collapse").collapse()</code> code</p>
+          </li></ul></div>
+        <p>The important code is inside the <code class="code">show</code> event listener:</p>
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>The location to display is extracted from the element <code class="code">id</code> on the <code class="code">div.collapse</code> component</p>
+          </li><li class="listitem">
+            <p>We find the appropriate element to update with the <code class="code">$(this).closest(".accordion-group").find(".accordion-inner")</code> selectors</p>
+          </li><li class="listitem">
+            <p>On the <code class="code">.accordion-inner</code> element we invoke the resource controller with the <code class="code">jzLoad(...)</code> function</p>
+          </li></ul></div>
+        <p>The <code class="code">jzLoad</code> function is a JQuery plugin provided by the Juzu ajax plugin. It allows to invoke a controller method using  ajax and cares about propagating the call to the resource controller method. It replaces the standard JQuery <code class="code">load</code> function  and accepts the same argument. However the url part is replaced by a controller method, <code class="code">Weather.getFragment()</code> in our case.</p>
+        <p>The Juzu ajax plugin takes care of finding the right URL for invoking the controller method. It is designed to work in a standalone javascript file without requiring <code class="code">&lt;script&gt;</code> tags in the page and works even when multiples instances of the portlets are on the same page.</p>
+        <p>When the ajax plugin operates on <code class="code">@Ajax</code> controller method, it wraps the markup with a DOM structure that contains the URL for the <code class="code">@Ajax</code> method of the application:</p>
+        <div class="programlistingco"><pre class="prettyprint">&lt;div class="jz"&gt;
+  &lt;div data-method-id="Weather.getFragment()## data-url="http://localhost:8080/....."/&gt;
+  ...
+&lt;/div&gt;</pre></div>
+        <p>The <code class="code">jzLoad</code> function is invoked on a portion of the DOM that is wrapped by the <code class="code">div.jz</code> element and this function will simply locate the correct URL using the <code class="code">data-method-id</code> attribute. This makes the same script work with different portlets on the same page.</p>
+        <p>Note also that in our code we never used any JQuery selector containing id in order to allow several instances of the same application to work without conflicts.</p>
+      </div>
+    </div>
+  </div>
+  <div class="chapter" title="Chapter&nbsp;10.&nbsp;Wrap up"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e587"></a>Chapter&nbsp;10.&nbsp;Wrap up</h1></div></div></div></div>
     
     <p>We reached the ends our walk through Juzu, now you can learn more and study the Booking application. This application can be found in the package you downloaded in the <code class="code">booking</code> directory.</p>
   </div>
