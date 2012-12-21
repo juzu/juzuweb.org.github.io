@@ -1,5 +1,7 @@
 juzu
 juzu.asset
+juzu.bridge.portlet
+juzu.bridge.servlet
 juzu.inject
 juzu.io
 juzu.plugin.ajax
@@ -7,7 +9,6 @@ juzu.plugin.asset
 juzu.plugin.binding
 juzu.plugin.less
 juzu.plugin.portlet
-juzu.portlet
 juzu.processor
 juzu.request
 juzu.template

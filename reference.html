@@ -3,7 +3,7 @@
   SYSTEM "">
 <html><head>
       <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-   <title>Juzu Web Framework 0.5.1</title><link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css"><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"><script src="js/bootstrap/jquery-1.7.1.min.js"></script><script src="js/bootstrap/bootstrap-2.0.3.min.js"></script><script src="js/bootstrap/docbook.js"></script><script src="js/bootstrap/google-code-prettify/prettify.js"></script></head><body onload="if (prettyPrint) { prettyPrint() }"><div class="book container" title="Juzu Web Framework 0.5.1"><div class="titlepage"><div><div><h1 class="title"><a name="UTF-8"></a>Juzu Web Framework 0.5.1</h1></div><div><h2 class="subtitle">Reference</h2></div><div><div class="authorgroup">
+   <title>Juzu Web Framework 0.6.0-beta5</title><link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css"><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"><script src="js/bootstrap/jquery-1.7.1.min.js"></script><script src="js/bootstrap/bootstrap-2.0.3.min.js"></script><script src="js/bootstrap/docbook.js"></script><script src="js/bootstrap/google-code-prettify/prettify.js"></script></head><body onload="if (prettyPrint) { prettyPrint() }"><div class="book container" title="Juzu Web Framework 0.6.0-beta5"><div class="titlepage"><div><div><h1 class="title"><a name="UTF-8"></a>Juzu Web Framework 0.6.0-beta5</h1></div><div><h2 class="subtitle">Reference</h2></div><div><div class="authorgroup">
     <div class="author"><h3 class="author"><span class="firstname">Julien</span> <span class="surname">Viet</span></h3><div class="affiliation">
         <span class="shortaffil">eXo Platform<br></span>
       </div></div>
@@ -52,7 +52,7 @@
           <div class="programlistingco"><pre class="prettyprint language-xml">&lt;dependency&gt;
   &lt;groupId&gt;org.juzu&lt;/groupId&gt;
   &lt;artifactId&gt;juzu-packager&lt;/artifactId&gt;
-  &lt;version&gt;0.5.1&lt;/version&gt;
+  &lt;version&gt;0.6.0-beta5&lt;/version&gt;
 &lt;/dependency&gt;</pre></div>
           <p>Assembling the application requires more XML but is very straightforward:</p>
           <div class="programlistingco"><pre class="prettyprint language-xml">&lt;build&gt;
@@ -64,7 +64,7 @@
         &lt;dependency&gt;
           &lt;groupId&gt;org.juzu&lt;/groupId&gt;
           &lt;artifactId&gt;juzu-packager&lt;/artifactId&gt;
-          &lt;version&gt;0.5.1&lt;/version&gt;
+          &lt;version&gt;0.6.0-beta5&lt;/version&gt;
         &lt;/dependency&gt;
       &lt;/dependencies&gt;
       &lt;executions&gt;
@@ -116,7 +116,7 @@
           <pre class="screen">mvn archetype:generate \
    -DarchetypeGroupId=org.juzu \
    -DarchetypeArtifactId=juzu-archetype \
-   -DarchetypeVersion=0.5.1 \
+   -DarchetypeVersion=0.6.0-beta5 \
    -DgroupId=org.example \
    -DartifactId=myapp \
    -DpackageName=org.example.myapp \
@@ -348,10 +348,10 @@ public Response.Redirect process() {
       <p>Like previously, the <code class="code">index</code> controller returns the <span class="italic">hello world</span> value when it is called the first time. When the controller is called with the <code class="code">person</code> parameter it returns the hello string personalized with the corresponding parameter value: Juzu use the declared method parameter name to match against the request parameters, in our case  the <code class="code">person</code> request parameter.</p>
       <p>Any controller class (any class containing at least one controller method) generates a <span class="italic">companion</span> class during the compilation of the project. Such companion class extends the original controller class to provider companion methods for the controller method. The companion class has the same name than the original class appended with the <span class="italic">_</span> character:</p>
       <div class="programlistingco"><pre class="prettyprint language-java">public class Controller_ {
-  public static URLBuilder indexURL() { /* Generated code */ }
-  public static URLBuilder indexURL(String person) { /* Generated code */ }
+  public static Dispatch index() { /* Generated code */ }
+  public static Dispatch index(String person) { /* Generated code */ }
 }</pre></div>
-      <p>Each <code class="code">index</code> methods generated a corresponding <code class="code">indexURL</code> url companion. When any <code class="code">indexURL</code> method is invoked it returns an <code class="code">URLBuilder</code> object that represents the URL invoking the corresponding phase. When parameters are provided they are already encoded in the returned URL. Calling the <code class="code">toString()</code> method of the URLBuilder returns the URL.</p>
+      <p>Each <code class="code">index</code> methods generated a corresponding <code class="code">index</code> method companion. When any <code class="code">index</code> method is invoked it returns an <code class="code">juzu.Dispatch</code> object that generates the URL dispatching to the corresponding phase when the <code class="code">toString()</code> method is invoked. When parameters are provided they will be encoded in the generated URL.</p>
       <div class="programlistingco"><pre class="prettyprint language-java">@View public Response.Content index() {
   return Response.render("Hello word. &lt;a href='" + Controller_.index("Juzu") + "'&gt;Say hello to Juzu&lt;/a&gt;";
 }</pre></div>
@@ -384,7 +384,7 @@ public Response.Redirect process() {
         <div class="programlistingco"><pre class="prettyprint language-java">    public void send(S stream) throws IOException {
       streamable.send(stream);
     }</pre></div>
-        <p>During the view phase a controller can generate URLs to other phases (except the event phase) by using companion  url methods. Companion url methods returns a <code class="code">juzu.URLBuilder</code> object to represent the URL. The final  URL is returned by the <code class="code">toString()</code> method of the builder.</p>
+        <p>During the view phase a controller can generate URLs to other phases (except the event phase) by using controller companion  methods. Companion methods returns a <code class="code">juzu.Dispatch</code> object to represent the URL. The final  URL is returned by the <code class="code">toString()</code> method of the dispatch object.</p>
       </div>
       <div class="section" title="Action controllers"><div class="titlepage"><div><div><h3 class="title"><a name="d5e392"></a>Action controllers</h3></div></div></div>
         
@@ -395,14 +395,14 @@ public Response.Redirect process() {
             <p>configure the next view phase: setting the next view controller to display and configuring its view parameters of the method when they exist</p>
           </li></ul></div>
         <p>
-          <a name="controller_action_update"></a>In the following example, the controller method <code class="code">createUser</code>  creates a user and returns a <code class="code">Response.Update</code> object that will tell Juzu to use the <code class="code">showUser</code> view controller during the next view phase:</p>
+          <a name="controller_action_update"></a>In the following example, the controller method <code class="code">createUser</code>  creates a user and returns a <code class="code">Response.View</code> object that will tell Juzu to use the <code class="code">showUser</code> view controller during the next view phase:</p>
         <div class="programlistingco"><pre class="prettyprint language-java">@Action
-public Response.Update addUser(String userName, String password) {
+public Response.View addUser(String userName, String password) {
   orgService.createUser(userName, password);
   return Controller_.showUser(userName);
 }</pre></div>
         <p>
-          <code class="code">showUser</code> is a companion <span class="italic">update</span> method that creates a <code class="code">Response.Update</code> object configured with the controller and arguments to use. Like url companion methods, update companion methods are generated during the compilation of the project by Juzu.</p>
+          <code class="code">showUser</code> is a companion <span class="italic">update</span> method that creates a <code class="code">Response.View</code> object configured with the controller and arguments to use. Like url companion methods, update companion methods are generated during the compilation of the project by Juzu.</p>
       </div>
       <div class="section" title="Resource controllers"><div class="titlepage"><div><div><h3 class="title"><a name="d5e412"></a>Resource controllers</h3></div></div></div>
         
@@ -1306,7 +1306,7 @@ package myapp;
 import juzu.plugin.less.Less;</pre></div>
         </div></div><p><br class="example-break">
       </p>
-      <p>The <span class="italic">stylesheet.less</span> file will be located in the <code class="code">myapp.assets</code> package. The <code class="code">assets</code> child package of the annotated package should contain the stylesheet, this is done on purpose to coincide exactly with the <code class="code">assets</code> package used by the Asset plugin. During the compilation phase the <span class="italic">stylesheet.less</span> will be compiled to the <span class="italic">stylesheet.css</span>. If we want this file to be served with the application we simply add the corresponding <code class="code">@Asset</code> annotation:</p>
+      <p>The <span class="italic">stylesheet.less</span> file will be located in the <code class="code">myapp.assets</code> package. The <code class="code">assets</code> child package of the annotated package should contain the stylesheet, this is done on purpose to coincide exactly with the <code class="code">assets</code> package used by the Asset plugin. During the compilation phase the <span class="italic">stylesheet.less</span> will be compiled to the <span class="italic">stylesheet.css</span>. If we want this file to be served with the application we simply add the corresponding <code class="code">@Assets</code> annotation:</p>
       <p>
         </p><div class="example"><a name="d5e1333"></a><p class="title"><b>Example&nbsp;10.2.&nbsp;LESS and Asset plugins in action</b></p><div class="example-contents">
           
@@ -1318,8 +1318,10 @@ import juzu.plugin.less.Less;</pre></div>
 @Application
 package myapp;
 
+import juzu.Application;
+import juzu.asset.AssetLocation;
 import juzu.plugin.less.Less;
-import juzu.plugin.asset.Asset;
+import juzu.plugin.asset.Assets;
 import juzu.plugin.asset.Stylesheet;</pre></div>
         </div></div><p><br class="example-break">
       </p>
@@ -1332,7 +1334,7 @@ import juzu.plugin.asset.Stylesheet;</pre></div>
       <div class="programlistingco"><pre class="prettyprint language-xml">&lt;dependency&gt;
   &lt;groupId&gt;org.juzu&lt;/groupId&gt;
   &lt;artifactId&gt;juzu-plugins-less&lt;/artifactId&gt;
-  &lt;version&gt;0.5.1&lt;/version&gt;
+  &lt;version&gt;0.6.0-beta5&lt;/version&gt;
 &lt;/dependency&gt;</pre></div>
     </div>
   </div>
@@ -1390,7 +1392,7 @@ package my;</pre></div>
       <div class="programlistingco"><pre class="prettyprint language-xml">&lt;dependency&gt;
   &lt;groupId&gt;org.juzu&lt;/groupId&gt;
   &lt;artifactId&gt;juzu-plugins-portlet&lt;/artifactId&gt;
-  &lt;version&gt;0.5.1&lt;/version&gt;
+  &lt;version&gt;0.6.0-beta5&lt;/version&gt;
 &lt;/dependency&gt;</pre></div>
     </div>
   </div>
