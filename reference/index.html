@@ -3,7 +3,7 @@
   SYSTEM "">
 <html><head>
       <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-   <title></title><link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css"><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="js/bootstrap/jquery-1.7.1.min.js"></script><script src="js/bootstrap/bootstrap-2.2.2.min.js"></script><script src="js/bootstrap/docbook-sidebar.js"></script><script src="js/bootstrap/google-code-prettify/prettify.js"></script></head><body onload="if (prettyPrint) { prettyPrint() }"><div class="book container"><div class="titlepage"><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="preface"><a href="#d5e2">Preface</a></span></dt><dt><span class="chapter"><a href="#builddeploy">1. Build and deploy </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e10">Build</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e30">With Maven</a></span></dt><dt><span class="section"><a href="#d5e119">Using a prepackaged application</a></span></dt><dt><span class="section"><a href="#d5e122">Using an IDE</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e135">Deploy</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e146">Tomcat</a></span></dt><dt><span class="section"><a href="#d5e149">GateIn</a></span></dt><dt><span class="section"><a href="#d5e167">Liferay</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#phases">2. Phases </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e173">Phases</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e184">View phase</a></span></dt><dt><span class="section"><a href="#d5e188">Action phase</a></span></dt><dt><span class="section"><a href="#d5e193">Resource phase</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e196">Interactions</a></span></dt><dt><span class="section"><a href="#d5e214">Mapping onto HTTP</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e217">View phase</a></span></dt><dt><span class="section"><a href="#d5e240">Action phase</a></span></dt><dt><span class="section"><a href="#d5e275">Resource phase</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#controllers">3. Controllers </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e282">Overview</a></span></dt><dt><span class="section"><a href="#d5e318">Request routing</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e325">Http request routing</a></span></dt><dt><span class="section"><a href="#d5e449">Portlet request routing</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e457">Controller phases</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e475">View controllers</a></span></dt><dt><span class="section"><a href="#d5e501">Action controllers</a></span></dt><dt><span class="section"><a href="#d5e521">Resource controllers</a></span></dt><dt><span class="section"><a href="#d5e529">Event controllers</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e533">Controller classes</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e536">Controller life cycle</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#responses">4. Responses </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e587">Content responses</a></span></dt><dt><span class="section"><a href="#d5e601">Render response</a></span></dt><dt><span class="section"><a href="#d5e609">View response</a></span></dt><dt><span class="section"><a href="#d5e616">Redirect response</a></span></dt></dl></dd><dt><span class="chapter"><a href="#d5e624">5. Bridges</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e632">Servlet bridge</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e635">Juzu servlet</a></span></dt><dt><span class="section"><a href="#d5e672">Request routing</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e674">Portlet bridge</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e677">Juzu portlet</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#ioc">6. Inversion of Control </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e701">Juzu IOC</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e703">IOC containers</a></span></dt><dt><span class="section"><a href="#d5e721">Beans</a></span></dt><dt><span class="section"><a href="#d5e727">Scopes</a></span></dt><dt><span class="section"><a href="#d5e744">Qualifiers</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e757">Beans in action</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e769">Template beans</a></span></dt><dt><span class="section"><a href="#d5e783">Controller beans</a></span></dt><dt><span class="section"><a href="#d5e804">Application beans</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e853">Provider factories</a></span></dt></dl></dd><dt><span class="chapter"><a href="#templating">7. Templating </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e884">The templating engines</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e888">The native template engine</a></span></dt><dt><span class="section"><a href="#d5e951">The Mustache template engine</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e970">Using templates</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e973">Template declaration</a></span></dt><dt><span class="section"><a href="#d5e1003">Type safe parameters</a></span></dt><dt><span class="section"><a href="#d5e1041">Expression resolution</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#templatespi">8. Templating SPI </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1115">Compiling a Groovy template</a></span></dt><dt><span class="section"><a href="#d5e1155">Type safe URL resolution</a></span></dt><dt><span class="section"><a href="#d5e1183">Template Service Provider Interface</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1186">Template providers</a></span></dt><dt><span class="section"><a href="#d5e1243">Template stub</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e1267">Template at work</a></span></dt><dt><span class="section"><a href="#d5e1295">Qualified template class</a></span></dt></dl></dd><dt><span class="chapter"><a href="#taglib">9. Taglib </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1317">Taglib syntax</a></span></dt><dt><span class="section"><a href="#d5e1338">Include tag</a></span></dt><dt><span class="section"><a href="#d5e1351">Decorate / Insert tag</a></span></dt><dt><span class="section"><a href="#d5e1367">Title tag</a></span></dt><dt><span class="section"><a href="#d5e1378">Param tag</a></span></dt></dl></dd><dt><span class="chapter"><a href="#assets">10. Assets </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1396">Asset serving</a></span></dt><dt><span class="section"><a href="#d5e1442">Declaring assets programmatically</a></span></dt><dt><span class="section"><a href="#d5e1453">Asset plugin</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1483">Server assets</a></span></dt><dt><span class="section"><a href="#d5e1492">Classpath assets</a></span></dt><dt><span class="section"><a href="#d5e1504">External assets</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#d5e1513">11. Juzu File Upload Plugin</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1517">File upload in an action phase</a></span></dt><dt><span class="section"><a href="#d5e1526">File upload in a resource phase</a></span></dt></dl></dd><dt><span class="chapter"><a href="#d5e1533">12. Juzu Portlet Plugin</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1536">Portlet class generation</a></span></dt><dt><span class="section"><a href="#d5e1559">Portlet preferences injection</a></span></dt><dt><span class="section"><a href="#d5e1570">Resource bundle injection</a></span></dt><dt><span class="section"><a href="#d5e1585">Building</a></span></dt></dl></dd><dt><span class="chapter"><a href="#d5e1592">13. Juzu Less Plugin</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1598">Usage</a></span></dt><dt><span class="section"><a href="#d5e1628">Building</a></span></dt></dl></dd></dl></div><div class="list-of-figures"><p><b>List of Figures</b></p><dl><dt>2.1. <a href="#d5e200">Interaction between phases</a></dt><dt>2.2. <a href="#d5e230">View phase</a></dt><dt>2.3. <a href="#d5e252">Action phase</a></dt><dt>2.4. <a href="#d5e264">View phase after action phase</a></dt><dt>3.1. <a href="#d5e544">Life cycle of a controller object</a></dt><dt>8.1. <a href="#d5e1119">Compiling a Groovy template</a></dt><dt>8.2. <a href="#d5e1160">Template URL resolution during compilation</a></dt><dt>8.3. <a href="#d5e1281">index groovy at work</a></dt><dt>10.1. <a href="#d5e1425">Compiling a Groovy template</a></dt></dl></div><div class="list-of-tables"><p><b>List of Tables</b></p><dl><dt>1.1. <a href="#d5e82">The predefined descriptors</a></dt></dl></div><div class="list-of-examples"><p><b>List of Examples</b></p><dl><dt>3.1. <a href="#d5e356">Declaring a controller route</a></dt><dt>3.2. <a href="#d5e368">Route parameters</a></dt><dt>3.3. <a href="#d5e384">Route parameter matching</a></dt><dt>3.4. <a href="#d5e406">Route parameter matching</a></dt><dt>3.5. <a href="#d5e429">Route priority</a></dt><dt>5.1. <a href="#d5e644">The Juzu servlet configuration</a></dt><dt>5.2. <a href="#d5e654">Path mapping configuration</a></dt><dt>5.3. <a href="#d5e667">Juzu servlet generation</a></dt><dt>5.4. <a href="#d5e686">The Juzu portlet configuration</a></dt><dt>6.1. <a href="#d5e867">Time provider factory</a></dt><dt>6.2. <a href="#d5e875">Time provider configuration</a></dt><dt>7.1. <a href="#d5e918">Controller URL syntax</a></dt><dt>7.2. <a href="#d5e925">Controller URL with parameters</a></dt><dt>7.3. <a href="#d5e933">Explicit controller URL</a></dt><dt>7.4. <a href="#d5e979">Using a template</a></dt><dt>7.5. <a href="#d5e998">Returning the generated juzu.Response.Render</a></dt><dt>7.6. <a href="#d5e1009">Native template parameter declaration</a></dt><dt>7.7. <a href="#d5e1016">Mustache template parameter declaration</a></dt><dt>7.8. <a href="#d5e1057">Named bean</a></dt><dt>7.9. <a href="#d5e1062">Template parameters</a></dt><dt>7.10. <a href="#d5e1085">Named bean</a></dt><dt>7.11. <a href="#d5e1091">Template parameters</a></dt><dt>9.1. <a href="#d5e1321">Start and end tag syntax</a></dt><dt>9.2. <a href="#d5e1331">Empty tag syntax</a></dt><dt>9.3. <a href="#d5e1344">The include tag</a></dt><dt>9.4. <a href="#d5e1357">The wrapped template</a></dt><dt>9.5. <a href="#d5e1362">The decoraring template</a></dt><dt>9.6. <a href="#d5e1373">Setting the title</a></dt><dt>9.7. <a href="#d5e1383">Declaring a template parameter</a></dt><dt>9.8. <a href="#d5e1388">Using the template parameter</a></dt><dt>10.1. <a href="#d5e1458">JQuery UI declarative asset configuration</a></dt><dt>10.2. <a href="#d5e1487">Declarative relative server asset configuration</a></dt><dt>10.3. <a href="#d5e1499">Declarative relative classpath asset configuration</a></dt><dt>10.4. <a href="#d5e1508">External classpath asset configuration</a></dt><dt>12.1. <a href="#d5e1563">Injecting portlet preferences</a></dt><dt>12.2. <a href="#d5e1574">Injecting the portlet resource bundle</a></dt><dt>13.1. <a href="#d5e1606">Annotating an application package for processing LESS files</a></dt><dt>13.2. <a href="#d5e1620">LESS and Asset plugins in action</a></dt></dl></div>
+   <title></title><link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css"><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="js/bootstrap/jquery-1.7.1.min.js"></script><script src="js/bootstrap/bootstrap-2.2.2.min.js"></script><script src="js/bootstrap/docbook-sidebar.js"></script><script src="js/bootstrap/google-code-prettify/prettify.js"></script></head><body onload="if (prettyPrint) { prettyPrint() }"><div class="book container"><div class="titlepage"><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="preface"><a href="#d5e2">Preface</a></span></dt><dt><span class="chapter"><a href="#builddeploy">1. Build and deploy </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e10">Build</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e30">With Maven</a></span></dt><dt><span class="section"><a href="#d5e119">Using a prepackaged application</a></span></dt><dt><span class="section"><a href="#d5e122">Using an IDE</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e135">Deploy</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e146">Tomcat</a></span></dt><dt><span class="section"><a href="#d5e149">GateIn</a></span></dt><dt><span class="section"><a href="#d5e167">Liferay</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#phases">2. Phases </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e173">Phases</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e184">View phase</a></span></dt><dt><span class="section"><a href="#d5e188">Action phase</a></span></dt><dt><span class="section"><a href="#d5e193">Resource phase</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e196">Interactions</a></span></dt><dt><span class="section"><a href="#d5e214">Mapping onto HTTP</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e217">View phase</a></span></dt><dt><span class="section"><a href="#d5e240">Action phase</a></span></dt><dt><span class="section"><a href="#d5e275">Resource phase</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#controllers">3. Controllers </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e282">Overview</a></span></dt><dt><span class="section"><a href="#d5e318">Request routing</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e325">Http request routing</a></span></dt><dt><span class="section"><a href="#d5e449">Portlet request routing</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e457">Controller phases</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e475">View controllers</a></span></dt><dt><span class="section"><a href="#d5e501">Action controllers</a></span></dt><dt><span class="section"><a href="#d5e521">Resource controllers</a></span></dt><dt><span class="section"><a href="#d5e529">Event controllers</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e533">Controller classes</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e536">Controller life cycle</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#responses">4. Responses </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e587">Content responses</a></span></dt><dt><span class="section"><a href="#d5e601">Render response</a></span></dt><dt><span class="section"><a href="#d5e609">View response</a></span></dt><dt><span class="section"><a href="#d5e616">Redirect response</a></span></dt></dl></dd><dt><span class="chapter"><a href="#d5e624">5. Bridges</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e632">Servlet bridge</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e635">Juzu servlet</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e672">Portlet bridge</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e675">Juzu portlet</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#ioc">6. Inversion of Control </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e699">Juzu IOC</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e701">IOC containers</a></span></dt><dt><span class="section"><a href="#d5e719">Beans</a></span></dt><dt><span class="section"><a href="#d5e725">Scopes</a></span></dt><dt><span class="section"><a href="#d5e742">Qualifiers</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e755">Beans in action</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e767">Template beans</a></span></dt><dt><span class="section"><a href="#d5e781">Controller beans</a></span></dt><dt><span class="section"><a href="#d5e802">Application beans</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e851">Provider factories</a></span></dt></dl></dd><dt><span class="chapter"><a href="#templating">7. Templating </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e882">The templating engines</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e886">The native template engine</a></span></dt><dt><span class="section"><a href="#d5e962">The Mustache template engine</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e981">Using templates</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e984">Template declaration</a></span></dt><dt><span class="section"><a href="#d5e1014">Type safe parameters</a></span></dt><dt><span class="section"><a href="#d5e1052">Expression resolution</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#templatespi">8. Templating SPI </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1126">Compiling a Groovy template</a></span></dt><dt><span class="section"><a href="#d5e1166">Type safe URL resolution</a></span></dt><dt><span class="section"><a href="#d5e1194">Template Service Provider Interface</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1197">Template providers</a></span></dt><dt><span class="section"><a href="#d5e1254">Template stub</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e1278">Template at work</a></span></dt><dt><span class="section"><a href="#d5e1306">Qualified template class</a></span></dt></dl></dd><dt><span class="chapter"><a href="#taglib">9. Taglib </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1328">Taglib syntax</a></span></dt><dt><span class="section"><a href="#d5e1349">Include tag</a></span></dt><dt><span class="section"><a href="#d5e1362">Decorate / Insert tag</a></span></dt><dt><span class="section"><a href="#d5e1378">Title tag</a></span></dt><dt><span class="section"><a href="#d5e1389">Param tag</a></span></dt></dl></dd><dt><span class="chapter"><a href="#assets">10. Assets </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1407">Asset serving</a></span></dt><dt><span class="section"><a href="#d5e1453">Declaring assets programmatically</a></span></dt><dt><span class="section"><a href="#d5e1464">Asset plugin</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1494">Server assets</a></span></dt><dt><span class="section"><a href="#d5e1503">Classpath assets</a></span></dt><dt><span class="section"><a href="#d5e1515">External assets</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#d5e1524">11. Juzu File Upload Plugin</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1528">File upload in an action phase</a></span></dt><dt><span class="section"><a href="#d5e1537">File upload in a resource phase</a></span></dt></dl></dd><dt><span class="chapter"><a href="#d5e1544">12. Juzu Portlet Plugin</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1547">Portlet class generation</a></span></dt><dt><span class="section"><a href="#d5e1570">Portlet preferences injection</a></span></dt><dt><span class="section"><a href="#d5e1581">Resource bundle injection</a></span></dt><dt><span class="section"><a href="#d5e1596">Building</a></span></dt></dl></dd><dt><span class="chapter"><a href="#d5e1603">13. Juzu Less Plugin</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1609">Usage</a></span></dt><dt><span class="section"><a href="#d5e1639">Building</a></span></dt></dl></dd></dl></div><div class="list-of-figures"><p><b>List of Figures</b></p><dl><dt>2.1. <a href="#d5e200">Interaction between phases</a></dt><dt>2.2. <a href="#d5e230">View phase</a></dt><dt>2.3. <a href="#d5e252">Action phase</a></dt><dt>2.4. <a href="#d5e264">View phase after action phase</a></dt><dt>3.1. <a href="#d5e544">Life cycle of a controller object</a></dt><dt>8.1. <a href="#d5e1130">Compiling a Groovy template</a></dt><dt>8.2. <a href="#d5e1171">Template URL resolution during compilation</a></dt><dt>8.3. <a href="#d5e1292">index groovy at work</a></dt><dt>10.1. <a href="#d5e1436">Compiling a Groovy template</a></dt></dl></div><div class="list-of-tables"><p><b>List of Tables</b></p><dl><dt>1.1. <a href="#d5e82">The predefined descriptors</a></dt></dl></div><div class="list-of-examples"><p><b>List of Examples</b></p><dl><dt>3.1. <a href="#d5e356">Declaring a controller route</a></dt><dt>3.2. <a href="#d5e368">Route parameters</a></dt><dt>3.3. <a href="#d5e384">Route parameter matching</a></dt><dt>3.4. <a href="#d5e406">Route parameter matching</a></dt><dt>3.5. <a href="#d5e429">Route priority</a></dt><dt>5.1. <a href="#d5e644">The Juzu servlet configuration</a></dt><dt>5.2. <a href="#d5e654">Path mapping configuration</a></dt><dt>5.3. <a href="#d5e667">Juzu servlet generation</a></dt><dt>5.4. <a href="#d5e684">The Juzu portlet configuration</a></dt><dt>6.1. <a href="#d5e865">Time provider factory</a></dt><dt>6.2. <a href="#d5e873">Time provider configuration</a></dt><dt>7.1. <a href="#d5e916">Controller URL syntax</a></dt><dt>7.2. <a href="#d5e923">Controller URL with parameters</a></dt><dt>7.3. <a href="#d5e931">Explicit controller URL</a></dt><dt>7.4. <a href="#d5e944">Message syntax</a></dt><dt>7.5. <a href="#d5e990">Using a template</a></dt><dt>7.6. <a href="#d5e1009">Returning the generated juzu.Response.Render</a></dt><dt>7.7. <a href="#d5e1020">Native template parameter declaration</a></dt><dt>7.8. <a href="#d5e1027">Mustache template parameter declaration</a></dt><dt>7.9. <a href="#d5e1068">Named bean</a></dt><dt>7.10. <a href="#d5e1073">Template parameters</a></dt><dt>7.11. <a href="#d5e1096">Named bean</a></dt><dt>7.12. <a href="#d5e1102">Template parameters</a></dt><dt>9.1. <a href="#d5e1332">Start and end tag syntax</a></dt><dt>9.2. <a href="#d5e1342">Empty tag syntax</a></dt><dt>9.3. <a href="#d5e1355">The include tag</a></dt><dt>9.4. <a href="#d5e1368">The wrapped template</a></dt><dt>9.5. <a href="#d5e1373">The decoraring template</a></dt><dt>9.6. <a href="#d5e1384">Setting the title</a></dt><dt>9.7. <a href="#d5e1394">Declaring a template parameter</a></dt><dt>9.8. <a href="#d5e1399">Using the template parameter</a></dt><dt>10.1. <a href="#d5e1469">JQuery UI declarative asset configuration</a></dt><dt>10.2. <a href="#d5e1498">Declarative relative server asset configuration</a></dt><dt>10.3. <a href="#d5e1510">Declarative relative classpath asset configuration</a></dt><dt>10.4. <a href="#d5e1519">External classpath asset configuration</a></dt><dt>12.1. <a href="#d5e1574">Injecting portlet preferences</a></dt><dt>12.2. <a href="#d5e1585">Injecting the portlet resource bundle</a></dt><dt>13.1. <a href="#d5e1617">Annotating an application package for processing LESS files</a></dt><dt>13.2. <a href="#d5e1631">LESS and Asset plugins in action</a></dt></dl></div>
   <div class="preface" title="Preface"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e2"></a>Preface</h1></div></div></div></div>
     
     <p>Juzu is a web framework based on MVC concepts for developing Portlet applications. Juzu is an open source project developed on GitHub <a class="ulink" href="https://github.com/juzu/juzu" target="_top">project</a> licensed under the <a class="ulink" href="http://www.gnu.org/licenses/lgpl-2.1.html" target="_top">LGPL 2.1</a> license.</p>
@@ -47,7 +47,7 @@
           <div class="programlistingco"><pre class="prettyprint language-xml">&lt;dependency&gt;
   &lt;groupId&gt;org.juzu&lt;/groupId&gt;
   &lt;artifactId&gt;juzu-bom-core&lt;/artifactId&gt;
-  &lt;version&gt;0.6.0-beta14&lt;/version&gt;
+  &lt;version&gt;0.6.0-beta15&lt;/version&gt;
 &lt;/dependency&gt;</pre></div>
           <p>Assembling the application requires more XML but is very straightforward:</p>
           <div class="programlistingco"><pre class="prettyprint language-xml">&lt;plugin&gt;
@@ -56,7 +56,7 @@
     &lt;dependency&gt;
       &lt;groupId&gt;org.juzu&lt;/groupId&gt;
       &lt;artifactId&gt;juzu-bom-core&lt;/artifactId&gt;
-      &lt;version&gt;0.6.0-beta14&lt;/version&gt;
+      &lt;version&gt;0.6.0-beta15&lt;/version&gt;
     &lt;/dependency&gt;
   &lt;/dependencies&gt;
   &lt;executions&gt;
@@ -140,7 +140,7 @@
           <pre class="screen">mvn archetype:generate \
    -DarchetypeGroupId=org.juzu \
    -DarchetypeArtifactId=juzu-archetype \
-   -DarchetypeVersion=0.6.0-beta14 \
+   -DarchetypeVersion=0.6.0-beta15 \
    -DgroupId=org.example \
    -DartifactId=myapp \
    -DpackageName=org.example.myapp \
@@ -646,7 +646,7 @@ public Response.Redirect process() {
 }</pre></div>
     </div>
   </div>
-  <div class="chapter" title="Chapter&nbsp;5.&nbsp;Bridges"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e624"></a>Chapter&nbsp;5.&nbsp;Bridges</h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e632">Servlet bridge</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e635">Juzu servlet</a></span></dt><dt><span class="section"><a href="#d5e672">Request routing</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e674">Portlet bridge</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e677">Juzu portlet</a></span></dt></dl></dd></dl></div>
+  <div class="chapter" title="Chapter&nbsp;5.&nbsp;Bridges"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e624"></a>Chapter&nbsp;5.&nbsp;Bridges</h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e632">Servlet bridge</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e635">Juzu servlet</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e672">Portlet bridge</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e675">Juzu portlet</a></span></dt></dl></dd></dl></div>
     
     <p>The bridge is the runtime in which Juzu executes, until now Juzu provides two bridges:</p>
     <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
@@ -708,21 +708,18 @@ package my.application;</pre></div>
           </p>
         </div>
       </div>
-      <div class="section" title="Request routing"><div class="titlepage"><div><div><h3 class="title"><a name="d5e672"></a>Request routing</h3></div></div></div>
-        
-      </div>
     </div>
-    <div class="section" title="Portlet bridge"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e674"></a>Portlet bridge</h2></div></div></div>
+    <div class="section" title="Portlet bridge"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e672"></a>Portlet bridge</h2></div></div></div>
       
       <p>The portlet bridge exposes a Juzu application as a portlet in a Portlet Container.</p>
-      <div class="section" title="Juzu portlet"><div class="titlepage"><div><div><h3 class="title"><a name="d5e677"></a>Juzu portlet</h3></div></div></div>
+      <div class="section" title="Juzu portlet"><div class="titlepage"><div><div><h3 class="title"><a name="d5e675"></a>Juzu portlet</h3></div></div></div>
         
         <p>The first step for using the portlet bridge is to configure the <code class="code">juzu.bridge.portlet.JuzuPortlet</code> portlet for the application. There is a one to one mapping between a Juzu application and a Juzu portlet. Therefore if you project contains several applications, you should configure a Juzu portlet for each.</p>
-        <div class="section" title="Portlet configuration"><div class="titlepage"><div><div><h4 class="title"><a name="d5e681"></a>Portlet configuration</h4></div></div></div>
+        <div class="section" title="Portlet configuration"><div class="titlepage"><div><div><h4 class="title"><a name="d5e679"></a>Portlet configuration</h4></div></div></div>
           
           <p>Declaring a Juzu portlet is done in the <span class="italic">portlet.xml</span> file of the portlet application:</p>
           <p>
-            </p><div class="example"><a name="d5e686"></a><p class="title"><b>Example&nbsp;5.4.&nbsp;The Juzu portlet configuration</b></p><div class="example-contents">
+            </p><div class="example"><a name="d5e684"></a><p class="title"><b>Example&nbsp;5.4.&nbsp;The Juzu portlet configuration</b></p><div class="example-contents">
               
               <div class="programlistingco"><pre class="prettyprint language-xml">&lt;portlet&gt;
   &lt;portlet-name&gt;JuzuPortlet&lt;/portlet-name&gt;
@@ -746,14 +743,14 @@ package my.application;</pre></div>
       </div>
     </div>
   </div>
-  <div class="chapter" title="Chapter&nbsp;6.&nbsp;Inversion of Control"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="ioc"></a>Chapter&nbsp;6.&nbsp;Inversion of Control </h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e701">Juzu IOC</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e703">IOC containers</a></span></dt><dt><span class="section"><a href="#d5e721">Beans</a></span></dt><dt><span class="section"><a href="#d5e727">Scopes</a></span></dt><dt><span class="section"><a href="#d5e744">Qualifiers</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e757">Beans in action</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e769">Template beans</a></span></dt><dt><span class="section"><a href="#d5e783">Controller beans</a></span></dt><dt><span class="section"><a href="#d5e804">Application beans</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e853">Provider factories</a></span></dt></dl></div>
+  <div class="chapter" title="Chapter&nbsp;6.&nbsp;Inversion of Control"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="ioc"></a>Chapter&nbsp;6.&nbsp;Inversion of Control </h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e699">Juzu IOC</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e701">IOC containers</a></span></dt><dt><span class="section"><a href="#d5e719">Beans</a></span></dt><dt><span class="section"><a href="#d5e725">Scopes</a></span></dt><dt><span class="section"><a href="#d5e742">Qualifiers</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e755">Beans in action</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e767">Template beans</a></span></dt><dt><span class="section"><a href="#d5e781">Controller beans</a></span></dt><dt><span class="section"><a href="#d5e802">Application beans</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e851">Provider factories</a></span></dt></dl></div>
     
     <p>Juzu provides native support for Injection of Control (known as <span class="italic">IOC</span>) and relies on the specification <a class="ulink" href="http://docs.oracle.com/javaee/6/api/javax/inject/package-summary.html" target="_top">JSR-330</a> (known as <span class="italic">@Inject</span>) for providing implementation free IOC.</p>
     <p>Although the JSR-330 is quite small it provides the necessary ground for building Juzu applications. Juzu itself relies on the injection container for wiring the entire Juzu runtime (controllers, templates, plugins, etc...).</p>
     <p>We will explain how Juzu uses IOC for its runtime, we will suppose that the reader is familliar with IOC and with the @Inject specification, in particular the notion of injection, scope and qualifier should be familliar.</p>
-    <div class="section" title="Juzu IOC"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e701"></a>Juzu IOC</h2></div></div></div>
+    <div class="section" title="Juzu IOC"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e699"></a>Juzu IOC</h2></div></div></div>
       
-      <div class="section" title="IOC containers"><div class="titlepage"><div><div><h3 class="title"><a name="d5e703"></a>IOC containers</h3></div></div></div>
+      <div class="section" title="IOC containers"><div class="titlepage"><div><div><h3 class="title"><a name="d5e701"></a>IOC containers</h3></div></div></div>
         
         <p>The JSR-330 is implemented by several projects, we refer to them as IOC containers, they are *implementations* of the JSR-330 specification:</p>
         <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
@@ -772,13 +769,13 @@ package my.application;</pre></div>
           <p>CDI is a specification that extends the <span class="italic">@Inject</span> specification: CDI provides more features than @Inject, however this specification is only implemented by Weld. Nevertheless if your choice is to use CDI you will be leverage its specific features in your Juzu application</p>
         </div>
       </div>
-      <div class="section" title="Beans"><div class="titlepage"><div><div><h3 class="title"><a name="d5e721"></a>Beans</h3></div></div></div>
+      <div class="section" title="Beans"><div class="titlepage"><div><div><h3 class="title"><a name="d5e719"></a>Beans</h3></div></div></div>
         
         <p>Beans are simply object managed by the IOC container, any bean can be injected other beans:</p>
         <div class="programlistingco"><pre class="prettyprint language-java">@java.inject.Inject
 Service service;</pre></div>
       </div>
-      <div class="section" title="Scopes"><div class="titlepage"><div><div><h3 class="title"><a name="d5e727"></a>Scopes</h3></div></div></div>
+      <div class="section" title="Scopes"><div class="titlepage"><div><div><h3 class="title"><a name="d5e725"></a>Scopes</h3></div></div></div>
         
         <p>Scopes define how a instances of a bean are managed by the IOC container: for a given bean, shall it be instantiated  only one time and shared or shall it instantiated everty time it is required ? that's the kind of question  that scope answers.</p>
         <p>Juzu provides 4 scopes to use within your application:</p>
@@ -796,7 +793,7 @@ Service service;</pre></div>
               <code class="code">@juzu.FlashScoped</code> scope: the bean is instantiated once per request but is reused if it was instantiated during an action request in the next render request and only in the first one</p>
           </li></ul></div>
       </div>
-      <div class="section" title="Qualifiers"><div class="titlepage"><div><div><h3 class="title"><a name="d5e744"></a>Qualifiers</h3></div></div></div>
+      <div class="section" title="Qualifiers"><div class="titlepage"><div><div><h3 class="title"><a name="d5e742"></a>Qualifiers</h3></div></div></div>
         
         <p>Qualifier are designed to distinguish several instances of a same bean. How does a bean differ from another bean ? it's not really possible to tell, qualifiers simply answer this question, allowing to:</p>
         <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
@@ -812,7 +809,7 @@ Service service;</pre></div>
 @Inject Person peter;</pre></div>
       </div>
     </div>
-    <div class="section" title="Beans in action"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e757"></a>Beans in action</h2></div></div></div>
+    <div class="section" title="Beans in action"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e755"></a>Beans in action</h2></div></div></div>
       
       <p>Beans are simply the objects managed by the IOC engine. In a Juzu applications we have several kind of beans:</p>
       <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
@@ -824,14 +821,14 @@ Service service;</pre></div>
         </li><li class="listitem">
           <p>Plugin beans</p>
         </li></ul></div>
-      <div class="section" title="Template beans"><div class="titlepage"><div><div><h3 class="title"><a name="d5e769"></a>Template beans</h3></div></div></div>
+      <div class="section" title="Template beans"><div class="titlepage"><div><div><h3 class="title"><a name="d5e767"></a>Template beans</h3></div></div></div>
         
         <p>Every template has a corresponding <code class="code">juzu.template.Template</code> class at runtime. The template class allows applications to interact with templates, most of the time for rendering purpose:</p>
         <div class="programlistingco"><pre class="prettyprint language-java">template.render();</pre></div>
         <p>A template bean is always qualified by the <code class="code">@Path</code> qualifier. The path qualifier is simply the value of the path relative to the <span class="italic">templates</span> package, for instance <span class="italic">index.gtmpl</span> is a valid qualifier value. The qualifier allows to have several <code class="code">Template</code> instances and distinguish them.</p>
         <p>Templates have the <code class="code">@Singleton</code> scope: a single instance of the template object is created and shared in the IOC container.</p>
       </div>
-      <div class="section" title="Controller beans"><div class="titlepage"><div><div><h3 class="title"><a name="d5e783"></a>Controller beans</h3></div></div></div>
+      <div class="section" title="Controller beans"><div class="titlepage"><div><div><h3 class="title"><a name="d5e781"></a>Controller beans</h3></div></div></div>
         
         <p>Each controller class is turned into a bean, that's how controllers can be injected with other beans. As soon as Juzu finds a class annotated by <code class="code">@View</code>, <code class="code">@Action</code> or <code class="code">@Resource</code>, it is automatically turned into a bean.</p>
         <p>Controller have the <code class="code">Request</code> scope by default: every time a controller instance is required it will be created for the duration of the request. It is possible to change the scope of a controller by annotating it with another scope annotation managed by Juzu:</p>
@@ -840,7 +837,7 @@ public class Controller {
    @View
    public void index() { }
 }</pre></div>
-        <div class="section" title="Injection a template into a controller"><div class="titlepage"><div><div><h4 class="title"><a name="d5e794"></a>Injection a template into a controller</h4></div></div></div>
+        <div class="section" title="Injection a template into a controller"><div class="titlepage"><div><div><h4 class="title"><a name="d5e792"></a>Injection a template into a controller</h4></div></div></div>
           
           <p>Injecting a template bean into a controller bean is probably the most common Juzu pattern:</p>
           <div class="programlistingco"><pre class="prettyprint language-java">@Inject
@@ -853,10 +850,10 @@ public void index() {
 }</pre></div>
         </div>
       </div>
-      <div class="section" title="Application beans"><div class="titlepage"><div><div><h3 class="title"><a name="d5e804"></a>Application beans</h3></div></div></div>
+      <div class="section" title="Application beans"><div class="titlepage"><div><div><h3 class="title"><a name="d5e802"></a>Application beans</h3></div></div></div>
         
         <p>Application beans model the custom logic of an application, they are normally injected in controller beans that use them when they process requests. The <span class="italic">binding</span> plugin allows an application to declare custom beans that can be used in the application.</p>
-        <div class="section" title="POJO bean binding"><div class="titlepage"><div><div><h4 class="title"><a name="d5e808"></a>POJO bean binding</h4></div></div></div>
+        <div class="section" title="POJO bean binding"><div class="titlepage"><div><div><h4 class="title"><a name="d5e806"></a>POJO bean binding</h4></div></div></div>
           
           <p>Binding a Plain Old Java Object (POJO) is a very simple task to accomplish:</p>
           <div class="programlistingco"><pre class="prettyprint language-java">@Bindings(@Binding(Mailer.class))
@@ -870,13 +867,13 @@ package myapplication;</pre></div>
    }
 }</pre></div>
         </div>
-        <div class="section" title="Abstract bean binding"><div class="titlepage"><div><div><h4 class="title"><a name="d5e818"></a>Abstract bean binding</h4></div></div></div>
+        <div class="section" title="Abstract bean binding"><div class="titlepage"><div><div><h4 class="title"><a name="d5e816"></a>Abstract bean binding</h4></div></div></div>
           
           <p>Binding an abstract class or an interface type is also possible with the <code class="code">implementation</code> member of the <code class="code">@Binding</code> annotation:</p>
           <div class="programlistingco"><pre class="prettyprint language-java">@Bindings(@Binding(value=Mailer.class,implementation=MailerImpl.class))
 package myapplication;</pre></div>
         </div>
-        <div class="section" title="Binding with a provider"><div class="titlepage"><div><div><h4 class="title"><a name="d5e826"></a>Binding with a provider</h4></div></div></div>
+        <div class="section" title="Binding with a provider"><div class="titlepage"><div><div><h4 class="title"><a name="d5e824"></a>Binding with a provider</h4></div></div></div>
           
           <p>Sometimes the implementation cannot be created by the IOC container, for instance it may not have a correct constructor, it can only be retrieved using a factory or it should be configured before being used. For such scenarios the implementation can specify a class implementing the <code class="code">javax.inject.Provider</code> interface.</p>
           <div class="programlistingco"><pre class="prettyprint language-java">public class ConfiguredMailerProvider implements javax.inject.Provider&lt;Mailer&gt; {
@@ -895,13 +892,13 @@ package myapplication;</pre></div>
 }</pre></div>
           <p>Thanks to the provider, we have a <code class="code">Mailer</code> provider that returns a <code class="code">MailerImpl</code> configured before usage.</p>
         </div>
-        <div class="section" title="Scoped binding"><div class="titlepage"><div><div><h4 class="title"><a name="d5e836"></a>Scoped binding</h4></div></div></div>
+        <div class="section" title="Scoped binding"><div class="titlepage"><div><div><h4 class="title"><a name="d5e834"></a>Scoped binding</h4></div></div></div>
           
           <p>The <code class="code">@Binding</code> annotation provides room for declaring a bean scope:</p>
           <div class="programlistingco"><pre class="prettyprint language-java">@Bindings(@Binding(value=Mailer.class,scope=Scope.SINGLETON))</pre></div>
           <p>When the scope is not specified, the scope is determined from the bean or implementation that should be annotated with a scope annotation. When it is specified, it overrides the annotation scope the bean could declare.</p>
         </div>
-        <div class="section" title="Qualifying provider"><div class="titlepage"><div><div><h4 class="title"><a name="d5e844"></a>Qualifying provider</h4></div></div></div>
+        <div class="section" title="Qualifying provider"><div class="titlepage"><div><div><h4 class="title"><a name="d5e842"></a>Qualifying provider</h4></div></div></div>
           
           <p>A provider implementation can declare qualifiers on the <code class="code">get</code> method they implement in order to set the qualifiers of the returned bean:</p>
           <div class="programlistingco"><pre class="prettyprint language-java">public class MailerProvider implements Provider&lt;Mailer&gt; {
@@ -914,7 +911,7 @@ package myapplication;</pre></div>
         </div>
       </div>
     </div>
-    <div class="section" title="Provider factories"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e853"></a>Provider factories</h2></div></div></div>
+    <div class="section" title="Provider factories"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e851"></a>Provider factories</h2></div></div></div>
       
       <p>Provider factories provides plugability for integrating beans that are not managed by the IOC container. The provider factory is a factory for <code class="code">javax.inject.Provider</code> whose purpose is to return a provider for a specific class. Usually provider factories will lookup the service in a registry (like another IOC container) and returns a provider that return them lazily or not.</p>
       <p>The provider factory defines the <code class="code">getProvider</code> method:</p>
@@ -932,7 +929,7 @@ package myapplication;</pre></div>
       <p>The IOC container uses the <code class="code">java.util.ServiceLoader</code> discovery mechanism for finding provider factories when  injection occurs.</p>
       <p>Let's study a simple example with a provider for the current time:</p>
       <p>
-        </p><div class="example"><a name="d5e867"></a><p class="title"><b>Example&nbsp;6.1.&nbsp;Time provider factory</b></p><div class="example-contents">
+        </p><div class="example"><a name="d5e865"></a><p class="title"><b>Example&nbsp;6.1.&nbsp;Time provider factory</b></p><div class="example-contents">
           
           <div class="programlistingco"><pre class="prettyprint language-java">package my;
 
@@ -949,28 +946,28 @@ public class TimeProvider implements java.inject.ProviderFactory {
       </p>
       <p>This provider should be declared in the <span class="italic">META-INF/services/juzu.inject.ProviderFactory</span> file:</p>
       <p>
-        </p><div class="example"><a name="d5e875"></a><p class="title"><b>Example&nbsp;6.2.&nbsp;Time provider configuration</b></p><div class="example-contents">
+        </p><div class="example"><a name="d5e873"></a><p class="title"><b>Example&nbsp;6.2.&nbsp;Time provider configuration</b></p><div class="example-contents">
           
           <div class="programlistingco"><pre class="prettyprint">my.TimeProvider</pre></div>
         </div></div><p><br class="example-break">
       </p>
     </div>
   </div>
-  <div class="chapter" title="Chapter&nbsp;7.&nbsp;Templating"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="templating"></a>Chapter&nbsp;7.&nbsp;Templating </h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e884">The templating engines</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e888">The native template engine</a></span></dt><dt><span class="section"><a href="#d5e951">The Mustache template engine</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e970">Using templates</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e973">Template declaration</a></span></dt><dt><span class="section"><a href="#d5e1003">Type safe parameters</a></span></dt><dt><span class="section"><a href="#d5e1041">Expression resolution</a></span></dt></dl></dd></dl></div>
+  <div class="chapter" title="Chapter&nbsp;7.&nbsp;Templating"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="templating"></a>Chapter&nbsp;7.&nbsp;Templating </h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e882">The templating engines</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e886">The native template engine</a></span></dt><dt><span class="section"><a href="#d5e962">The Mustache template engine</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e981">Using templates</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e984">Template declaration</a></span></dt><dt><span class="section"><a href="#d5e1014">Type safe parameters</a></span></dt><dt><span class="section"><a href="#d5e1052">Expression resolution</a></span></dt></dl></dd></dl></div>
     
     <p>Templating is the <span class="italic">View</span> part of a Model View Controlle architecture. We will study in this chapter how the templating system interacts with the Juzu, at compilation time and at runtime, both aspects are very important.</p>
-    <div class="section" title="The templating engines"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e884"></a>The templating engines</h2></div></div></div>
+    <div class="section" title="The templating engines"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e882"></a>The templating engines</h2></div></div></div>
       
       <p>Juzu can use several templating engines, it provides a native template engine as well as the Mustache templating engine. Those engines are not competing, instead they should be seen as alternatives: the native Groovy engine provides the goodness of the Groovy languages, however sometimes some people prefer logic-less templates and <a class="ulink" href="http://mustache.github.com/" target="_top">Mustache</a> is a template engine they should use. Let's introduce them briefly.</p>
-      <div class="section" title="The native template engine"><div class="titlepage"><div><div><h3 class="title"><a name="d5e888"></a>The native template engine</h3></div></div></div>
+      <div class="section" title="The native template engine"><div class="titlepage"><div><div><h3 class="title"><a name="d5e886"></a>The native template engine</h3></div></div></div>
         
         <p>The native template engine extends the <a class="ulink" href="http://groovy.codehaus.org/Groovy+Templates" target="_top">Groovy templating system</a>: it can include snippet of Groovy code or resolve Groovy expressions:</p>
-        <div class="section" title="Expressions"><div class="titlepage"><div><div><h4 class="title"><a name="d5e892"></a>Expressions</h4></div></div></div>
+        <div class="section" title="Expressions"><div class="titlepage"><div><div><h4 class="title"><a name="d5e890"></a>Expressions</h4></div></div></div>
           
           <p>Expressions are simply Groovy expressions wrapped with the <code class="code">${...}</code> syntax:</p>
           <div class="programlistingco"><pre class="prettyprint">The sky is ${color}</pre></div>
         </div>
-        <div class="section" title="Scriplets"><div class="titlepage"><div><div><h4 class="title"><a name="d5e899"></a>Scriplets</h4></div></div></div>
+        <div class="section" title="Scriplets"><div class="titlepage"><div><div><h4 class="title"><a name="d5e897"></a>Scriplets</h4></div></div></div>
           
           <p>Groovy code can also literaly be used with the <span class="italic">scriplet</span> syntax: <code class="code">&lt;% ... %&gt;</code>. Within a scriptlet the <code class="code">out</code> implicit object can be used for outputting markup:</p>
           <div class="programlistingco"><pre class="prettyprint">&lt;ul&gt;
@@ -979,61 +976,76 @@ public class TimeProvider implements java.inject.ProviderFactory {
           <p>The scriplet syntax <code class="code">&lt;%= ... %&gt;</code> can also be used:</p>
           <div class="programlistingco"><pre class="prettyprint">The sky is &lt;%= color %&gt;</pre></div>
         </div>
-        <div class="section" title="Controller urls"><div class="titlepage"><div><div><h4 class="title"><a name="d5e913"></a>Controller urls</h4></div></div></div>
+        <div class="section" title="Controller urls"><div class="titlepage"><div><div><h4 class="title"><a name="d5e911"></a>Controller urls</h4></div></div></div>
           
           <p>Controller urls is natively supported by the engine, it allows to create controller URL with a short and compact syntax <code class="code">@{...}</code>:</p>
           <p>
-            </p><div class="example"><a name="d5e918"></a><p class="title"><b>Example&nbsp;7.1.&nbsp;Controller URL syntax</b></p><div class="example-contents">
+            </p><div class="example"><a name="d5e916"></a><p class="title"><b>Example&nbsp;7.1.&nbsp;Controller URL syntax</b></p><div class="example-contents">
               
               <div class="programlistingco"><pre class="prettyprint">&lt;a href="@{index()}"&gt;Home&lt;/a&gt;</pre></div>
             </div></div><p><br class="example-break">
           </p>
           <p>URL expressions can contain parameters and they must be named:</p>
           <p>
-            </p><div class="example"><a name="d5e925"></a><p class="title"><b>Example&nbsp;7.2.&nbsp;Controller URL with parameters</b></p><div class="example-contents">
+            </p><div class="example"><a name="d5e923"></a><p class="title"><b>Example&nbsp;7.2.&nbsp;Controller URL with parameters</b></p><div class="example-contents">
               
               <div class="programlistingco"><pre class="prettyprint">&lt;a href="@{purchase(product=1)}"&gt;Purchase&lt;/a&gt;</pre></div>
             </div></div><p><br class="example-break">
           </p>
           <p>The <span class="italic">purchase</span> method refers to a controller method, when the application has several controllers, the controller name can be used to prefix the url expression and remove the ambiguity:</p>
           <p>
-            </p><div class="example"><a name="d5e933"></a><p class="title"><b>Example&nbsp;7.3.&nbsp;Explicit controller URL</b></p><div class="example-contents">
+            </p><div class="example"><a name="d5e931"></a><p class="title"><b>Example&nbsp;7.3.&nbsp;Explicit controller URL</b></p><div class="example-contents">
               
               <div class="programlistingco"><pre class="prettyprint">&lt;a href="@{Controller.purchase(product=1)}"&gt;Purchase&lt;/a&gt;</pre></div>
             </div></div><p><br class="example-break">
           </p>
           <p>Under the hood the controller URL syntax uses the controller compagnion for creating the URL: the <code class="code">Controller.purchase(product=1)</code> will uses the controller compagnion <code class="code">Controller_#purchase(String product)</code>.</p>
         </div>
-        <div class="section" title="Taglib"><div class="titlepage"><div><div><h4 class="title"><a name="d5e941"></a>Taglib</h4></div></div></div>
+        <div class="section" title="Messages"><div class="titlepage"><div><div><h4 class="title"><a name="d5e939"></a>Messages</h4></div></div></div>
+          
+          <p>You can resolve a message in resource bundles in a template with the <code class="code">&amp;{...}</code> syntax:</p>
+          <p>
+            </p><div class="example"><a name="d5e944"></a><p class="title"><b>Example&nbsp;7.4.&nbsp;Message syntax</b></p><div class="example-contents">
+              
+              <div class="programlistingco"><pre class="prettyprint">&lt;label&gt;&amp;{color}&lt;/label&gt;
+&lt;input type="text" name="color"&gt;</pre></div>
+            </div></div><p><br class="example-break">
+          </p>
+          <p>When the message is not found, no output will be done. The resource bundle is resolved with the current user locale.</p>
+          <div class="alert alert-block" title="Warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3>
+            <p>This feature at the moment only works with portlets that supports resource bundle declaration natively</p>
+          </div>
+        </div>
+        <div class="section" title="Taglib"><div class="titlepage"><div><div><h4 class="title"><a name="d5e952"></a>Taglib</h4></div></div></div>
           
           <p>The native engine provides taglib support using the <code class="code">#{tag}...#{/tag}} </code> or <code class="code">#{tag/}</code> syntax:</p>
           <div class="programlistingco"><pre class="prettyprint">#{title value=Hello/}</pre></div>
           <p>Available tags are explained in the <a class="link" href="#taglib" title="Chapter&nbsp;9.&nbsp;Taglib">taglib chapter</a>.</p>
         </div>
       </div>
-      <div class="section" title="The Mustache template engine"><div class="titlepage"><div><div><h3 class="title"><a name="d5e951"></a>The Mustache template engine</h3></div></div></div>
+      <div class="section" title="The Mustache template engine"><div class="titlepage"><div><div><h3 class="title"><a name="d5e962"></a>The Mustache template engine</h3></div></div></div>
         
         <p>The Mustache template engine uses <span class="italic">logic-less</span> templates based on <a class="ulink" href="https://github.com/spullara/mustache.java" target="_top">Mustache.java</a> the Java port of Mustache. Mustache is very easy to use, you can read the <a class="ulink" href="http://mustache.github.com/mustache.5.html" target="_top">documentation</a>, however we will have a quick overview of how it can be used in Juzu:</p>
-        <div class="section" title="Variables"><div class="titlepage"><div><div><h4 class="title"><a name="d5e957"></a>Variables</h4></div></div></div>
+        <div class="section" title="Variables"><div class="titlepage"><div><div><h4 class="title"><a name="d5e968"></a>Variables</h4></div></div></div>
           
           <p>Variables uses the <code class="code">{{...}}</code> syntax, they are resolved against template parameters or beans.</p>
           <div class="programlistingco"><pre class="prettyprint">The sky is {{color}}</pre></div>
         </div>
-        <div class="section" title="Sections"><div class="titlepage"><div><div><h4 class="title"><a name="d5e964"></a>Sections</h4></div></div></div>
+        <div class="section" title="Sections"><div class="titlepage"><div><div><h4 class="title"><a name="d5e975"></a>Sections</h4></div></div></div>
           
           <p>Mustache sections allows to iterate expressions that are multivalued.</p>
           <div class="programlistingco"><pre class="prettyprint">todo</pre></div>
         </div>
       </div>
     </div>
-    <div class="section" title="Using templates"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e970"></a>Using templates</h2></div></div></div>
+    <div class="section" title="Using templates"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e981"></a>Using templates</h2></div></div></div>
       
       <p>A template as seen by an application is a bean managed by the IOC container.</p>
-      <div class="section" title="Template declaration"><div class="titlepage"><div><div><h3 class="title"><a name="d5e973"></a>Template declaration</h3></div></div></div>
+      <div class="section" title="Template declaration"><div class="titlepage"><div><div><h3 class="title"><a name="d5e984"></a>Template declaration</h3></div></div></div>
         
         <p>Applications use a template by injecting a <code class="code">juzu.template.Template</code> object in its controllers qualified by the <code class="code">juzu.Path</code> annotation:</p>
         <p>
-          </p><div class="example"><a name="d5e979"></a><p class="title"><b>Example&nbsp;7.4.&nbsp;Using a template</b></p><div class="example-contents">
+          </p><div class="example"><a name="d5e990"></a><p class="title"><b>Example&nbsp;7.5.&nbsp;Using a template</b></p><div class="example-contents">
             
             <div class="programlistingco"><pre class="prettyprint language-java">public class Controller {
 
@@ -1055,7 +1067,7 @@ public class TimeProvider implements java.inject.ProviderFactory {
         <p>The <code class="code">juzu.Path</code> annotation is a qualifier annotation managed by the IOC container. It is very similar to the <code class="code">@javax.inject.Named</code> qualifier, but it has a special meaning for Juzu for declaring the template.</p>
         <p>The <code class="code">render</code> method of a template returns a <code class="code">juzu.Response.Render</code> response which can also be returned by the controller method. This is equivalent to the previous example.</p>
         <p>
-          </p><div class="example"><a name="d5e998"></a><p class="title"><b>Example&nbsp;7.5.&nbsp;Returning the generated juzu.Response.Render</b></p><div class="example-contents">
+          </p><div class="example"><a name="d5e1009"></a><p class="title"><b>Example&nbsp;7.6.&nbsp;Returning the generated juzu.Response.Render</b></p><div class="example-contents">
             
             <div class="programlistingco"><pre class="prettyprint language-java">  @View
   public Response.Render index() {
@@ -1064,12 +1076,12 @@ public class TimeProvider implements java.inject.ProviderFactory {
           </div></div><p><br class="example-break">
         </p>
       </div>
-      <div class="section" title="Type safe parameters"><div class="titlepage"><div><div><h3 class="title"><a name="d5e1003"></a>Type safe parameters</h3></div></div></div>
+      <div class="section" title="Type safe parameters"><div class="titlepage"><div><div><h3 class="title"><a name="d5e1014"></a>Type safe parameters</h3></div></div></div>
         
         <p>Template type safe parameters brings more type safety in your applications. Templates can declare parameters and they are made available on a subclass of the <code class="code">juzu.template.Template</code> class.</p>
         <p>Parameters are declared using the taglib support of the native template engine</p>
         <p>
-          </p><div class="example"><a name="d5e1009"></a><p class="title"><b>Example&nbsp;7.6.&nbsp;Native template parameter declaration</b></p><div class="example-contents">
+          </p><div class="example"><a name="d5e1020"></a><p class="title"><b>Example&nbsp;7.7.&nbsp;Native template parameter declaration</b></p><div class="example-contents">
             
             <div class="programlistingco"><pre class="prettyprint">#{param name=color/}
 The sky is ${color}.</pre></div>
@@ -1077,7 +1089,7 @@ The sky is ${color}.</pre></div>
         </p>
         <p>or the pragma support of the Mustache engine</p>
         <p>
-          </p><div class="example"><a name="d5e1016"></a><p class="title"><b>Example&nbsp;7.7.&nbsp;Mustache template parameter declaration</b></p><div class="example-contents">
+          </p><div class="example"><a name="d5e1027"></a><p class="title"><b>Example&nbsp;7.8.&nbsp;Mustache template parameter declaration</b></p><div class="example-contents">
             
             <div class="programlistingco"><pre class="prettyprint">{{%param color}}
 The sky is {{color}}.</pre></div>
@@ -1103,10 +1115,10 @@ public class Controller {
             </td></tr></table></div></div>
         <p>The <code class="code">weather.templates.sky</code> class does not exist in the original source but it is available when the application is compiled because it will be generated by Juzu compiler integration. The <code class="code">sky</code> templates provides a <span class="italic">fluent</span> syntax to bind parameters: <code class="code">sky.with().color("blue").render()</code>.</p>
       </div>
-      <div class="section" title="Expression resolution"><div class="titlepage"><div><div><h3 class="title"><a name="d5e1041"></a>Expression resolution</h3></div></div></div>
+      <div class="section" title="Expression resolution"><div class="titlepage"><div><div><h3 class="title"><a name="d5e1052"></a>Expression resolution</h3></div></div></div>
         
         <p>When we studied the templating engine syntax but we did not mentioned exactly how expression are resolved.</p>
-        <div class="section" title="Single name expressions"><div class="titlepage"><div><div><h4 class="title"><a name="d5e1044"></a>Single name expressions</h4></div></div></div>
+        <div class="section" title="Single name expressions"><div class="titlepage"><div><div><h4 class="title"><a name="d5e1055"></a>Single name expressions</h4></div></div></div>
           
           <p>Both templating system provides a syntax for resolving single name expressions:</p>
           <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
@@ -1118,7 +1130,7 @@ public class Controller {
             </li></ul></div>
           <p>Resolution is performed against template parameters or bean named with the <code class="code">javax.inject.Named</code> qualifier.</p>
           <p>
-            </p><div class="example"><a name="d5e1057"></a><p class="title"><b>Example&nbsp;7.8.&nbsp;Named bean</b></p><div class="example-contents">
+            </p><div class="example"><a name="d5e1068"></a><p class="title"><b>Example&nbsp;7.9.&nbsp;Named bean</b></p><div class="example-contents">
               
               <div class="programlistingco"><pre class="prettyprint language-java">@javax.inject.Named("color")
 public class Color {
@@ -1127,7 +1139,7 @@ public class Color {
   }
 }</pre></div>
             </div></div><p><br class="example-break">
-            </p><div class="example"><a name="d5e1062"></a><p class="title"><b>Example&nbsp;7.9.&nbsp;Template parameters</b></p><div class="example-contents">
+            </p><div class="example"><a name="d5e1073"></a><p class="title"><b>Example&nbsp;7.10.&nbsp;Template parameters</b></p><div class="example-contents">
               
               <div class="programlistingco"><pre class="prettyprint language-java">index.with().set("color", "red").render(); <span class="co" id="callout-4_"><img src="images/callouts/1.png" alt="(1)"></span> 
 index.with().color("red").render(); <span class="co" id="callout-5_"><img src="images/callouts/2.png" alt="(2)"></span> </pre><div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/1.png" alt="1" border="0"></p></td><td valign="top" align="left">
@@ -1138,7 +1150,7 @@ index.with().color("red").render(); <span class="co" id="callout-5_"><img src="i
             </div></div><p><br class="example-break">
           </p>
         </div>
-        <div class="section" title="Compound expressions"><div class="titlepage"><div><div><h4 class="title"><a name="d5e1074"></a>Compound expressions</h4></div></div></div>
+        <div class="section" title="Compound expressions"><div class="titlepage"><div><div><h4 class="title"><a name="d5e1085"></a>Compound expressions</h4></div></div></div>
           
           <p>Compound expressions are resolved the same way for the first name and the expression resolve will attempt to navigate the rest of the expressions from this object:</p>
           <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
@@ -1149,7 +1161,7 @@ index.with().color("red").render(); <span class="co" id="callout-5_"><img src="i
                 <code class="code">{{#weather}}{{color}}{{/weather}}</code> for Mustache</p>
             </li></ul></div>
           <p>
-            </p><div class="example"><a name="d5e1085"></a><p class="title"><b>Example&nbsp;7.10.&nbsp;Named bean</b></p><div class="example-contents">
+            </p><div class="example"><a name="d5e1096"></a><p class="title"><b>Example&nbsp;7.11.&nbsp;Named bean</b></p><div class="example-contents">
               
               <div class="programlistingco"><pre class="prettyprint language-java">@javax.inject.Named("weather")
 public class Weather {
@@ -1171,7 +1183,7 @@ public class Weather {
             </div></div><p><br class="example-break">
           </p>
           <p>
-            </p><div class="example"><a name="d5e1091"></a><p class="title"><b>Example&nbsp;7.11.&nbsp;Template parameters</b></p><div class="example-contents">
+            </p><div class="example"><a name="d5e1102"></a><p class="title"><b>Example&nbsp;7.12.&nbsp;Template parameters</b></p><div class="example-contents">
               
               <div class="programlistingco"><pre class="prettyprint language-java">index.with().set("weather", new Weather("blue")).render(); <span class="co" id="callout-6_"><img src="images/callouts/1.png" alt="(1)"></span> 
 index.with().color(new Weather("blue")).render(); <span class="co" id="callout-7_"><img src="images/callouts/2.png" alt="(2)"></span> </pre><div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/1.png" alt="1" border="0"></p></td><td valign="top" align="left">
@@ -1184,7 +1196,7 @@ index.with().color(new Weather("blue")).render(); <span class="co" id="callout-7
       </div>
     </div>
   </div>
-  <div class="chapter" title="Chapter&nbsp;8.&nbsp;Templating SPI"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="templatespi"></a>Chapter&nbsp;8.&nbsp;Templating SPI </h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e1115">Compiling a Groovy template</a></span></dt><dt><span class="section"><a href="#d5e1155">Type safe URL resolution</a></span></dt><dt><span class="section"><a href="#d5e1183">Template Service Provider Interface</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1186">Template providers</a></span></dt><dt><span class="section"><a href="#d5e1243">Template stub</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e1267">Template at work</a></span></dt><dt><span class="section"><a href="#d5e1295">Qualified template class</a></span></dt></dl></div>
+  <div class="chapter" title="Chapter&nbsp;8.&nbsp;Templating SPI"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="templatespi"></a>Chapter&nbsp;8.&nbsp;Templating SPI </h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e1126">Compiling a Groovy template</a></span></dt><dt><span class="section"><a href="#d5e1166">Type safe URL resolution</a></span></dt><dt><span class="section"><a href="#d5e1194">Template Service Provider Interface</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1197">Template providers</a></span></dt><dt><span class="section"><a href="#d5e1254">Template stub</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e1278">Template at work</a></span></dt><dt><span class="section"><a href="#d5e1306">Qualified template class</a></span></dt></dl></div>
     
     <p>This chapter dives into the template life cycle from the compilation time to the run time. We will describe the template Service Provider Interface (SPI), the SPI is designed to make Juzu templating extensible and integrating template engines in Juzu. This chapter is optional is you are only writing ab application with Juzu, however it is a must read if you want to know more Juzu internals or if you want to understand how to integrate a template engine in Juzu.</p>
     <p>When a Juzu application is compiled, the Juzu annotation processor detects the <code class="code">@Path</code> annotations and triggers the compilation of the related templates. The template compilation can be split in two parts:</p>
@@ -1193,11 +1205,11 @@ index.with().color(new Weather("blue")).render(); <span class="co" id="callout-7
       </li><li class="listitem">
         <p>Processing the template file, this task is delegated to the <code class="code">TemplateProvider</code> interface and is extensible. The provider allows to have several templating system in Juzu and decouples the template compilation process from the details of the templating engine.</p>
       </li></ul></div>
-    <div class="section" title="Compiling a Groovy template"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1115"></a>Compiling a Groovy template</h2></div></div></div>
+    <div class="section" title="Compiling a Groovy template"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1126"></a>Compiling a Groovy template</h2></div></div></div>
       
       <p>Let's study an example with the Groovy template at compilation time.</p>
       <p>
-        </p><div class="figure"><a name="d5e1119"></a><p class="title"><b>Figure&nbsp;8.1.&nbsp;Compiling a Groovy template</b></p><div class="figure-contents">
+        </p><div class="figure"><a name="d5e1130"></a><p class="title"><b>Figure&nbsp;8.1.&nbsp;Compiling a Groovy template</b></p><div class="figure-contents">
           
           <div class="mediaobject" align="center"><img src="images/templatespi/lifecycle1.png" align="middle" width="534.6" alt="Compiling a Groovy template"></div>
         </div></div><p><br class="figure-break">
@@ -1220,11 +1232,11 @@ index.with().color(new Weather("blue")).render(); <span class="co" id="callout-7
       <p>After that the only remaining part is to compile the <span class="italic">index_.groovy</span> source to a class. It can be achieved either at build time using the <span class="italic">groovyc</span> compiler or at load time when the <code class="code">index</code> template is loaded using a <code class="code">GroovyClassLoader</code>. The former approach makes the build a bit more complex (but not much as Groovy compilation is fairly well supported in build systems or IDEs) as it requires to run a Groovy compilation but it will perform additional validation of the template as well as reduce the load time of the template. The later approach will detect any compilation error (such as Groovy syntax error) at runtime and the <span class="italic">index_.groovy</span> compilation will take a few milliseconds.</p>
       <p>This flexibility allows to use the lazy approach during development and when the application is released then the Groovy compiler can be used to compile the <span class="italic">index_.groovy</span>.</p>
     </div>
-    <div class="section" title="Type safe URL resolution"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1155"></a>Type safe URL resolution</h2></div></div></div>
+    <div class="section" title="Type safe URL resolution"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1166"></a>Type safe URL resolution</h2></div></div></div>
       
       <p>Groovy templates provides the <code class="code">@{...}</code> syntax for generating URL from the application controllers. This section gives an overview of the underlying resolution mechanism.</p>
       <p>
-        </p><div class="figure"><a name="d5e1160"></a><p class="title"><b>Figure&nbsp;8.2.&nbsp;Template URL resolution during compilation</b></p><div class="figure-contents">
+        </p><div class="figure"><a name="d5e1171"></a><p class="title"><b>Figure&nbsp;8.2.&nbsp;Template URL resolution during compilation</b></p><div class="figure-contents">
           
           <div class="mediaobject" align="center"><img src="images/templatespi/lifecycle2.png" align="middle" width="534.6" alt="Template URL resolution during compilation"></div>
         </div></div><p><br class="figure-break">
@@ -1241,10 +1253,10 @@ index.with().color(new Weather("blue")).render(); <span class="co" id="callout-7
           <p>Compile: the Groovy source is compiled into a class by the <span class="italic">groovyc</span> compiler (this part is done after <span class="italic">javac</span>)</p>
         </li></ul></div>
     </div>
-    <div class="section" title="Template Service Provider Interface"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1183"></a>Template Service Provider Interface</h2></div></div></div>
+    <div class="section" title="Template Service Provider Interface"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1194"></a>Template Service Provider Interface</h2></div></div></div>
       
       <p>Juzu provides a Service Provider Interface (SPI) for integrating thirdparty template engine. Actually all template system are integrated with the SPI. We will study briefly the integration points so you can integrate a template engine of your choice in Juzu.</p>
-      <div class="section" title="Template providers"><div class="titlepage"><div><div><h3 class="title"><a name="d5e1186"></a>Template providers</h3></div></div></div>
+      <div class="section" title="Template providers"><div class="titlepage"><div><div><h3 class="title"><a name="d5e1197"></a>Template providers</h3></div></div></div>
         
         <p>The <code class="code">juzu.impl.template.spi.TemplateProvider</code> is the main entry point when a templating system is integrated. The provider is triggered during the compilation phase by the APT system built into the Java compiler.</p>
         <div class="programlistingco"><pre class="prettyprint language-java">/**
@@ -1291,7 +1303,7 @@ public abstract class TemplateProvider&lt;M extends Serializable&gt; {
         <div class="programlistingco"><pre class="prettyprint language-java">  public abstract Class&lt;? extends TemplateStub&gt; getTemplateStubType();</pre></div>
         <p>Finally the <code class="code">getTemplateStubType()</code> returns the type of a java class that will be used for creating a template stub. For each template, a stub is created, the stub is responsible for loading the template at runtime, i.e the original template or the compiled template that may have been generated during compilation during the <code class="code">emit</code> callback.</p>
       </div>
-      <div class="section" title="Template stub"><div class="titlepage"><div><div><h3 class="title"><a name="d5e1243"></a>Template stub</h3></div></div></div>
+      <div class="section" title="Template stub"><div class="titlepage"><div><div><h3 class="title"><a name="d5e1254"></a>Template stub</h3></div></div></div>
         
         <p>Template stubs are java classes created by Juzu for managing a template at runtime on behalf of the provider. Each provider provides its own stub implementation as a <code class="code">juzu.impl.template.spi.TemplateStub</code> subclass.</p>
         <p>A stub must provide a public constructor accepting a <code class="code">java.lang.String</code> argument: the template id. The template  id if the class name of the generated template. In addition, a stub must implement two abstract methods:</p>
@@ -1312,7 +1324,7 @@ public abstract class TemplateProvider&lt;M extends Serializable&gt; {
           </li></ul></div>
       </div>
     </div>
-    <div class="section" title="Template at work"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1267"></a>Template at work</h2></div></div></div>
+    <div class="section" title="Template at work"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1278"></a>Template at work</h2></div></div></div>
       
       <p>After having described the various pieces of the templating SPI, let's look at how the template generated stubs  are used by Juzu templating system at runtime.</p>
       <p>When the controller declares the <span class="italic">index.gtmpl</span> template the compiler produces three artifacts</p>
@@ -1322,7 +1334,7 @@ public abstract class TemplateProvider&lt;M extends Serializable&gt; {
           <p>the <span class="italic">index_.groovy</span> Groovy template is the effective template code: it produces the markup, resolve expressions, etc...</p>
         </li></ul></div>
       <p>
-        </p><div class="figure"><a name="d5e1281"></a><p class="title"><b>Figure&nbsp;8.3.&nbsp;index groovy at work</b></p><div class="figure-contents">
+        </p><div class="figure"><a name="d5e1292"></a><p class="title"><b>Figure&nbsp;8.3.&nbsp;index groovy at work</b></p><div class="figure-contents">
           
           <div class="mediaobject" align="center"><img src="images/templatespi/lifecycle3.png" align="middle" width="534.6" alt="index groovy at work"></div>
         </div></div><p><br class="figure-break">
@@ -1330,7 +1342,7 @@ public abstract class TemplateProvider&lt;M extends Serializable&gt; {
       <p>When a controller is instantiated, the <code class="code">index</code> template instance is injected into the controller, the <code class="code">@Path</code> annotation plays an essential role because it's a qualifier and that qualifier is used to distinguish the correct subclass to inject in the controller.</p>
       <p>When the template is created, the corresponding template stub is instantiated. When the template needs to be rendered, the <code class="code">doInit(ClassLoader)</code> method of the stub is invoked. At this moment the Groovy <code class="code">index_</code> class is loaded from the  class loader, when the class is not found, the <code class="code">index_.groovy</code> is loaded and it is compiled on the fly.</p>
     </div>
-    <div class="section" title="Qualified template class"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1295"></a>Qualified template class</h2></div></div></div>
+    <div class="section" title="Qualified template class"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1306"></a>Qualified template class</h2></div></div></div>
       
       <p>Controller can be injected with the <code class="code">juzu.template.Template</code> class, however they can also be injected with the template subclass that was genereted by Juzu: instead of using the qualified template injection, the controller declares the template <span class="italic">index</span> subclass. This approach cab be used when type safe parameters are used as only the <code class="code">index</code> type declares the fluent API.</p>
       <p>For instance if the <span class="italic">index.gtmpl</span> declares the <span class="italic">color</span> parameter the <code class="code">index</code> class will look like:</p>
@@ -1364,17 +1376,17 @@ public class index extends Template {
 }</pre></div>
     </div>
   </div>
-  <div class="chapter" title="Chapter&nbsp;9.&nbsp;Taglib"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="taglib"></a>Chapter&nbsp;9.&nbsp;Taglib </h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e1317">Taglib syntax</a></span></dt><dt><span class="section"><a href="#d5e1338">Include tag</a></span></dt><dt><span class="section"><a href="#d5e1351">Decorate / Insert tag</a></span></dt><dt><span class="section"><a href="#d5e1367">Title tag</a></span></dt><dt><span class="section"><a href="#d5e1378">Param tag</a></span></dt></dl></div>
+  <div class="chapter" title="Chapter&nbsp;9.&nbsp;Taglib"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="taglib"></a>Chapter&nbsp;9.&nbsp;Taglib </h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e1328">Taglib syntax</a></span></dt><dt><span class="section"><a href="#d5e1349">Include tag</a></span></dt><dt><span class="section"><a href="#d5e1362">Decorate / Insert tag</a></span></dt><dt><span class="section"><a href="#d5e1378">Title tag</a></span></dt><dt><span class="section"><a href="#d5e1389">Param tag</a></span></dt></dl></div>
     
     <p>A tag library is an essential component of a templating system, allowing to enrich a templating with encapsulated programmable logic.</p>
     <div class="alert alert-error alert-block" title="Important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3>
       <p>Juzu does not yet allow application to define their own tags, it will be added a a new feature in a future version.</p>
     </div>
-    <div class="section" title="Taglib syntax"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1317"></a>Taglib syntax</h2></div></div></div>
+    <div class="section" title="Taglib syntax"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1328"></a>Taglib syntax</h2></div></div></div>
       
       <p>Like most taglib syntaxes, Juzu provides two syntaxes for invoking a tag:</p>
       <p>
-        </p><div class="example"><a name="d5e1321"></a><p class="title"><b>Example&nbsp;9.1.&nbsp;Start and end tag syntax</b></p><div class="example-contents">
+        </p><div class="example"><a name="d5e1332"></a><p class="title"><b>Example&nbsp;9.1.&nbsp;Start and end tag syntax</b></p><div class="example-contents">
           
           <div class="programlistingco"><pre class="prettyprint">#{foo}bar#{/foo}</pre></div>
         </div></div><p><br class="example-break">
@@ -1382,33 +1394,33 @@ public class index extends Template {
       <p>The start/end syntax opens the tag with <code class="code">#{foo}</code> and ends it with <code class="code">#{/foo}</code>.</p>
       <p>A tag can also be empty:</p>
       <p>
-        </p><div class="example"><a name="d5e1331"></a><p class="title"><b>Example&nbsp;9.2.&nbsp;Empty tag syntax</b></p><div class="example-contents">
+        </p><div class="example"><a name="d5e1342"></a><p class="title"><b>Example&nbsp;9.2.&nbsp;Empty tag syntax</b></p><div class="example-contents">
           
           <div class="programlistingco"><pre class="prettyprint">#{foo/}</pre></div>
         </div></div><p><br class="example-break">
       </p>
       <p>A tag can also be invoked empty with the <code class="code">#{foo/}</code> syntax.</p>
     </div>
-    <div class="section" title="Include tag"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1338"></a>Include tag</h2></div></div></div>
+    <div class="section" title="Include tag"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1349"></a>Include tag</h2></div></div></div>
       
       <p>The <span class="italic">include</span> tag simply includes a template inside the current template. The inclusion is dynamic and not static, meaning  that the content of the included template is not <span class="italic">inserted</span> in the calling template, instead when inclusion is performed  the control is passed to the included template.</p>
       <p>
-        </p><div class="example"><a name="d5e1344"></a><p class="title"><b>Example&nbsp;9.3.&nbsp;The include tag</b></p><div class="example-contents">
+        </p><div class="example"><a name="d5e1355"></a><p class="title"><b>Example&nbsp;9.3.&nbsp;The include tag</b></p><div class="example-contents">
           
           <div class="programlistingco"><pre class="prettyprint">#{include path=dispatched.gtmpl/}</pre></div>
         </div></div><p><br class="example-break">
       </p>
       <p>The <span class="italic">path</span> attribute determines the template to include, the path value is relative to the templates package.</p>
     </div>
-    <div class="section" title="Decorate / Insert tag"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1351"></a>Decorate / Insert tag</h2></div></div></div>
+    <div class="section" title="Decorate / Insert tag"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1362"></a>Decorate / Insert tag</h2></div></div></div>
       
       <p>The <span class="italic">decorate</span> tag allows the content of the decorating template to wrap the content of the template invoking the tag.  The <span class="italic">insert</span> tag should be used in the decorating template to specify the place where to insert the markup produced  by the template to decorate.</p>
       <p>
-        </p><div class="example"><a name="d5e1357"></a><p class="title"><b>Example&nbsp;9.4.&nbsp;The wrapped template</b></p><div class="example-contents">
+        </p><div class="example"><a name="d5e1368"></a><p class="title"><b>Example&nbsp;9.4.&nbsp;The wrapped template</b></p><div class="example-contents">
           
           <div class="programlistingco"><pre class="prettyprint">#{decorate path=box.gtmpl/}</pre></div>
         </div></div><p><br class="example-break">
-        </p><div class="example"><a name="d5e1362"></a><p class="title"><b>Example&nbsp;9.5.&nbsp;The decoraring template</b></p><div class="example-contents">
+        </p><div class="example"><a name="d5e1373"></a><p class="title"><b>Example&nbsp;9.5.&nbsp;The decoraring template</b></p><div class="example-contents">
           
           <div class="programlistingco"><pre class="prettyprint">&lt;div style="border: 1px solid black"&gt;
 #{insert/}
@@ -1416,25 +1428,25 @@ public class index extends Template {
         </div></div><p><br class="example-break">
       </p>
     </div>
-    <div class="section" title="Title tag"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1367"></a>Title tag</h2></div></div></div>
+    <div class="section" title="Title tag"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1378"></a>Title tag</h2></div></div></div>
       
       <p>The <span class="italic">title</span> tag specifies a title to insert in the <code class="code">juzu.Response.Render</code> object the template will produce.</p>
       <p>
-        </p><div class="example"><a name="d5e1373"></a><p class="title"><b>Example&nbsp;9.6.&nbsp;Setting the title</b></p><div class="example-contents">
+        </p><div class="example"><a name="d5e1384"></a><p class="title"><b>Example&nbsp;9.6.&nbsp;Setting the title</b></p><div class="example-contents">
           
           <div class="programlistingco"><pre class="prettyprint">#{title value=Home/}</pre></div>
         </div></div><p><br class="example-break">
       </p>
     </div>
-    <div class="section" title="Param tag"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1378"></a>Param tag</h2></div></div></div>
+    <div class="section" title="Param tag"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1389"></a>Param tag</h2></div></div></div>
       
       <p>The <span class="italic">param</span> tag enhances the type safety of templates, allowing to declare parameters for executing a template. When such a parameter is declared, the generated template class companion will have a fluent parameter for setting the value of the parameter:</p>
       <p>
-        </p><div class="example"><a name="d5e1383"></a><p class="title"><b>Example&nbsp;9.7.&nbsp;Declaring a template parameter</b></p><div class="example-contents">
+        </p><div class="example"><a name="d5e1394"></a><p class="title"><b>Example&nbsp;9.7.&nbsp;Declaring a template parameter</b></p><div class="example-contents">
           
           <div class="programlistingco"><pre class="prettyprint">#{param name=color/}</pre></div>
         </div></div><p><br class="example-break">
-        </p><div class="example"><a name="d5e1388"></a><p class="title"><b>Example&nbsp;9.8.&nbsp;Using the template parameter</b></p><div class="example-contents">
+        </p><div class="example"><a name="d5e1399"></a><p class="title"><b>Example&nbsp;9.8.&nbsp;Using the template parameter</b></p><div class="example-contents">
           
           <div class="programlistingco"><pre class="prettyprint language-java">@Inject my.templates.index index;
 
@@ -1446,10 +1458,10 @@ public void index() {
       </p>
     </div>
   </div>
-  <div class="chapter" title="Chapter&nbsp;10.&nbsp;Assets"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="assets"></a>Chapter&nbsp;10.&nbsp;Assets </h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e1396">Asset serving</a></span></dt><dt><span class="section"><a href="#d5e1442">Declaring assets programmatically</a></span></dt><dt><span class="section"><a href="#d5e1453">Asset plugin</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1483">Server assets</a></span></dt><dt><span class="section"><a href="#d5e1492">Classpath assets</a></span></dt><dt><span class="section"><a href="#d5e1504">External assets</a></span></dt></dl></dd></dl></div>
+  <div class="chapter" title="Chapter&nbsp;10.&nbsp;Assets"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="assets"></a>Chapter&nbsp;10.&nbsp;Assets </h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e1407">Asset serving</a></span></dt><dt><span class="section"><a href="#d5e1453">Declaring assets programmatically</a></span></dt><dt><span class="section"><a href="#d5e1464">Asset plugin</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1494">Server assets</a></span></dt><dt><span class="section"><a href="#d5e1503">Classpath assets</a></span></dt><dt><span class="section"><a href="#d5e1515">External assets</a></span></dt></dl></dd></dl></div>
     
     <p>Web assets are resources used over the web such as stylesheet and script files. Juzu provides a few facilities for managing applications assets.</p>
-    <div class="section" title="Asset serving"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1396"></a>Asset serving</h2></div></div></div>
+    <div class="section" title="Asset serving"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1407"></a>Asset serving</h2></div></div></div>
       
       <p>The class <code class="code">juzu.asset.Asset</code> represents an asset in Juzu, assets can be of two types:</p>
       <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
@@ -1468,7 +1480,7 @@ public void index() {
         </li></ul></div>
       <p>During a request, assets of both kind can be added to the response. At the end of the request, the runtime uses the asset manager to translate the response assets into a list of uri to add to the page:</p>
       <p>
-        </p><div class="figure"><a name="d5e1425"></a><p class="title"><b>Figure&nbsp;10.1.&nbsp;Compiling a Groovy template</b></p><div class="figure-contents">
+        </p><div class="figure"><a name="d5e1436"></a><p class="title"><b>Figure&nbsp;10.1.&nbsp;Compiling a Groovy template</b></p><div class="figure-contents">
           
           <div class="mediaobject" align="center"><img src="images/assets/assets1.png" align="middle" alt="Compiling a Groovy template"></div>
         </div></div><p><br class="figure-break">
@@ -1482,7 +1494,7 @@ public void index() {
           <p>classpath: the asset is served by Juzu <span class="italic">asset server</span> (a servlet configured in the web application) and the resource is located  on the classpath.</p>
         </li></ul></div>
     </div>
-    <div class="section" title="Declaring assets programmatically"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1442"></a>Declaring assets programmatically</h2></div></div></div>
+    <div class="section" title="Declaring assets programmatically"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1453"></a>Declaring assets programmatically</h2></div></div></div>
       
       <p>When an application requires an asset, it adds the asset to the <code class="code">Response.Render</code> object:</p>
       <div class="programlistingco"><pre class="prettyprint language-java">@Inject
@@ -1507,11 +1519,11 @@ public Response.Render index() {
     "/ajax/libs/jquery/1.7.2/jquery.min.js"));
 }</pre></div>
     </div>
-    <div class="section" title="Asset plugin"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1453"></a>Asset plugin</h2></div></div></div>
+    <div class="section" title="Asset plugin"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1464"></a>Asset plugin</h2></div></div></div>
       
       <p>The asset plugin provides declarative asset configuration. The <code class="code">@Assets</code> annotation declares a list of assets used by the an application.</p>
       <p>
-        </p><div class="example"><a name="d5e1458"></a><p class="title"><b>Example&nbsp;10.1.&nbsp;JQuery UI declarative asset configuration</b></p><div class="example-contents">
+        </p><div class="example"><a name="d5e1469"></a><p class="title"><b>Example&nbsp;10.1.&nbsp;JQuery UI declarative asset configuration</b></p><div class="example-contents">
           
           <div class="programlistingco"><pre class="prettyprint language-java">@Assets(
   scripts = {
@@ -1535,22 +1547,22 @@ package my.application;</pre><div class="calloutlist"><table border="0" summary=
       </p>
       <p>The assets will be served from the war file because the server location is configured by default. The first <code class="code">@Script</code> annotation declares the JQuery asset reference identified by the <code class="code">id</code> member  as being <span class="italic">jquery</span>. The second <code class="code">@Script</code> annotation declares the JQuery-UI plugin, it does not need an <span class="italic">id</span> member because nothing refers to it, however it declares a dependency with the <span class="italic">depends</span> member that declares it depending on the <span class="italic">jquery</span> asset.</p>
       <p>JQuery-UI requires also a stylesheet to be served along with the script, it is achieved thanks to the  <code class="code">@Stylesheet</code> annotation.</p>
-      <div class="section" title="Server assets"><div class="titlepage"><div><div><h3 class="title"><a name="d5e1483"></a>Server assets</h3></div></div></div>
+      <div class="section" title="Server assets"><div class="titlepage"><div><div><h3 class="title"><a name="d5e1494"></a>Server assets</h3></div></div></div>
         
         <p>Server assets are served by the webserver in which the application is deployed. Relative server assets are served from the war file containing the application.</p>
         <p>
-          </p><div class="example"><a name="d5e1487"></a><p class="title"><b>Example&nbsp;10.2.&nbsp;Declarative relative server asset configuration</b></p><div class="example-contents">
+          </p><div class="example"><a name="d5e1498"></a><p class="title"><b>Example&nbsp;10.2.&nbsp;Declarative relative server asset configuration</b></p><div class="example-contents">
             
             <div class="programlistingco"><pre class="prettyprint language-java">@Assets(scripts = @Script(src = "myscript.js"))
 package my.application;</pre></div>
           </div></div><p><br class="example-break">
         </p>
       </div>
-      <div class="section" title="Classpath assets"><div class="titlepage"><div><div><h3 class="title"><a name="d5e1492"></a>Classpath assets</h3></div></div></div>
+      <div class="section" title="Classpath assets"><div class="titlepage"><div><div><h3 class="title"><a name="d5e1503"></a>Classpath assets</h3></div></div></div>
         
         <p>Classpath assets can be located anywhere on the application classpath, they can be either absolute or relatives. Relative classpath assets declared by the asset plugin must be located in the <code class="code">assets</code> package of the application, for instance an application packaged under <code class="code">my.application</code> will have its relative assets located under <code class="code">my.application.assets</code>.</p>
         <p>
-          </p><div class="example"><a name="d5e1499"></a><p class="title"><b>Example&nbsp;10.3.&nbsp;Declarative relative classpath asset configuration</b></p><div class="example-contents">
+          </p><div class="example"><a name="d5e1510"></a><p class="title"><b>Example&nbsp;10.3.&nbsp;Declarative relative classpath asset configuration</b></p><div class="example-contents">
             
             <div class="programlistingco"><pre class="prettyprint language-java">@Assets(scripts = @Script(
   src = "myscript.js",
@@ -1559,11 +1571,11 @@ package my.application;</pre></div>
           </div></div><p><br class="example-break">
         </p>
       </div>
-      <div class="section" title="External assets"><div class="titlepage"><div><div><h3 class="title"><a name="d5e1504"></a>External assets</h3></div></div></div>
+      <div class="section" title="External assets"><div class="titlepage"><div><div><h3 class="title"><a name="d5e1515"></a>External assets</h3></div></div></div>
         
         <p>External assets declares an opaque URL for Juzu.</p>
         <p>
-          </p><div class="example"><a name="d5e1508"></a><p class="title"><b>Example&nbsp;10.4.&nbsp;External classpath asset configuration</b></p><div class="example-contents">
+          </p><div class="example"><a name="d5e1519"></a><p class="title"><b>Example&nbsp;10.4.&nbsp;External classpath asset configuration</b></p><div class="example-contents">
             
             <div class="programlistingco"><pre class="prettyprint language-java">@Assets(scripts = @Script(
   src = "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js",
@@ -1574,10 +1586,10 @@ package my.application;</pre></div>
       </div>
     </div>
   </div>
-  <div class="chapter" title="Chapter&nbsp;11.&nbsp;Juzu File Upload Plugin"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e1513"></a>Chapter&nbsp;11.&nbsp;Juzu File Upload Plugin</h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e1517">File upload in an action phase</a></span></dt><dt><span class="section"><a href="#d5e1526">File upload in a resource phase</a></span></dt></dl></div>
+  <div class="chapter" title="Chapter&nbsp;11.&nbsp;Juzu File Upload Plugin"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e1524"></a>Chapter&nbsp;11.&nbsp;Juzu File Upload Plugin</h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e1528">File upload in an action phase</a></span></dt><dt><span class="section"><a href="#d5e1537">File upload in a resource phase</a></span></dt></dl></div>
   
   <p>The file upload plugin integrates <a class="ulink" href="http://commons.apache.org/fileupload/" target="_top">Apache Commons FileUpload</a> in Juzu. The plugin decodes multipart requests as file objects and can inject them as controller method parameters. This plugin works with the servlet bridge and the portlet bridge.</p>
-  <div class="section" title="File upload in an action phase"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1517"></a>File upload in an action phase</h2></div></div></div>
+  <div class="section" title="File upload in an action phase"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1528"></a>File upload in an action phase</h2></div></div></div>
     
     <p>File upload can be handled during an action of a portlet or a servlet:</p>
     <div class="programlistingco"><pre class="prettyprint language-java">@Action
@@ -1591,7 +1603,7 @@ public void upload(org.apache.commons.fileupload.FileUpload file) {
       <p>The <code class="code">@Route</code> annotation is only meaningfull for the servlet bridge. In case of a portlet, the URL is managed by the portal.</p>
     </div>
   </div>
-  <div class="section" title="File upload in a resource phase"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1526"></a>File upload in a resource phase</h2></div></div></div>
+  <div class="section" title="File upload in a resource phase"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1537"></a>File upload in a resource phase</h2></div></div></div>
     
     <p>File upload can also be handled in a resource phase.</p>
     <div class="programlistingco"><pre class="prettyprint language-java">@Resource
@@ -1605,10 +1617,10 @@ public Response.Content upload(org.apache.commons.fileupload.FileUpload file) {
     <p>Handling upload in a resource phase can be used when the file is uploaded via Ajax: the application  does not want a view phase to be triggered after the upload.</p>
   </div>
 </div>
-          <div class="chapter" title="Chapter&nbsp;12.&nbsp;Juzu Portlet Plugin"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e1533"></a>Chapter&nbsp;12.&nbsp;Juzu Portlet Plugin</h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e1536">Portlet class generation</a></span></dt><dt><span class="section"><a href="#d5e1559">Portlet preferences injection</a></span></dt><dt><span class="section"><a href="#d5e1570">Resource bundle injection</a></span></dt><dt><span class="section"><a href="#d5e1585">Building</a></span></dt></dl></div>
+          <div class="chapter" title="Chapter&nbsp;12.&nbsp;Juzu Portlet Plugin"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e1544"></a>Chapter&nbsp;12.&nbsp;Juzu Portlet Plugin</h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e1547">Portlet class generation</a></span></dt><dt><span class="section"><a href="#d5e1570">Portlet preferences injection</a></span></dt><dt><span class="section"><a href="#d5e1581">Resource bundle injection</a></span></dt><dt><span class="section"><a href="#d5e1596">Building</a></span></dt></dl></div>
   
   <p>The portlet plugin enhance Juzu portlet applications.</p>
-  <div class="section" title="Portlet class generation"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1536"></a>Portlet class generation</h2></div></div></div>
+  <div class="section" title="Portlet class generation"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1547"></a>Portlet class generation</h2></div></div></div>
     
     <p>A Juzu portlet application is managed by a <code class="code">JuzuPortlet</code> configured with the application name. The <code class="code">@juzu.plugin.portlet.Portlet</code> annotation can be used to generate a subclass of the <code class="code">JuzuPortlet</code> that configures the application name for you, easing the configuration of the <span class="italic">portlet.xml</span> corresponding section.</p>
     <div class="programlistingco"><pre class="prettyprint language-java">@Portlet
@@ -1639,11 +1651,11 @@ package my;</pre></div>
   &lt;/portlet-info&gt;
 &lt;/portlet&gt;</pre></div>
   </div>
-  <div class="section" title="Portlet preferences injection"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1559"></a>Portlet preferences injection</h2></div></div></div>
+  <div class="section" title="Portlet preferences injection"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1570"></a>Portlet preferences injection</h2></div></div></div>
     
     <p>During the various phase of an application, the current portlet preferences can be injected::</p>
     <p>
-      </p><div class="example"><a name="d5e1563"></a><p class="title"><b>Example&nbsp;12.1.&nbsp;Injecting portlet preferences</b></p><div class="example-contents">
+      </p><div class="example"><a name="d5e1574"></a><p class="title"><b>Example&nbsp;12.1.&nbsp;Injecting portlet preferences</b></p><div class="example-contents">
         
         <div class="programlistingco"><pre class="prettyprint language-java">@Inject javax.portlet.PortletPreferences preferences;</pre></div>
       </div></div><p><br class="example-break">
@@ -1652,11 +1664,11 @@ package my;</pre></div>
       <p>The same restriction defined in the portlet specification applies to the provided preferences object: i.e saving preferences can only be performed during an action phase.</p>
     </div>
   </div>
-  <div class="section" title="Resource bundle injection"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1570"></a>Resource bundle injection</h2></div></div></div>
+  <div class="section" title="Resource bundle injection"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1581"></a>Resource bundle injection</h2></div></div></div>
     
     <p>During the various phase of an application, the portlet resource bundle for the current locale can be injected:</p>
     <p>
-      </p><div class="example"><a name="d5e1574"></a><p class="title"><b>Example&nbsp;12.2.&nbsp;Injecting the portlet resource bundle</b></p><div class="example-contents">
+      </p><div class="example"><a name="d5e1585"></a><p class="title"><b>Example&nbsp;12.2.&nbsp;Injecting the portlet resource bundle</b></p><div class="example-contents">
         
         <div class="programlistingco"><pre class="prettyprint language-java">@Inject java.util.ResourceBundle bundle;</pre></div>
       </div></div><p><br class="example-break">
@@ -1666,7 +1678,7 @@ package my;</pre></div>
 ResourceBundle bundle = portlet.getConfig().getResourceBundle(locale);</pre></div>
     <p>This resource bundle can be configured in the <span class="italic">portlet.xml</span> deployment descriptor.</p>
   </div>
-  <div class="section" title="Building"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1585"></a>Building</h2></div></div></div>
+  <div class="section" title="Building"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1596"></a>Building</h2></div></div></div>
     
     <p>Add the Portlet plugin jar to your compilation classpath.</p>
     <p>In Maven it can achieved by adding the Less plugin dependency to your POM:</p>
@@ -1677,16 +1689,16 @@ ResourceBundle bundle = portlet.getConfig().getResourceBundle(locale);</pre></di
 &lt;/dependency&gt;</pre></div>
   </div>
 </div>
-          <div class="chapter" title="Chapter&nbsp;13.&nbsp;Juzu Less Plugin"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e1592"></a>Chapter&nbsp;13.&nbsp;Juzu Less Plugin</h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e1598">Usage</a></span></dt><dt><span class="section"><a href="#d5e1628">Building</a></span></dt></dl></div>
+          <div class="chapter" title="Chapter&nbsp;13.&nbsp;Juzu Less Plugin"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e1603"></a>Chapter&nbsp;13.&nbsp;Juzu Less Plugin</h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e1609">Usage</a></span></dt><dt><span class="section"><a href="#d5e1639">Building</a></span></dt></dl></div>
   
   <p>LESS is a dynamic stylesheet language which extends CSS with dynamic behavior such as variables, mixins, operations and functions. LESS is easy to learn thanks to the <a class="ulink" href="http://lesscss.org/" target="_top">online documentation</a>.</p>
   <p>Juzu provides a LESS plugin that takes care of compiling a LESS stylesheet into a CSS stylesheet which are then served by the Asset plugin. This chapter explains how to use LESS and combine it with the <a class="link" href="#assets" title="Chapter&nbsp;10.&nbsp;Assets">Asset plugin</a>.</p>
-  <div class="section" title="Usage"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1598"></a>Usage</h2></div></div></div>
+  <div class="section" title="Usage"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1609"></a>Usage</h2></div></div></div>
     
     <p>The LESS plugin operates at compilation time only because the only task he has to do is to transform a LESS source code into a CSS stylesheet. The runtime part is usually done by the Asset plugin.</p>
     <p>The <code class="code">@Less</code> annotation annotates a package containing an <code class="code">assets</code> package. This <code class="code">assets</code> package should contain  the LESS files to be compiled.</p>
     <p>
-      </p><div class="example"><a name="d5e1606"></a><p class="title"><b>Example&nbsp;13.1.&nbsp;Annotating an application package for processing LESS files</b></p><div class="example-contents">
+      </p><div class="example"><a name="d5e1617"></a><p class="title"><b>Example&nbsp;13.1.&nbsp;Annotating an application package for processing LESS files</b></p><div class="example-contents">
         
         <div class="programlistingco"><pre class="prettyprint language-java">@Less("stylesheet.less")
 @Application
@@ -1697,7 +1709,7 @@ import juzu.plugin.less.Less;</pre></div>
     </p>
     <p>The <span class="italic">stylesheet.less</span> file will be located in the <code class="code">myapp.assets</code> package. The <code class="code">assets</code> child package of the annotated package should contain the stylesheet, this is done on purpose to coincide exactly with the <code class="code">assets</code> package used by the Asset plugin. During the compilation phase the <span class="italic">stylesheet.less</span> will be compiled to the <span class="italic">stylesheet.css</span>. If we want this file to be served with the application we simply add the corresponding <code class="code">@Assets</code> annotation:</p>
     <p>
-      </p><div class="example"><a name="d5e1620"></a><p class="title"><b>Example&nbsp;13.2.&nbsp;LESS and Asset plugins in action</b></p><div class="example-contents">
+      </p><div class="example"><a name="d5e1631"></a><p class="title"><b>Example&nbsp;13.2.&nbsp;LESS and Asset plugins in action</b></p><div class="example-contents">
         
         <div class="programlistingco"><pre class="prettyprint language-java">@Less("stylesheet.less")
 @Assets(stylesheets = @Stylesheet(
@@ -1716,7 +1728,7 @@ import juzu.plugin.asset.Stylesheet;</pre></div>
     </p>
     <p>By default LESS will use a default formatting for the generated CSS. To achieve smaller CSS size, a <span class="italic">minify</span> option can be used, this option will trim the whitespace when processing the file : <code class="code">@Less(value = "stylesheet.less", minify = true)</code>.</p>
   </div>
-  <div class="section" title="Building"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1628"></a>Building</h2></div></div></div>
+  <div class="section" title="Building"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1639"></a>Building</h2></div></div></div>
     
     <p>Add the Less plugin jar to your compilation classpath.</p>
     <p>In Maven it can achieved by adding the Less plugin dependency to your POM:</p>
