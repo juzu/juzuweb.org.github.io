@@ -99,23 +99,6 @@ package examples.tutorial.weather1;</pre></div>
         <div class="programlistingco"><pre class="prettyprint">&lt;!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
                  "http://java.sun.com/dtd/web-app_2_3.dtd"&gt;
 &lt;web-app&gt;
-  &lt;servlet&gt;
-    &lt;servlet-name&gt;JuzuServlet&lt;/servlet-name&gt;
-    &lt;servlet-class&gt;juzu.bridge.servlet.JuzuServlet&lt;/servlet-class&gt;
-  &lt;/servlet&gt;
-  &lt;servlet&gt;
-    &lt;servlet-name&gt;AssetServlet&lt;/servlet-name&gt;
-    &lt;servlet-class&gt;juzu.impl.asset.AssetServlet&lt;/servlet-class&gt;
-    &lt;load-on-startup&gt;0&lt;/load-on-startup&gt;
-  &lt;/servlet&gt;
-  &lt;servlet-mapping&gt;
-    &lt;servlet-name&gt;JuzuServlet&lt;/servlet-name&gt;
-    &lt;url-pattern&gt;/&lt;/url-pattern&gt;
-  &lt;/servlet-mapping&gt;
-  &lt;servlet-mapping&gt;
-    &lt;servlet-name&gt;AssetServlet&lt;/servlet-name&gt;
-    &lt;url-pattern&gt;/assets/*&lt;/url-pattern&gt;
-  &lt;/servlet-mapping&gt;
 &lt;/web-app&gt;</pre></div>
         <p>There are two servlets used for serving the application:</p>
         <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">

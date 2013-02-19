@@ -9,7 +9,6 @@ juzu.plugin.asset
 juzu.plugin.binding
 juzu.plugin.less
 juzu.plugin.portlet
-juzu.plugin.servlet
 juzu.processor
 juzu.request
 juzu.template
