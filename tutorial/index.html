@@ -99,6 +99,10 @@ package examples.tutorial.weather1;</pre></div>
         <div class="programlistingco"><pre class="prettyprint">&lt;!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
                  "http://java.sun.com/dtd/web-app_2_3.dtd"&gt;
 &lt;web-app&gt;
+  &lt;context-param&gt;
+    &lt;param-name&gt;juzu.run_mode&lt;/param-name&gt;
+    &lt;param-value&gt;prod&lt;/param-value&gt;
+  &lt;/context-param&gt;
 &lt;/web-app&gt;</pre></div>
         <p>There are two servlets used for serving the application:</p>
         <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
@@ -139,6 +143,10 @@ package examples.tutorial.weather1;</pre></div>
 
   /** A cache for temperatures. */
   private final HashMap&lt;String, String&gt; cache = new HashMap&lt;String, String&gt;();
+
+  public WeatherService() {
+    System.out.println("aezfzef");
+  }
 
   /**
    * Returns the temperature for the specifed location in celsius degrees.
