@@ -96,9 +96,10 @@ package examples.tutorial.weather1;</pre></div>
       <div class="section" title="Packaging the application in Tomcat"><div class="titlepage"><div><div><h3 class="title"><a name="d5e104"></a>Packaging the application in Tomcat</h3></div></div></div>
         
         <p>We need to provide a <span class="italic">web.xml</span> descriptor:</p>
-        <div class="programlistingco"><pre class="prettyprint">&lt;!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
-                 "http://java.sun.com/dtd/web-app_2_3.dtd"&gt;
-&lt;web-app&gt;
+        <div class="programlistingco"><pre class="prettyprint">&lt;web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0"&gt;
   &lt;context-param&gt;
     &lt;param-name&gt;juzu.run_mode&lt;/param-name&gt;
     &lt;param-value&gt;prod&lt;/param-value&gt;
