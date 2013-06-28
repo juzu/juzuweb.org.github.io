@@ -90,7 +90,7 @@
         <a name="home"></a>
         <div class="hero-unit">
           <div id="logo" class="center">
-            <h1>Juzu Web Framework 0.6.0</h1>
+            <h1>Juzu Web Framework 0.7.0-beta13</h1>
           </div>
           <p>Develop powerful web applications</p>
           <p>Emphasises on simplicity and type safety</p>
@@ -107,13 +107,17 @@
           </div>
           <div class="span4">
             <h3>Use</h3>
-            Latest <a href="http://search.maven.org/remotecontent?filepath=org/juzu/juzu-distrib/0.6.0/juzu-distrib-0.6.0.zip">0.6.0</a>.<br/>
+            Latest <a href="http://search.maven.org/remotecontent?filepath=org/juzu/juzu-distrib/0.7.0-beta13/juzu-distrib-0.7.0-beta13.zip">0.7.0-beta13</a>.<br/>
             Snapshot <a href="https://repository-juzu.forge.cloudbees.com/snapshot/">repository</a>.<br/>
             </p>
           </div>
           <div class="span4">
             <h3>Run</h3>
-            <p>Juzu deploys in web portals like <a href="http://www.exoplatform.com/company/en/products/overview">eXo Platform</a> or <a href="http://www.gatein.org">GateIn</a>.</p>
+            <ul class="unstyled">
+              <li>Servlet containers</li>
+              <li>Web portals like <a href="http://www.exoplatform.com/company/en/products/overview">eXo Platform</a> or <a href="http://www.gatein.org">GateIn</a></li>
+              <li>Vert.x</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -124,16 +128,17 @@
         <h1 class="page-header">Deployment</h1>
         <p>Juzu deploys on
          <ul>
+            <li>Any servlet container</li>
             <li><a href="http://www.gatein.org">GateIn</a>: 3.2 and 3.3</li>
             <li><a href="http://www.liferay.com">Liferay</a>: tested on Liferay 6.10 and 5.x</li>
+            <li>The Vert.x Platform</li>
           </ul>
         </p>
 
         <h1 class="page-header">Dependency Injection integration</h1>
         <p>
           Juzu leverages the JSR-330 specification to perform dependency injection, this specification is supported by the most
-          popular dependency injection frameworks such as Weld, Spring and Guice. At the moment the Weld and Spring
-          frameworks are supported by Juzu.
+          popular dependency injection frameworks such as Weld, Spring and Guice.
         </p>
         <h2>Scopes</h2>
         <p>The <code>@inject</code> specification provides the notion of scope and Juzu leverages it to manage the life
@@ -145,28 +150,22 @@
           <li>Flash scope</li>
         </ul>
         <h2>Inversion Of Control</h2>
-        <h3>CDI</h3>
-        <p>Weld is enabled by default.</p>
-        <h3>Spring</h3>
-        <p>Spring can be enabled by setting the <code>spring</code> value for the <code>juzu.inject</code> portlet init parameter.
-          Spring beans are declared in the <code>spring.xml</code> file.</p>
         <h3>Configuration</h3>
         <p>
-          The IOC container implementation can be done in the <code>portlet.xml</code> file:
+          The IOC container implementation can be done in the <code>web.xml</code> file:
         </p>
-        <pre>&lt;init-param&gt;
-  &lt;name&gt;juzu.inject&lt;/name&gt;
-  &lt;value&gt;weld&lt;/value&gt;
+        <pre>&lt;context-param&gt;
+  &lt;param-name&gt;juzu.inject&lt;/param-name&gt;
+  &lt;param-value&gt;weld&lt;/param-value&gt;
   &lt;!--
   &lt;value&gt;spring&lt;/value&gt;
   --&gt;
-&lt;/init-param&gt;</pre>
+&lt;/context-param&gt;</pre>
 
         <h1 class="page-header">Programming</h1>
         <h2>Controller</h2>
         <p>Juzu programming model is inspired by the Play! Framework that provides a simple and efficient programming
-          model for the web. Portlet programming model is very close to Play! programming model and thus it makes a lot
-          of sense to deliver a powerful and simple programming model.</p>
+          model for the web.</p>
         <p>Controller are methods annotated with <code>@Action</code> or <code>@View</code>:</p>
         <pre>
   @Action
@@ -215,12 +214,42 @@ private Template template;</pre>
         </ul>
         <p>The taglib API is not yet pluggable but will be.</p>
 
-        <h2>Modular support</h2>
+        <h2>Web programming</h2>
+        
+        <p>Juzu makes client side programming easy as it supports declarative assets for JavaScript, Stylesheet and JavaScript Asynchronous Module
+        Definition.</p>
+        
+        <h3>Declare an asset</h3>
+        <pre>@Application
+@Assets(scripts = { @Script(id = "jquery", src="jquery.js") })
+package my.app;</pre>
+        
+        <h3>Declare a JavaScript module</h3>
+        <pre>@Application
+@Defines({
+  @Require(id = "jquery", path="jquery.js"),
+  @Define(
+    id = "mymodule",
+    path="mymodule.js",
+    dependencies = {@Dependency(id = "jquery", alias = "$")}
+  )
+})
+package my.app;</pre>
+
+        <h2>Modular architecture</h2>
         <p>Juzu can be extended with plugins and template engines.</p>
 
         <h3>LESS plugin</h3>
         <p>The LESS plugin compiles <em>.less</em> files to <em>.css</em> files during the compilation of the project:</p>
         <pre>@Less(value = "bootstrap.less", minify = true)
+package my.app;
+</pre>
+
+        <h3>Webjars plugin</h3>
+        <p>Reuse web assets in your project with the Webjars support:</p>
+        <pre>@Application
+@WebJars("jquery.js")
+@Assets(scripts = { @Script(id = "jquery", src="jquery.js") })
 package my.app;
 </pre>
 
@@ -241,7 +270,7 @@ PortletPreferences prefs;
         <pre>mvn archetype:generate \
   -DarchetypeGroupId=org.juzu \
   -DarchetypeArtifactId=juzu-archetype \
-  -DarchetypeVersion=0.6.0 \
+  -DarchetypeVersion=0.7.0-beta13 \
   -DgroupId=&lt;my.groupid&gt; \
   -DartifactId=&lt;my-artifactId&gt;</pre>
 

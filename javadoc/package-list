@@ -5,6 +5,7 @@ juzu.bridge.servlet
 juzu.inject
 juzu.io
 juzu.plugin.ajax
+juzu.plugin.amd
 juzu.plugin.asset
 juzu.plugin.binding
 juzu.plugin.less

@@ -3,7 +3,7 @@
   SYSTEM "">
 <html><head>
       <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-   <title></title><link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css"><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="js/bootstrap/jquery-1.7.1.min.js"></script><script src="js/bootstrap/bootstrap-2.2.2.min.js"></script><script src="js/bootstrap/docbook-sidebar.js"></script><script src="js/bootstrap/google-code-prettify/prettify.js"></script></head><body onload="if (prettyPrint) { prettyPrint() }"><div class="book container"><div class="titlepage"><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="preface"><a href="#d5e2">Preface</a></span></dt><dt><span class="chapter"><a href="#builddeployrun">1. Build, deploy and run </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e10">Build</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e30">With Maven</a></span></dt><dt><span class="section"><a href="#d5e127">Using a prepackaged application</a></span></dt><dt><span class="section"><a href="#d5e130">Using an IDE</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e143">Deploy</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e154">Tomcat</a></span></dt><dt><span class="section"><a href="#d5e157">GateIn</a></span></dt><dt><span class="section"><a href="#d5e175">Liferay</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e178">Run</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e180">Run modes</a></span></dt><dt><span class="section"><a href="#d5e194">How to choose the right run mode</a></span></dt><dt><span class="section"><a href="#d5e206">Configuring the run mode</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#phases">2. Phases </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e229">Phases</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e240">View phase</a></span></dt><dt><span class="section"><a href="#d5e244">Action phase</a></span></dt><dt><span class="section"><a href="#d5e249">Resource phase</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e252">Interactions</a></span></dt><dt><span class="section"><a href="#d5e270">Mapping onto HTTP</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e273">View phase</a></span></dt><dt><span class="section"><a href="#d5e296">Action phase</a></span></dt><dt><span class="section"><a href="#d5e331">Resource phase</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#controllers">3. Controllers </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e338">Overview</a></span></dt><dt><span class="section"><a href="#d5e374">Request routing</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e381">Http request routing</a></span></dt><dt><span class="section"><a href="#d5e505">Portlet request routing</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e513">Controller phases</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e531">View controllers</a></span></dt><dt><span class="section"><a href="#d5e557">Action controllers</a></span></dt><dt><span class="section"><a href="#d5e577">Resource controllers</a></span></dt><dt><span class="section"><a href="#d5e585">Event controllers</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e589">Controller classes</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e592">Controller life cycle</a></span></dt><dt><span class="section"><a href="#controller_dispatch">Controller dispatch </a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#responses">4. Responses </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e683">Content responses</a></span></dt><dt><span class="section"><a href="#d5e697">Render response</a></span></dt><dt><span class="section"><a href="#d5e705">View response</a></span></dt><dt><span class="section"><a href="#d5e712">Redirect response</a></span></dt><dt><span class="section"><a href="#d5e720">Error response</a></span></dt></dl></dd><dt><span class="chapter"><a href="#d5e731">5. Bridges</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e739">Servlet bridge</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e742">Juzu servlet</a></span></dt><dt><span class="section"><a href="#d5e746">Servlet configuration</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e769">Portlet bridge</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e772">Juzu portlet</a></span></dt><dt><span class="section"><a href="#d5e776">Portlet configuration</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#ioc">6. Inversion of Control </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e797">Containers</a></span></dt><dt><span class="section"><a href="#d5e834">Inversion Of Control</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e836">Beans</a></span></dt><dt><span class="section"><a href="#d5e842">Scopes</a></span></dt><dt><span class="section"><a href="#d5e859">Qualifiers</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e872">Beans in action</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e884">Template beans</a></span></dt><dt><span class="section"><a href="#d5e898">Controller beans</a></span></dt><dt><span class="section"><a href="#d5e919">Application beans</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e968">Provider factories</a></span></dt></dl></dd><dt><span class="chapter"><a href="#templating">7. Templating </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e999">The templating engines</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1003">The native template engine</a></span></dt><dt><span class="section"><a href="#d5e1079">The Mustache template engine</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e1098">Using templates</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1101">Template declaration</a></span></dt><dt><span class="section"><a href="#d5e1131">Type safe parameters</a></span></dt><dt><span class="section"><a href="#d5e1169">Expression resolution</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#templatespi">8. Templating SPI </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1243">Compiling a Groovy template</a></span></dt><dt><span class="section"><a href="#d5e1283">Type safe URL resolution</a></span></dt><dt><span class="section"><a href="#d5e1311">Template Service Provider Interface</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1314">Template providers</a></span></dt><dt><span class="section"><a href="#d5e1371">Template stub</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e1395">Template at work</a></span></dt><dt><span class="section"><a href="#d5e1423">Qualified template class</a></span></dt></dl></dd><dt><span class="chapter"><a href="#taglib">9. Taglib </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1445">Taglib syntax</a></span></dt><dt><span class="section"><a href="#d5e1466">Include tag</a></span></dt><dt><span class="section"><a href="#d5e1479">Decorate / Insert tag</a></span></dt><dt><span class="section"><a href="#d5e1495">Title tag</a></span></dt><dt><span class="section"><a href="#d5e1506">Param tag</a></span></dt></dl></dd><dt><span class="chapter"><a href="#assets">10. Assets </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1524">Asset serving</a></span></dt><dt><span class="section"><a href="#d5e1572">Asset server</a></span></dt><dt><span class="section"><a href="#d5e1582">Asset plugin</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1611">Application assets</a></span></dt><dt><span class="section"><a href="#d5e1625">Server assets</a></span></dt><dt><span class="section"><a href="#d5e1634">External assets</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e1643">Managing assets programmatically</a></span></dt></dl></dd><dt><span class="chapter"><a href="#d5e1663">11. Juzu Servlet Plugin</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1666">Servlet class generation</a></span></dt><dt><span class="section"><a href="#d5e1682">Asset server automatic registration</a></span></dt></dl></dd><dt><span class="chapter"><a href="#d5e1686">12. Juzu Portlet Plugin</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1689">Portlet class generation</a></span></dt><dt><span class="section"><a href="#d5e1712">Portlet preferences injection</a></span></dt><dt><span class="section"><a href="#d5e1723">Resource bundle injection</a></span></dt><dt><span class="section"><a href="#d5e1738">Building</a></span></dt></dl></dd><dt><span class="chapter"><a href="#d5e1745">13. Juzu File Upload Plugin</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1749">File upload in an action phase</a></span></dt><dt><span class="section"><a href="#d5e1758">File upload in a resource phase</a></span></dt></dl></dd><dt><span class="chapter"><a href="#d5e1765">14. Juzu Less Plugin</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1771">Usage</a></span></dt><dt><span class="section"><a href="#d5e1801">Building</a></span></dt></dl></dd></dl></div><div class="list-of-figures"><p><b>List of Figures</b></p><dl><dt>2.1. <a href="#d5e256">Interaction between phases</a></dt><dt>2.2. <a href="#d5e286">View phase</a></dt><dt>2.3. <a href="#d5e308">Action phase</a></dt><dt>2.4. <a href="#d5e320">View phase after action phase</a></dt><dt>3.1. <a href="#d5e600">Life cycle of a controller object</a></dt><dt>8.1. <a href="#d5e1247">Compiling a Groovy template</a></dt><dt>8.2. <a href="#d5e1288">Template URL resolution during compilation</a></dt><dt>8.3. <a href="#d5e1409">index groovy at work</a></dt><dt>10.1. <a href="#d5e1552">Using assets in a request</a></dt></dl></div><div class="list-of-tables"><p><b>List of Tables</b></p><dl><dt>1.1. <a href="#d5e82">The predefined descriptors</a></dt></dl></div><div class="list-of-examples"><p><b>List of Examples</b></p><dl><dt>1.1. <a href="#d5e118">Generating an application for the Tomcat server and the Guice injection container</a></dt><dt>1.2. <a href="#d5e124">Generating an application for the Tomcat server and the Spring injection container</a></dt><dt>1.3. <a href="#d5e221">Configuring the dev mode in web.xml</a></dt><dt>3.1. <a href="#d5e412">Declaring a controller route</a></dt><dt>3.2. <a href="#d5e424">Route parameters</a></dt><dt>3.3. <a href="#d5e440">Route parameter matching</a></dt><dt>3.4. <a href="#d5e462">Route parameter matching</a></dt><dt>3.5. <a href="#d5e485">Route priority</a></dt><dt>3.6. <a href="#d5e647">The RequestLifeCycle interface</a></dt><dt>5.1. <a href="#d5e751">The Juzu servlet configuration</a></dt><dt>5.2. <a href="#d5e761">Path mapping configuration</a></dt><dt>5.3. <a href="#d5e781">The Juzu portlet configuration</a></dt><dt>6.1. <a href="#d5e827">Configuring the Spring container in web.xml</a></dt><dt>6.2. <a href="#d5e982">Time provider factory</a></dt><dt>6.3. <a href="#d5e990">Time provider configuration</a></dt><dt>7.1. <a href="#d5e1033">Controller URL syntax</a></dt><dt>7.2. <a href="#d5e1040">Controller URL with parameters</a></dt><dt>7.3. <a href="#d5e1048">Explicit controller URL</a></dt><dt>7.4. <a href="#d5e1061">Message syntax</a></dt><dt>7.5. <a href="#d5e1107">Using a template</a></dt><dt>7.6. <a href="#d5e1126">Returning the generated juzu.Response.Render</a></dt><dt>7.7. <a href="#d5e1137">Native template parameter declaration</a></dt><dt>7.8. <a href="#d5e1144">Mustache template parameter declaration</a></dt><dt>7.9. <a href="#d5e1185">Named bean</a></dt><dt>7.10. <a href="#d5e1190">Template parameters</a></dt><dt>7.11. <a href="#d5e1213">Named bean</a></dt><dt>7.12. <a href="#d5e1219">Template parameters</a></dt><dt>9.1. <a href="#d5e1449">Start and end tag syntax</a></dt><dt>9.2. <a href="#d5e1459">Empty tag syntax</a></dt><dt>9.3. <a href="#d5e1472">The include tag</a></dt><dt>9.4. <a href="#d5e1485">The wrapped template</a></dt><dt>9.5. <a href="#d5e1490">The decoraring template</a></dt><dt>9.6. <a href="#d5e1501">Setting the title</a></dt><dt>9.7. <a href="#d5e1511">Declaring a template parameter</a></dt><dt>9.8. <a href="#d5e1516">Using the template parameter</a></dt><dt>10.1. <a href="#d5e1587">JQuery UI declarative asset configuration</a></dt><dt>10.2. <a href="#d5e1618">Declarative relative application asset configuration</a></dt><dt>10.3. <a href="#d5e1629">Declarative relative server asset configuration</a></dt><dt>10.4. <a href="#d5e1638">External classpath asset configuration</a></dt><dt>11.1. <a href="#d5e1672">Juzu servlet generation</a></dt><dt>12.1. <a href="#d5e1716">Injecting portlet preferences</a></dt><dt>12.2. <a href="#d5e1727">Injecting the portlet resource bundle</a></dt><dt>14.1. <a href="#d5e1779">Annotating an application package for processing LESS files</a></dt><dt>14.2. <a href="#d5e1793">LESS and Asset plugins in action</a></dt></dl></div>
+   <title></title><link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css"><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="js/bootstrap/jquery-1.7.1.min.js"></script><script src="js/bootstrap/bootstrap-2.2.2.min.js"></script><script src="js/bootstrap/docbook-sidebar.js"></script><script src="js/bootstrap/google-code-prettify/prettify.js"></script></head><body onload="if (prettyPrint) { prettyPrint() }"><div class="book container"><div class="titlepage"><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="preface"><a href="#d5e2">Preface</a></span></dt><dt><span class="chapter"><a href="#builddeployrun">1. Build, deploy and run </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e10">Build</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e30">With Maven</a></span></dt><dt><span class="section"><a href="#d5e127">Using a prepackaged application</a></span></dt><dt><span class="section"><a href="#d5e130">Using an IDE</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e143">Deploy</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e154">Tomcat</a></span></dt><dt><span class="section"><a href="#d5e157">GateIn</a></span></dt><dt><span class="section"><a href="#d5e175">Liferay</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e178">Run</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e180">Run modes</a></span></dt><dt><span class="section"><a href="#d5e194">How to choose the right run mode</a></span></dt><dt><span class="section"><a href="#d5e206">Configuring the run mode</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#phases">2. Phases </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e229">Phases</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e240">View phase</a></span></dt><dt><span class="section"><a href="#d5e244">Action phase</a></span></dt><dt><span class="section"><a href="#d5e249">Resource phase</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e252">Interactions</a></span></dt><dt><span class="section"><a href="#d5e270">Mapping onto HTTP</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e273">View phase</a></span></dt><dt><span class="section"><a href="#d5e296">Action phase</a></span></dt><dt><span class="section"><a href="#d5e331">Resource phase</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#controllers">3. Controllers </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e338">Overview</a></span></dt><dt><span class="section"><a href="#d5e374">Request routing</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e381">Http request routing</a></span></dt><dt><span class="section"><a href="#d5e505">Portlet request routing</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e513">Controller phases</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e531">View controllers</a></span></dt><dt><span class="section"><a href="#d5e557">Action controllers</a></span></dt><dt><span class="section"><a href="#d5e577">Resource controllers</a></span></dt><dt><span class="section"><a href="#d5e585">Event controllers</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e589">Controller classes</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e592">Controller life cycle</a></span></dt><dt><span class="section"><a href="#controller_dispatch">Controller dispatch </a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#responses">4. Responses </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e683">Content responses</a></span></dt><dt><span class="section"><a href="#d5e697">Render response</a></span></dt><dt><span class="section"><a href="#d5e705">View response</a></span></dt><dt><span class="section"><a href="#d5e712">Redirect response</a></span></dt><dt><span class="section"><a href="#d5e720">Error response</a></span></dt></dl></dd><dt><span class="chapter"><a href="#d5e731">5. Bridges</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e739">Servlet bridge</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e742">Juzu servlet</a></span></dt><dt><span class="section"><a href="#d5e746">Servlet configuration</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e769">Portlet bridge</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e772">Juzu portlet</a></span></dt><dt><span class="section"><a href="#d5e776">Portlet configuration</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#ioc">6. Inversion of Control </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e797">Containers</a></span></dt><dt><span class="section"><a href="#d5e834">Inversion Of Control</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e836">Beans</a></span></dt><dt><span class="section"><a href="#d5e842">Scopes</a></span></dt><dt><span class="section"><a href="#d5e859">Qualifiers</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e872">Beans in action</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e884">Template beans</a></span></dt><dt><span class="section"><a href="#d5e898">Controller beans</a></span></dt><dt><span class="section"><a href="#d5e919">Application beans</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e968">Provider factories</a></span></dt></dl></dd><dt><span class="chapter"><a href="#templating">7. Templating </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e999">The templating engines</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1003">The native template engine</a></span></dt><dt><span class="section"><a href="#d5e1079">The Mustache template engine</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e1098">Using templates</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1101">Template declaration</a></span></dt><dt><span class="section"><a href="#d5e1131">Type safe parameters</a></span></dt><dt><span class="section"><a href="#d5e1169">Expression resolution</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#templatespi">8. Templating SPI </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1243">Compiling a Groovy template</a></span></dt><dt><span class="section"><a href="#d5e1283">Type safe URL resolution</a></span></dt><dt><span class="section"><a href="#d5e1311">Template Service Provider Interface</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1314">Template providers</a></span></dt><dt><span class="section"><a href="#d5e1371">Template stub</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e1395">Template at work</a></span></dt><dt><span class="section"><a href="#d5e1423">Qualified template class</a></span></dt></dl></dd><dt><span class="chapter"><a href="#taglib">9. Taglib </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1445">Taglib syntax</a></span></dt><dt><span class="section"><a href="#d5e1466">Include tag</a></span></dt><dt><span class="section"><a href="#d5e1479">Decorate / Insert tag</a></span></dt><dt><span class="section"><a href="#d5e1495">Title tag</a></span></dt><dt><span class="section"><a href="#d5e1506">Param tag</a></span></dt></dl></dd><dt><span class="chapter"><a href="#assets">10. Assets </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1524">Asset serving</a></span></dt><dt><span class="section"><a href="#d5e1572">Asset server</a></span></dt><dt><span class="section"><a href="#d5e1582">Asset plugin</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1611">Application assets</a></span></dt><dt><span class="section"><a href="#d5e1625">Server assets</a></span></dt><dt><span class="section"><a href="#d5e1634">External assets</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e1643">Managing assets programmatically</a></span></dt></dl></dd><dt><span class="chapter"><a href="#amd">11. Javascript modularity </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1668">Introduction to modules</a></span></dt><dt><span class="section"><a href="#d5e1684">Defining a module</a></span></dt><dt><span class="section"><a href="#d5e1741">Requiring a module</a></span></dt></dl></dd><dt><span class="chapter"><a href="#d5e1765">12. Juzu Servlet Plugin</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1768">Servlet class generation</a></span></dt><dt><span class="section"><a href="#d5e1784">Asset server automatic registration</a></span></dt></dl></dd><dt><span class="chapter"><a href="#d5e1788">13. Juzu Portlet Plugin</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1791">Portlet class generation</a></span></dt><dt><span class="section"><a href="#d5e1814">Portlet preferences injection</a></span></dt><dt><span class="section"><a href="#d5e1825">Resource bundle injection</a></span></dt><dt><span class="section"><a href="#d5e1840">Building</a></span></dt></dl></dd><dt><span class="chapter"><a href="#d5e1847">14. Juzu File Upload Plugin</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1851">File upload in an action phase</a></span></dt><dt><span class="section"><a href="#d5e1860">File upload in a resource phase</a></span></dt></dl></dd><dt><span class="chapter"><a href="#d5e1867">15. Juzu Less Plugin</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1873">Usage</a></span></dt><dt><span class="section"><a href="#d5e1903">Building</a></span></dt></dl></dd><dt><span class="chapter"><a href="#d5e1910">16. Juzu WebJars Plugin</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e1917">Usage</a></span></dt><dt><span class="section"><a href="#d5e1948">Building</a></span></dt></dl></dd></dl></div><div class="list-of-figures"><p><b>List of Figures</b></p><dl><dt>2.1. <a href="#d5e256">Interaction between phases</a></dt><dt>2.2. <a href="#d5e286">View phase</a></dt><dt>2.3. <a href="#d5e308">Action phase</a></dt><dt>2.4. <a href="#d5e320">View phase after action phase</a></dt><dt>3.1. <a href="#d5e600">Life cycle of a controller object</a></dt><dt>8.1. <a href="#d5e1247">Compiling a Groovy template</a></dt><dt>8.2. <a href="#d5e1288">Template URL resolution during compilation</a></dt><dt>8.3. <a href="#d5e1409">index groovy at work</a></dt><dt>10.1. <a href="#d5e1552">Using assets in a request</a></dt></dl></div><div class="list-of-tables"><p><b>List of Tables</b></p><dl><dt>1.1. <a href="#d5e82">The predefined descriptors</a></dt></dl></div><div class="list-of-examples"><p><b>List of Examples</b></p><dl><dt>1.1. <a href="#d5e118">Generating an application for the Tomcat server and the Guice injection container</a></dt><dt>1.2. <a href="#d5e124">Generating an application for the Tomcat server and the Spring injection container</a></dt><dt>1.3. <a href="#d5e221">Configuring the dev mode in web.xml</a></dt><dt>3.1. <a href="#d5e412">Declaring a controller route</a></dt><dt>3.2. <a href="#d5e424">Route parameters</a></dt><dt>3.3. <a href="#d5e440">Route parameter matching</a></dt><dt>3.4. <a href="#d5e462">Route parameter matching</a></dt><dt>3.5. <a href="#d5e485">Route priority</a></dt><dt>3.6. <a href="#d5e647">The RequestLifeCycle interface</a></dt><dt>5.1. <a href="#d5e751">The Juzu servlet configuration</a></dt><dt>5.2. <a href="#d5e761">Path mapping configuration</a></dt><dt>5.3. <a href="#d5e781">The Juzu portlet configuration</a></dt><dt>6.1. <a href="#d5e827">Configuring the Spring container in web.xml</a></dt><dt>6.2. <a href="#d5e982">Time provider factory</a></dt><dt>6.3. <a href="#d5e990">Time provider configuration</a></dt><dt>7.1. <a href="#d5e1033">Controller URL syntax</a></dt><dt>7.2. <a href="#d5e1040">Controller URL with parameters</a></dt><dt>7.3. <a href="#d5e1048">Explicit controller URL</a></dt><dt>7.4. <a href="#d5e1061">Message syntax</a></dt><dt>7.5. <a href="#d5e1107">Using a template</a></dt><dt>7.6. <a href="#d5e1126">Returning the generated juzu.Response.Content</a></dt><dt>7.7. <a href="#d5e1137">Native template parameter declaration</a></dt><dt>7.8. <a href="#d5e1144">Mustache template parameter declaration</a></dt><dt>7.9. <a href="#d5e1185">Named bean</a></dt><dt>7.10. <a href="#d5e1190">Template parameters</a></dt><dt>7.11. <a href="#d5e1213">Named bean</a></dt><dt>7.12. <a href="#d5e1219">Template parameters</a></dt><dt>9.1. <a href="#d5e1449">Start and end tag syntax</a></dt><dt>9.2. <a href="#d5e1459">Empty tag syntax</a></dt><dt>9.3. <a href="#d5e1472">The include tag</a></dt><dt>9.4. <a href="#d5e1485">The wrapped template</a></dt><dt>9.5. <a href="#d5e1490">The decoraring template</a></dt><dt>9.6. <a href="#d5e1501">Setting the title</a></dt><dt>9.7. <a href="#d5e1511">Declaring a template parameter</a></dt><dt>9.8. <a href="#d5e1516">Using the template parameter</a></dt><dt>10.1. <a href="#d5e1587">JQuery UI declarative asset configuration</a></dt><dt>10.2. <a href="#d5e1618">Declarative relative application asset configuration</a></dt><dt>10.3. <a href="#d5e1629">Declarative relative server asset configuration</a></dt><dt>10.4. <a href="#d5e1638">External classpath asset configuration</a></dt><dt>11.1. <a href="#d5e1691">Defining a simple module</a></dt><dt>11.2. <a href="#d5e1696">The ##foo.js## self-executing function</a></dt><dt>11.3. <a href="#d5e1708">Defining a module with dependencies</a></dt><dt>11.4. <a href="#d5e1713">The ##bar.js## self-executing function</a></dt><dt>11.5. <a href="#d5e1723">The jQuery uses the following construct for defining itself</a></dt><dt>11.6. <a href="#d5e1755">The ##foo.js## module declaration</a></dt><dt>11.7. <a href="#d5e1760">The ##bar.js## module declaration</a></dt><dt>12.1. <a href="#d5e1774">Juzu servlet generation</a></dt><dt>13.1. <a href="#d5e1818">Injecting portlet preferences</a></dt><dt>13.2. <a href="#d5e1829">Injecting the portlet resource bundle</a></dt><dt>15.1. <a href="#d5e1881">Annotating an application package for processing LESS files</a></dt><dt>15.2. <a href="#d5e1895">LESS and Asset plugins in action</a></dt><dt>16.1. <a href="#d5e1920">Annotating an application package for declaring WebJars</a></dt><dt>16.2. <a href="#d5e1935">WebJars and Asset plugin in action</a></dt><dt>16.3. <a href="#d5e1943">WebJars and AMD plugin in action</a></dt></dl></div>
   <div class="preface" title="Preface"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e2"></a>Preface</h1></div></div></div></div>
     
     <p>Juzu is a web framework based on MVC concepts for developing Portlet applications. Juzu is an open source project developed on GitHub <a class="ulink" href="https://github.com/juzu/juzu" target="_top">project</a> licensed under the <a class="ulink" href="http://www.gnu.org/licenses/lgpl-2.1.html" target="_top">LGPL 2.1</a> license.</p>
@@ -47,7 +47,7 @@
           <div class="programlistingco"><pre class="prettyprint language-xml">&lt;dependency&gt;
   &lt;groupId&gt;org.juzu&lt;/groupId&gt;
   &lt;artifactId&gt;juzu-bom-core&lt;/artifactId&gt;
-  &lt;version&gt;0.6.0&lt;/version&gt;
+  &lt;version&gt;0.7.0-beta13&lt;/version&gt;
 &lt;/dependency&gt;</pre></div>
           <p>Assembling the application requires more XML but is very straightforward:</p>
           <div class="programlistingco"><pre class="prettyprint language-xml">&lt;plugin&gt;
@@ -56,7 +56,7 @@
     &lt;dependency&gt;
       &lt;groupId&gt;org.juzu&lt;/groupId&gt;
       &lt;artifactId&gt;juzu-bom-core&lt;/artifactId&gt;
-      &lt;version&gt;0.6.0&lt;/version&gt;
+      &lt;version&gt;0.7.0-beta13&lt;/version&gt;
     &lt;/dependency&gt;
   &lt;/dependencies&gt;
   &lt;executions&gt;
@@ -143,7 +143,7 @@
               <pre class="screen">mvn archetype:generate \
    -DarchetypeGroupId=org.juzu \
    -DarchetypeArtifactId=juzu-archetype \
-   -DarchetypeVersion=0.6.0 \
+   -DarchetypeVersion=0.7.0-beta13 \
    -DgroupId=org.example \
    -DartifactId=myapp \
    -DpackageName=org.example.myapp \
@@ -158,7 +158,7 @@
               <pre class="screen">mvn archetype:generate \
    -DarchetypeGroupId=org.juzu \
    -DarchetypeArtifactId=juzu-archetype \
-   -DarchetypeVersion=0.6.0 \
+   -DarchetypeVersion=0.7.0-beta13 \
    -DgroupId=org.example \
    -DartifactId=myapp \
    -DpackageName=org.example.myapp \
@@ -590,12 +590,10 @@ public void show() {
           </li><li class="listitem">
             <p>Structured data types : todo</p>
           </li></ul></div>
-        <p>View controller method should return a <code class="code">juzu.Response</code> object that is the content produced by the method. To be more precise  it should return a <code class="code">Response.Content</code> or <code class="code">Response.Render</code> object (the latter being a subclass of the former) that contains  everything Juzu needs to display the application.</p>
+        <p>View controller method should return a <code class="code">juzu.Response</code> object that is the content produced by the method. To be more precise  it should return a <code class="code">Response.Body</code> or <code class="code">Response.Content</code> object (the latter being a subclass of the former) that contains  everything Juzu needs to display the application.</p>
         <p>
           <code class="code">Response.Content</code> is a base class for content, it defines the <code class="code">send</code> method. Juzu invokes this method when it needs to render the response produced by the view method. The invocation of the <code class="code">send</code> method will be performed after the view method is invoked.</p>
-        <div class="programlistingco"><pre class="prettyprint language-java">    public void send(S stream) throws IOException {
-      streamable.send(stream);
-    }</pre></div>
+        <div class="programlistingco"><pre class="prettyprint language-java">Could not locate the JavaCodeLink[juzu.Response.Content#send(juzu.io.Stream)] source</pre></div>
         <p>During the view phase a controller can generate URLs to other phases (except the event phase) by using controller companion  methods. Companion methods returns a <code class="code">juzu.Dispatch</code> object to represent the URL. The final  URL is returned by the <code class="code">toString()</code> method of the dispatch object.</p>
       </div>
       <div class="section" title="Action controllers"><div class="titlepage"><div><div><h3 class="title"><a name="d5e557"></a>Action controllers</h3></div></div></div>
@@ -726,8 +724,8 @@ public Response.Content index() {
       
       <p>A <span class="italic">render</span> response extends a <span class="italic">content</span> response, it specializes it for aggregated markup, i.e a response where the  application manages only one portion of the full page such as a portal:</p>
       <div class="programlistingco"><pre class="prettyprint language-java">@View
-public Response.Render index() {
-  return Response.render("Hello World").withTitle("The Hello");
+public Response.Content index() {
+  return Response.ok("Hello World").withTitle("The Hello");
 }</pre></div>
     </div>
     <div class="section" title="View response"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e705"></a>View response</h2></div></div></div>
@@ -1197,12 +1195,12 @@ public class TimeProviderFactory implements java.inject.ProviderFactory {
           </div></div><p><br class="example-break">
         </p>
         <p>The <code class="code">juzu.Path</code> annotation is a qualifier annotation managed by the IOC container. It is very similar to the <code class="code">@javax.inject.Named</code> qualifier, but it has a special meaning for Juzu for declaring the template.</p>
-        <p>The <code class="code">render</code> method of a template returns a <code class="code">juzu.Response.Render</code> response which can also be returned by the controller method. This is equivalent to the previous example.</p>
+        <p>The <code class="code">render</code> method of a template returns a <code class="code">juzu.Response.Content</code> response which can also be returned by the controller method. This is equivalent to the previous example.</p>
         <p>
-          </p><div class="example"><a name="d5e1126"></a><p class="title"><b>Example&nbsp;7.6.&nbsp;Returning the generated juzu.Response.Render</b></p><div class="example-contents">
+          </p><div class="example"><a name="d5e1126"></a><p class="title"><b>Example&nbsp;7.6.&nbsp;Returning the generated juzu.Response.Content</b></p><div class="example-contents">
             
             <div class="programlistingco"><pre class="prettyprint language-java">  @View
-  public Response.Render index() {
+  public Response.Content index() {
     return index.render();
   }</pre></div>
           </div></div><p><br class="example-break">
@@ -1562,7 +1560,7 @@ public class index extends Template {
     </div>
     <div class="section" title="Title tag"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1495"></a>Title tag</h2></div></div></div>
       
-      <p>The <span class="italic">title</span> tag specifies a title to insert in the <code class="code">juzu.Response.Render</code> object the template will produce.</p>
+      <p>The <span class="italic">title</span> tag specifies a title to insert in the <code class="code">juzu.Response.Content</code> object the template will produce.</p>
       <p>
         </p><div class="example"><a name="d5e1501"></a><p class="title"><b>Example&nbsp;9.6.&nbsp;Setting the title</b></p><div class="example-contents">
           
@@ -1719,14 +1717,14 @@ package my.application;</pre></div>
   id = "myscript",
   src = "myscript.js"))
 package my.application;</pre></div>
-      <p>When an application requires an asset, it adds the asset to the <code class="code">Response.Render</code> object:</p>
+      <p>When an application requires an asset, it adds the asset to the <code class="code">Response.Content</code> object:</p>
       <div class="programlistingco"><pre class="prettyprint language-java">@Inject
 @Path("index.gtmpl")
 Template index;
 
 @View
-public Response.Render index() {
-  Response.Render render = index.render();
+public Response.Content index() {
+  Response.Content render = index.render();
   render.withScript("myscript");
   return render;
 }</pre></div>
@@ -1736,19 +1734,133 @@ public Response.Render index() {
 Template index;
 
 @View
-public Response.Render index() {
+public Response.Content index() {
   return index.render().withScript(myscript""));
 }</pre></div>
     </div>
   </div>
-  <div class="chapter" title="Chapter&nbsp;11.&nbsp;Juzu Servlet Plugin"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e1663"></a>Chapter&nbsp;11.&nbsp;Juzu Servlet Plugin</h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e1666">Servlet class generation</a></span></dt><dt><span class="section"><a href="#d5e1682">Asset server automatic registration</a></span></dt></dl></div>
+  <div class="chapter" title="Chapter&nbsp;11.&nbsp;Javascript modularity"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="amd"></a>Chapter&nbsp;11.&nbsp;Javascript modularity </h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e1668">Introduction to modules</a></span></dt><dt><span class="section"><a href="#d5e1684">Defining a module</a></span></dt><dt><span class="section"><a href="#d5e1741">Requiring a module</a></span></dt></dl></div>
+    
+    <p>The AMD plugin provides declarative support for JavaScript modules using annotations. It relies on the <a class="ulink" href="https://github.com/amdjs/amdjs-api/wiki/AMD" target="_top">Asynchronous Module Definition</a> specification implemented by the <a class="ulink" href="http://requirejs.org/" target="_top">RequireJS</a> project.</p>
+    <div class="section" title="Introduction to modules"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1668"></a>Introduction to modules</h2></div></div></div>
+      
+      <p>JavaScript does not provide a natural way for namespacing, the notion of module was designed to solve this problem. This natural lack of namespacing can be perceived as a lack, instead it should be seen as an advantage as modules provide namespacing and more: indeed the module pattern allows to create dependencies between modules and resolve them at runtime enabling on demand and parallel loading of JavaScript resources.</p>
+      <p>This guide will not explain modules because we haven&#8217;t designed a module system for Juzu. Instead Juzu uses the RequireJS library and integrates it. Therefore the best documentation you can read about modules is the RequireJS documentation you can also read the excellent <a class="ulink" href="http://www.adequatelygood.com/JavaScript-Module-Pattern-In-Depth.html" target="_top">article</a> about modules in depth.</p>
+      <p>In the essence the notion of module can be viewed as:</p>
+      <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+          <p>An identifier</p>
+        </li><li class="listitem">
+          <p>A list of dependencies on the modules required by the module to work properly</p>
+        </li><li class="listitem">
+          <p>The code packaged usually expressed as a self-executing function</p>
+        </li><li class="listitem">
+          <p>The product which is an object produced by the module that is usually consumed by other modules</p>
+        </li></ul></div>
+      <p>At runtime the dependency system defines a graph of function to execute, the product of each module being injected in the other modules. It can be seen as a simple dependency injection system able to load modules in an asynchronous and parallel fashion providing parallel loading, namespacing and dependency management.</p>
+    </div>
+    <div class="section" title="Defining a module"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1684"></a>Defining a module</h2></div></div></div>
+      
+      <p>The <code class="code">@Defines</code> and <code class="code">@Define</code> are used to declare the JavaScript which is either a canonical module as defined  by the AMD specification or a simple self-executing function.</p>
+      <p>When the javascript is self-executing function, this script is wrapped to provide the expected RequireJS format, let's study a quick example with a module:</p>
+      <p>
+        </p><div class="example"><a name="d5e1691"></a><p class="title"><b>Example&nbsp;11.1.&nbsp;Defining a simple module</b></p><div class="example-contents">
+          
+          <div class="programlistingco"><pre class="prettyprint language-java">@Defines(value={@Define(name="Foo", path="foo.js")})
+package my.application</pre></div>
+        </div></div><p><br class="example-break">
+        </p><div class="example"><a name="d5e1696"></a><p class="title"><b>Example&nbsp;11.2.&nbsp;The ##foo.js## self-executing function</b></p><div class="example-contents">
+          
+          <div class="programlistingco"><pre class="prettyprint language-java">(function () {
+  //Do something
+})();</pre></div>
+          <p>Equivalent to this declaration in the RequireJS format:</p>
+          <div class="programlistingco"><pre class="prettyprint language-java">define("Foo", function() {
+  return //Something
+});</pre></div>
+        </div></div><p><br class="example-break">
+      </p>
+      <p>Modularity allows to define cross dependencies between modules, the <code class="code">@Define</code> annotation allows that:</p>
+      <p>
+        </p><div class="example"><a name="d5e1708"></a><p class="title"><b>Example&nbsp;11.3.&nbsp;Defining a module with dependencies</b></p><div class="example-contents">
+          
+          <div class="programlistingco"><pre class="prettyprint language-java">@Defines(
+  value = {
+    @Define(name="Foo", path="foo.js"),
+    @Define(name="Bar", path="bar.js", dependencies={@Dependency(name="Foo", alias="foo")}}
+)</pre></div>
+        </div></div><p><br class="example-break">
+        </p><div class="example"><a name="d5e1713"></a><p class="title"><b>Example&nbsp;11.4.&nbsp;The ##bar.js## self-executing function</b></p><div class="example-contents">
+          
+          <div class="programlistingco"><pre class="prettyprint language-java">(function(foo) {
+  //Do something
+})(foo);</pre></div>
+          <p>Equivalent to this declaration in the RequireJS format:</p>
+          <div class="programlistingco"><pre class="prettyprint language-java">define("Bar", ["Foo"], function(foo) {
+  return //Something
+});</pre></div>
+        </div></div><p><br class="example-break">
+      </p>
+      <p>The Juzu AMD plugin allows to provide custom adapter for adapting the script to the expected format. With this flexibility it is possible to declare an adapter wrapping the adapted script. The jQuery library is a good example of how a custom adapter can be useful. Thanks to the adapter feature we can reuse the jQuery without any change:   </p><div class="example"><a name="d5e1723"></a><p class="title"><b>Example&nbsp;11.5.&nbsp;The jQuery uses the following construct for defining itself</b></p><div class="example-contents">
+          
+          <div class="programlistingco"><pre class="prettyprint language-java">(function(window, undefined) {
+})(window);</pre></div>
+          <p>The main issue with this construct is that it will bind jQuery to the window but most importantly it will not return any value as expected by the dependency system. Thanks to the custom adapter we can integrate it easily:</p>
+          <div class="programlistingco"><pre class="prettyprint language-java">@Define(
+  id = "jquery",
+  path="jquery-1.7.1.js",
+  adapter="(function() { @{include} return jQuery.noConflict(true);})();")</pre></div>
+          <p>The adapter attribute can contains mixed content and the <code class="code">@{include}</code> will perform a mere inclusion (as a C language includes) of the original jQuery script in the resulting module:</p>
+          <div class="programlistingco"><pre class="prettyprint language-java">define("jquery", [], function() {
+  return (function() {
+    (function(window, undefined) {
+    })(window);
+    return jQuery.noConflict(true);
+  })();
+});</pre></div>
+        </div></div><p><br class="example-break">
+      </p>
+      <div class="alert alert-success alert-block" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
+        <p>The Juzu AMD definition adapts only the javascript located at <code class="code">AssetLocation.APPLICATION</code>. The <code class="code">@Require</code> annotation must be used for other kind of locations.</p>
+      </div>
+    </div>
+    <div class="section" title="Requiring a module"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1741"></a>Requiring a module</h2></div></div></div>
+      
+      <p>The Juzu AMD <code class="code">@Require</code> annotation only register a JavaScript module for RequireJS Loader. It does not wrap or adapt content and does not manage module dependencies.</p>
+      <p>Here is an example of using <code class="code">@Requires</code> and <code class="code">@Require</code> to register the <code class="code">foo.js</code> script and the <code class="code">bar.js</code> scripts that depends on <code class="code">foo.js</code>.</p>
+      <div class="programlistingco"><pre class="prettyprint language-java">@Requires (
+  value = {
+    @Require(id = "Foo", path = "foo.js"),
+    @Require(id = "Bar", path = "bar.js")}
+)
+package my.application;</pre></div>
+      <p>
+        </p><div class="example"><a name="d5e1755"></a><p class="title"><b>Example&nbsp;11.6.&nbsp;The ##foo.js## module declaration</b></p><div class="example-contents">
+          
+          <div class="programlistingco"><pre class="prettyprint language-java">define("Foo", function() {
+  return {
+    text: "Hello"
+  };
+});</pre></div>
+        </div></div><p><br class="example-break">
+        </p><div class="example"><a name="d5e1760"></a><p class="title"><b>Example&nbsp;11.7.&nbsp;The ##bar.js## module declaration</b></p><div class="example-contents">
+          
+          <div class="programlistingco"><pre class="prettyprint language-java">define("Bar", ["Foo"], function(foo) {
+  return {
+    text : foo.text + " World"
+  };
+});</pre></div>
+        </div></div><p><br class="example-break">
+      </p>
+    </div>
+  </div>
+  <div class="chapter" title="Chapter&nbsp;12.&nbsp;Juzu Servlet Plugin"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e1765"></a>Chapter&nbsp;12.&nbsp;Juzu Servlet Plugin</h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e1768">Servlet class generation</a></span></dt><dt><span class="section"><a href="#d5e1784">Asset server automatic registration</a></span></dt></dl></div>
   
   <p>The servlet plugin enhance Juzu servlet applications.</p>
-  <div class="section" title="Servlet class generation"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1666"></a>Servlet class generation</h2></div></div></div>
+  <div class="section" title="Servlet class generation"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1768"></a>Servlet class generation</h2></div></div></div>
     
     <p>A Juzu servlet application is managed by a <code class="code">JuzuServlet</code> configured with the application name. Since Servlet 3.0, configuration can be easier thanks to servlet annotations. Juzu leverages this capability and is able to generate a servlet for an application with the <code class="code">juzu.plugin.servlet.Servlet</code> annotation:</p>
     <p>
-      </p><div class="example"><a name="d5e1672"></a><p class="title"><b>Example&nbsp;11.1.&nbsp;Juzu servlet generation</b></p><div class="example-contents">
+      </p><div class="example"><a name="d5e1774"></a><p class="title"><b>Example&nbsp;12.1.&nbsp;Juzu servlet generation</b></p><div class="example-contents">
         
         <div class="programlistingco"><pre class="prettyprint language-java">@Application
 @Servlet("/") <span class="co" id="callout-0_"><img src="images/callouts/1.png" alt="(1)"></span> 
@@ -1759,15 +1871,15 @@ package my.application;</pre><div class="calloutlist"><table border="0" summary=
       </div></div><p><br class="example-break">
     </p>
   </div>
-  <div class="section" title="Asset server automatic registration"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1682"></a>Asset server automatic registration</h2></div></div></div>
+  <div class="section" title="Asset server automatic registration"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1784"></a>Asset server automatic registration</h2></div></div></div>
     
     <p>The jar of the servlet plugin contains a <span class="italic">web-fragment.xml</span> that automatically declares the asset servlet simplifying further more the configuration of the application.</p>
   </div>
 </div>
-          <div class="chapter" title="Chapter&nbsp;12.&nbsp;Juzu Portlet Plugin"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e1686"></a>Chapter&nbsp;12.&nbsp;Juzu Portlet Plugin</h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e1689">Portlet class generation</a></span></dt><dt><span class="section"><a href="#d5e1712">Portlet preferences injection</a></span></dt><dt><span class="section"><a href="#d5e1723">Resource bundle injection</a></span></dt><dt><span class="section"><a href="#d5e1738">Building</a></span></dt></dl></div>
+          <div class="chapter" title="Chapter&nbsp;13.&nbsp;Juzu Portlet Plugin"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e1788"></a>Chapter&nbsp;13.&nbsp;Juzu Portlet Plugin</h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e1791">Portlet class generation</a></span></dt><dt><span class="section"><a href="#d5e1814">Portlet preferences injection</a></span></dt><dt><span class="section"><a href="#d5e1825">Resource bundle injection</a></span></dt><dt><span class="section"><a href="#d5e1840">Building</a></span></dt></dl></div>
   
   <p>The portlet plugin enhance Juzu portlet applications.</p>
-  <div class="section" title="Portlet class generation"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1689"></a>Portlet class generation</h2></div></div></div>
+  <div class="section" title="Portlet class generation"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1791"></a>Portlet class generation</h2></div></div></div>
     
     <p>A Juzu portlet application is managed by a <code class="code">JuzuPortlet</code> configured with the application name. The <code class="code">@juzu.plugin.portlet.Portlet</code> annotation can be used to generate a subclass of the <code class="code">JuzuPortlet</code> that configures the application name for you, easing the configuration of the <span class="italic">portlet.xml</span> corresponding section.</p>
     <div class="programlistingco"><pre class="prettyprint language-java">@Portlet
@@ -1798,11 +1910,11 @@ package my;</pre></div>
   &lt;/portlet-info&gt;
 &lt;/portlet&gt;</pre></div>
   </div>
-  <div class="section" title="Portlet preferences injection"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1712"></a>Portlet preferences injection</h2></div></div></div>
+  <div class="section" title="Portlet preferences injection"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1814"></a>Portlet preferences injection</h2></div></div></div>
     
     <p>During the various phase of an application, the current portlet preferences can be injected::</p>
     <p>
-      </p><div class="example"><a name="d5e1716"></a><p class="title"><b>Example&nbsp;12.1.&nbsp;Injecting portlet preferences</b></p><div class="example-contents">
+      </p><div class="example"><a name="d5e1818"></a><p class="title"><b>Example&nbsp;13.1.&nbsp;Injecting portlet preferences</b></p><div class="example-contents">
         
         <div class="programlistingco"><pre class="prettyprint language-java">@Inject javax.portlet.PortletPreferences preferences;</pre></div>
       </div></div><p><br class="example-break">
@@ -1811,11 +1923,11 @@ package my;</pre></div>
       <p>The same restriction defined in the portlet specification applies to the provided preferences object: i.e saving preferences can only be performed during an action phase.</p>
     </div>
   </div>
-  <div class="section" title="Resource bundle injection"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1723"></a>Resource bundle injection</h2></div></div></div>
+  <div class="section" title="Resource bundle injection"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1825"></a>Resource bundle injection</h2></div></div></div>
     
     <p>During the various phase of an application, the portlet resource bundle for the current locale can be injected:</p>
     <p>
-      </p><div class="example"><a name="d5e1727"></a><p class="title"><b>Example&nbsp;12.2.&nbsp;Injecting the portlet resource bundle</b></p><div class="example-contents">
+      </p><div class="example"><a name="d5e1829"></a><p class="title"><b>Example&nbsp;13.2.&nbsp;Injecting the portlet resource bundle</b></p><div class="example-contents">
         
         <div class="programlistingco"><pre class="prettyprint language-java">@Inject java.util.ResourceBundle bundle;</pre></div>
       </div></div><p><br class="example-break">
@@ -1825,21 +1937,21 @@ package my;</pre></div>
 ResourceBundle bundle = portlet.getConfig().getResourceBundle(locale);</pre></div>
     <p>This resource bundle can be configured in the <span class="italic">portlet.xml</span> deployment descriptor.</p>
   </div>
-  <div class="section" title="Building"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1738"></a>Building</h2></div></div></div>
+  <div class="section" title="Building"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1840"></a>Building</h2></div></div></div>
     
     <p>Add the Portlet plugin jar to your compilation classpath.</p>
     <p>In Maven it can achieved by adding the Less plugin dependency to your POM:</p>
     <div class="programlistingco"><pre class="prettyprint language-xml">&lt;dependency&gt;
   &lt;groupId&gt;org.juzu&lt;/groupId&gt;
   &lt;artifactId&gt;juzu-plugins-portlet&lt;/artifactId&gt;
-  &lt;version&gt;0.6.0&lt;/version&gt;
+  &lt;version&gt;0.7.0-beta13&lt;/version&gt;
 &lt;/dependency&gt;</pre></div>
   </div>
 </div>
-          <div class="chapter" title="Chapter&nbsp;13.&nbsp;Juzu File Upload Plugin"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e1745"></a>Chapter&nbsp;13.&nbsp;Juzu File Upload Plugin</h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e1749">File upload in an action phase</a></span></dt><dt><span class="section"><a href="#d5e1758">File upload in a resource phase</a></span></dt></dl></div>
+          <div class="chapter" title="Chapter&nbsp;14.&nbsp;Juzu File Upload Plugin"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e1847"></a>Chapter&nbsp;14.&nbsp;Juzu File Upload Plugin</h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e1851">File upload in an action phase</a></span></dt><dt><span class="section"><a href="#d5e1860">File upload in a resource phase</a></span></dt></dl></div>
   
   <p>The file upload plugin integrates <a class="ulink" href="http://commons.apache.org/fileupload/" target="_top">Apache Commons FileUpload</a> in Juzu. The plugin decodes multipart requests as file objects and can inject them as controller method parameters. This plugin works with the servlet bridge and the portlet bridge.</p>
-  <div class="section" title="File upload in an action phase"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1749"></a>File upload in an action phase</h2></div></div></div>
+  <div class="section" title="File upload in an action phase"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1851"></a>File upload in an action phase</h2></div></div></div>
     
     <p>File upload can be handled during an action of a portlet or a servlet:</p>
     <div class="programlistingco"><pre class="prettyprint language-java">@Action
@@ -1853,7 +1965,7 @@ public void upload(org.apache.commons.fileupload.FileItem file) {
       <p>The <code class="code">@Route</code> annotation is only meaningfull for the servlet bridge. In case of a portlet, the URL is managed by the portal.</p>
     </div>
   </div>
-  <div class="section" title="File upload in a resource phase"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1758"></a>File upload in a resource phase</h2></div></div></div>
+  <div class="section" title="File upload in a resource phase"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1860"></a>File upload in a resource phase</h2></div></div></div>
     
     <p>File upload can also be handled in a resource phase.</p>
     <div class="programlistingco"><pre class="prettyprint language-java">@Resource
@@ -1867,16 +1979,16 @@ public Response.Content upload(org.apache.commons.fileupload.FileItem file) {
     <p>Handling upload in a resource phase can be used when the file is uploaded via Ajax: the application  does not want a view phase to be triggered after the upload.</p>
   </div>
 </div>
-          <div class="chapter" title="Chapter&nbsp;14.&nbsp;Juzu Less Plugin"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e1765"></a>Chapter&nbsp;14.&nbsp;Juzu Less Plugin</h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e1771">Usage</a></span></dt><dt><span class="section"><a href="#d5e1801">Building</a></span></dt></dl></div>
+          <div class="chapter" title="Chapter&nbsp;15.&nbsp;Juzu Less Plugin"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e1867"></a>Chapter&nbsp;15.&nbsp;Juzu Less Plugin</h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e1873">Usage</a></span></dt><dt><span class="section"><a href="#d5e1903">Building</a></span></dt></dl></div>
   
   <p>LESS is a dynamic stylesheet language which extends CSS with dynamic behavior such as variables, mixins, operations and functions. LESS is easy to learn thanks to the <a class="ulink" href="http://lesscss.org/" target="_top">online documentation</a>.</p>
   <p>Juzu provides a LESS plugin that takes care of compiling a LESS stylesheet into a CSS stylesheet which are then served by the Asset plugin. This chapter explains how to use LESS and combine it with the <a class="link" href="#assets" title="Chapter&nbsp;10.&nbsp;Assets">Asset plugin</a>.</p>
-  <div class="section" title="Usage"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1771"></a>Usage</h2></div></div></div>
+  <div class="section" title="Usage"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1873"></a>Usage</h2></div></div></div>
     
     <p>The LESS plugin operates at compilation time only because the only task he has to do is to transform a LESS source code into a CSS stylesheet. The runtime part is usually done by the Asset plugin.</p>
     <p>The <code class="code">@Less</code> annotation annotates a package containing an <code class="code">assets</code> package. This <code class="code">assets</code> package should contain  the LESS files to be compiled.</p>
     <p>
-      </p><div class="example"><a name="d5e1779"></a><p class="title"><b>Example&nbsp;14.1.&nbsp;Annotating an application package for processing LESS files</b></p><div class="example-contents">
+      </p><div class="example"><a name="d5e1881"></a><p class="title"><b>Example&nbsp;15.1.&nbsp;Annotating an application package for processing LESS files</b></p><div class="example-contents">
         
         <div class="programlistingco"><pre class="prettyprint language-java">@Less("stylesheet.less")
 @Application
@@ -1887,7 +1999,7 @@ import juzu.plugin.less.Less;</pre></div>
     </p>
     <p>The <span class="italic">stylesheet.less</span> file will be located in the <code class="code">myapp.assets</code> package. The <code class="code">assets</code> child package of the annotated package should contain the stylesheet, this is done on purpose to coincide exactly with the <code class="code">assets</code> package used by the Asset plugin. During the compilation phase the <span class="italic">stylesheet.less</span> will be compiled to the <span class="italic">stylesheet.css</span>. If we want this file to be served with the application we simply add the corresponding <code class="code">@Assets</code> annotation:</p>
     <p>
-      </p><div class="example"><a name="d5e1793"></a><p class="title"><b>Example&nbsp;14.2.&nbsp;LESS and Asset plugins in action</b></p><div class="example-contents">
+      </p><div class="example"><a name="d5e1895"></a><p class="title"><b>Example&nbsp;15.2.&nbsp;LESS and Asset plugins in action</b></p><div class="example-contents">
         
         <div class="programlistingco"><pre class="prettyprint language-java">@Less("stylesheet.less")
 @Assets(stylesheets = @Stylesheet(
@@ -1906,14 +2018,97 @@ import juzu.plugin.asset.Stylesheet;</pre></div>
     </p>
     <p>By default LESS will use a default formatting for the generated CSS. To achieve smaller CSS size, a <span class="italic">minify</span> option can be used, this option will trim the whitespace when processing the file : <code class="code">@Less(value = "stylesheet.less", minify = true)</code>.</p>
   </div>
-  <div class="section" title="Building"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1801"></a>Building</h2></div></div></div>
+  <div class="section" title="Building"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1903"></a>Building</h2></div></div></div>
     
     <p>Add the Less plugin jar to your compilation classpath.</p>
     <p>In Maven it can achieved by adding the Less plugin dependency to your POM:</p>
     <div class="programlistingco"><pre class="prettyprint language-xml">&lt;dependency&gt;
   &lt;groupId&gt;org.juzu&lt;/groupId&gt;
   &lt;artifactId&gt;juzu-plugins-less&lt;/artifactId&gt;
-  &lt;version&gt;0.6.0&lt;/version&gt;
+  &lt;version&gt;0.7.0-beta13&lt;/version&gt;
+&lt;/dependency&gt;</pre></div>
+  </div>
+</div>
+          <div class="chapter" title="Chapter&nbsp;16.&nbsp;Juzu WebJars Plugin"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e1910"></a>Chapter&nbsp;16.&nbsp;Juzu WebJars Plugin</h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e1917">Usage</a></span></dt><dt><span class="section"><a href="#d5e1948">Building</a></span></dt></dl></div>
+  
+  <p>
+    <a class="ulink" href="http://www.webjars.org/" target="_top">WebJars</a> are client-side web libraries (e.g. jQuery &amp; Bootstrap) packaged into jar files. WebJars allow to declaratively set the version, use a consistent version across an application, and easily deal with transitive dependencies.</p>
+  <p>Juzu provides a WebJars plugin that copies resources in jar libraries to application assets and then served by the <span class="italic">Asset</span> plugin or the <span class="italic">AMD</span> plugin.</p>
+  <div class="section" title="Usage"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1917"></a>Usage</h2></div></div></div>
+    
+    <p>
+      </p><div class="example"><a name="d5e1920"></a><p class="title"><b>Example&nbsp;16.1.&nbsp;Annotating an application package for declaring WebJars</b></p><div class="example-contents">
+        
+        <p>
+          </p><div class="programlistingco"><pre class="prettyprint language-java">@Application
+@WebJars("foo.js")
+package myapp;
+
+import juzu.Application;
+import juzu.plugin.webjars.WebJars;</pre></div><p> </p><div class="programlistingco"><pre class="prettyprint language-xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.webjars&lt;/groupId&gt;
+  &lt;artifactId&gt;foo&lt;/artifactId&gt;
+  &lt;version&gt;1.0&lt;/version&gt;
+&lt;/dependency&gt;</pre></div><p>
+        </p>
+      </div></div><p><br class="example-break">
+    </p>
+    <p>The <span class="italic">foo.js</span> file will be located in the <code class="code">myapp.assets</code> package.</p>
+    <p>If we want this file to be served with the application we simply add the corresponding <code class="code">@Assets</code> annotation:</p>
+    <p>
+      </p><div class="example"><a name="d5e1935"></a><p class="title"><b>Example&nbsp;16.2.&nbsp;WebJars and Asset plugin in action</b></p><div class="example-contents">
+        
+        <div class="programlistingco"><pre class="prettyprint language-java">@Application
+@WebJars("foo.js")
+@Assets(scripts = { 
+  @Script(
+    id = "foo", 
+    src="foo.js"
+  ) 
+})
+package myapp;
+
+import juzu.Application;
+import juzu.plugin.asset.Assets;
+import juzu.plugin.asset.Script;
+import juzu.plugin.webjars.WebJars;</pre></div>
+      </div></div><p><br class="example-break">
+    </p>
+    <p>It can also be used as a JavaScript module with the <span class="italic">AMD</span> plugin:</p>
+    <p>
+      </p><div class="example"><a name="d5e1943"></a><p class="title"><b>Example&nbsp;16.3.&nbsp;WebJars and AMD plugin in action</b></p><div class="example-contents">
+        
+        <div class="programlistingco"><pre class="prettyprint language-java">@Application
+@WebJars("foo.js")
+@Defines({
+  @Define(
+    name = "Foo", 
+    path="foo.js"
+  ),
+  @Define(
+    name = "Bar", 
+    path="bar.js",
+    dependencies = {@Dependency(name = "Foo")}
+  )
+})  
+package myapp;
+
+import juzu.Application;
+import juzu.plugin.amd.Define;
+import juzu.plugin.amd.Defines;
+import juzu.plugin.amd.Dependency;
+import juzu.plugin.webjars.WebJars;</pre></div>
+      </div></div><p><br class="example-break">
+    </p>
+  </div>
+  <div class="section" title="Building"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1948"></a>Building</h2></div></div></div>
+    
+    <p>Add the WebJars plugin jar to your compilation classpath.</p>
+    <p>In Maven it can achieved by adding the WebJars plugin dependency to your POM:</p>
+    <div class="programlistingco"><pre class="prettyprint language-xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.juzu&lt;/groupId&gt;
+  &lt;artifactId&gt;juzu-plugins-webjars&lt;/artifactId&gt;
+  &lt;version&gt;0.7.0-beta13&lt;/version&gt;
 &lt;/dependency&gt;</pre></div>
   </div>
 </div>
