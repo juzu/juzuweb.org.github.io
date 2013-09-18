@@ -3,7 +3,7 @@
   SYSTEM "">
 <html><head>
       <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-   <title></title><link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css"><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="js/bootstrap/jquery-1.7.1.min.js"></script><script src="js/bootstrap/bootstrap-2.2.2.min.js"></script><script src="js/bootstrap/docbook-sidebar.js"></script><script src="js/bootstrap/google-code-prettify/prettify.js"></script></head><body onload="if (prettyPrint) { prettyPrint() }"><div class="book container"><div class="titlepage"><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="preface"><a href="#d5e2">Preface</a></span></dt><dt><span class="chapter"><a href="#quickstart">1. Quickstart </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e10">Deploy the applications</a></span></dt><dt><span class="section"><a href="#d5e54">Interacting with the application</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e104">Packaging the application in Tomcat</a></span></dt><dt><span class="section"><a href="#d5e119">Packaging the application for the GateIn portal</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#template_overview">2. Template overwiew </a></span></dt><dt><span class="chapter"><a href="#dependency_injection">3. Dependency Injection </a></span></dt><dt><span class="chapter"><a href="#views">4. Views </a></span></dt><dt><span class="chapter"><a href="#actions">5. Actions </a></span></dt><dt><span class="chapter"><a href="#type_safe_templating">6. Type safe templating </a></span></dt><dt><span class="chapter"><a href="#styled">7. Styling the application </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e309">The style</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e313">A la carte</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e324">Plugins in action</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e332">Less compilation</a></span></dt><dt><span class="section"><a href="#d5e353">Injecting CSS</a></span></dt><dt><span class="section"><a href="#d5e368">Bringing CSS to life</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#ajax">8. Adding Ajax </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e399">Javascript to the rescue</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e411">Adding scripts</a></span></dt><dt><span class="section"><a href="#d5e454">The collapse plugin</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e471">Bridge the gap with Ajax</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e474">Resource controller</a></span></dt><dt><span class="section"><a href="#d5e488">JQuery</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#testing">9. Testing our application </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e565">Setting up the test</a></span></dt><dt><span class="section"><a href="#d5e617">Testing the app</a></span></dt></dl></dd><dt><span class="chapter"><a href="#d5e633">10. Wrap up</a></span></dt></dl></div><div class="list-of-figures"><p><b>List of Figures</b></p><dl><dt>7.1. <a href="#d5e372">The Bootstrapized application</a></dt></dl></div><div class="list-of-examples"><p><b>List of Examples</b></p><dl><dt>3.1. <a href="#d5e183">Using Spring IOC in a servlet</a></dt><dt>3.2. <a href="#d5e190">Using Spring IOC in a portlet</a></dt><dt>7.1. <a href="#d5e318">The necessary Bootstrap less files</a></dt><dt>7.2. <a href="#d5e358">Injecting Bootstrap CSS in our application</a></dt><dt>9.1. <a href="#d5e570">Using the Arquillian runner</a></dt><dt>9.2. <a href="#d5e582">Application deployment</a></dt><dt>9.3. <a href="#d5e600">Arquillian injection</a></dt><dt>9.4. <a href="#d5e609">Creating URL for an application</a></dt><dt>9.5. <a href="#d5e621">Creating URL for an application</a></dt></dl></div>
+   <title></title><link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css"><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="js/bootstrap/jquery-1.7.1.min.js"></script><script src="js/bootstrap/bootstrap-2.2.2.min.js"></script><script src="js/bootstrap/docbook-sidebar.js"></script><script src="js/bootstrap/google-code-prettify/prettify.js"></script></head><body onload="if (prettyPrint) { prettyPrint() }"><div class="book container"><div class="titlepage"><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="preface"><a href="#d5e2">Preface</a></span></dt><dt><span class="chapter"><a href="#quickstart">1. Quickstart </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e10">Deploy the applications</a></span></dt><dt><span class="section"><a href="#d5e54">Interacting with the application</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e104">Packaging the application in Tomcat</a></span></dt><dt><span class="section"><a href="#d5e119">Packaging the application for the GateIn portal</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#template_overview">2. Template overwiew </a></span></dt><dt><span class="chapter"><a href="#dependency_injection">3. Dependency Injection </a></span></dt><dt><span class="chapter"><a href="#views">4. Views </a></span></dt><dt><span class="chapter"><a href="#actions">5. Actions </a></span></dt><dt><span class="chapter"><a href="#type_safe_templating">6. Type safe templating </a></span></dt><dt><span class="chapter"><a href="#styled">7. Styling the application </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e309">The style</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e313">A la carte</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e324">Plugins in action</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e332">Less compilation</a></span></dt><dt><span class="section"><a href="#d5e353">Serving Stylesheet</a></span></dt><dt><span class="section"><a href="#d5e376">Bringing CSS to life</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#ajax">8. Adding Ajax </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e407">Javascript to the rescue</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e419">Adding scripts</a></span></dt><dt><span class="section"><a href="#d5e462">The collapse plugin</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e479">Bridge the gap with Ajax</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e482">Resource controller</a></span></dt><dt><span class="section"><a href="#d5e496">JQuery</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#testing">9. Testing our application </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e573">Setting up the test</a></span></dt><dt><span class="section"><a href="#d5e625">Testing the app</a></span></dt></dl></dd><dt><span class="chapter"><a href="#d5e641">10. Wrap up</a></span></dt></dl></div><div class="list-of-figures"><p><b>List of Figures</b></p><dl><dt>7.1. <a href="#d5e380">The Bootstrapized application</a></dt></dl></div><div class="list-of-examples"><p><b>List of Examples</b></p><dl><dt>3.1. <a href="#d5e183">Using Spring IOC in a servlet</a></dt><dt>3.2. <a href="#d5e190">Using Spring IOC in a portlet</a></dt><dt>7.1. <a href="#d5e318">The necessary Bootstrap less files</a></dt><dt>7.2. <a href="#d5e358">Declaring and serving Bootstrap CSS in our application</a></dt><dt>9.1. <a href="#d5e578">Using the Arquillian runner</a></dt><dt>9.2. <a href="#d5e590">Application deployment</a></dt><dt>9.3. <a href="#d5e608">Arquillian injection</a></dt><dt>9.4. <a href="#d5e617">Creating URL for an application</a></dt><dt>9.5. <a href="#d5e629">Creating URL for an application</a></dt></dl></div>
   <div class="preface" title="Preface"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e2"></a>Preface</h1></div></div></div></div>
     
     <p>Juzu is a web framework based on MVC concepts for developing applications. Juzu is an open source project developed on GitHub <a class="ulink" href="https://github.com/juzu/juzu" target="_top">project</a> licensed under the <a class="ulink" href="http://www.gnu.org/licenses/lgpl-2.1.html" target="_top">LGPL 2.1</a> license.</p>
@@ -84,8 +84,8 @@ package examples.tutorial.weather1;</pre></div>
       <p>This is enough to create an empty Juzu application, now let's see the application itself!</p>
       <p>Usually an application is made of controllers and templates, in this example, the <code class="code">Weather</code> Java class contains a method annotated with the <code class="code">@View</code> annotation, which turns the <code class="code">Weather</code> class into a Juzu controller. The controller method <code class="code">index()</code> is the name of the default method that Juzu will call.</p>
       <div class="programlistingco"><pre class="prettyprint language-java">  @View
-  public void index() {
-    index.render();
+  public Response.Content index() {
+    return index.ok();
   }</pre></div>
       <p>Methods annotated by <code class="code">@View</code> have the unique purpose of providing markup, they are called <span class="italic">views</span>. In our case, the method delegates the rendering to the <code class="code">index.gtmpl</code> template. The template is injected in the controller thanks to the <code class="code">@Inject</code> annotation and the <code class="code">@Path("index.gtmpl")</code> annotation.</p>
       <div class="programlistingco"><pre class="prettyprint language-java">  @Inject
@@ -129,11 +129,11 @@ package examples.tutorial.weather1;</pre></div>
     <div class="programlistingco"><pre class="prettyprint">The weather temperature in ${location} is ${temperature} degrees.</pre></div>
     <p>Like before the template is used in the view controller but now we use a <code class="code">Map</code> containing the <code class="code">location</code> and <code class="code">temperature</code> parameters.</p>
     <div class="programlistingco"><pre class="prettyprint language-java">  @View
-  public void index() {
+  public Response.Content index() {
     Map&lt;String, Object&gt; parameters = new HashMap&lt;String, Object&gt;();
     parameters.put("location", "marseille");
     parameters.put("temperature", "20");
-    index.render(parameters);
+    return index.with(parameters).ok();
   }</pre></div>
     <p>During the template rendering, the <code class="code">location</code> and <code class="code">temperature</code> expressions are resolved to the value provided by the view controller. When a template is rendered, an optional map can be provided, this map will be available during the rendering of the template for resolving expression.</p>
   </div>
@@ -204,11 +204,11 @@ package examples.tutorial.weather1;</pre></div>
   WeatherService weatherService;</pre></div>
     <p>This service is then simply used into our controller <code class="code">index()</code> method:</p>
     <div class="programlistingco"><pre class="prettyprint language-java">  @View
-  public void index() {
+  public Response.Content index() {
     Map&lt;String, Object&gt; parameters = new HashMap&lt;String, Object&gt;();
     parameters.put("location", "marseille");
     parameters.put("temperature", weatherService.getTemperature("marseille"));
-    index.render(parameters);
+    return index.with(parameters).ok();
   }</pre></div>
     <p>As we can see, Juzu relies on the portable <code class="code">@Inject</code> annotation to declare sinjections. Injection is performed by the dependency injection container. At the moment the following containers are supported:</p>
     <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
@@ -252,11 +252,11 @@ package examples.tutorial.weather1;</pre></div>
     <p>This version has still the <code class="code">index()</code> view controller, but now it has also an overloaded <code class="code">index(String location)</code> method that accept a <code class="code">location</code> argument as a view parameter.</p>
     <div class="programlistingco"><pre class="prettyprint language-java">  @View
   @Route("/show/{location}")
-  public void index(String location) {
+  public Response.Content index(String location) {
     Map&lt;String, Object&gt; parameters = new HashMap&lt;String, Object&gt;();
     parameters.put("location", location);
     parameters.put("temperature", weatherService.getTemperature(location));
-    index.render(parameters);
+    return index.with(parameters).ok();
   }</pre></div>
     <p>The <code class="code">@Route("/show/{location}")</code> annotation binds the the <code class="code">index</code> controller method to the <span class="italic">/show/*</span> route. Since our our application package is annotated with the <code class="code">@Route("/weather4")</code> annotation, an URL like <span class="italic">/weather4/show/marseille</span> invokes this controller method with the <span class="italic">marseille</span> location.</p>
     <p>View parameters are bound to the current navigation of the application and their value are managed by the framework. At this point it is normal to wonder how a view parameter value can change. Let's have a closer look at the <code class="code">index.gtmpl</code> application template.</p>
@@ -267,8 +267,8 @@ package examples.tutorial.weather1;</pre></div>
     <p>The template now has two links changing view parameters when they are processed. Such links are created by a special syntax that references the view method, for instance the script fragment <code class="code">@{index(location = 'paris')}</code> generates an url that updates the <code class="code">location</code> view parameter to the <code class="code">paris</code> value when it is processed.</p>
     <p>The initial controller method <code class="code">index()</code> is still there but now it simply invokes the <code class="code">index(String location)</code> controller with a predefined value.</p>
     <div class="programlistingco"><pre class="prettyprint language-java">  @View
-  public void index() {
-    index("marseille");
+  public Response.Content index() {
+    return index("marseille");
   }</pre></div>
     <p>We could't close this section without talking a bit about <span class="bold"><strong>safe urls</strong></span>. Juzu is deeply integrated at the heart of the Java compiler and performs many checks to detect applications bugs during the application compilation. Among those checks, templates are validated and the url syntax <code class="code">@{ }</code> is checked against the application controllers. In fact Juzu will resolve an url syntax until it finds one controller that resolves the specified name and parameters. If not Juzu will make the compilation fail and give detailled information about the error. This kind of feature makes Juzu really unique among all other web frameworks, we will see some other later.</p>
     <div class="alert alert-success alert-block" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
@@ -331,23 +331,23 @@ The weather temperature in ${location} is ${temperature} degrees.
     <p>For example the <code class="code">location</code> parameter is declared by the <code class="code">#{param name=location/}</code> tag. During the Java compilation, Juzu leverage such parameter declarations to provide a more convenient way to render a template.</p>
     <p>The tight integration with the Java compiler allows Juzu to generate a template class for each template of the application, those template classes inherits the <code class="code">Template</code> class and adds specific methods for passing them parameters in a safe manner.</p>
     <div class="programlistingco"><pre class="prettyprint language-java">  @View
-  public void index(String location) {
-    index.
+  public Response.Content index(String location) {
+    return index.
       with().
       location(location).
       temperature(weatherService.getTemperature(location)).
       locations(locations).
-      render();
+      ok();
   }</pre></div>
     <p>As we can see, the <code class="code">HashMap</code> is not used anymore and now we use a type safe and compact expression for rendering the template. Each declared parameter generates a method named by the parameter name, for the <code class="code">location</code> parameter, we do have now a <code class="code">location(String location)</code> method that can be used.</p>
-    <p>To make the syntax fluent, the parameter methods can be chained, finally the <code class="code">render()</code> method is invoked to render the template, however it does not require any parameter since all parameters where passed thanks to the parameter methods.</p>
+    <p>To make the syntax fluent, the parameter methods can be chained, finally the <code class="code">ok()</code> method is invoked to produce a response, however it does not require any parameter since all parameters where passed thanks to the parameter methods.</p>
     <p>The Java name of the generated template class is the name of the template in the <code class="code">templates</code> package of the application. In our case we do obtain the <code class="code">examples.tutorial.weather6.templates.index</code> class name. It is very easy to use our subclass by injecting the template subclass instead of the generic <code class="code">Template</code> class.</p>
     <div class="programlistingco"><pre class="prettyprint language-java">  @Inject
   @Path("index.gtmpl")
   examples.tutorial.weather6.templates.index index;</pre></div>
     <p>Of course it is possible to import this value and use directly the <code class="code">index</code> class name. We used directly the full qualified name of the class for the sake of the clarity.</p>
   </div>
-  <div class="chapter" title="Chapter&nbsp;7.&nbsp;Styling the application"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="styled"></a>Chapter&nbsp;7.&nbsp;Styling the application </h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e309">The style</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e313">A la carte</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e324">Plugins in action</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e332">Less compilation</a></span></dt><dt><span class="section"><a href="#d5e353">Injecting CSS</a></span></dt><dt><span class="section"><a href="#d5e368">Bringing CSS to life</a></span></dt></dl></dd></dl></div>
+  <div class="chapter" title="Chapter&nbsp;7.&nbsp;Styling the application"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="styled"></a>Chapter&nbsp;7.&nbsp;Styling the application </h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e309">The style</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e313">A la carte</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e324">Plugins in action</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e332">Less compilation</a></span></dt><dt><span class="section"><a href="#d5e353">Serving Stylesheet</a></span></dt><dt><span class="section"><a href="#d5e376">Bringing CSS to life</a></span></dt></dl></dd></dl></div>
     
     <p>Our application is almost complete, in this section we will work on the look and feel to make the application appealing. We will use the famous <a class="ulink" href="http://twitter.github.com/bootstrap/" target="_top">Twitter Bootstrap</a> framework and show how it integrates well in Juzu applications.</p>
     <div class="section" title="The style"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e309"></a>The style</h2></div></div></div>
@@ -421,33 +421,40 @@ package examples.tutorial;
 import juzu.plugin.less.Less;</pre></div>
         <p>This annotation triggers the compilation of the <code class="code">bootstrap.less</code> in the <code class="code">assets</code> package, the <code class="code">minified</code> parameter instruct Less to minify the resulting css.</p>
       </div>
-      <div class="section" title="Injecting CSS"><div class="titlepage"><div><div><h3 class="title"><a name="d5e353"></a>Injecting CSS</h3></div></div></div>
+      <div class="section" title="Serving Stylesheet"><div class="titlepage"><div><div><h3 class="title"><a name="d5e353"></a>Serving Stylesheet</h3></div></div></div>
         
         <p>Now that we have worked out the CSS details we need to make our stylesheet available in the application page. The <span class="italic">asset</span> plugin will achieve this result for us. This plugin provides declarative configuration for the various assets required by an application. It works both for stylesheets and javascript, in this section we use it for stylesheet:</p>
         <p>
-          </p><div class="example"><a name="d5e358"></a><p class="title"><b>Example&nbsp;7.2.&nbsp;Injecting Bootstrap CSS in our application</b></p><div class="example-contents">
+          </p><div class="example"><a name="d5e358"></a><p class="title"><b>Example&nbsp;7.2.&nbsp;Declaring and serving Bootstrap CSS in our application</b></p><div class="example-contents">
             
             <div class="programlistingco"><pre class="prettyprint language-java">@Application
-@Assets(stylesheets = @Stylesheet(
-  src = "/examples/tutorial/assets/bootstrap.css",
+@Assets(@Asset(
+  value = "/examples/tutorial/assets/bootstrap.css",
   location = AssetLocation.CLASSPATH)
 )
+@WithAssets
 package examples.tutorial.weather7;</pre></div>
           </div></div><p><br class="example-break">
         </p>
-        <p>The usage is fairly straightforward with the <code class="code">@Assets</code> and <code class="code">Stylesheet</code> annotations. We configure the <code class="code">location</code> parameter to be <code class="code">CLASSPATH</code> because the Less plugin created it there.</p>
+        <p>The usage is fairly straightforward with the <code class="code">@Assets</code> and <code class="code">WithAssets</code> annotations:</p>
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>The <code class="code">@Assets</code> annotation declares the application assets</p>
+          </li><li class="listitem">
+            <p>The <code class="code">@WithAssets</code> annotation declares the application to serve during a request</p>
+          </li></ul></div>
+        <p>We configure the <code class="code">location</code> parameter to be <code class="code">CLASSPATH</code> because the Less plugin created it there.</p>
       </div>
-      <div class="section" title="Bringing CSS to life"><div class="titlepage"><div><div><h3 class="title"><a name="d5e368"></a>Bringing CSS to life</h3></div></div></div>
+      <div class="section" title="Bringing CSS to life"><div class="titlepage"><div><div><h3 class="title"><a name="d5e376"></a>Bringing CSS to life</h3></div></div></div>
         
         <p>After this step we need to modify our application template to use the various styles provided by Bootstrap:</p>
         <p>
-          </p><div class="figure"><a name="d5e372"></a><p class="title"><b>Figure&nbsp;7.1.&nbsp;The Bootstrapized application</b></p><div class="figure-contents">
+          </p><div class="figure"><a name="d5e380"></a><p class="title"><b>Figure&nbsp;7.1.&nbsp;The Bootstrapized application</b></p><div class="figure-contents">
             
             <div class="mediaobject" align="center"><img src="images/bootstrap.png" align="middle" width="378" alt="The Bootstrapized application"></div>
           </div></div><p><br class="figure-break">
         </p>
         <p>We will not explain that in details, however we will study the important modifications:</p>
-        <div class="section" title="Accordion"><div class="titlepage"><div><div><h4 class="title"><a name="d5e380"></a>Accordion</h4></div></div></div>
+        <div class="section" title="Accordion"><div class="titlepage"><div><div><h4 class="title"><a name="d5e388"></a>Accordion</h4></div></div></div>
           
           <p>The Bootstrap provides the <a class="ulink" href="http://twitter.github.com/bootstrap/javascript.html#collapse" target="_top">Collapse component</a>. We will not use the entire Collapse component here but instead reuse the CSS rules to display the available cities:</p>
           <div class="programlistingco"><pre class="prettyprint">&lt;div class="accordion-group"&gt;
@@ -457,7 +464,7 @@ package examples.tutorial.weather7;</pre></div>
   &lt;/div&gt;
 &lt;/div&gt;</pre></div>
         </div>
-        <div class="section" title="Adding a city"><div class="titlepage"><div><div><h4 class="title"><a name="d5e387"></a>Adding a city</h4></div></div></div>
+        <div class="section" title="Adding a city"><div class="titlepage"><div><div><h4 class="title"><a name="d5e395"></a>Adding a city</h4></div></div></div>
           
           <p>Finally the form for adding is modified to reuse <a class="ulink" href="http://twitter.github.com/bootstrap/base-css.html#forms" target="_top">Bootstrap form support</a>:</p>
           <div class="programlistingco"><pre class="prettyprint">&lt;form action="@{add()}" method="post"&gt;
@@ -474,12 +481,12 @@ package examples.tutorial.weather7;</pre></div>
       </div>
     </div>
   </div>
-  <div class="chapter" title="Chapter&nbsp;8.&nbsp;Adding Ajax"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="ajax"></a>Chapter&nbsp;8.&nbsp;Adding Ajax </h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e399">Javascript to the rescue</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e411">Adding scripts</a></span></dt><dt><span class="section"><a href="#d5e454">The collapse plugin</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e471">Bridge the gap with Ajax</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e474">Resource controller</a></span></dt><dt><span class="section"><a href="#d5e488">JQuery</a></span></dt></dl></dd></dl></div>
+  <div class="chapter" title="Chapter&nbsp;8.&nbsp;Adding Ajax"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="ajax"></a>Chapter&nbsp;8.&nbsp;Adding Ajax </h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e407">Javascript to the rescue</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e419">Adding scripts</a></span></dt><dt><span class="section"><a href="#d5e462">The collapse plugin</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e479">Bridge the gap with Ajax</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e482">Resource controller</a></span></dt><dt><span class="section"><a href="#d5e496">JQuery</a></span></dt></dl></dd></dl></div>
     
     <p>Now that our application look great, we are going to add a final touch to our application and make it more dynamic.</p>
     <p>In the previous section we introduced the accordion user interface component, but it was used in a static way. In this section we will make it dynamic and introduce the Ajax plugin.</p>
     <p>The accordion component can be combined to the JQuery collapse plugin providing the capability to unfold an item to display the weather of the location. When the item is unfolded an ajax request is performed to the application to retrieve the markup that will be inserted.</p>
-    <div class="section" title="Javascript to the rescue"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e399"></a>Javascript to the rescue</h2></div></div></div>
+    <div class="section" title="Javascript to the rescue"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e407"></a>Javascript to the rescue</h2></div></div></div>
       
       <p>The application will use several Javascript libraries:</p>
       <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
@@ -491,37 +498,35 @@ package examples.tutorial.weather7;</pre></div>
         </li><li class="listitem">
           <p>A small custom script to setup the accordion plugin with the ajax plugin</p>
         </li></ul></div>
-      <div class="section" title="Adding scripts"><div class="titlepage"><div><div><h3 class="title"><a name="d5e411"></a>Adding scripts</h3></div></div></div>
+      <div class="section" title="Adding scripts"><div class="titlepage"><div><div><h3 class="title"><a name="d5e419"></a>Adding scripts</h3></div></div></div>
         
         <p>The Asset plugin was introduced in the previous section to handle the serving of the Bootstrap stylesheets. The <code class="code">@Asset</code> annotation can be used also for embedding scripts, but it provides more control about the script, in particular a dependency mechanism to control the order of scripts that we will use: indeed JQuery plugins have to be loaded after the JQuery library is loaded.</p>
         <p>We extend the <code class="code">@Asset</code> annotation to add our scripts:</p>
-        <div class="programlistingco"><pre class="prettyprint language-java">@Assets(
-   scripts = {
-      @Script(
-         id = "jquery", <span class="co" id="callout-0__"><img src="images/callouts/1.png" alt="(1)"></span> 
-         src = "jquery-1.7.1.min.js",
-         location = AssetLocation.CLASSPATH),
-      @Script(
-         id = "transition",
-         src = "bootstrap-transition.js", <span class="co" id="callout-1__"><img src="images/callouts/2.png" alt="(2)"></span> 
-         location = AssetLocation.CLASSPATH,
-         depends = "jquery"), <span class="co" id="callout-2__"><img src="images/callouts/1.png" alt="(1)"></span> 
-      @Script(
-         id = "collapse",
-         src = "bootstrap-collapse.js",
-         location = AssetLocation.CLASSPATH,
-         depends = {
-            "jquery", // 1
-            "transition"}), <span class="co" id="callout-3__"><img src="images/callouts/2.png" alt="(2)"></span> 
-      @Script(
-         src = "weather.js",
-         location = AssetLocation.CLASSPATH,
-         depends = {
-            "jquery",  <span class="co" id="callout-4__"><img src="images/callouts/1.png" alt="(1)"></span> 
-            "collapse"}) <span class="co" id="callout-5_"><img src="images/callouts/3.png" alt="(3)"></span> 
-   },
-   stylesheets = @Stylesheet(src = "/examples/tutorial/assets/bootstrap.css", location = AssetLocation.CLASSPATH)
-)
+        <div class="programlistingco"><pre class="prettyprint language-java">@Assets({
+  @Asset(
+    id = "jquery", <span class="co" id="callout-0__"><img src="images/callouts/1.png" alt="(1)"></span> 
+    value = "jquery-1.7.1.min.js",
+    location = AssetLocation.CLASSPATH),
+  @Asset(
+    id = "transition",
+    value = "bootstrap-transition.js", <span class="co" id="callout-1__"><img src="images/callouts/2.png" alt="(2)"></span> 
+    location = AssetLocation.CLASSPATH,
+    depends = "jquery"), <span class="co" id="callout-2__"><img src="images/callouts/1.png" alt="(1)"></span> 
+  @Asset(
+    id = "collapse",
+    value = "bootstrap-collapse.js",
+    location = AssetLocation.CLASSPATH,
+    depends = {
+      "jquery", // 1
+      "transition"}), <span class="co" id="callout-3__"><img src="images/callouts/2.png" alt="(2)"></span> 
+  @Asset(
+    value = "weather.js",
+    location = AssetLocation.CLASSPATH,
+    depends = {
+      "jquery",  <span class="co" id="callout-4__"><img src="images/callouts/1.png" alt="(1)"></span> 
+      "collapse"}), <span class="co" id="callout-5_"><img src="images/callouts/3.png" alt="(3)"></span> 
+  @Asset(value = "/examples/tutorial/assets/bootstrap.css", location = AssetLocation.CLASSPATH)
+})
 package examples.tutorial.weather8;
 
 
@@ -532,18 +537,18 @@ package examples.tutorial.weather8;
             </td></tr><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/3.png" alt="3" border="0"></p></td><td valign="top" align="left">
               <p>Our <span class="italic">weather</span> script depends also on the JQuery <span class="italic">collapse</span> plugin</p>
             </td></tr></table></div></div>
-        <p>The declaration is straightforward, any <code class="code">@Script</code> annotation may configure</p>
+        <p>The declaration is straightforward, any <code class="code">@Asset</code> annotation may configure</p>
         <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
-            <p>an optional <code class="code">id</code> used for creating dependencies between scripts</p>
+            <p>an optional <code class="code">id</code> used for creating dependencies between script assets</p>
           </li><li class="listitem">
-            <p>a mandatory <code class="code">src</code> for the script name</p>
+            <p>a mandatory <code class="code">value</code> for the script name</p>
           </li><li class="listitem">
             <p>an optional <code class="code">location</code> for resolving the script</p>
           </li><li class="listitem">
             <p>an optional <code class="code">depends</code> that declares the ids a script depends on</p>
           </li></ul></div>
       </div>
-      <div class="section" title="The collapse plugin"><div class="titlepage"><div><div><h3 class="title"><a name="d5e454"></a>The collapse plugin</h3></div></div></div>
+      <div class="section" title="The collapse plugin"><div class="titlepage"><div><div><h3 class="title"><a name="d5e462"></a>The collapse plugin</h3></div></div></div>
         
         <p>The Bootstrap collapse plugin allows the user to unfold a city to display its weather, you can see how it works in the <a class="ulink" href="http://twitter.github.com/bootstrap/javascript.html#collapse" target="_top">Bootstrap manual</a>. In our case we modify the <code class="code">index.gtmpl</code> to use it, in particular the <code class="code">accordion-group</code> part:</p>
         <div class="programlistingco"><pre class="prettyprint">&lt;div class="accordion-group"&gt;
@@ -564,10 +569,10 @@ package examples.tutorial.weather8;
           </li></ul></div>
       </div>
     </div>
-    <div class="section" title="Bridge the gap with Ajax"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e471"></a>Bridge the gap with Ajax</h2></div></div></div>
+    <div class="section" title="Bridge the gap with Ajax"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e479"></a>Bridge the gap with Ajax</h2></div></div></div>
       
       <p>Now our application loads a set of dynamic tabs managed by JQuery and the collapse plugin, it's time to develop the ajax part: our goal is to load a markup fragment to insert in an accordion item when it is unfolded. We will develop a bit of client side Javascript and a resource controller on the Weather controller.</p>
-      <div class="section" title="Resource controller"><div class="titlepage"><div><div><h3 class="title"><a name="d5e474"></a>Resource controller</h3></div></div></div>
+      <div class="section" title="Resource controller"><div class="titlepage"><div><div><h3 class="title"><a name="d5e482"></a>Resource controller</h3></div></div></div>
         
         <p>We need a controller method to server the markup of the weather of a particular city. Until now we have studied view and action controllers, for this use case we will use a new type of controller : the <span class="italic">resource</span> controller.</p>
         <p>Resource controllers are pretty much like a view controllers except that they must produce the entire response sent to the client and that is precisely what we want to achieve on the server side.</p>
@@ -579,12 +584,12 @@ package examples.tutorial.weather8;
   @Ajax
   @Resource
   @Route("/fragment")
-  public void getFragment(String location) {
-    fragment.
+  public Response.Content getFragment(String location) {
+    return fragment.
       with().
       location(location).
       temperature(weatherService.getTemperature(location)).
-      render();
+      ok();
   }</pre></div>
         <p>The fragment template is very simple and only renders the portion of the screen that will be updated by the client side javascript code when an item is unfolded:</p>
         <div class="programlistingco"><pre class="prettyprint language-java">#{param name=location/}
@@ -592,7 +597,7 @@ package examples.tutorial.weather8;
 &lt;p&gt;The weather temperature in ${location} is ${temperature} degrees C&lt;/p&gt;
 </pre></div>
       </div>
-      <div class="section" title="JQuery"><div class="titlepage"><div><div><h3 class="title"><a name="d5e488"></a>JQuery</h3></div></div></div>
+      <div class="section" title="JQuery"><div class="titlepage"><div><div><h3 class="title"><a name="d5e496"></a>JQuery</h3></div></div></div>
         
         <p>The last part of our application is the javascript part that will react on the collapse plugin component to load the markup from the <code class="code">getFragment</code> controller when the item is unfolded. We create the javascript file <code class="code">weather.js</code> in the <code class="code">examples.tutorial.weather8.assets</code>:</p>
         <div class="programlistingco"><pre class="prettyprint language-java">$(function () {
@@ -651,7 +656,7 @@ package examples.tutorial.weather8;
       </div>
     </div>
   </div>
-  <div class="chapter" title="Chapter&nbsp;9.&nbsp;Testing our application"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="testing"></a>Chapter&nbsp;9.&nbsp;Testing our application </h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e565">Setting up the test</a></span></dt><dt><span class="section"><a href="#d5e617">Testing the app</a></span></dt></dl></div>
+  <div class="chapter" title="Chapter&nbsp;9.&nbsp;Testing our application"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="testing"></a>Chapter&nbsp;9.&nbsp;Testing our application </h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e573">Setting up the test</a></span></dt><dt><span class="section"><a href="#d5e625">Testing the app</a></span></dt></dl></div>
     
     <p>The last chapter of our tutorial will teach you how to test a Juzu application. Juzu applications can be tested using existing tools, we will use in this chapter the following tools:</p>
     <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
@@ -685,11 +690,11 @@ package examples.tutorial.weather8;
   &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;</pre></div>
     <p>The <span class="italic">juzu-bom-arquillian</span> and <span class="italic">juzu-bom-arquillian-tomcat7</span> provides setup for Arquillian and Selenium for Tomcat7 based testing.</p>
-    <div class="section" title="Setting up the test"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e565"></a>Setting up the test</h2></div></div></div>
+    <div class="section" title="Setting up the test"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e573"></a>Setting up the test</h2></div></div></div>
       
       <p>Let's start by setting up our test class with Arquillian, the goal is to run the Weather application during the test. We will rely on the <a class="ulink" href="http://tomcat.apache.org" target="_top">Tomcat</a> servlet container for running our application and on the Arquillian framework for starting and stopping Tomcat. Arquillian provides a JUnit runner for managing a web container during a unit test:</p>
       <p>
-        </p><div class="example"><a name="d5e570"></a><p class="title"><b>Example&nbsp;9.1.&nbsp;Using the Arquillian runner</b></p><div class="example-contents">
+        </p><div class="example"><a name="d5e578"></a><p class="title"><b>Example&nbsp;9.1.&nbsp;Using the Arquillian runner</b></p><div class="example-contents">
           
           <div class="programlistingco"><pre class="prettyprint language-java">@RunWith(Arquillian.class)
 public class WeatherTestCase {
@@ -701,7 +706,7 @@ public class WeatherTestCase {
       </div>
       <p>This only setup Tomcat during the test, we need to deploy the Weather application and for this we use Arquillian  <code class="code">@Deployment</code> annotation and we return a ShrinkWrap <code class="code">WebArchive</code> object that will be deployed in Tomcat by Arquillian. <code class="code">WebArchive</code> are easy to build programmatically, however we will use an helper provided by Juzu to build the base archive:</p>
       <p>
-        </p><div class="example"><a name="d5e582"></a><p class="title"><b>Example&nbsp;9.2.&nbsp;Application deployment</b></p><div class="example-contents">
+        </p><div class="example"><a name="d5e590"></a><p class="title"><b>Example&nbsp;9.2.&nbsp;Application deployment</b></p><div class="example-contents">
           
           <div class="programlistingco"><pre class="prettyprint language-java">  @Deployment
   public static WebArchive deployment() {
@@ -720,7 +725,7 @@ public class WeatherTestCase {
       </p>
       <p>For testing our application we will use Selenium WebDriver managed by Arquillian. Arquillian can inject WebDriver thanks to the <span class="italic">Drone</span> extension and it is quite easy to achieve. We also need the base URL of the Weather application after it is deployed:</p>
       <p>
-        </p><div class="example"><a name="d5e600"></a><p class="title"><b>Example&nbsp;9.3.&nbsp;Arquillian injection</b></p><div class="example-contents">
+        </p><div class="example"><a name="d5e608"></a><p class="title"><b>Example&nbsp;9.3.&nbsp;Arquillian injection</b></p><div class="example-contents">
           
           <div class="programlistingco"><pre class="prettyprint language-java">  @Drone
   WebDriver driver;
@@ -731,7 +736,7 @@ public class WeatherTestCase {
       </p>
       <p>The last step of the setup is a little helper method for creating application URL for our applications <span class="italic">weather1</span>, <span class="italic">weather2</span>, ...</p>
       <p>
-        </p><div class="example"><a name="d5e609"></a><p class="title"><b>Example&nbsp;9.4.&nbsp;Creating URL for an application</b></p><div class="example-contents">
+        </p><div class="example"><a name="d5e617"></a><p class="title"><b>Example&nbsp;9.4.&nbsp;Creating URL for an application</b></p><div class="example-contents">
           
           <div class="programlistingco"><pre class="prettyprint language-java">  public URL getApplicationURL(String application) {
     try {
@@ -747,11 +752,11 @@ public class WeatherTestCase {
       </p>
       <p>This method simply generates an URL based on the application name, for example <code class="code">getApplicationURL("weather1")</code> returns  the URL for the <span class="italic">weather1</span> application.</p>
     </div>
-    <div class="section" title="Testing the app"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e617"></a>Testing the app</h2></div></div></div>
+    <div class="section" title="Testing the app"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e625"></a>Testing the app</h2></div></div></div>
       
       <p>Now that our test class is done we can write a few tests for the application:</p>
       <p>
-        </p><div class="example"><a name="d5e621"></a><p class="title"><b>Example&nbsp;9.5.&nbsp;Creating URL for an application</b></p><div class="example-contents">
+        </p><div class="example"><a name="d5e629"></a><p class="title"><b>Example&nbsp;9.5.&nbsp;Creating URL for an application</b></p><div class="example-contents">
           
           <div class="programlistingco"><pre class="prettyprint language-java">  @Test
   @RunAsClient
@@ -769,7 +774,7 @@ public class WeatherTestCase {
       </p>
     </div>
   </div>
-  <div class="chapter" title="Chapter&nbsp;10.&nbsp;Wrap up"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e633"></a>Chapter&nbsp;10.&nbsp;Wrap up</h1></div></div></div></div>
+  <div class="chapter" title="Chapter&nbsp;10.&nbsp;Wrap up"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e641"></a>Chapter&nbsp;10.&nbsp;Wrap up</h1></div></div></div></div>
     
     <p>We reached the ends our walk through Juzu, now you can learn more and study the Booking application. This application can be found in the package you downloaded in the <code class="code">booking</code> directory.</p>
   </div>
