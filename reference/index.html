@@ -292,12 +292,26 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 <li>
 <ol type="none" class="sectlevel2">
 <li><a href="#_template_declaration">Template declaration</a></li>
+<li><a href="#_template_reuse">Template reuse</a></li>
+<li><a href="#_type_safe_parameters">Type safe parameters</a></li>
+<li><a href="#_expression_resolution">Expression resolution</a></li>
 </ol>
 </li>
-<li><a href="#_type_safe_parameters">Type safe parameters</a></li>
+</ol>
+</li>
+<li><a href="#taglib">Taglib</a></li>
+<li>
+<ol type="none" class="sectlevel1">
+<li><a href="#_taglib_syntax">Taglib syntax</a></li>
+<li><a href="#_include_tag">Include tag</a></li>
+<li><a href="#_decorate_insert_tag">Decorate / Insert tag</a></li>
+<li><a href="#_title_tag">Title tag</a></li>
+<li><a href="#_param_tag">Param tag</a></li>
+<li><a href="#_custom_tags">Custom tags</a></li>
 <li>
 <ol type="none" class="sectlevel2">
-<li><a href="#_expression_resolution">Expression resolution</a></li>
+<li><a href="#_simple_tags">Simple tags</a></li>
+<li><a href="#_java_tags">Java tags</a></li>
 </ol>
 </li>
 </ol>
@@ -316,16 +330,6 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 </li>
 <li><a href="#_template_at_work">Template at work</a></li>
 <li><a href="#_qualified_template_class">Qualified template class</a></li>
-</ol>
-</li>
-<li><a href="#taglib">Taglib</a></li>
-<li>
-<ol type="none" class="sectlevel1">
-<li><a href="#_taglib_syntax">Taglib syntax</a></li>
-<li><a href="#_include_tag">Include tag</a></li>
-<li><a href="#_decorate_insert_tag">Decorate / Insert tag</a></li>
-<li><a href="#_title_tag">Title tag</a></li>
-<li><a href="#_param_tag">Param tag</a></li>
 </ol>
 </li>
 <li><a href="#assets">Assets</a></li>
@@ -1245,7 +1249,88 @@ in the <code>@Application</code> annotation:</p>
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java"></code></pre>
+<pre class="CodeRay"><code class="java language-java"><span class="comment">/*
+ * Copyright 2013 eXo Platform SAS
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</span>
+
+<span class="keyword">package</span> <span class="namespace">juzu</span>;
+
+<span class="keyword">import</span> <span class="include">java.lang.annotation.ElementType</span>;
+<span class="keyword">import</span> <span class="include">java.lang.annotation.Retention</span>;
+<span class="keyword">import</span> <span class="include">java.lang.annotation.RetentionPolicy</span>;
+<span class="keyword">import</span> <span class="include">java.lang.annotation.Target</span>;
+
+<span class="comment">/**
+ * Defines a route when Juzu is exposes the application over the HTTP protocol. The route can be used
+ * at the application level and at the controller level.
+ *
+ * &lt;h2&gt;Application routes&lt;/h2&gt;
+ *
+ * &lt;p&gt;An application package can be annotated to &lt;i&gt;mount&lt;/i&gt; the application, this is useful when a
+ * compilation unit contains several applications and each needs to be accessed with a different route&lt;/p&gt;
+ *
+ * &lt;code&gt;&lt;pre&gt;
+ *    &amp;#064;{@link Route}(&quot;/myapplication&quot;)
+ *    &amp;#064;{@link Application}
+ *    package myapplication;
+ * &lt;/pre&gt;&lt;/code&gt;
+ *
+ * &lt;h2&gt;Controller method routes&lt;/h2&gt;
+ *
+ * &lt;p&gt;Controller methods can be annotated to &lt;i&gt;mount&lt;/i&gt; the controller:&lt;/p&gt;
+ *
+ * &lt;code&gt;&lt;pre&gt;
+ *    public class MyController {
+ *
+ *       &amp;#064;{@link Action}
+ *       &amp;#064;{@link Route}(&quot;/myaction/{value}&quot;)
+ *       public {@link juzu.Response.Content} myAction(String value) { ... }
+ *
+ *       &amp;#064;{@link View}
+ *       &amp;#064;{@link Route}(&quot;/myview&quot;)
+ *       public {@link juzu.Response.Content} myView() { ... }
+ *
+ *       &amp;#064;{@link Resource}
+ *       &amp;#064;{@link Route}(&quot;/myresource&quot;)
+ *       public {@link juzu.Response.Content} myView() { ... }
+ *    }
+ * &lt;/pre&gt;&lt;/code&gt;
+ *
+ * The {@link Param} annotation can be used further more for constraining a parameter in the route path.
+ *
+ * @author &lt;a href=&quot;mailto:julien.viet@exoplatform.com&quot;&gt;Julien Viet&lt;/a&gt;
+ */</span>
+<span class="annotation">@Retention</span>(<span class="predefined-type">RetentionPolicy</span>.RUNTIME)
+<span class="annotation">@Target</span>({<span class="predefined-type">ElementType</span>.METHOD})
+<span class="directive">public</span> <span class="annotation">@interface</span> Route {
+
+  <span class="comment">/**
+   * The route path.
+   *
+   * @return the route path
+   */</span>
+  <span class="predefined-type">String</span> value();
+
+  <span class="comment">/**
+   * The route priority.
+   *
+   * @return the route priority
+   */</span>
+  <span class="type">int</span> priority() <span class="keyword">default</span> <span class="integer">0</span>;
+
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2367,7 +2452,16 @@ return them lazily or not.</p>
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java"></code></pre>
+<pre class="CodeRay"><code class="java language-java">  <span class="comment">/**
+   * Returns a provider for a specific type or null if it cannot be produced.
+   *
+   * @param implementationType the implementation class object
+   * @param &lt;T&gt;                the implementation generic type
+   * @return a provider for this class or null
+   * @throws Exception any exception that would prevent to obtain the provider
+   */</span>
+  &lt;T&gt; <span class="predefined-type">Provider</span>&lt;? <span class="directive">extends</span> T&gt; getProvider(<span class="predefined-type">Class</span>&lt;T&gt; implementationType)
+    <span class="directive">throws</span> <span class="exception">Exception</span>;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2700,21 +2794,66 @@ however we will have a quick overview of how it can be used in Juzu:</p>
 </table>
 </div>
 <div class="paragraph">
-<p>The <code>juzu.Path</code> annotation is a qualifier annotation managed by the IOC container. It is very similar to the
-<code>@javax.inject.Named</code> qualifier, but it has a special meaning for Juzu for declaring the template.</p>
+<p>The <code>@Path</code> declares the template to use, the value is usually a path relative to the <code>templates</code> package. The value
+can also be absolute like <code>/my/application/templates/index.gtmpl</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>@Inject</code> annotation instructs the injection container the inject the template at runtime, so it can be used
+by the controller.</p>
 </div>
 <div class="paragraph">
 <p>The <code>render</code> method of a template returns a <code>juzu.Response.Content</code> response which can also be returned
 by the controller method.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-note" title="Note"></i>
+</td>
+<td class="content">
+
+The <code>juzu.Path</code> annotation is a qualifier annotation managed by the IOC container. It is very much like the
+<code>@javax.inject.Named</code> qualifier, but it has a special meaning for Juzu for processing the template.
+</td>
+</tr>
+</table>
+</div>
 
 </div>
+<div class="sect2">
+<h3 id="_template_reuse"><a class="anchor" href="#_template_reuse"></a>Template reuse</h3>
+<div class="paragraph">
+<p>Template can be shared between applications: one application can reuse the templates of another application
+by using an absolute path value instead of a relative path value:</p>
+</div>
+<div class="listingblock">
+<div class="title">Reusing a template</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="annotation">@Inject</span>
+<span class="annotation">@Path</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/my/other/application/templates/index.gtmpl</span><span class="delimiter">&quot;</span></span>)
+Template index;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There are a few things to keep in mind when using external templates:</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p>templates will not be compiled by the current application.</p>
+</li>
+<li>
+<p>relative templates references (such as inclusion) are relative to the initial compilation directory, so don&#8217;t expect
+this behavior to be dynamic (since it would break compile time safety).</p>
+</li>
+</ul>
+</div>
 
 </div>
-</div>
-<div class="sect1">
-<h2 id="_type_safe_parameters"><a class="anchor" href="#_type_safe_parameters"></a>Type safe parameters</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_type_safe_parameters"><a class="anchor" href="#_type_safe_parameters"></a>Type safe parameters</h3>
 <div class="paragraph">
 <p>Template type safe parameters brings more type safety in your applications. Templates can declare parameters and they
 are made available on a subclass of the <code>juzu.template.Template</code> class.</p>
@@ -2777,6 +2916,8 @@ The sky is {{color}}.</pre>
 <p>The <code>weather.templates.sky</code> class does not exist in the original source but it is available when the application
 is compiled because it will be generated by Juzu compiler integration. The <code>sky</code> templates provides a <em>fluent</em>
 syntax to bind parameters: <code>sky.with().color("blue").ok()</code>.</p>
+</div>
+
 </div>
 <div class="sect2">
 <h3 id="_expression_resolution"><a class="anchor" href="#_expression_resolution"></a>Expression resolution</h3>
@@ -2895,6 +3036,270 @@ index.with().color(<span class="keyword">new</span> Weather(<span class="string"
 </table>
 </div>
 
+</div>
+
+</div>
+
+</div>
+</div>
+
+<h1 id="taglib" class="sect0"><a class="anchor" href="#taglib"></a>Taglib</h1>
+<div class="paragraph">
+<p>A tag library is an essential component of a templating system, allowing to enrich a templating by encapsulating reusable programmable
+logic.</p>
+</div>
+<div class="sect1">
+<h2 id="_taglib_syntax"><a class="anchor" href="#_taglib_syntax"></a>Taglib syntax</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Like most taglib syntaxes, Juzu provides two syntaxes for invoking a tag:</p>
+</div>
+<div class="listingblock">
+<div class="title">Start and end tag syntax</div>
+<div class="content monospaced">
+<pre>#{foo}bar#{/foo}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p></p>
+</div>
+<div class="paragraph">
+<p>A tag can also be empty:</p>
+</div>
+<div class="listingblock">
+<div class="title">Empty tag syntax</div>
+<div class="content monospaced">
+<pre>#{foo/}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A tag can also be invoked empty with the <code>#{foo/}</code> syntax.</p>
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_include_tag"><a class="anchor" href="#_include_tag"></a>Include tag</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <em>include</em> tag simply includes a template inside the current template. The inclusion is dynamic and not static, meaning
+ that the content of the included template is not <em>inserted</em> in the calling template, instead when inclusion is performed
+ the control is passed to the included template.</p>
+</div>
+<div class="listingblock">
+<div class="title">The include tag</div>
+<div class="content monospaced">
+<pre>#{include path=dispatched.gtmpl/}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <em>path</em> attribute determines the template to include, the path value is relative to the templates package.</p>
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_decorate_insert_tag"><a class="anchor" href="#_decorate_insert_tag"></a>Decorate / Insert tag</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <em>decorate</em> tag allows the content of the decorating template to wrap the content of the template invoking the tag.
+ The <em>insert</em> tag should be used in the decorating template to specify the place where to insert the markup produced
+ by the template to decorate.</p>
+</div>
+<div class="listingblock">
+<div class="title">The wrapped template</div>
+<div class="content monospaced">
+<pre>#{decorate path=box.gtmpl/}</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">The decoraring template</div>
+<div class="content monospaced">
+<pre>&lt;div style="border: 1px solid black"&gt;
+#{insert/}
+&lt;/div&gt;</pre>
+</div>
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_title_tag"><a class="anchor" href="#_title_tag"></a>Title tag</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <em>title</em> tag specifies a title to insert in the <code>juzu.Response.Content</code> object the template will produce.</p>
+</div>
+<div class="listingblock">
+<div class="title">Setting the title</div>
+<div class="content monospaced">
+<pre>#{title value=Home/}</pre>
+</div>
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_param_tag"><a class="anchor" href="#_param_tag"></a>Param tag</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <em>param</em> tag enhances the type safety of templates, allowing to declare parameters for executing a template. When
+such a parameter is declared, the generated template class companion will have a fluent parameter for setting the
+value of the parameter:</p>
+</div>
+<div class="listingblock">
+<div class="title">Declaring a template parameter</div>
+<div class="content monospaced">
+<pre>#{param name=color/}</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Using the template parameter</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="annotation">@Inject</span> my.templates.index index;
+
+<span class="annotation">@View</span>
+<span class="directive">public</span> Content.Response index() {
+  <span class="keyword">return</span> index.with().color(<span class="string"><span class="delimiter">&quot;</span><span class="content">red</span><span class="delimiter">&quot;</span></span>).ok();
+}</code></pre>
+</div>
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_custom_tags"><a class="anchor" href="#_custom_tags"></a>Custom tags</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Since Juzu 0.7.0, custom tags can be implemented, either as Java class or as templates, we will study both ways in this section.</p>
+</div>
+<div class="sect2">
+<h3 id="_simple_tags"><a class="anchor" href="#_simple_tags"></a>Simple tags</h3>
+<div class="paragraph">
+<p>Simple tags allow creation of custom tags with templates located in the <code>tags</code> package of your application.</p>
+</div>
+<div class="listingblock">
+<div class="title">Our simple tag</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code>My simple tag</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Put this content in the <em>tags/mytag.gtmpl</em> file of the application.</p>
+</div>
+<div class="paragraph">
+<p>Obviously Juzu needs to be aware of the existence of this tag, this is achieved using the <code>@Tag</code>/<code>@Tags</code> annotations:</p>
+</div>
+<div class="listingblock">
+<div class="title">Declaring our simple tag</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="annotation">@Application</span>
+<span class="annotation">@Tags</span>(<span class="annotation">@Tag</span>(name = <span class="string"><span class="delimiter">&quot;</span><span class="content">mytag</span><span class="delimiter">&quot;</span></span>, path = <span class="string"><span class="delimiter">&quot;</span><span class="content">mytag.gtmpl</span><span class="delimiter">&quot;</span></span>))
+<span class="keyword">package</span> <span class="namespace">my.application</span>;
+
+<span class="keyword">import</span> <span class="include">juzu.Application</span>;
+<span class="keyword">import</span> <span class="include">juzu.template.Tags</span>;
+<span class="keyword">import</span> <span class="include">juzu.template.Tag</span>;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Simple tags are templates so most of the tag syntax applies here, however there are a few differences between application
+templates and simple tags:</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p>Simple tags are in the <em>tags</em> package instead of the <em>templates</em> package</p>
+</li>
+<li>
+<p>Simple tags cannot reference other templates, the tag syntax must be used instead</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_simple_tag_parameters"><a class="anchor" href="#_simple_tag_parameters"></a>Simple tag parameters</h4>
+<div class="paragraph">
+<p>Simple tags can have parameters, to access them use the implicit <code>parameters</code> map property in the tag template.</p>
+</div>
+<div class="listingblock">
+<div class="title">Accessing the simple tag parameters</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code>Hello ${parameters.name}</code></pre>
+</div>
+</div>
+
+</div>
+<div class="sect3">
+<h4 id="_simple_tag_body"><a class="anchor" href="#_simple_tag_body"></a>Simple tag body</h4>
+<div class="paragraph">
+<p>Simple tags can have a body that can be evaluated within the tag body using the <code>insert</code> tag (this tag is also be used
+by the <code>decorate</code> tag).</p>
+</div>
+<div class="listingblock">
+<div class="title">Evaluating the simple tag body</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code>&lt;foo&gt;#{insert/}&lt;/foo&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The body can be evaluated as much as you want, allowing to create loop tags.</p>
+</div>
+
+</div>
+
+</div>
+<div class="sect2">
+<h3 id="_java_tags"><a class="anchor" href="#_java_tags"></a>Java tags</h3>
+<div class="paragraph">
+<p>Tags can also be implemented with Java code, let&#8217;s look at the actual implementation of the <em>title</em> tag:</p>
+</div>
+<div class="listingblock">
+<div class="title">The title tag implementation</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">TitleTag</span> <span class="directive">extends</span> TagHandler {
+
+  <span class="directive">public</span> TitleTag() {
+    <span class="local-variable">super</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">title</span><span class="delimiter">&quot;</span></span>);
+  }
+
+  <span class="annotation">@Override</span>
+  <span class="directive">public</span> <span class="type">void</span> render(TemplateRenderContext context, Renderable body, <span class="predefined-type">Map</span>&lt;<span class="predefined-type">String</span>, <span class="predefined-type">String</span>&gt; args) <span class="directive">throws</span> <span class="exception">IOException</span> {
+    <span class="predefined-type">String</span> title = args.get(<span class="string"><span class="delimiter">&quot;</span><span class="content">value</span><span class="delimiter">&quot;</span></span>);
+
+    <span class="comment">//</span>
+    <span class="keyword">if</span> (title != <span class="predefined-constant">null</span>) {
+      context.setTitle(title);
+    }
+
+    <span class="comment">//</span>
+    body.render(context);
+  }
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p>The class extends the <code>juzu.template.TagHandler</code> abstract class</p>
+</li>
+<li>
+<p>The constructor must provide the tag name to the <code>TagHandler</code> super constructor</p>
+</li>
+<li>
+<p>The tag is rendered with the <code>render</code> method</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Finally the tag must be declared as a <a href="http://docs.oracle.com/javase/6/docs/technotes/guides/jar/jar.html#Service%20Provider">Java Service Provider API</a> which is achieved by having the following content in the
+<em>META-INF/services/juzu.template.TagHandler</em> file:</p>
+</div>
+<div class="listingblock">
+<div class="title">The tag declaration</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">juzu.impl.tags.TitleTag <span class="error">#</span> the tag service provider</code></pre>
+</div>
 </div>
 
 </div>
@@ -3058,7 +3463,14 @@ various methods of the provider.</p>
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java"></code></pre>
+<pre class="CodeRay"><code class="java language-java">  <span class="comment">/**
+   * Returns the template source extension without the dot recognised by
+   * this provider. For instance it should return &lt;code&gt;gtmpl&lt;/code&gt;
+   * for groovy templates.
+   *
+   * @return the source extension
+   */</span>
+  <span class="directive">public</span> <span class="directive">abstract</span> <span class="predefined-type">String</span> getSourceExtension();</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3068,7 +3480,40 @@ various methods of the provider.</p>
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java"></code></pre>
+<pre class="CodeRay"><code class="java language-java">  <span class="comment">/**
+   * Parse the provided char sequence and return the corresponding template model.
+   *
+   * @param context the parse context
+   * @param source the source to parse
+   * @return the corresponding template model
+   * @throws TemplateException any template related exception
+   */</span>
+  <span class="directive">public</span> <span class="directive">abstract</span> M parse(
+      ParseContext context,
+      <span class="predefined-type">CharSequence</span> source) <span class="directive">throws</span> TemplateException;
+
+  <span class="comment">/**
+   * Process the template.
+   *
+   * @param context the process context
+   * @param template  the template to process
+   * @throws TemplateException any template related exception
+   */</span>
+  <span class="directive">public</span> <span class="directive">abstract</span> <span class="type">void</span> process(
+      ProcessContext context,
+      Template&lt;M&gt; template) <span class="directive">throws</span> TemplateException;
+
+  <span class="comment">/**
+   * Provide an opportunity for emitting a file on the disk.
+   *
+   * @param context the emit context
+   * @param template the template
+   * @throws TemplateException any template related exception
+   * @throws IOException any io exception
+   */</span>
+  <span class="directive">public</span> <span class="directive">abstract</span> <span class="type">void</span> emit(
+      EmitContext context,
+      Template&lt;M&gt; template) <span class="directive">throws</span> TemplateException, <span class="exception">IOException</span>;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3120,7 +3565,12 @@ to create resources during this round.</p>
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java"></code></pre>
+<pre class="CodeRay"><code class="java language-java">  <span class="comment">/**
+   * Return the template stub type.
+   *
+   * @return the template stub class
+   */</span>
+  <span class="directive">public</span> <span class="directive">abstract</span> <span class="predefined-type">Class</span>&lt;? <span class="directive">extends</span> TemplateStub&gt; getTemplateStubType();</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3143,7 +3593,22 @@ Each provider provides its own stub implementation as a <code>juzu.impl.template
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java"></code></pre>
+<pre class="CodeRay"><code class="java language-java">  <span class="comment">/**
+   * Init the template with the associated resource.
+   *
+   * @param loader   the class loader
+   */</span>
+  <span class="directive">protected</span> <span class="directive">abstract</span> <span class="type">void</span> doInit(<span class="predefined-type">ClassLoader</span> loader);
+
+  <span class="comment">/**
+   * Performs template rendering.
+   *
+   * @param renderContext the render context
+   * @throws TemplateExecutionException any execution exception
+   * @throws IOException any io exception
+   */</span>
+  <span class="directive">protected</span> <span class="directive">abstract</span> <span class="type">void</span> doRender(TemplateRenderContext renderContext)
+      <span class="directive">throws</span> TemplateExecutionException, <span class="exception">IOException</span>;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3259,143 +3724,6 @@ are used as only the <code>index</code> type declares the fluent API.</p>
   <span class="directive">public</span> Response.Content index() {
     <span class="keyword">return</span> index.with().color(<span class="string"><span class="delimiter">&quot;</span><span class="content">red</span><span class="delimiter">&quot;</span></span>).ok();
   }
-}</code></pre>
-</div>
-</div>
-
-</div>
-</div>
-
-<h1 id="taglib" class="sect0"><a class="anchor" href="#taglib"></a>Taglib</h1>
-<div class="paragraph">
-<p>A tag library is an essential component of a templating system, allowing to enrich a templating with encapsulated programmable
-logic.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="icon-important" title="Important"></i>
-</td>
-<td class="content">
-
-Juzu does not yet allow application to define their own tags, it will be added a a new feature in a future version.
-</td>
-</tr>
-</table>
-</div>
-<div class="sect1">
-<h2 id="_taglib_syntax"><a class="anchor" href="#_taglib_syntax"></a>Taglib syntax</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Like most taglib syntaxes, Juzu provides two syntaxes for invoking a tag:</p>
-</div>
-<div class="listingblock">
-<div class="title">Start and end tag syntax</div>
-<div class="content monospaced">
-<pre>#{foo}bar#{/foo}</pre>
-</div>
-</div>
-<div class="paragraph">
-<p></p>
-</div>
-<div class="paragraph">
-<p>A tag can also be empty:</p>
-</div>
-<div class="listingblock">
-<div class="title">Empty tag syntax</div>
-<div class="content monospaced">
-<pre>#{foo/}</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>A tag can also be invoked empty with the <code>#{foo/}</code> syntax.</p>
-</div>
-
-</div>
-</div>
-<div class="sect1">
-<h2 id="_include_tag"><a class="anchor" href="#_include_tag"></a>Include tag</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The <em>include</em> tag simply includes a template inside the current template. The inclusion is dynamic and not static, meaning
- that the content of the included template is not <em>inserted</em> in the calling template, instead when inclusion is performed
- the control is passed to the included template.</p>
-</div>
-<div class="listingblock">
-<div class="title">The include tag</div>
-<div class="content monospaced">
-<pre>#{include path=dispatched.gtmpl/}</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The <em>path</em> attribute determines the template to include, the path value is relative to the templates package.</p>
-</div>
-
-</div>
-</div>
-<div class="sect1">
-<h2 id="_decorate_insert_tag"><a class="anchor" href="#_decorate_insert_tag"></a>Decorate / Insert tag</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The <em>decorate</em> tag allows the content of the decorating template to wrap the content of the template invoking the tag.
- The <em>insert</em> tag should be used in the decorating template to specify the place where to insert the markup produced
- by the template to decorate.</p>
-</div>
-<div class="listingblock">
-<div class="title">The wrapped template</div>
-<div class="content monospaced">
-<pre>#{decorate path=box.gtmpl/}</pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">The decoraring template</div>
-<div class="content monospaced">
-<pre>&lt;div style="border: 1px solid black"&gt;
-#{insert/}
-&lt;/div&gt;</pre>
-</div>
-</div>
-
-</div>
-</div>
-<div class="sect1">
-<h2 id="_title_tag"><a class="anchor" href="#_title_tag"></a>Title tag</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The <em>title</em> tag specifies a title to insert in the <code>juzu.Response.Content</code> object the template will produce.</p>
-</div>
-<div class="listingblock">
-<div class="title">Setting the title</div>
-<div class="content monospaced">
-<pre>#{title value=Home/}</pre>
-</div>
-</div>
-
-</div>
-</div>
-<div class="sect1">
-<h2 id="_param_tag"><a class="anchor" href="#_param_tag"></a>Param tag</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The <em>param</em> tag enhances the type safety of templates, allowing to declare parameters for executing a template. When
-such a parameter is declared, the generated template class companion will have a fluent parameter for setting the
-value of the parameter:</p>
-</div>
-<div class="listingblock">
-<div class="title">Declaring a template parameter</div>
-<div class="content monospaced">
-<pre>#{param name=color/}</pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Using the template parameter</div>
-<div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java"><span class="annotation">@Inject</span> my.templates.index index;
-
-<span class="annotation">@View</span>
-<span class="directive">public</span> Content.Response index() {
-  <span class="keyword">return</span> index.with().color(<span class="string"><span class="delimiter">&quot;</span><span class="content">red</span><span class="delimiter">&quot;</span></span>).ok();
 }</code></pre>
 </div>
 </div>
@@ -4427,7 +4755,7 @@ can only be performed during an action phase.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2013-09-30 21:07:42 CEST
+Last updated 2013-10-08 17:10:37 CEST
 </div>
 </div>
 </body>

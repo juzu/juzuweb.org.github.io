@@ -366,7 +366,17 @@ annotated with the <code>@View</code> annotation, which turns the <code>Weather<
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java"></code></pre>
+<pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">Weather</span> {
+
+  <span class="annotation">@Inject</span>
+  <span class="annotation">@Path</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">index.gtmpl</span><span class="delimiter">&quot;</span></span>)
+  Template index;
+
+  <span class="annotation">@View</span>
+  <span class="directive">public</span> Response.Content index() {
+    <span class="keyword">return</span> index.ok();
+  }
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -391,7 +401,15 @@ for the Java compiler.</p>
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="xml language-xml"></code></pre>
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;web-app</span> <span class="attribute-name">xmlns</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://java.sun.com/xml/ns/javaee</span><span class="delimiter">&quot;</span></span>
+         <span class="attribute-name">xmlns:xsi</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.w3.org/2001/XMLSchema-instance</span><span class="delimiter">&quot;</span></span>
+         <span class="attribute-name">xsi:schemaLocation</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd</span><span class="delimiter">&quot;</span></span>
+         <span class="attribute-name">version</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">3.0</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+  <span class="tag">&lt;context-param&gt;</span>
+    <span class="tag">&lt;param-name&gt;</span>juzu.run_mode<span class="tag">&lt;/param-name&gt;</span>
+    <span class="tag">&lt;param-value&gt;</span>prod<span class="tag">&lt;/param-value&gt;</span>
+  <span class="tag">&lt;/context-param&gt;</span>
+<span class="tag">&lt;/web-app&gt;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -445,7 +463,7 @@ we will focus on explaining the use of dynamic expression in a template.</p>
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java"></code></pre>
+<pre class="CodeRay"><code class="java language-java">The weather temperature in <span class="error">$</span>{location} is <span class="error">$</span>{temperature} degrees.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -455,7 +473,13 @@ we will focus on explaining the use of dynamic expression in a template.</p>
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java"></code></pre>
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@View</span>
+  <span class="directive">public</span> Response.Content index() {
+    <span class="predefined-type">Map</span>&lt;<span class="predefined-type">String</span>, <span class="predefined-type">Object</span>&gt; parameters = <span class="keyword">new</span> <span class="predefined-type">HashMap</span>&lt;<span class="predefined-type">String</span>, <span class="predefined-type">Object</span>&gt;();
+    parameters.put(<span class="string"><span class="delimiter">&quot;</span><span class="content">location</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">marseille</span><span class="delimiter">&quot;</span></span>);
+    parameters.put(<span class="string"><span class="delimiter">&quot;</span><span class="content">temperature</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">20</span><span class="delimiter">&quot;</span></span>);
+    <span class="keyword">return</span> index.with(parameters).ok();
+  }</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -472,7 +496,65 @@ previous section. For this matter we use a remote service that we encapsulate in
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java"></code></pre>
+<pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">WeatherService</span> {
+
+  <span class="comment">/** A cache for temperatures. */</span>
+  <span class="directive">private</span> <span class="directive">final</span> <span class="predefined-type">HashMap</span>&lt;<span class="predefined-type">String</span>, <span class="predefined-type">String</span>&gt; cache = <span class="keyword">new</span> <span class="predefined-type">HashMap</span>&lt;<span class="predefined-type">String</span>, <span class="predefined-type">String</span>&gt;();
+
+  <span class="directive">public</span> WeatherService() {
+    <span class="predefined-type">System</span>.out.println(<span class="string"><span class="delimiter">&quot;</span><span class="content">aezfzef</span><span class="delimiter">&quot;</span></span>);
+  }
+
+  <span class="comment">/**
+   * Returns the temperature for the specifed location in celsius degrees.
+   *
+   * @param location the location
+   * @return the temperature
+   */</span>
+  <span class="directive">public</span> <span class="predefined-type">String</span> getTemperature(<span class="predefined-type">String</span> location) {
+    <span class="predefined-type">String</span> temperature = cache.get(location);
+    <span class="keyword">if</span> (temperature == <span class="predefined-constant">null</span>) {
+      cache.put(location, temperature = retrieveTemperature(location));
+    }
+    <span class="keyword">return</span> temperature;
+  }
+
+  <span class="directive">private</span> <span class="predefined-type">String</span> getValue(<span class="predefined-type">String</span> url, <span class="predefined-type">String</span> xpath) <span class="directive">throws</span> <span class="exception">Exception</span> {
+    <span class="predefined-type">XPathExpression</span> expr = <span class="predefined-type">XPathFactory</span>.
+        newInstance().newXPath().compile(xpath);
+    InputSource src = <span class="keyword">new</span> InputSource(url);
+    <span class="keyword">return</span> expr.evaluate(src);
+  }
+
+  <span class="comment">/**
+   * Retrieve the temperature.
+   *
+   * @param location the location
+   * @return the temperature
+   */</span>
+  <span class="directive">protected</span> <span class="predefined-type">String</span> retrieveTemperature(<span class="predefined-type">String</span> location) {
+    <span class="keyword">try</span> {
+      <span class="comment">// First we get the location WOEID</span>
+      <span class="predefined-type">String</span> woeidURL =
+          <span class="string"><span class="delimiter">&quot;</span><span class="content">http://query.yahooapis.com/v1/public/yql</span><span class="delimiter">&quot;</span></span> +
+              <span class="string"><span class="delimiter">&quot;</span><span class="content">?q=select%20*%20from%20geo.places%20where%20text%3D%22</span><span class="delimiter">&quot;</span></span> +
+              <span class="predefined-type">URLEncoder</span>.encode(location, <span class="string"><span class="delimiter">&quot;</span><span class="content">UTF-8</span><span class="delimiter">&quot;</span></span>) +
+              <span class="string"><span class="delimiter">&quot;</span><span class="content">%22&amp;format=xml</span><span class="delimiter">&quot;</span></span>;
+      <span class="predefined-type">String</span> woeid = getValue(woeidURL, <span class="string"><span class="delimiter">&quot;</span><span class="content">//*[local-name()='woeid']/text()</span><span class="delimiter">&quot;</span></span>);
+
+      <span class="comment">// Now get weather temperature</span>
+      <span class="predefined-type">String</span> weatherURL =
+          <span class="string"><span class="delimiter">&quot;</span><span class="content">http://weather.yahooapis.com/forecastrss?w=</span><span class="delimiter">&quot;</span></span> +
+              <span class="predefined-type">URLEncoder</span>.encode(woeid, <span class="string"><span class="delimiter">&quot;</span><span class="content">UTF-8</span><span class="delimiter">&quot;</span></span>) +
+              <span class="string"><span class="delimiter">&quot;</span><span class="content">&amp;u=c</span><span class="delimiter">&quot;</span></span>;
+      <span class="keyword">return</span> getValue(weatherURL, <span class="string"><span class="delimiter">&quot;</span><span class="content">//*[local-name()='condition']/@temp</span><span class="delimiter">&quot;</span></span>);
+    }
+    <span class="keyword">catch</span> (<span class="exception">Exception</span> e) {
+      <span class="comment">// Unavailable</span>
+      <span class="keyword">return</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">?</span><span class="delimiter">&quot;</span></span>;
+    }
+  }
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -483,7 +565,8 @@ previous section. For this matter we use a remote service that we encapsulate in
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java"></code></pre>
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@Inject</span>
+  WeatherService weatherService;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -492,7 +575,13 @@ previous section. For this matter we use a remote service that we encapsulate in
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java"></code></pre>
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@View</span>
+  <span class="directive">public</span> Response.Content index() {
+    <span class="predefined-type">Map</span>&lt;<span class="predefined-type">String</span>, <span class="predefined-type">Object</span>&gt; parameters = <span class="keyword">new</span> <span class="predefined-type">HashMap</span>&lt;<span class="predefined-type">String</span>, <span class="predefined-type">Object</span>&gt;();
+    parameters.put(<span class="string"><span class="delimiter">&quot;</span><span class="content">location</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">marseille</span><span class="delimiter">&quot;</span></span>);
+    parameters.put(<span class="string"><span class="delimiter">&quot;</span><span class="content">temperature</span><span class="delimiter">&quot;</span></span>, weatherService.getTemperature(<span class="string"><span class="delimiter">&quot;</span><span class="content">marseille</span><span class="delimiter">&quot;</span></span>));
+    <span class="keyword">return</span> index.with(parameters).ok();
+  }</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -560,7 +649,14 @@ method that accept a <code>location</code> argument as a view parameter.</p>
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java"></code></pre>
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@View</span>
+  <span class="annotation">@Route</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/show/{location}</span><span class="delimiter">&quot;</span></span>)
+  <span class="directive">public</span> Response.Content index(<span class="predefined-type">String</span> location) {
+    <span class="predefined-type">Map</span>&lt;<span class="predefined-type">String</span>, <span class="predefined-type">Object</span>&gt; parameters = <span class="keyword">new</span> <span class="predefined-type">HashMap</span>&lt;<span class="predefined-type">String</span>, <span class="predefined-type">Object</span>&gt;();
+    parameters.put(<span class="string"><span class="delimiter">&quot;</span><span class="content">location</span><span class="delimiter">&quot;</span></span>, location);
+    parameters.put(<span class="string"><span class="delimiter">&quot;</span><span class="content">temperature</span><span class="delimiter">&quot;</span></span>, weatherService.getTemperature(location));
+    <span class="keyword">return</span> index.with(parameters).ok();
+  }</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -575,7 +671,9 @@ At this point it is normal to wonder how a view parameter value can change. Let&
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java"></code></pre>
+<pre class="CodeRay"><code class="java language-java">The weather temperature in <span class="error">$</span>{location} is <span class="error">$</span>{temperature} degrees.
+&lt;a href=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{index(location = 'marseille')}</span><span class="delimiter">&quot;</span></span>&gt;Marseille&lt;/a&gt;
+&lt;a href=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{index(location = 'paris')}</span><span class="delimiter">&quot;</span></span>&gt;Paris&lt;/a&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -590,7 +688,10 @@ controller with a predefined value.</p>
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java"></code></pre>
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@View</span>
+  <span class="directive">public</span> Response.Content index() {
+    <span class="keyword">return</span> index(<span class="string"><span class="delimiter">&quot;</span><span class="content">marseille</span><span class="delimiter">&quot;</span></span>);
+  }</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -629,7 +730,17 @@ present in the form that triggers the action.</p>
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java"></code></pre>
+<pre class="CodeRay"><code class="java language-java">The weather temperature in <span class="error">$</span>{location} is <span class="error">$</span>{temperature} degrees.
+
+&lt;ul&gt;&lt;% locations.each() { location -&gt; %&gt;
+&lt;li&gt;&lt;a href=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{index(location = location)}</span><span class="delimiter">&quot;</span></span>&gt;<span class="error">$</span>{location}&lt;/a&gt;&lt;/li&gt;
+&lt;% } %&gt;
+&lt;/ul&gt;
+
+&lt;form action=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{add()}</span><span class="delimiter">&quot;</span></span> method=<span class="string"><span class="delimiter">&quot;</span><span class="content">post</span><span class="delimiter">&quot;</span></span>&gt;
+   &lt;input type=<span class="string"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span> name=<span class="string"><span class="delimiter">&quot;</span><span class="content">location</span><span class="delimiter">&quot;</span></span> value=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>/&gt;
+   &lt;input type=<span class="string"><span class="delimiter">&quot;</span><span class="content">submit</span><span class="delimiter">&quot;</span></span>/&gt;
+&lt;/form&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -645,7 +756,12 @@ used without a form. Obviously there is the possibility to mix form and action p
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java"></code></pre>
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@Action</span>
+  <span class="annotation">@Route</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/add</span><span class="delimiter">&quot;</span></span>)
+  <span class="directive">public</span> Response.View add(<span class="predefined-type">String</span> location) {
+    locations.add(location);
+    <span class="keyword">return</span> Weather_.index(location);
+  }</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -687,7 +803,21 @@ thanks to a <code>param</code> tag inside the template:</p>
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java"></code></pre>
+<pre class="CodeRay"><code class="java language-java"><span class="error">#</span>{param name=location/}
+<span class="error">#</span>{param name=temperature/}
+<span class="error">#</span>{param name=locations/}
+
+The weather temperature in <span class="error">$</span>{location} is <span class="error">$</span>{temperature} degrees.
+
+&lt;ul&gt;&lt;% locations.each() { location -&gt; %&gt;
+&lt;li&gt;&lt;a href=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{index(location = location)}</span><span class="delimiter">&quot;</span></span>&gt;<span class="error">$</span>{location}&lt;/a&gt;&lt;/li&gt;
+&lt;% } %&gt;
+&lt;/ul&gt;
+
+&lt;form action=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{add()}</span><span class="delimiter">&quot;</span></span> method=<span class="string"><span class="delimiter">&quot;</span><span class="content">post</span><span class="delimiter">&quot;</span></span>&gt;
+   &lt;input type=<span class="string"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span> name=<span class="string"><span class="delimiter">&quot;</span><span class="content">location</span><span class="delimiter">&quot;</span></span> value=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>/&gt;
+   &lt;input type=<span class="string"><span class="delimiter">&quot;</span><span class="content">submit</span><span class="delimiter">&quot;</span></span>/&gt;
+&lt;/form&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -702,7 +832,15 @@ parameters in a safe manner.</p>
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java"></code></pre>
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@View</span>
+  <span class="directive">public</span> Response.Content index(<span class="predefined-type">String</span> location) {
+    <span class="keyword">return</span> index.
+      with().
+      location(location).
+      temperature(weatherService.getTemperature(location)).
+      locations(locations).
+      ok();
+  }</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -722,7 +860,10 @@ subclass by injecting the template subclass instead of the generic <code>Templat
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java"></code></pre>
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@View</span>
+  <span class="directive">public</span> Response.Content index() {
+    <span class="keyword">return</span> index(<span class="string"><span class="delimiter">&quot;</span><span class="content">marseille</span><span class="delimiter">&quot;</span></span>);
+  }</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -752,7 +893,39 @@ modifications to a subset of the Less files and integrate them in our applicatio
 <div class="listingblock">
 <div class="title">The necessary Bootstrap less files</div>
 <div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java"></code></pre>
+<pre class="CodeRay"><code class="java language-java"><span class="comment">/*!
+ * Bootstrap v2.0.3
+ *
+ * Copyright 2012 Twitter, Inc
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Designed and built with all the love in the world @twitter by @mdo and @fat.
+ */</span>
+
+<span class="comment">// CSS Reset</span>
+<span class="annotation">@import</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">reset.less</span><span class="delimiter">&quot;</span></span>;
+
+<span class="comment">// Core variables and mixins</span>
+<span class="annotation">@import</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">variables.less</span><span class="delimiter">&quot;</span></span>; <span class="comment">// Modify this for custom colors, font-sizes, etc</span>
+<span class="annotation">@import</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">mixins.less</span><span class="delimiter">&quot;</span></span>;
+
+<span class="comment">// Grid system and page structure</span>
+<span class="annotation">@import</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">scaffolding.less</span><span class="delimiter">&quot;</span></span>;
+
+<span class="comment">// Base CSS</span>
+<span class="annotation">@import</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">type.less</span><span class="delimiter">&quot;</span></span>;
+<span class="annotation">@import</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">forms.less</span><span class="delimiter">&quot;</span></span>;
+
+<span class="comment">// Components: common</span>
+<span class="annotation">@import</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">component-animations.less</span><span class="delimiter">&quot;</span></span>;
+
+<span class="comment">// Components: Buttons &amp; Alerts</span>
+<span class="annotation">@import</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">buttons.less</span><span class="delimiter">&quot;</span></span>;
+<span class="annotation">@import</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">button-groups.less</span><span class="delimiter">&quot;</span></span>;
+
+<span class="comment">// Components: Misc</span>
+<span class="annotation">@import</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">accordion.less</span><span class="delimiter">&quot;</span></span>;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1101,7 +1274,20 @@ fragment for a specific city location:</p>
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java"></code></pre>
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@Inject</span>
+  <span class="annotation">@Path</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">fragment.gtmpl</span><span class="delimiter">&quot;</span></span>)
+  examples.tutorial.weather8.templates.fragment fragment;
+
+  <span class="annotation">@Ajax</span>
+  <span class="annotation">@Resource</span>
+  <span class="annotation">@Route</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/fragment</span><span class="delimiter">&quot;</span></span>)
+  <span class="directive">public</span> Response.Content getFragment(<span class="predefined-type">String</span> location) {
+    <span class="keyword">return</span> fragment.
+      with().
+      location(location).
+      temperature(weatherService.getTemperature(location)).
+      ok();
+  }</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1111,7 +1297,9 @@ side javascript code when an item is unfolded:</p>
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java"></code></pre>
+<pre class="CodeRay"><code class="java language-java"><span class="error">#</span>{param name=location/}
+<span class="error">#</span>{param name=temperature/}
+&lt;p&gt;The weather temperature in <span class="error">$</span>{location} is <span class="error">$</span>{temperature} degrees C&lt;/p&gt;</code></pre>
 </div>
 </div>
 
@@ -1126,7 +1314,31 @@ in the <code>examples.tutorial.weather8.assets</code>:</p>
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="javascript language-javascript"></code></pre>
+<pre class="CodeRay"><code class="javascript language-javascript"><span class="predefined">$</span>(<span class="keyword">function</span> () {
+
+  <span class="comment">// Setup an event listener on the .collapse element when it is shown</span>
+  <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">.collapse</span><span class="delimiter">'</span></span>).on(<span class="string"><span class="delimiter">'</span><span class="content">show</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> () {
+
+    <span class="comment">// Get the location attribute from the dom</span>
+    <span class="keyword">var</span> location = <span class="predefined">$</span>(<span class="local-variable">this</span>).attr(<span class="string"><span class="delimiter">&quot;</span><span class="content">id</span><span class="delimiter">&quot;</span></span>);
+
+    <span class="comment">// Update the .accordion-inner fragment</span>
+    <span class="predefined">$</span>(<span class="local-variable">this</span>).
+      closest(<span class="string"><span class="delimiter">&quot;</span><span class="content">.accordion-group</span><span class="delimiter">&quot;</span></span>).
+      find(<span class="string"><span class="delimiter">&quot;</span><span class="content">.accordion-inner</span><span class="delimiter">&quot;</span></span>).
+      each(<span class="keyword">function</span> () {
+
+      <span class="comment">// Load the fragment from the resource controller</span>
+      <span class="predefined">$</span>(<span class="local-variable">this</span>).jzLoad(
+        <span class="string"><span class="delimiter">&quot;</span><span class="content">Weather.getFragment()</span><span class="delimiter">&quot;</span></span>,
+        {<span class="key"><span class="delimiter">&quot;</span><span class="content">location</span><span class="delimiter">&quot;</span></span>:location});
+
+    });
+  });
+
+  <span class="comment">// Setup the collapse component</span>
+  <span class="predefined">$</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">.collapse</span><span class="delimiter">&quot;</span></span>).collapse();
+});</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1357,7 +1569,7 @@ can be found in the package you downloaded in the <em>booking</em> directory.</p
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2013-09-30 21:07:05 CEST
+Last updated 2013-10-08 17:10:09 CEST
 </div>
 </div>
 </body>
