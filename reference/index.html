@@ -336,10 +336,10 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 <li>
 <ol type="none" class="sectlevel1">
 <li><a href="#_asset_plugin">Asset plugin</a></li>
-<li><a href="#_asset_declaration">Asset declaration</a></li>
+<li><a href="#_configuring_assets">Configuring assets</a></li>
 <li>
 <ol type="none" class="sectlevel2">
-<li><a href="#_asset_id">Asset id</a></li>
+<li><a href="#_the_asset_identifier">The asset identifier</a></li>
 <li><a href="#_application_assets">Application assets</a></li>
 <li><a href="#_server_assets">Server assets</a></li>
 <li><a href="#_external_assets">External assets</a></li>
@@ -3758,9 +3758,8 @@ the an application.</p>
 <div class="content monospaced">
 <pre class="CodeRay"><code class="java language-java"><span class="annotation">@Assets</span>({
   <span class="annotation">@Asset</span>(id = <span class="string"><span class="delimiter">&quot;</span><span class="content">jquery</span><span class="delimiter">&quot;</span></span>, value = <span class="string"><span class="delimiter">&quot;</span><span class="content">javascripts/jquery-1.7.1.min.js</span><span class="delimiter">&quot;</span></span>), <span class="comment">// <i class="conum">1</i></span>
-  <span class="annotation">@Asset</span>(id = <span class="string"><span class="delimiter">&quot;</span><span class="content">jquery-ui.css</span><span class="delimiter">&quot;</span></span>, value = <span class="string"><span class="delimiter">&quot;</span><span class="content">ui-lightness/jquery-ui-1.7.2.custom.css</span><span class="delimiter">&quot;</span></span>), <span class="comment">// <i class="conum">2</i></span>
-  <span class="annotation">@Asset</span>(value = <span class="string"><span class="delimiter">&quot;</span><span class="content">javascripts/jquery-ui-1.7.2.custom.min.js</span><span class="delimiter">&quot;</span></span>, <span class="comment">// <i class="conum">3</i></span>
-         depends = {<span class="string"><span class="delimiter">&quot;</span><span class="content">jquery</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">jquery-ui.css</span><span class="delimiter">&quot;</span></span>}) <span class="comment">// <i class="conum">4</i></span>
+  <span class="annotation">@Asset</span>(value = { <span class="string"><span class="delimiter">&quot;</span><span class="content">javascripts/jquery-ui-1.7.2.custom.min.js</span><span class="delimiter">&quot;</span></span>, ui-lightness/jquery-ui-<span class="float">1.7</span><span class="float">.2</span>.custom.css }, <span class="comment">// <i class="conum">2</i></span>
+         depends = <span class="string"><span class="delimiter">&quot;</span><span class="content">jquery</span><span class="delimiter">&quot;</span></span>) <span class="comment">// <i class="conum">3</i></span>
   }}
 )
 <span class="keyword">package</span> <span class="namespace">my.application</span>;</code></pre>
@@ -3771,19 +3770,15 @@ the an application.</p>
 <table>
 <tr>
 <td><i class="conum">1</i></td>
-<td>Declares the <em>jQuery</em> asset</td>
+<td>declares the <em>jQuery</em> asset</td>
 </tr>
 <tr>
 <td><i class="conum">2</i></td>
-<td>Declare the <em>jQuery-UI</em> stylesheet asset</td>
+<td>declares the <em>jQuery-UI</em> asset composed of the JavaScript source and its associated stylesheet</td>
 </tr>
 <tr>
 <td><i class="conum">3</i></td>
-<td>Declares the <em>jQuery-UI</em> asset</td>
-</tr>
-<tr>
-<td><i class="conum">4</i></td>
-<td>depends on <code>jquery</code> and <code>jquery-ui.css</code> assets</td>
+<td>depends on <code>jquery</code> assets</td>
 </tr>
 </table>
 </div>
@@ -3791,10 +3786,10 @@ the an application.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_asset_declaration"><a class="anchor" href="#_asset_declaration"></a>Asset declaration</h2>
+<h2 id="_configuring_assets"><a class="anchor" href="#_configuring_assets"></a>Configuring assets</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Assets are declared and used by the application with the following attributes:</p>
+<p>Assets can configured for the application with:</p>
 </div>
 <div class="ulist">
 
@@ -3803,7 +3798,7 @@ the an application.</p>
 <p>an <em>id</em> to reference it within the application</p>
 </li>
 <li>
-<p>a <em>location</em> and <em>source</em> for resolving the asset file</p>
+<p>a <em>location</em> and <em>value</em> for resolving the asset physical resources which can be empty, a single file or several files</p>
 </li>
 <li>
 <p>a list of <em>dependencies</em> referencing other assets that are needed by the asset</p>
@@ -3814,11 +3809,24 @@ the an application.</p>
 <p>For example, the <em>jQuery-UI</em> plugin could be identified by <em>jquery-ui</em> with the dependency onto the <em>jquery</em> js asset and
 the <em>jQuery-UI</em> stylesheet. Its physical location would be the <code>asset</code> package with the <code>jquery-ui-1.4.2.min.js</code> name.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-note" title="Note"></i>
+</td>
+<td class="content">
+
+an empty value asset is useful for declaring an asset defined by its dependencies
+</td>
+</tr>
+</table>
+</div>
 <div class="sect2">
-<h3 id="_asset_id"><a class="anchor" href="#_asset_id"></a>Asset id</h3>
+<h3 id="_the_asset_identifier"><a class="anchor" href="#_the_asset_identifier"></a>The asset identifier</h3>
 <div class="paragraph">
-<p>The asset id must be unique within the application, this value is however optional. When no id is declared, the asset value
-is used for creating an id from the asset file name:</p>
+<p>Assets are identified by a unique id within the application, this value is however optional. When no id is declared
+, the asset value is used for creating an id from the asset file name:</p>
 </div>
 <div class="ulist">
 
@@ -3939,34 +3947,53 @@ class.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The annotation can be declared on <em>controller methods</em>, <em>classes</em> or <em>packages</em>. When the declaration occurs on
-classes or packages, the declaration is <em>cascaded</em> on the nested controller.</p>
+<p>The annotation can be declared on <em>controller methods</em>, <em>classes</em> or <em>packages</em>. such declarations are
+ <em>cascaded</em> to the nested controllers:</p>
+</div>
+<table class="tableblock frame-all grid-all" style="width:100%; ">
+<caption class="title">Table 2. <code>@WithAssets</code> annotations are cascaded with a few rules</caption>
+<colgroup>
+<col style="width:50%;">
+<col style="width:50%;"> 
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Declared on</th>
+<th class="tableblock halign-left valign-top">Effective on</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Method</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Controller method</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Controller methods declared in the class</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Package</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Controller classes declared in the current and sub package and sub</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Those rules apply where the <code>@WithAssets</code> annotation occurs, in particular it is also valid for overriden methods.
+The overriding method will not use the annotations of its current class or packages unless the method redeclares an <code>@WithAssets</code>
+ annotation (possibly empty).</p>
 </div>
 <div class="paragraph">
-<p>The annotation can also be used with the <code><strong></code> pattern, matching all application declared assets, which is equivalent
-to use the <code>@WithAssets</code> annotation without parameters as <code></strong></code> is this annotation default value.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-
-Annotating the application package with <code>#WithAsset</code> will serve all assets declared in the application for all controllers.
-If you need finer grained serving, remove it and use it on controller directly.
-</td>
-</tr>
-</table>
+<p>Annotating the application package with <code>#WithAsset</code> will serve all assets declared in the application for all controllers.
+If you need finer grained serving, remove it and use it on controller directly.</p>
 </div>
 
 </div>
 <div class="sect2">
 <h3 id="_dynamic_asset_serving"><a class="anchor" href="#_dynamic_asset_serving"></a>Dynamic asset serving</h3>
 <div class="paragraph">
-<p>Asset serving can be achieved programmatically when the application does not know the assets to serve at compilation
-time:</p>
+<p>Declarative asset serving is powerful, however is requires you to declare the asset to server at compilation time.
+When the application does not know the assets to serve at compilation, this behavior can be also dynamic by
+using the Juzu API.</p>
 </div>
 <div class="listingblock">
 <div class="title">Serve <em>jQuery</em> and <em>Twitter Bootstrap</em> with the application index</div>
@@ -4401,10 +4428,9 @@ to the <em>stylesheet.css</em>. If we want this file to be served with the appli
 <div class="title">LESS and Asset plugins in action</div>
 <div class="content monospaced">
 <pre class="CodeRay"><code class="java language-java"><span class="annotation">@Less</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">stylesheet.less</span><span class="delimiter">&quot;</span></span>)
-<span class="annotation">@Assets</span>(stylesheets = <span class="annotation">@Stylesheet</span>(
-  src = <span class="string"><span class="delimiter">&quot;</span><span class="content">stylesheet.css</span><span class="delimiter">&quot;</span></span>,
-  location = AssetLocation.CLASSPATH)
-)
+<span class="annotation">@Assets</span>({
+  <span class="annotation">@Asset</span>(value = <span class="string"><span class="delimiter">&quot;</span><span class="content">stylesheet.css</span><span class="delimiter">&quot;</span></span>, location = AssetLocation.CLASSPATH)
+})
 <span class="annotation">@Application</span>
 <span class="keyword">package</span> <span class="namespace">myapp</span>;
 
@@ -4755,7 +4781,7 @@ can only be performed during an action phase.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2013-10-08 17:10:37 CEST
+Last updated 2013-10-18 17:57:50 CEST
 </div>
 </div>
 </body>
