@@ -142,10 +142,19 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 <li><a href="#builddeployrun">Build, deploy and run</a></li>
 <li>
 <ol type="none" class="sectlevel1">
+<li><a href="#_introduction">Introduction</a></li>
+<li><a href="#_juzu_dependencies">Juzu dependencies</a></li>
+<li>
+<ol type="none" class="sectlevel2">
+<li><a href="#_juzu_core_dependendencies">Juzu core dependendencies</a></li>
+<li><a href="#_injection_container_dependendencies">Injection Container dependendencies</a></li>
+</ol>
+</li>
+<li><a href="#_packaging_a_juzu_application">Packaging a Juzu application</a></li>
 <li><a href="#_build">Build</a></li>
 <li>
 <ol type="none" class="sectlevel2">
-<li><a href="#_with_maven">With Maven</a></li>
+<li><a href="#_maven_build">Maven build</a></li>
 <li><a href="#_using_a_prepackaged_application">Using a prepackaged application</a></li>
 <li><a href="#_using_an_ide">Using an IDE</a></li>
 </ol>
@@ -247,11 +256,7 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 </ol>
 </li>
 <li><a href="#ioc">Inversion of Control</a></li>
-</ol>
-</li>
 <li><a href="#_containers">Containers</a></li>
-<li>
-<ol type="none" class="sectlevel1">
 <li><a href="#_inversion_of_control">Inversion Of Control</a></li>
 <li>
 <ol type="none" class="sectlevel2">
@@ -426,6 +431,17 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 </li>
 </ol>
 </li>
+<li><a href="#_appendix">Appendix</a></li>
+<li>
+<ol type="none" class="sectlevel1">
+<li><a href="#_appendix_2">Appendix</a></li>
+<li>
+<ol type="none" class="sectlevel2">
+<li><a href="#_maven_configurations">Maven configurations</a></li>
+</ol>
+</li>
+</ol>
+</li>
 </ol>
 </div>
 </div>
@@ -445,7 +461,7 @@ open source project developed on <a href="https://github.com/juzu/juzu">GitHub</
 <p>We will study in this chapter how to build and deploy a Juzu application.</p>
 </div>
 <div class="sect1">
-<h2 id="_build"><a class="anchor" href="#_build"></a>Build</h2>
+<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Building a Juzu application is usually done in two steps:</p>
@@ -454,10 +470,10 @@ open source project developed on <a href="https://github.com/juzu/juzu">GitHub</
 
 <ul>
 <li>
-<p>Compile the application to its binary representation</p>
+<p>Compile the application to classes</p>
 </li>
 <li>
-<p>Package the application as a war file</p>
+<p>Package the application as a web application (<em>war</em> file)</p>
 </li>
 </ul>
 </div>
@@ -474,13 +490,128 @@ open source project developed on <a href="https://github.com/juzu/juzu">GitHub</
 <p>The JSR-330 jar for the @Inject API</p>
 </li>
 <li>
-<p>Any Juzu extension jar such as plugins or additinal template engines</p>
+<p>Any Juzu extension jar such as plugins or additional template engines</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>After compilation, classes need to be packaged as a web application archive (<em>war</em>) and then deployed in a server. We
+<p>After compilation, the compiled classes are packaged as a web application archive (<em>war</em>) and then deployed in a server. We
 will show several ways to package your Juzu application.</p>
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_juzu_dependencies"><a class="anchor" href="#_juzu_dependencies"></a>Juzu dependencies</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s start by looking at the dependencies required by Juzu, there are several types of dependencies:</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p>compilation time dependencies used during the compilation of the application: for instance the Less plugin
+transforms a <em>less</em> file into a <em>css</em></p>
+</li>
+<li>
+<p>runtime dependencies used when the application is running</p>
+<div class="ulist">
+
+<ul>
+<li>
+<p>provided by server like the <em>@Inject</em> jar provided by an EE server but not by a Servlet Container</p>
+</li>
+<li>
+<p>embedded in the application like Groovy</p>
+</li>
+</ul>
+</div>
+
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_juzu_core_dependendencies"><a class="anchor" href="#_juzu_core_dependendencies"></a>Juzu core dependendencies</h3>
+<div class="paragraph">
+<p>Juzu is built on top of a plugin architecture allowing to reduce the number of dependencies to the minimum for the core
+of the framework.</p>
+</div>
+<table class="tableblock frame-all grid-all" style="width:100%; ">
+<caption class="title">Table 1. Juzu core dependencies</caption>
+<colgroup>
+<col style="width:20%;">
+<col style="width:20%;">
+<col style="width:20%;">
+<col style="width:20%;">
+<col style="width:20%;"> 
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-center valign-top">GAV</th>
+<th class="tableblock halign-center valign-top">Compilation</th>
+<th class="tableblock halign-center valign-top">Servlet Container</th>
+<th class="tableblock halign-center valign-top">Java EE Server</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Juzu</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">org.juzu:juzu-core</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2611;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2611;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2611;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Groovy</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">org.codehaus.groovy:groovy-all</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2610;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2611;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2611;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">@Inject</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">javax.inject:javax.inject</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2611;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2611;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2610;</p></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+<div class="sect2">
+<h3 id="_injection_container_dependendencies"><a class="anchor" href="#_injection_container_dependendencies"></a>Injection Container dependendencies</h3>
+<div class="paragraph">
+<p>Juzu leverages an Injection Container (IOC) at runtime for wiring the various objects managed by the framework. Several
+implementations can be used and you should configure the correct dependencies according to the container you are using:</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p><em>Spring 3</em></p>
+</li>
+<li>
+<p><em>Google Guice 3</em></p>
+</li>
+<li>
+<p>Context and Dependency Injection</p>
+<div class="ulist">
+
+<ul>
+<li>
+<p><em>CDI</em> provided by the server</p>
+</li>
+<li>
+<p><em>Weld</em> the CDI implementation managed by Juzu</p>
+</li>
+</ul>
+</div>
+
+</li>
+</ul>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -490,160 +621,52 @@ will show several ways to package your Juzu application.</p>
 </td>
 <td class="content">
 
-At the moment Juzu focuses on Maven because it is built with Maven, however that does not mean that Juzu is coupled
-to Maven, in the future we will provide additional examples or quickstart for alternative build systems.
+<em>Context and Dependency Injection</em> specification is an extension (JSR 299) of the <em>@Inject</em> specification (JSR-330)
 </td>
 </tr>
 </table>
 </div>
-<div class="sect2">
-<h3 id="_with_maven"><a class="anchor" href="#_with_maven"></a>With Maven</h3>
 <div class="paragraph">
-<p>Juzu libraries are deployed in the &gt;&gt;http://search.maven.org/[Maven Central repository], compiling an application
- require a few dependencies to find the correct jars.</p>
-</div>
-<div class="sect3">
-<h4 id="_using_the_juzu_maven_em_bom_em"><a class="anchor" href="#_using_the_juzu_maven_em_bom_em"></a>Using the Juzu Maven <em>bom</em></h4>
-<div class="paragraph">
-<p>The <em>bom</em> is a Juzu artifact that serves the purpose of building and packaging an application:</p>
-</div>
-<div class="olist arabic">
-
-<ol class="arabic">
-<li>
-<p>provide a set of dependencies that will be sufficient for compiling the application using its Maven transitive dependencies</p>
-</li>
-<li>
-<p>provide a predefined assembly descriptor that creates a war file containing the application classes, resources and libraries</p>
-</li>
-</ol>
+<p>These implementation jars are never required at compilation time, unless you use specific classes in your project, such
+as the <code>@Autowire</code> annotation of Spring, or the <code>@Produces</code> annotation of CDI.</p>
 </div>
 <div class="paragraph">
-<p>To achieve the first step, we simply declare the following dependency in a Maven artifact:</p>
-</div>
-<div class="listingblock">
-
-<div class="content monospaced">
-<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;dependency&gt;</span>
-  <span class="tag">&lt;groupId&gt;</span>org.juzu<span class="tag">&lt;/groupId&gt;</span>
-  <span class="tag">&lt;artifactId&gt;</span>juzu-bom-core<span class="tag">&lt;/artifactId&gt;</span>
-  <span class="tag">&lt;version&gt;</span>$[juzu.version]<span class="tag">&lt;/version&gt;</span>
-<span class="tag">&lt;/dependency&gt;</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Assembling the application requires more XML but is very straightforward:</p>
-</div>
-<div class="listingblock">
-
-<div class="content monospaced">
-<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;plugin&gt;</span>
-  <span class="tag">&lt;artifactId&gt;</span>maven-assembly-plugin<span class="tag">&lt;/artifactId&gt;</span>
-  <span class="tag">&lt;dependencies&gt;</span>
-    <span class="tag">&lt;dependency&gt;</span>
-      <span class="tag">&lt;groupId&gt;</span>org.juzu<span class="tag">&lt;/groupId&gt;</span>
-      <span class="tag">&lt;artifactId&gt;</span>juzu-bom-core<span class="tag">&lt;/artifactId&gt;</span>
-      <span class="tag">&lt;version&gt;</span>$[juzu.version]<span class="tag">&lt;/version&gt;</span>
-    <span class="tag">&lt;/dependency&gt;</span>
-  <span class="tag">&lt;/dependencies&gt;</span>
-  <span class="tag">&lt;executions&gt;</span>
-    <span class="tag">&lt;execution&gt;</span>
-      <span class="tag">&lt;goals&gt;</span>
-        <span class="tag">&lt;goal&gt;</span>single<span class="tag">&lt;/goal&gt;</span>
-      <span class="tag">&lt;/goals&gt;</span>
-      <span class="tag">&lt;phase&gt;</span>package<span class="tag">&lt;/phase&gt;</span>
-      <span class="tag">&lt;configuration&gt;</span>
-        <span class="tag">&lt;descriptorRefs&gt;</span>
-          <span class="tag">&lt;descriptorRef&gt;</span>tomcat-guice<span class="tag">&lt;/descriptorRef&gt;</span>
-        <span class="tag">&lt;/descriptorRefs&gt;</span>
-      <span class="tag">&lt;/configuration&gt;</span>
-    <span class="tag">&lt;/execution&gt;</span>
-  <span class="tag">&lt;/executions&gt;</span>
-<span class="tag">&lt;/plugin&gt;</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The <em>assembly</em> plugin takes care of packaging the application:</p>
-</div>
-<div class="olist arabic">
-
-<ol class="arabic">
-<li>
-<p>The plugin dependency declares on the <em>juzu-bom-core</em> artifact because it contains the predefined descriptors such
-as the <code>tomcat-guice</code> descriptor</p>
-</li>
-<li>
-<p>The goal <em>single</em> of the assembly plugin is executed during the <em>package</em> phase</p>
-</li>
-<li>
-<p>The predefined descriptor <em>tomcat-guice</em> packages the application for the Tomcat server and with the Guice framework</p>
-<div class="olist loweralpha">
-
-<ol class="loweralpha" type="a">
-<li>
-<p>Any dependency on the application is packaged in <em>WEB-INF/lib</em></p>
-</li>
-<li>
-<p>The application classes are copied in <em>WEB-INF/classes</em></p>
-</li>
-<li>
-<p>The web application <em>src/main/webapp</em> files are copied to the root of the archive</p>
-</li>
-<li>
-<p>Specific deployment descriptors may be copied in the war file depending on the predefined descriptor</p>
-</li>
-</ol>
-</div>
-
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>In this example we used the <em>tomcat-guice</em> predefined descriptor. The bom relies on the
-<a href="http://maven.apache.org/plugins/maven-assembly-plugin/">Maven Assembly plugin</a>, Juzu provides the
-<a href="http://maven.apache.org/plugins/maven-assembly-plugin/descriptor-refs.html">predefined assembly descriptors</a>
-that makes easy to package a Juzu application:</p>
+<p>At runtime the jars you needs depends on the implementation you use:</p>
 </div>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
-<caption class="title">Table 1. The predefined descriptors</caption>
+<caption class="title">Table 2. IOC dependencies</caption>
 <colgroup>
-<col style="width:25%;">
-<col style="width:25%;">
-<col style="width:25%;">
-<col style="width:25%;"> 
+<col style="width:33%;">
+<col style="width:33%;">
+<col style="width:33%;"> 
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top"></th>
-<th class="tableblock halign-left valign-top">tomcat</th>
-<th class="tableblock halign-left valign-top">gatein</th>
-<th class="tableblock halign-left valign-top">liferay</th>
+<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-center valign-top">Servlet Container</th>
+<th class="tableblock halign-center valign-top">Java EE Server</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">all</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">tomcat</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">gatein</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">liferay</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Spring</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2611;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2611;</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">guice</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">tomcat-guice</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">gatein-guice</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">liferay-guice</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Google Guice</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2611;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2611;</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">spring</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">tomcat-spring</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">gatein-spring</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">liferay-spring</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Weld</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2611;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2610;</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">cdi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">tomcat-cdi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">gatein-cdi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">liferay-cdi</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">CDI</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2611;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2610;</p></td>
 </tr>
 </tbody>
 </table>
@@ -655,11 +678,241 @@ that makes easy to package a Juzu application:</p>
 </td>
 <td class="content">
 
-The predefined assembly descriptor does a similar job to the Maven //war// packaging but with more flexibility. To achieve
-the same result, the usage of a war packaging with the overlay feature.
+When using CDI with a Servlet Container, you need to chose an implementation of CDI and configure it
+specifically for the Servlet Container, for instance you can configure
+<a href="http://docs.jboss.org/weld/reference/1.0.0/en-US/html/environments.html#d0e4998">the Weld implementation for Tomcat 7</a>.
 </td>
 </tr>
 </table>
+</div>
+
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_packaging_a_juzu_application"><a class="anchor" href="#_packaging_a_juzu_application"></a>Packaging a Juzu application</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Packaging a Juzu application is quite easy to achieve when you know which dependencies Juzu and the runtime expect
+or provide. Juzu jars are deployed in the <a href="http://search.maven.org/">Maven Central repository</a>.</p>
+</div>
+<div class="paragraph">
+<p>When packaging your application you can follow:</p>
+</div>
+<table class="tableblock frame-all grid-all" style="width:100%; ">
+<colgroup>
+<col style="width:25%;">
+<col style="width:25%;">
+<col style="width:25%;">
+<col style="width:25%;"> 
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-center valign-top">Compilation</th>
+<th class="tableblock halign-center valign-top">Servlet Container</th>
+<th class="tableblock halign-center valign-top">EE Container</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>org.juzu:juzu-core</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2611;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2611;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2611;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>org.codehaus.groovy:groovy-all</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2611;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2611;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2611;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>javax.inject:javax.inject</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2611;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2611;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2610;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Guice</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2610;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2611;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2611;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Spring</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2610;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2611;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2611;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">CDI</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2610;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2611;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x2610;</p></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_build"><a class="anchor" href="#_build"></a>Build</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_maven_build"><a class="anchor" href="#_maven_build"></a>Maven build</h3>
+<div class="paragraph">
+<p>The Maven war packaging is a convenient way for building a web application with Maven. In the following examples we
+will show the Maven configuration for a couple of examples, all the configurations are listed in the appendix of this guide:</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p><a href="#servlet_guice">Guice for a Servlet Container</a></p>
+</li>
+<li>
+<p><a href="#servlet_spring">Spring for a Servlet Container</a></p>
+</li>
+<li>
+<p><a href="#servlet_cdi">CDI for a Servlet Container</a></p>
+</li>
+<li>
+<p><a href="#ee_guice">Guice for an EE Container</a></p>
+</li>
+<li>
+<p><a href="#ee_spring">Spring for an EE Container</a></p>
+</li>
+<li>
+<p><a href="#ee_cdi">CDI for an EE Container</a></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-note" title="Note"></i>
+</td>
+<td class="content">
+
+we don&#8217;t need to depend on the Groovy jar as it is a compile dependency of
+org.juzu:juzu-core artifact and it will be present thanks to dependencies transitivity
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_example_1_spring_in_a_servlet_container"><a class="anchor" href="#_example_1_spring_in_a_servlet_container"></a>Example 1: Spring in a Servlet Container</h4>
+<div class="listingblock">
+<div class="title">Maven dependencies for Spring in a servlet container</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;dependencies&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.juzu<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>juzu-core<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>javax.inject<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>javax.inject<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.springframework<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>spring-web<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+<span class="tag">&lt;/dependencies&gt;</span></code></pre>
+</div>
+</div>
+
+</div>
+<div class="sect3">
+<h4 id="_example_2_cdi"><a class="anchor" href="#_example_2_cdi"></a>Example 2: CDI</h4>
+<div class="paragraph">
+<p><em>CDI</em> is supported natively by an <em>EE</em> container and requires specific integration for a servlet container like <em>tomcat</em></p>
+</div>
+<div class="sect4">
+<h5 id="_cdi_for_an_ee_container"><a class="anchor" href="#_cdi_for_an_ee_container"></a>CDI for an EE container</h5>
+<div class="paragraph">
+<p>Here are the dependencies for an EE container.</p>
+</div>
+<div class="listingblock">
+<div class="title">Maven dependencies for CDI in an EE container</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;dependencies&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.juzu<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>juzu-core<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>javax.inject<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>javax.inject<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;scope&gt;</span>provided<span class="tag">&lt;/scope&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+<span class="tag">&lt;/dependencies&gt;</span></code></pre>
+</div>
+</div>
+
+</div>
+<div class="sect4">
+<h5 id="_cdi_for_a_servlet_container"><a class="anchor" href="#_cdi_for_a_servlet_container"></a>CDI for a Servlet container</h5>
+<div class="paragraph">
+<p>Using CDI with the Weld reference implementation in a Servlet Container requires  extra configuration of the web application
+described in the <a href="http://docs.jboss.org/weld/reference/1.0.0/en-US/html/environments.html#d0e4998">Weld manuel</a>, let&#8217;s look
+ first at the jar dependencies</p>
+</div>
+<div class="listingblock">
+<div class="title">Maven dependencies for CDI in a servlet container</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;dependencies&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.juzu<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>juzu-core<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>javax.inject<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>javax.inject<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.jboss.weld.servlet<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>weld-servlet<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+<span class="tag">&lt;/dependencies&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We need specific elements in <em>web.xml</em> for integrating CDI with a servlet container:</p>
+</div>
+<div class="listingblock">
+<div class="title">Servlet container configuration for CDI</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;listener&gt;</span>
+  <span class="tag">&lt;listener-class&gt;</span>org.jboss.weld.environment.servlet.Listener<span class="tag">&lt;/listener-class&gt;</span>
+<span class="tag">&lt;/listener&gt;</span>
+<span class="tag">&lt;resource-env-ref&gt;</span>
+  <span class="tag">&lt;resource-env-ref-name&gt;</span>BeanManager<span class="tag">&lt;/resource-env-ref-name&gt;</span>
+  <span class="tag">&lt;resource-env-ref-type&gt;</span>javax.enterprise.inject.spi.BeanManager<span class="tag">&lt;/resource-env-ref-type&gt;</span>
+<span class="tag">&lt;/resource-env-ref&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In addition we need also a <em>META-INF/context.xml</em> file that contains specific Tomcat configuration:</p>
+</div>
+<div class="listingblock">
+<div class="title">Maven Tomcat context.xml configuration</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="preprocessor">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="tag">&lt;Context&gt;</span>
+  <span class="tag">&lt;Resource</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">BeanManager</span><span class="delimiter">&quot;</span></span>
+  <span class="attribute-name">auth</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Container</span><span class="delimiter">&quot;</span></span>
+  <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">javax.enterprise.inject.spi.BeanManager</span><span class="delimiter">&quot;</span></span>
+  <span class="attribute-name">factory</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">org.jboss.weld.resources.ManagerObjectFactory</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+  <span class="tag">&lt;WatchedResource&gt;</span>WEB-INF/web.xml<span class="tag">&lt;/WatchedResource&gt;</span>
+  <span class="tag">&lt;WatchedResource&gt;</span>META-INF/context.xml<span class="tag">&lt;/WatchedResource&gt;</span>
+<span class="tag">&lt;/Context&gt;</span></code></pre>
+</div>
+</div>
+
 </div>
 
 </div>
@@ -671,18 +924,18 @@ the same result, the usage of a war packaging with the overlay feature.
 <div class="listingblock">
 <div class="title">Generating an application for the Tomcat server and the Guice injection container</div>
 <div class="content monospaced">
-<pre>mvn archetype:generate \\
-   -DarchetypeGroupId=org.juzu \\
-   -DarchetypeArtifactId=juzu-archetype \\
-   -DarchetypeVersion=$[juzu.version] \\
-   -DgroupId=org.example \\
-   -DartifactId=myapp \\
-   -DpackageName=org.example.myapp \\
+<pre>mvn archetype:generate \
+   -DarchetypeGroupId=org.juzu \
+   -DarchetypeArtifactId=juzu-archetype \
+   -DarchetypeVersion=0.7.0-beta26 \
+   -DgroupId=org.example \
+   -DartifactId=myapp \
+   -DpackageName=org.example.myapp \
    -Dversion=1.0.0-SNAPSHOT</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The generated application is a quickstart ready to can be customzed for developing more complex applications.
+<p>The generated application is a quickstart ready to can be customized for developing more complex applications.
 The archetype uses the packager described in the previous section.</p>
 </div>
 <div class="paragraph">
@@ -691,17 +944,21 @@ The archetype uses the packager described in the previous section.</p>
 <div class="listingblock">
 <div class="title">Generating an application for the Tomcat server and the Spring injection container</div>
 <div class="content monospaced">
-<pre>mvn archetype:generate \\
-   -DarchetypeGroupId=org.juzu \\
-   -DarchetypeArtifactId=juzu-archetype \\
-   -DarchetypeVersion=$[juzu.version] \\
-   -DgroupId=org.example \\
-   -DartifactId=myapp \\
-   -DpackageName=org.example.myapp \\
-   -Dversion=1.0.0-SNAPSHOT \\
-   -DjuzuServer=tomcat \\
+<pre>mvn archetype:generate \
+   -DarchetypeGroupId=org.juzu \
+   -DarchetypeArtifactId=juzu-archetype \
+   -DarchetypeVersion=0.7.0-beta26 \
+   -DgroupId=org.example \
+   -DartifactId=myapp \
+   -DpackageName=org.example.myapp \
+   -Dversion=1.0.0-SNAPSHOT \
+   -DjuzuServer=servlet \
    -DjuzuInject=spring</pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Valid <em>juzuServer</em> values are <em>servlet</em> or <em>ee</em>.
+Valid <em>juzuInject</em> values are <em>guice</em>, <em>spring</em> or <em>cdi</em>.</p>
 </div>
 
 </div>
@@ -2057,8 +2314,9 @@ specification, in particular the notion of injection, scope and qualifier should
 
 </div>
 </div>
-
-<h1 id="_containers" class="sect0"><a class="anchor" href="#_containers"></a>Containers</h1>
+<div class="sect1">
+<h2 id="_containers"><a class="anchor" href="#_containers"></a>Containers</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>At the moment Juzu supports three containers implementing the JSR 330:</p>
 </div>
@@ -2105,7 +2363,20 @@ to selection is done via the servlet context parameter <em>juzu.inject</em>:</p>
 <p><em>spring</em> for Spring</p>
 </li>
 <li>
-<p><em>weld</em> for JBoss Weld</p>
+<p>CDI</p>
+<div class="ulist">
+
+<ul>
+<li>
+<p><em>cdi</em> when the container is provided by the server such as
+<a href="http://docs.jboss.org/weld/reference/1.0.0/en-US/html/environments.html#d0e4998">Tomcat configured for CDI</a> or a Java EE server</p>
+</li>
+<li>
+<p><em>weld</em> when the CDI container is managed by Juzu</p>
+</li>
+</ul>
+</div>
+
 </li>
 </ul>
 </div>
@@ -2126,10 +2397,14 @@ to selection is done via the servlet context parameter <em>juzu.inject</em>:</p>
 </td>
 <td class="content">
 
-When no IOC container is specified the Guice container will be used
+When no IOC container is specified, Juzu will look for the available implementations and use the first available
+in the list among Guice, Spring, CDI and Weld.
 </td>
 </tr>
 </table>
+</div>
+
+</div>
 </div>
 <div class="sect1">
 <h2 id="_inversion_of_control"><a class="anchor" href="#_inversion_of_control"></a>Inversion Of Control</h2>
@@ -3951,7 +4226,7 @@ class.</p>
  <em>cascaded</em> to the nested controllers:</p>
 </div>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
-<caption class="title">Table 2. <code>@WithAssets</code> annotations are cascaded with a few rules</caption>
+<caption class="title">Table 3. <code>@WithAssets</code> annotations are cascaded with a few rules</caption>
 <colgroup>
 <col style="width:50%;">
 <col style="width:50%;"> 
@@ -4456,11 +4731,11 @@ can be used, this option will trim the whitespace when processing the file : <co
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;dependency&gt;</span>
-  <span class="tag">&lt;groupId&gt;</span>org.juzu<span class="tag">&lt;/groupId&gt;</span>
-  <span class="tag">&lt;artifactId&gt;</span>juzu-plugins-less<span class="tag">&lt;/artifactId&gt;</span>
-  <span class="tag">&lt;version&gt;</span>$[juzu.version]<span class="tag">&lt;/version&gt;</span>
-<span class="tag">&lt;/dependency&gt;</span></code></pre>
+<pre class="CodeRay"><code class="xml language-xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.juzu&lt;/groupId&gt;
+  &lt;artifactId&gt;juzu-plugins-less&lt;/artifactId&gt;
+  &lt;version&gt;0.7.0-beta26&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
 </div>
 </div>
 
@@ -4570,10 +4845,10 @@ plugin or the <em>AMD</em> plugin.</p>
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="xl language-xl">&lt;dependency&gt;
+<pre class="CodeRay"><code class="xml language-xml">&lt;dependency&gt;
   &lt;groupId&gt;org.juzu&lt;/groupId&gt;
   &lt;artifactId&gt;juzu-plugins-webjars&lt;/artifactId&gt;
-  &lt;version&gt;$[juzu.version]&lt;/version&gt;
+  &lt;version&gt;0.7.0-beta26&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
@@ -4764,12 +5039,161 @@ can only be performed during an action phase.
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;dependency&gt;</span>
-  <span class="tag">&lt;groupId&gt;</span>org.juzu<span class="tag">&lt;/groupId&gt;</span>
-  <span class="tag">&lt;artifactId&gt;</span>juzu-plugins-portlet<span class="tag">&lt;/artifactId&gt;</span>
-  <span class="tag">&lt;version&gt;</span>$[juzu.version]<span class="tag">&lt;/version&gt;</span>
-<span class="tag">&lt;/dependency&gt;</span></code></pre>
+<pre class="CodeRay"><code class="xml language-xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.juzu&lt;/groupId&gt;
+  &lt;artifactId&gt;juzu-plugins-portlet&lt;/artifactId&gt;
+  &lt;version&gt;0.7.0-beta26&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
 </div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<h1 id="_appendix" class="sect0"><a class="anchor" href="#_appendix"></a>Appendix</h1>
+<div class="sect1">
+<h2 id="_appendix_2"><a class="anchor" href="#_appendix_2"></a>Appendix</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_maven_configurations"><a class="anchor" href="#_maven_configurations"></a>Maven configurations</h3>
+<div class="sect3">
+<h4 id="servlet_guice"><a class="anchor" href="#servlet_guice"></a>Guice for a Servlet Container</h4>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;dependencies&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.juzu<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>juzu-core<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>javax.inject<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>javax.inject<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>com.google.inject<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>guice<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+<span class="tag">&lt;/dependencies&gt;</span></code></pre>
+</div>
+</div>
+
+</div>
+<div class="sect3">
+<h4 id="servlet_spring"><a class="anchor" href="#servlet_spring"></a>Spring for a Servlet Container</h4>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;dependencies&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.juzu<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>juzu-core<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>javax.inject<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>javax.inject<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.springframework<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>spring-web<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+<span class="tag">&lt;/dependencies&gt;</span></code></pre>
+</div>
+</div>
+
+</div>
+<div class="sect3">
+<h4 id="servlet_cdi"><a class="anchor" href="#servlet_cdi"></a>CDI for a Servlet Container</h4>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;dependencies&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.juzu<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>juzu-core<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>javax.inject<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>javax.inject<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.jboss.weld.servlet<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>weld-servlet<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+<span class="tag">&lt;/dependencies&gt;</span></code></pre>
+</div>
+</div>
+
+</div>
+<div class="sect3">
+<h4 id="ee_guice"><a class="anchor" href="#ee_guice"></a>Guice for an EE Container</h4>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;dependencies&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.juzu<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>juzu-core<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>javax.inject<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>javax.inject<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;scope&gt;</span>provided<span class="tag">&lt;/scope&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>com.google.inject<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>guice<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+<span class="tag">&lt;/dependencies&gt;</span></code></pre>
+</div>
+</div>
+
+</div>
+<div class="sect3">
+<h4 id="ee_spring"><a class="anchor" href="#ee_spring"></a>Spring for an EE Container</h4>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;dependencies&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.juzu<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>juzu-core<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>javax.inject<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>javax.inject<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;scope&gt;</span>provided<span class="tag">&lt;/scope&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.springframework<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>spring-web<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+<span class="tag">&lt;/dependencies&gt;</span></code></pre>
+</div>
+</div>
+
+</div>
+<div class="sect3">
+<h4 id="ee_cdi"><a class="anchor" href="#ee_cdi"></a>CDI for an EE Container</h4>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;dependencies&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.juzu<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>juzu-core<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>javax.inject<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>javax.inject<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;scope&gt;</span>provided<span class="tag">&lt;/scope&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+<span class="tag">&lt;/dependencies&gt;</span></code></pre>
+</div>
+</div>
+
 </div>
 
 </div>
@@ -4781,7 +5205,7 @@ can only be performed during an action phase.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2013-10-22 13:06:11 CEST
+Last updated 2013-10-29 10:57:21 CET
 </div>
 </div>
 </body>
