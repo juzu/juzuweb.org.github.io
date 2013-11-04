@@ -5,7 +5,7 @@
 <meta name="generator" content="Asciidoctor 0.1.3">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Juzu Reference Guide</title>
-<link rel="stylesheet" href="./foundation-lime.css">
+<link rel="stylesheet" href="./rocket-panda.css">
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.1.0/css/font-awesome.min.css">
 <style>
 .CodeRay {
@@ -154,27 +154,13 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 <li><a href="#_build">Build</a></li>
 <li>
 <ol type="none" class="sectlevel2">
-<li><a href="#_maven_build">Maven build</a></li>
-<li><a href="#_using_a_prepackaged_application">Using a prepackaged application</a></li>
-<li><a href="#_using_an_ide">Using an IDE</a></li>
+<li><a href="#_build_with_maven">Build with Maven</a></li>
+<li><a href="#_build_with_gradle">Build with Gradle</a></li>
+<li><a href="#_eclipse_support">Eclipse support</a></li>
+<li><a href="#_intellij_support">Intellij support</a></li>
 </ol>
 </li>
-<li><a href="#_deploy">Deploy</a></li>
-<li>
-<ol type="none" class="sectlevel2">
-<li><a href="#_tomcat">Tomcat</a></li>
-<li><a href="#_gatein">GateIn</a></li>
-<li><a href="#_liferay">Liferay</a></li>
-</ol>
-</li>
-<li><a href="#_run">Run</a></li>
-<li>
-<ol type="none" class="sectlevel2">
 <li><a href="#_run_modes">Run modes</a></li>
-<li><a href="#_how_to_choose_the_right_run_mode">How to choose the right run mode</a></li>
-<li><a href="#_configuring_the_run_mode">Configuring the run mode</a></li>
-</ol>
-</li>
 </ol>
 </li>
 <li><a href="#phases">Phases</a></li>
@@ -255,6 +241,7 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 <li><a href="#_portlet_configuration">Portlet configuration</a></li>
 </ol>
 </li>
+<li><a href="#_bridge_configuration">Bridge configuration</a></li>
 <li><a href="#ioc">Inversion of Control</a></li>
 <li><a href="#_containers">Containers</a></li>
 <li><a href="#_inversion_of_control">Inversion Of Control</a></li>
@@ -317,6 +304,18 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 <ol type="none" class="sectlevel2">
 <li><a href="#_simple_tags">Simple tags</a></li>
 <li><a href="#_java_tags">Java tags</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#i18n">Internationalization</a></li>
+<li>
+<ol type="none" class="sectlevel1">
+<li><a href="#_application_resource_bundle">Application resource bundle</a></li>
+<li>
+<ol type="none" class="sectlevel2">
+<li><a href="#_bundle_injection">Bundle injection</a></li>
+<li><a href="#_template_messages">Template messages</a></li>
 </ol>
 </li>
 </ol>
@@ -405,13 +404,14 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 </li>
 </ol>
 </li>
-<li><a href="#_servlet">Servlet</a></li>
+<li><a href="#servlet">Servlet</a></li>
 <li>
 <ol type="none" class="sectlevel1">
 <li><a href="#_juzu_servlet_plugin">Juzu Servlet Plugin</a></li>
 <li>
 <ol type="none" class="sectlevel2">
-<li><a href="#_servlet_class_generation">Servlet class generation</a></li>
+<li><a href="#_servlet_declaration">Servlet declaration</a></li>
+<li><a href="#servlet_bundle">Resource bundle declaration</a></li>
 <li><a href="#_asset_server_automatic_registration">Asset server automatic registration</a></li>
 </ol>
 </li>
@@ -760,8 +760,12 @@ or provide. Juzu jars are deployed in the <a href="http://search.maven.org/">Mav
 <div class="sect1">
 <h2 id="_build"><a class="anchor" href="#_build"></a>Build</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Every Juzu application is just a web application, any build system or IDE cab achieve it easily. We are going to
+cover the cases of Maven and Gradle builds as well as a few IDEs.</p>
+</div>
 <div class="sect2">
-<h3 id="_maven_build"><a class="anchor" href="#_maven_build"></a>Maven build</h3>
+<h3 id="_build_with_maven"><a class="anchor" href="#_build_with_maven"></a>Build with Maven</h3>
 <div class="paragraph">
 <p>The Maven war packaging is a convenient way for building a web application with Maven. In the following examples we
 will show the Maven configuration for a couple of examples, all the configurations are listed in the appendix of this guide:</p>
@@ -786,6 +790,15 @@ will show the Maven configuration for a couple of examples, all the configuratio
 </li>
 <li>
 <p><a href="#ee_cdi">CDI for an EE Container</a></p>
+</li>
+<li>
+<p><a href="#gatein_guice">Guice for GateIn Portal</a></p>
+</li>
+<li>
+<p><a href="#gatein_spring">Spring for GateIn Portal</a></p>
+</li>
+<li>
+<p><a href="#gatein_cdi">CDI for GateIn Portal</a></p>
 </li>
 </ul>
 </div>
@@ -927,7 +940,7 @@ described in the <a href="http://docs.jboss.org/weld/reference/1.0.0/en-US/html/
 <pre>mvn archetype:generate \
    -DarchetypeGroupId=org.juzu \
    -DarchetypeArtifactId=juzu-archetype \
-   -DarchetypeVersion=0.7.0-beta26 \
+   -DarchetypeVersion=0.7.0-cr1 \
    -DgroupId=org.example \
    -DartifactId=myapp \
    -DpackageName=org.example.myapp \
@@ -935,8 +948,7 @@ described in the <a href="http://docs.jboss.org/weld/reference/1.0.0/en-US/html/
 </div>
 </div>
 <div class="paragraph">
-<p>The generated application is a quickstart ready to can be customized for developing more complex applications.
-The archetype uses the packager described in the previous section.</p>
+<p>The generated application is a quickstart ready to can be customized for developing more complex applications.</p>
 </div>
 <div class="paragraph">
 <p>It is possible to generate the application for a different server and injection container:</p>
@@ -947,7 +959,7 @@ The archetype uses the packager described in the previous section.</p>
 <pre>mvn archetype:generate \
    -DarchetypeGroupId=org.juzu \
    -DarchetypeArtifactId=juzu-archetype \
-   -DarchetypeVersion=0.7.0-beta26 \
+   -DarchetypeVersion=0.7.0-cr1 \
    -DgroupId=org.example \
    -DartifactId=myapp \
    -DpackageName=org.example.myapp \
@@ -957,7 +969,7 @@ The archetype uses the packager described in the previous section.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Valid <em>juzuServer</em> values are <em>servlet</em> or <em>ee</em>.
+<p>Valid <em>juzuServer</em> values are <em>servlet</em>, <em>ee</em> or <em>gatein</em>.
 Valid <em>juzuInject</em> values are <em>guice</em>, <em>spring</em> or <em>cdi</em>.</p>
 </div>
 
@@ -965,15 +977,193 @@ Valid <em>juzuInject</em> values are <em>guice</em>, <em>spring</em> or <em>cdi<
 
 </div>
 <div class="sect2">
-<h3 id="_using_a_prepackaged_application"><a class="anchor" href="#_using_a_prepackaged_application"></a>Using a prepackaged application</h3>
+<h3 id="_build_with_gradle"><a class="anchor" href="#_build_with_gradle"></a>Build with Gradle</h3>
 <div class="paragraph">
-<p>The Juzu distribution contains the Booking and Tutorial applications for GateIn and Liferay servers. They can be used
-as basis to create applications.</p>
+<p>Building a Juzu application with Gradle is very easy with the <em>war</em> Gradle plugin, here is an example of <em>build.gradle</em> file:</p>
+</div>
+<div class="listingblock">
+<div class="title">Building an application with Gradle</div>
+<div class="content monospaced">
+<pre>apply plugin: 'war'
+repositories {
+  mavenCentral()
+}
+dependencies {
+  compile group: 'org.juzu', name: 'juzu-core', version: '0.7.0-cr1'
+  compile group: 'org.juzu', name: 'juzu-plugins-servlet', version: '0.7.0-cr1'
+  compile group: 'javax.inject', name: 'javax.inject', version: '1'
+  providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.0.1'
+  runtime group: 'org.springframework', name: 'spring-web', version: '3.2.4.RELEASE'
+}</pre>
+</div>
 </div>
 
 </div>
 <div class="sect2">
-<h3 id="_using_an_ide"><a class="anchor" href="#_using_an_ide"></a>Using an IDE</h3>
+<h3 id="_eclipse_support"><a class="anchor" href="#_eclipse_support"></a>Eclipse support</h3>
+<div class="paragraph">
+<p>Eclipse IDE provides the best support for annotation processing among all IDEs. Annotation processing is integrated
+natively at the heart of Eclipse incremental compiler providing an high level of interaction between the developer
+and its project.</p>
+</div>
+<div class="paragraph">
+<p>In this section we will see how to import the Maven based Juzu sample in Eclipse and configure it for annotation processing.</p>
+</div>
+<div class="sect3">
+<h4 id="_importing_the_maven_project"><a class="anchor" href="#_importing_the_maven_project"></a>Importing the Maven project</h4>
+<div class="paragraph">
+<p>Let&#8217;s first import our Maven application in Eclipse.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/builddeployrun/eclipse01.png" alt="Interactions" width="500">
+</div>
+<div class="title">Figure 1. Click the Import from the File menu and then chose Maven/Existing Maven Project</div>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/builddeployrun/eclipse02.png" alt="Interactions" width="500">
+</div>
+<div class="title">Figure 2. Complete the import</div>
+</div>
+<div class="paragraph">
+<p>At this point the project should be imported in Eclipse.</p>
+</div>
+
+</div>
+<div class="sect3">
+<h4 id="_compiler_configuration"><a class="anchor" href="#_compiler_configuration"></a>Compiler configuration</h4>
+<div class="paragraph">
+<p>Now we need to configure annotation processing in the compiler configuration.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/builddeployrun/eclipse03.png" alt="Interactions" width="300">
+</div>
+<div class="title">Figure 3. Edit the project properties</div>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/builddeployrun/eclipse04.png" alt="Interactions" width="600">
+</div>
+<div class="title">Figure 4. In the Java Compiler tab configure the Annotation Processing</div>
+</div>
+<div class="paragraph">
+<p>Set the generated source directory to <em>target/generated-sources/annotations</em> to share it with the Maven build.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/builddeployrun/eclipse05.png" alt="Interactions" width="600">
+</div>
+<div class="title">Figure 5. In the same tab edit the Factory Path</div>
+</div>
+<div class="paragraph">
+<p>Enable the project specific settings and add the Juzu core jar by clicking on <em>Add Variable&#8230;</em></p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/builddeployrun/eclipse06.png" alt="Interactions" width="550">
+</div>
+<div class="title">Figure 6. Pick M2_REPO</div>
+</div>
+<div class="paragraph">
+<p>Then click on <em>Extend&#8230;</em></p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/builddeployrun/eclipse07.png" alt="Interactions" width="450">
+</div>
+<div class="title">Figure 7. In the Variable Extension select the juzu-core jar in the hierarchy</div>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/builddeployrun/eclipse08.png" alt="Interactions" width="600">
+</div>
+<div class="title">Figure 8. Eclipse is now configured to use our processor</div>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/builddeployrun/eclipse09.png" alt="Interactions" width="250">
+</div>
+<div class="title">Figure 9. Don&#8217;t forget to build the project automatically</div>
+</div>
+
+</div>
+<div class="sect3">
+<h4 id="_processing_annotations"><a class="anchor" href="#_processing_annotations"></a>Processing annotations</h4>
+<div class="paragraph">
+<p>Our project is now properly configured</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/builddeployrun/eclipse10.png" alt="Interactions" width="300">
+</div>
+<div class="title">Figure 10. Eclipse is now configured to use our processor</div>
+</div>
+<div class="paragraph">
+<p>The <em>target/generated-sources/annotations</em> is now recognized by Eclipse as a source folder.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/builddeployrun/eclipse11.png" alt="Interactions" width="600">
+</div>
+<div class="title">Figure 11. The controller</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s add a process controller method</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/builddeployrun/eclipse12.png" alt="Interactions" width="600">
+</div>
+<div class="title">Figure 12. Controller_ is updated</div>
+</div>
+<div class="paragraph">
+<p>Eclipse will update the <code>Controller_</code> class transparently just after we save the <code>Controller</code> class.</p>
+</div>
+
+</div>
+<div class="sect3">
+<h4 id="_maven_m2e_apt_plugin"><a class="anchor" href="#_maven_m2e_apt_plugin"></a>Maven m2e-apt plugin</h4>
+<div class="paragraph">
+<p>If you want to make your life easier you can install the <em>m2e-apt</em> plugin, this plugin will automatically configure
+the Eclipse project as we have seen before.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-note" title="Note"></i>
+</td>
+<td class="content">
+
+installing this plugin is optional, it is however nice to use with annotation processing
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/builddeployrun/eclipse13.png" alt="Interactions" width="600">
+</div>
+<div class="title">Figure 13. Install the plugin in the Install panel</div>
+</div>
+<div class="paragraph">
+<p>You can get this plugin by adding <a href="http://download.jboss.org/jbosstools/updates/m2e-extensions/m2e-apt">http://download.jboss.org/jbosstools/updates/m2e-extensions/m2e-apt</a> in the Install
+panel.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/builddeployrun/eclipse14.png" alt="Interactions" width="600">
+</div>
+<div class="title">Figure 14. Configuration of the m2e-apt plugin</div>
+</div>
+
+</div>
+
+</div>
+<div class="sect2">
+<h3 id="_intellij_support"><a class="anchor" href="#_intellij_support"></a>Intellij support</h3>
 <div class="paragraph">
 <p>Juzu uses Annotation Processing Tool to perform many tasks at compilation time. APT is a standard extension of a Java compiler.
 All Java IDE (Eclipse, Intellij and Netbeans) provide good support for APT, we will show in the section how to configure
@@ -983,24 +1173,138 @@ and uses APT within those IDEs.</p>
 <p>IDEs provide also Maven support, we will focus in this section on using APT without the Maven support. Indeed the APT support
 may work differently when using Maven in your project, the Maven and APT support within IDEs has a dedicated section.</p>
 </div>
-<div class="sect3">
-<h4 id="_intellij_support"><a class="anchor" href="#_intellij_support"></a>Intellij support</h4>
 <div class="paragraph">
-<p>todo</p>
+<p>In this Intellij walkthrough we will work with project called <em>myapp</em> that was created by the Juzu Maven archetype.</p>
+</div>
+<div class="sect3">
+<h4 id="_importing_the_maven_project_2"><a class="anchor" href="#_importing_the_maven_project_2"></a>Importing the Maven project</h4>
+<div class="paragraph">
+<p>Let&#8217;s first import our Maven project in Intellij.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/builddeployrun/intellij01.png" alt="Interactions" width="700">
+</div>
+<div class="title">Figure 15. Click the Import Project from the Quick Start screen</div>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/builddeployrun/intellij02.png" alt="Interactions" width="400">
+</div>
+<div class="title">Figure 16. Select the pom.xml file of our myapp project</div>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/builddeployrun/intellij03.png" alt="Interactions" width="400">
+</div>
+<div class="title">Figure 17. The project view after import</div>
+</div>
+<div class="paragraph">
+<p>We can see in the <em>target</em> directory the generated annotations folders, it contains several classes generated
+by Juzu such as <code>Application</code> or <code>Controller_</code> but also other files like templates</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/builddeployrun/intellij04.png" alt="Interactions" width="700">
+</div>
+<div class="title">Figure 18. The imported project structure</div>
+</div>
+<div class="paragraph">
+<p>The generated annotations folders should be visible from the project.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+
+you should build the project before importing it, this will help Intellij to detect the
+<em>target/generated-sources/annotations</em> and <em>target/generated-sources/test-annotations</em> folder and configure
+those as source folders of the project. If you don&#8217;t do that then you will have to do it manually in the
+<em>Project Structure</em> screen. In the screenshot we can see that all folders of <em>target</em> have been excluded
+except the generated annotations sources.
+</td>
+</tr>
+</table>
 </div>
 
 </div>
 <div class="sect3">
-<h4 id="_eclipse_support"><a class="anchor" href="#_eclipse_support"></a>Eclipse support</h4>
+<h4 id="_compiler_configuration_2"><a class="anchor" href="#_compiler_configuration_2"></a>Compiler configuration</h4>
 <div class="paragraph">
-<p>todo</p>
+<p>Integration of Juzu in your IDE requires to properly configure and activate the Java compiler for using the
+Juzu annotation processor.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/builddeployrun/intellij05.png" alt="Interactions" width="700">
+</div>
+<div class="title">Figure 19. Java compiler configuration</div>
+</div>
+<div class="paragraph">
+<p>Java compiler configures requires to <strong>disable</strong> the <em>external build</em> feature that does not support annotation
+processing.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/builddeployrun/intellij06.png" alt="Interactions" width="700">
+</div>
+<div class="title">Figure 20. Annotation processor configuration</div>
+</div>
+<div class="paragraph">
+<p>After that, the Juzu annotation processor shall be <a href="http://www.jetbrains.com/idea/webhelp/configuring-annotation-processing.html">configured</a> to <code>juzu.processor.MainProcessor</code>.</p>
 </div>
 
 </div>
 <div class="sect3">
-<h4 id="_netbeans_support"><a class="anchor" href="#_netbeans_support"></a>Netbeans support</h4>
+<h4 id="_processing_annotations_2"><a class="anchor" href="#_processing_annotations_2"></a>Processing annotations</h4>
 <div class="paragraph">
-<p>todo</p>
+<p>When using annotation processing it is important to keep your generated sources in sync with your code. There are two
+ways to achieve it in our case:
+- let Maven do the job for you either via the IDE integration or command line
+- ask Intellij to process the sources</p>
+</div>
+<div class="paragraph">
+<p>In this part we are going to study how annotation generation work within the IDE with the <code>Controller</code> class. The
+controller compagnion <code>Controller</code> looks like after the initial generation:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/builddeployrun/intellij08.png" alt="Interactions" width="600">
+</div>
+<div class="title">Figure 21. The Controller_ generated class</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s add a new controller method <code>process</code> in our controller.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/builddeployrun/intellij10.png" alt="Interactions" width="600">
+</div>
+<div class="title">Figure 22. The modified controller</div>
+</div>
+<div class="paragraph">
+<p>Now let&#8217;s generate the new source code via the IDE.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/builddeployrun/intellij09.png" alt="Interactions" width="400">
+</div>
+<div class="title">Figure 23. Processing annotations</div>
+</div>
+<div class="paragraph">
+<p>After generate our <code>Controller</code> class has been updated.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/builddeployrun/intellij11.png" alt="Interactions" width="600">
+</div>
+<div class="title">Figure 24. The updated Controller_ class</div>
+</div>
+<div class="paragraph">
+<p>We can see that a new <code>method_1</code> field in <code>Controller_</code> reflects the <code>process</code> method we added in <code>Controller</code>.</p>
 </div>
 
 </div>
@@ -1010,90 +1314,8 @@ may work differently when using Maven in your project, the Maven and APT support
 </div>
 </div>
 <div class="sect1">
-<h2 id="_deploy"><a class="anchor" href="#_deploy"></a>Deploy</h2>
+<h2 id="_run_modes"><a class="anchor" href="#_run_modes"></a>Run modes</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>At the moment the supported (i.e tested) portal servers are</p>
-</div>
-<div class="ulist">
-
-<ul>
-<li>
-<p>Tomcat 6.x and 7.x</p>
-</li>
-<li>
-<p>GateIn 3.2 / 3.3 / 3.4 and 3.5</p>
-</li>
-<li>
-<p>Liferay 6.1</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Other server may work but we are not aware of that as it was not tested in other environments.</p>
-</div>
-<div class="sect2">
-<h3 id="_tomcat"><a class="anchor" href="#_tomcat"></a>Tomcat</h3>
-<div class="paragraph">
-<p>No specific deployment instruction.</p>
-</div>
-
-</div>
-<div class="sect2">
-<h3 id="_gatein"><a class="anchor" href="#_gatein"></a>GateIn</h3>
-<div class="sect3">
-<h4 id="_gatein_on_tomcat_6_7"><a class="anchor" href="#_gatein_on_tomcat_6_7"></a>GateIn on Tomcat 6/7</h4>
-<div class="paragraph">
-<p>No specific deployment instruction.</p>
-</div>
-
-</div>
-<div class="sect3">
-<h4 id="_gatein_on_jboss_as_7"><a class="anchor" href="#_gatein_on_jboss_as_7"></a>GateIn on JBoss AS 7</h4>
-<div class="paragraph">
-<p>GateIn on JBoss AS7 requires a little modification to do:</p>
-</div>
-<div class="paragraph">
-<p>Open the file <em>modules/javax/api/main/module.xml</em> and add <em>&lt;path name="javax/annotation/processing"/&gt;</em> among the <em>paths</em>
-declaration:</p>
-</div>
-<div class="listingblock">
-
-<div class="content monospaced">
-<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;module</span> <span class="attribute-name">xmlns</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">urn:jboss:module:1.1</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">javax.api</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
-  <span class="tag">&lt;dependencies&gt;</span>
-    <span class="tag">&lt;system</span> <span class="attribute-name">export</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
-      <span class="tag">&lt;paths&gt;</span>
-        <span class="tag">&lt;path</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">javax/annotation/processing</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
-        ...
-      <span class="tag">&lt;/paths&gt;</span>
-    <span class="tag">&lt;/system&gt;</span>
-  <span class="tag">&lt;/dependencies&gt;</span>
-<span class="tag">&lt;/module&gt;</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This configuration exposes the <code>javax.annotation.processing</code> package to the classes seen by Juzu.</p>
-</div>
-
-</div>
-
-</div>
-<div class="sect2">
-<h3 id="_liferay"><a class="anchor" href="#_liferay"></a>Liferay</h3>
-<div class="paragraph">
-<p>Liferay has been tested extensively with the Tomcat version, no specific deployment instruction is required.</p>
-</div>
-
-</div>
-
-</div>
-</div>
-<div class="sect1">
-<h2 id="_run"><a class="anchor" href="#_run"></a>Run</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_run_modes"><a class="anchor" href="#_run_modes"></a>Run modes</h3>
 <div class="paragraph">
 <p>Juzu defines three modes for running an application, called <em>run modes</em>:</p>
 </div>
@@ -1107,45 +1329,14 @@ declaration:</p>
 <p>Development (<em>dev</em>): provides verbose error reporting</p>
 </li>
 <li>
-<p>Live (<em>live</em>): allow to develop the application live with verbose error reporting</p>
+<p>Live (<em>live</em>): allow to develop the application live with verbose error reporting. It provides a live recompilation of
+the sources at runtime providing an increased productivity.</p>
 </li>
 </ul>
 </div>
-
-</div>
-<div class="sect2">
-<h3 id="_how_to_choose_the_right_run_mode"><a class="anchor" href="#_how_to_choose_the_right_run_mode"></a>How to choose the right run mode</h3>
-<div class="ulist">
-
-<ul>
-<li>
-<p>When you are running an application use the <em>prod</em> run mode</p>
-</li>
-<li>
-<p>When you are developing an application with a build system use the <em>dev</em> run mode</p>
-</li>
-<li>
-<p>When you are live developing an application use the <em>live</em> run mode</p>
-</li>
-</ul>
-</div>
-
-</div>
-<div class="sect2">
-<h3 id="_configuring_the_run_mode"><a class="anchor" href="#_configuring_the_run_mode"></a>Configuring the run mode</h3>
 <div class="paragraph">
-<p>Run mode is configured via servlet context parameters, by default the <em>prod</em> mode is enabled:</p>
-</div>
-<div class="ulist">
-
-<ul>
-<li>
-<p><em>juzu.run_mode</em> : possible values <em>prod</em>, <em>dev</em> or <em>live</em></p>
-</li>
-<li>
-<p><em>juzu.src_path</em> : the source path of the source to compile for the live mode</p>
-</li>
-</ul>
+<p>Run mode is configured via the servlet context parameters for Servlet or Portlet applications this the scope
+ of the run mode is for the entire bridge.</p>
 </div>
 <div class="listingblock">
 <div class="title">Configuring the dev mode in web.xml</div>
@@ -1156,7 +1347,19 @@ declaration:</p>
 <span class="tag">&lt;/context-param&gt;</span></code></pre>
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-note" title="Note"></i>
+</td>
+<td class="content">
 
+live mode is experimental and you may experience issues when using it. When this happens recompile your application
+with your build system and redeploy it, this will reinitialize the runtime and you can use live mode again.
+</td>
+</tr>
+</table>
 </div>
 
 </div>
@@ -1246,7 +1449,7 @@ is invoked, a set of resources parameters are provided in the URL producing the 
 <div class="content">
 <img src="images/request/phases.png" alt="Interactions" width="600">
 </div>
-<div class="title">Figure 1. Interaction between phases</div>
+<div class="title">Figure 25. Interaction between phases</div>
 </div>
 <div class="olist arabic">
 
@@ -1298,7 +1501,7 @@ is invoked, a set of resources parameters are provided in the URL producing the 
 <div class="content">
 <img src="images/request/interaction1.png" alt="View phase" width="250">
 </div>
-<div class="title">Figure 2. View phase</div>
+<div class="title">Figure 26. View phase</div>
 </div>
 <div class="paragraph">
 <p>In this example the view phase produce markup parameterized by the <code>color</code> parameter having the <em>red</em> value.</p>
@@ -1329,7 +1532,7 @@ is mapped on <em>POST</em> requests:</p>
 <div class="content">
 <img src="images/request/interaction2.png" alt="Action phase" width="250">
 </div>
-<div class="title">Figure 3. Action phase</div>
+<div class="title">Figure 27. Action phase</div>
 </div>
 <div class="paragraph">
 <p>Now let&#8217;s update our example and suppose that the application returns markup with a form that invokes
@@ -1340,7 +1543,7 @@ parameter of the next view phase to the value <em>blue</em>.</p>
 <div class="content">
 <img src="images/request/interaction3.png" alt="View phase after action phase" width="250">
 </div>
-<div class="title">Figure 4. View phase after action phase</div>
+<div class="title">Figure 28. View phase after action phase</div>
 </div>
 <div class="paragraph">
 <p>The HTTP redirection will update the browser to show the next view phase with the expected view parameters.</p>
@@ -1918,7 +2121,7 @@ for managing the life cycle of controller objects, based on the <code>@javax.inj
 <div class="content">
 <img src="images/controllers/lifecycle.png" alt="Life cycle" width="500">
 </div>
-<div class="title">Figure 5. Life cycle of a controller object</div>
+<div class="title">Figure 29. Life cycle of a controller object</div>
 </div>
 <div class="olist arabic">
 
@@ -2194,7 +2397,7 @@ if you project contains several applications, you should configure a Juzu servle
 <div class="sect2">
 <h3 id="_servlet_configuration"><a class="anchor" href="#_servlet_configuration"></a>Servlet configuration</h3>
 <div class="paragraph">
-<p>Declaring a Juzu servlet is done in the //web.xml// file of the web application:</p>
+<p>Declaring a Juzu servlet is done in the <em>web.xml</em> file of the web application:</p>
 </div>
 <div class="listingblock">
 <div class="title">The Juzu servlet configuration</div>
@@ -2292,6 +2495,83 @@ if you project contains several applications, you should configure a Juzu portle
 <p>The <em>juzu.app_name</em> init parameter tells Juzu the package of the application to use.</p>
 </div>
 
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_bridge_configuration"><a class="anchor" href="#_bridge_configuration"></a>Bridge configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Bridge can be configured via the the servlet context parameters of the web application or the servlet/portlet
+ init parameters:</p>
+</div>
+<table class="tableblock frame-all grid-all" style="width:100%; ">
+<caption class="title">Table 3. Bridge configuration parameters</caption>
+<colgroup>
+<col style="width:16%;">
+<col style="width:16%;">
+<col style="width:16%;">
+<col style="width:16%;">
+<col style="width:16%;">
+<col style="width:16%;"> 
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">Parameter</th>
+<th class="tableblock halign-center valign-top">Name</th>
+<th class="tableblock halign-center valign-top">Description</th>
+<th class="tableblock halign-center valign-top">Scope</th>
+<th class="tableblock halign-center valign-top">Bridge</th>
+<th class="tableblock halign-center valign-top">Interpolation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Application name</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em>juzu.app_name</em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">application package name</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">init param</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">servlet/portlet</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">none</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Run mode</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em>juzu.run_mode</em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em>prod</em>, <em>dev</em> or <em>live</em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">context param</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">servlet/Portlet</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">system properties</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Request encoding</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em>juzu.request_encoding</em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">charset name for decoding post requests</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">init param</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">servlet</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">system properties</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Injection container</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em>juzu.inject</em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">injection container name</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">init param/context param</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">servlet/portlet</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">none</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>When interpolation occurs, the interpolation format allows to define a default value when the value cannot be resolved:</p>
+</div>
+<div class="listingblock">
+<div class="title">Get the run mode from the JVM system properties or use prod value</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;context-param&gt;</span>
+  <span class="tag">&lt;param-name&gt;</span>juzu.run_mode<span class="tag">&lt;/param-name&gt;</span>
+  <span class="tag">&lt;param-value&gt;</span>${my_run_mode:prod}<span class="tag">&lt;/param-value&gt;</span>
+<span class="tag">&lt;/context-param&gt;</span></code></pre>
+</div>
 </div>
 
 </div>
@@ -2835,7 +3115,23 @@ the bean will be duplicated and you will use the wrong bean instance
 <div class="sect2">
 <h3 id="_provided_cdi"><a class="anchor" href="#_provided_cdi"></a>Provided CDI</h3>
 <div class="paragraph">
-<p>todo</p>
+<p>Provided CDI is supported since Juzu 0.7.0, it provides an integration managed by the server:</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p>in case of a Java EE server, CDI is provided natively.</p>
+</li>
+<li>
+<p>in case of a Servlet Container, the Weld CDI implementation supports the
+<a href="http://docs.jboss.org/weld/reference/1.0.0/en-US/html/environments.html">integration in Tomcat or Jetty</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In both case you need to comply to CDI applications rules such as having a <em>beans.xml</em> file in your <em>WEB-INF</em>
+directory.</p>
 </div>
 
 </div>
@@ -2940,7 +3236,7 @@ will uses the controller compagnion <code>Controller_#purchase(String product)</
 
 </div>
 <div class="sect3">
-<h4 id="_messages"><a class="anchor" href="#_messages"></a>Messages</h4>
+<h4 id="messages"><a class="anchor" href="#messages"></a>Messages</h4>
 <div class="paragraph">
 <p>You can resolve a message in resource bundles in a template with the <code>&amp;{&#8230;}</code> syntax:</p>
 </div>
@@ -2953,21 +3249,7 @@ will uses the controller compagnion <code>Controller_#purchase(String product)</
 </div>
 <div class="paragraph">
 <p>When the message is not found, no output will be done. The resource bundle is resolved with
-the current user locale.</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-
-This feature at the moment only works with portlets that supports resource bundle
-declaration natively
-</td>
-</tr>
-</table>
+the current user locale. The <a href="#i18n">Internationalization</a> section explains resource bundle configuration.</p>
 </div>
 
 </div>
@@ -2987,12 +3269,66 @@ declaration natively
 </div>
 
 </div>
+<div class="sect3">
+<h4 id="_groovy_template_compilation"><a class="anchor" href="#_groovy_template_compilation"></a>Groovy template compilation</h4>
+<div class="paragraph">
+<p>During the compilation phase, the native template engine transforms the <em>gtmpl</em> templates into <em>groovy</em> files. Such files
+are valid Groovy scripts and they need to be compiled sometime into bytecode before execution at runtime. By default
+there is nothing to do, since Juzu will compile the <em>groovy</em> file when it is needed, however you can compile the templates
+ahead of time with your build if you want, doing it provides two advantages:</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p>since compilation is done before runtime, it will save a bit of time when the template is used since loading a mere
+class is significanly cheaper than compiling a Groovy template. (note we are talking of a few milliseconds here)</p>
+</li>
+<li>
+<p>if your templates contains Groovy code, this code will be validated before execution, this is probably a more valid
+reason than the previous one</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Maven builds can use the <em>gmaven-plugin</em> to achieve this:</p>
+</div>
+<div class="listingblock">
+<div class="title">Compiling <em>groovy</em> sources to classes with the <em>gmaven-plugin</em></div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="comment">&lt;!-- Precompile the template class in maven (this is optional) --&gt;</span>
+<span class="tag">&lt;plugin&gt;</span>
+  <span class="tag">&lt;groupId&gt;</span>org.codehaus.gmaven<span class="tag">&lt;/groupId&gt;</span>
+  <span class="tag">&lt;artifactId&gt;</span>gmaven-plugin<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;version&gt;</span>1.5<span class="tag">&lt;/version&gt;</span>
+  <span class="tag">&lt;executions&gt;</span>
+    <span class="tag">&lt;execution&gt;</span>
+      <span class="tag">&lt;goals&gt;</span>
+        <span class="tag">&lt;goal&gt;</span>compile<span class="tag">&lt;/goal&gt;</span>
+      <span class="tag">&lt;/goals&gt;</span>
+      <span class="tag">&lt;configuration&gt;</span>
+        <span class="tag">&lt;sources&gt;</span>
+          <span class="tag">&lt;fileset&gt;</span>
+            <span class="tag">&lt;directory&gt;</span>${project.build.outputDirectory}<span class="tag">&lt;/directory&gt;</span>
+            <span class="tag">&lt;includes&gt;</span>
+              <span class="tag">&lt;include&gt;</span>**/*.groovy<span class="tag">&lt;/include&gt;</span>
+            <span class="tag">&lt;/includes&gt;</span>
+          <span class="tag">&lt;/fileset&gt;</span>
+        <span class="tag">&lt;/sources&gt;</span>
+      <span class="tag">&lt;/configuration&gt;</span>
+    <span class="tag">&lt;/execution&gt;</span>
+  <span class="tag">&lt;/executions&gt;</span>
+<span class="tag">&lt;/plugin&gt;</span></code></pre>
+</div>
+</div>
+
+</div>
 
 </div>
 <div class="sect2">
 <h3 id="_the_mustache_template_engine"><a class="anchor" href="#_the_mustache_template_engine"></a>The Mustache template engine</h3>
 <div class="paragraph">
-<p>The Mustache template engine uses <em>logic-less</em> templates based on <a href="https://github.com/spullara/mustache.java">Mustache.java&gt;</a>
+<p>The Mustache template engine uses <em>logic-less</em> templates based on <a href="https://github.com/spullara/mustache.java">Mustache.java</a>
 the Java port of Mustache. Mustache is very easy to use, you can read the <a href="http://mustache.github.com/mustache.5.html">documentation</a>,
 however we will have a quick overview of how it can be used in Juzu:</p>
 </div>
@@ -3582,6 +3918,73 @@ by the <code>decorate</code> tag).</p>
 </div>
 </div>
 
+<h1 id="i18n" class="sect0"><a class="anchor" href="#i18n"></a>Internationalization</h1>
+<div class="sect1">
+<h2 id="_application_resource_bundle"><a class="anchor" href="#_application_resource_bundle"></a>Application resource bundle</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Juzu allows an application to use a resource bundle.</p>
+</div>
+<div class="paragraph">
+<p>This feature is supported natively by the Portlet API and its configuration occurs in the <em>portlet.xml</em> file:</p>
+</div>
+<div class="listingblock">
+<div class="title">Portlet resource bundle configuration</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;portlet&gt;</span>
+  <span class="tag">&lt;portlet-name&gt;</span>MyPortlet<span class="tag">&lt;/portlet-name&gt;</span>
+  ...
+  <span class="tag">&lt;resource-bundle&gt;</span>MyBundle<span class="tag">&lt;/resource-bundle&gt;</span>
+  ...
+<span class="tag">&lt;/portlet&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For the servlet bridge a custom implementation is provided by Juzu at the servlet level:</p>
+</div>
+<div class="listingblock">
+<div class="title">Servlet resource bundle configuration</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;servlet&gt;</span>
+  <span class="tag">&lt;servlet-name&gt;</span>MyServlet<span class="tag">&lt;/servlet-name&gt;</span>
+  ...
+  <span class="tag">&lt;init-param&gt;</span>
+    <span class="tag">&lt;param-name&gt;</span>juzu.resource_bundle<span class="tag">&lt;/param-name&gt;</span>
+    <span class="tag">&lt;param-value&gt;</span>MyBundle<span class="tag">&lt;/param-value&gt;</span>
+  <span class="tag">&lt;/init-param&gt;</span>
+  ...
+<span class="tag">&lt;/servlet&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you are using the <a href="#servlet">Servlet</a> plugin, the <code>@Servlet</code> annotation allows to configure, please refer to the <a href="#servlet_bundle">Resource bundle declaration</a>
+part.</p>
+</div>
+<div class="sect2">
+<h3 id="_bundle_injection"><a class="anchor" href="#_bundle_injection"></a>Bundle injection</h3>
+<div class="paragraph">
+<p>When you provide a resource bundle along with your application, the bundle object is available for injection:</p>
+</div>
+<div class="listingblock">
+<div class="title">Resource bundle injection</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="annotation">@Inject</span>
+<span class="predefined-type">ResourceBundle</span> bundle;</code></pre>
+</div>
+</div>
+
+</div>
+<div class="sect2">
+<h3 id="_template_messages"><a class="anchor" href="#_template_messages"></a>Template messages</h3>
+<div class="paragraph">
+<p>The native template engine supports the resolution of <a href="#messages">Messages</a> from the resource bundle.</p>
+</div>
+
+</div>
+
+</div>
+</div>
+
 <h1 id="templatespi" class="sect0"><a class="anchor" href="#templatespi"></a>Templating SPI</h1>
 <div class="paragraph">
 <p>This chapter dives into the template life cycle from the compilation time to the run time. We will describe the
@@ -3618,7 +4021,7 @@ from the details of the templating engine.</p>
 <div class="content">
 <img src="images/templatespi/lifecycle1.png" alt="Life cycle" width="700">
 </div>
-<div class="title">Figure 6. Compiling a Groovy template</div>
+<div class="title">Figure 30. Compiling a Groovy template</div>
 </div>
 <div class="paragraph">
 <p>When the Java compiler is invoked, the following steps are executed</p>
@@ -3678,7 +4081,7 @@ an overview of the underlying resolution mechanism.</p>
 <div class="content">
 <img src="images/templatespi/lifecycle2.png" alt="URL resolution" width="750">
 </div>
-<div class="title">Figure 7. Template URL resolution during compilation</div>
+<div class="title">Figure 31. Template URL resolution during compilation</div>
 </div>
 <div class="ulist">
 
@@ -3934,7 +4337,7 @@ controller and the whole application
 <div class="content">
 <img src="images/request/interaction3.png" alt="At work" width="250">
 </div>
-<div class="title">Figure 8. index groovy at work</div>
+<div class="title">Figure 32. index groovy at work</div>
 </div>
 <div class="paragraph">
 <p>When a controller is instantiated, the <code>index</code> template instance is injected into the controller, the <code>@Path</code> annotation
@@ -4180,7 +4583,7 @@ a list of uri to add to the page.</p>
 <div class="content">
 <img src="images/assets/assets1.png" alt="Assets in request" width="700">
 </div>
-<div class="title">Figure 9. Using assets in a request</div>
+<div class="title">Figure 33. Using assets in a request</div>
 </div>
 <div class="paragraph">
 <p>An asset reference is a link to an asset value that is configured externally, thus an asset of any kind will always resolve
@@ -4226,7 +4629,7 @@ class.</p>
  <em>cascaded</em> to the nested controllers:</p>
 </div>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
-<caption class="title">Table 3. <code>@WithAssets</code> annotations are cascaded with a few rules</caption>
+<caption class="title">Table 4. <code>@WithAssets</code> annotations are cascaded with a few rules</caption>
 <colgroup>
 <col style="width:50%;">
 <col style="width:50%;"> 
@@ -4332,7 +4735,8 @@ The <code>@WithAssets</code> annotation and the <code>withAssets</code> method a
 </td>
 <td class="content">
 
-If you are using Servlet 3.0, this declaration is not necessary.
+If you are using Servlet 3.0, this declaration is not necessary as it will be registered by Juzu dynamically
+using a <code>javax.servlet.ServletContainerInitializer</code>
 </td>
 </tr>
 </table>
@@ -4734,7 +5138,7 @@ can be used, this option will trim the whitespace when processing the file : <co
 <pre class="CodeRay"><code class="xml language-xml">&lt;dependency&gt;
   &lt;groupId&gt;org.juzu&lt;/groupId&gt;
   &lt;artifactId&gt;juzu-plugins-less&lt;/artifactId&gt;
-  &lt;version&gt;0.7.0-beta26&lt;/version&gt;
+  &lt;version&gt;0.7.0-cr1&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
@@ -4848,7 +5252,7 @@ plugin or the <em>AMD</em> plugin.</p>
 <pre class="CodeRay"><code class="xml language-xml">&lt;dependency&gt;
   &lt;groupId&gt;org.juzu&lt;/groupId&gt;
   &lt;artifactId&gt;juzu-plugins-webjars&lt;/artifactId&gt;
-  &lt;version&gt;0.7.0-beta26&lt;/version&gt;
+  &lt;version&gt;0.7.0-cr1&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
@@ -4858,7 +5262,7 @@ plugin or the <em>AMD</em> plugin.</p>
 </div>
 </div>
 
-<h1 id="_servlet" class="sect0"><a class="anchor" href="#_servlet"></a>Servlet</h1>
+<h1 id="servlet" class="sect0"><a class="anchor" href="#servlet"></a>Servlet</h1>
 <div class="sect1">
 <h2 id="_juzu_servlet_plugin"><a class="anchor" href="#_juzu_servlet_plugin"></a>Juzu Servlet Plugin</h2>
 <div class="sectionbody">
@@ -4866,7 +5270,7 @@ plugin or the <em>AMD</em> plugin.</p>
 <p>The servlet plugin enhance Juzu servlet applications.</p>
 </div>
 <div class="sect2">
-<h3 id="_servlet_class_generation"><a class="anchor" href="#_servlet_class_generation"></a>Servlet class generation</h3>
+<h3 id="_servlet_declaration"><a class="anchor" href="#_servlet_declaration"></a>Servlet declaration</h3>
 <div class="paragraph">
 <p>A Juzu servlet application is managed by a JuzuServlet configured with the application name. Since Servlet 3.0,
 configuration can be easier thanks to servlet annotations. Juzu leverages this capability and is able to generate a
@@ -4888,6 +5292,21 @@ servlet for an application with the juzu.plugin.servlet.Servlet annotation:</p>
 <td>The application <em>url-pattern</em></td>
 </tr>
 </table>
+</div>
+
+</div>
+<div class="sect2">
+<h3 id="servlet_bundle"><a class="anchor" href="#servlet_bundle"></a>Resource bundle declaration</h3>
+<div class="paragraph">
+<p>The <code>@Servlet</code> annotation allows to declare a resource bundle:</p>
+</div>
+<div class="listingblock">
+<div class="title">Servlet resource bundle configuration via annotations</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="annotation">@Application</span>
+<span class="annotation">@Servlet</span>(value = <span class="string"><span class="delimiter">&quot;</span><span class="content">/</span><span class="delimiter">&quot;</span></span>, resourceBundle = <span class="string"><span class="delimiter">&quot;</span><span class="content">MyBundle</span><span class="delimiter">&quot;</span></span>)
+<span class="keyword">package</span> <span class="namespace">myapp</span>;</code></pre>
+</div>
 </div>
 
 </div>
@@ -5042,7 +5461,7 @@ can only be performed during an action phase.
 <pre class="CodeRay"><code class="xml language-xml">&lt;dependency&gt;
   &lt;groupId&gt;org.juzu&lt;/groupId&gt;
   &lt;artifactId&gt;juzu-plugins-portlet&lt;/artifactId&gt;
-  &lt;version&gt;0.7.0-beta26&lt;/version&gt;
+  &lt;version&gt;0.7.0-cr1&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
@@ -5195,6 +5614,108 @@ can only be performed during an action phase.
 </div>
 
 </div>
+<div class="sect3">
+<h4 id="gatein_guice"><a class="anchor" href="#gatein_guice"></a>Guice for GateIn Portal</h4>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;dependencies&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.juzu<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>juzu-core<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.codehaus.groovy<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>groovy-all<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;scope&gt;</span>provided<span class="tag">&lt;/scope&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>javax.inject<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>javax.inject<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;scope&gt;</span>provided<span class="tag">&lt;/scope&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>com.google.inject<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>guice<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;scope&gt;</span>provided<span class="tag">&lt;/scope&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+<span class="tag">&lt;/dependencies&gt;</span></code></pre>
+</div>
+</div>
+
+</div>
+<div class="sect3">
+<h4 id="gatein_spring"><a class="anchor" href="#gatein_spring"></a>Spring for GateIn Portal</h4>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;dependencies&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.juzu<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>juzu-core<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.codehaus.groovy<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>groovy-all<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;scope&gt;</span>provided<span class="tag">&lt;/scope&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>javax.inject<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>javax.inject<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;scope&gt;</span>provided<span class="tag">&lt;/scope&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.springframework<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>spring-web<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+<span class="tag">&lt;/dependencies&gt;</span></code></pre>
+</div>
+</div>
+
+</div>
+<div class="sect3">
+<h4 id="gatein_cdi"><a class="anchor" href="#gatein_cdi"></a>CDI for GateIn Portal</h4>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;dependencies&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.juzu<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>juzu-core<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.codehaus.groovy<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>groovy-all<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;scope&gt;</span>provided<span class="tag">&lt;/scope&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>javax.inject<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>javax.inject<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;scope&gt;</span>provided<span class="tag">&lt;/scope&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>javax.enterprise<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>cdi-api<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;scope&gt;</span>provided<span class="tag">&lt;/scope&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.javassist<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>javassist<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;scope&gt;</span>provided<span class="tag">&lt;/scope&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.jboss.weld<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>weld-core<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.jboss.weld.servlet<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>weld-servlet-core<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
+<span class="tag">&lt;/dependencies&gt;</span></code></pre>
+</div>
+</div>
+
+</div>
 
 </div>
 
@@ -5205,7 +5726,7 @@ can only be performed during an action phase.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2013-10-29 10:57:21 CET
+Last updated 2013-11-04 16:22:12 CET
 </div>
 </div>
 </body>
