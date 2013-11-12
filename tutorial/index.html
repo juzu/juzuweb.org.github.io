@@ -1429,31 +1429,34 @@ using existing tools, we will use in this chapter the following tools:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>For making testing easy, Juzu provides a  Maven dependencies containing all the required dependencies for
-testing an application:</p>
+<p>For making testing easy, Juzu provides a Maven dependencies called <em>depchains</em> containing dependencies for
+testing an application with those tools:</p>
 </div>
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;dependency&gt;</span>
-  <span class="tag">&lt;groupId&gt;</span>junit<span class="tag">&lt;/groupId&gt;</span>
-  <span class="tag">&lt;artifactId&gt;</span>junit<span class="tag">&lt;/artifactId&gt;</span>
-  <span class="tag">&lt;scope&gt;</span>test<span class="tag">&lt;/scope&gt;</span>
-<span class="tag">&lt;/dependency&gt;</span>
-<span class="tag">&lt;dependency&gt;</span>
-  <span class="tag">&lt;groupId&gt;</span>org.juzu<span class="tag">&lt;/groupId&gt;</span>
-  <span class="tag">&lt;artifactId&gt;</span>juzu-bom-arquillian<span class="tag">&lt;/artifactId&gt;</span>
-  <span class="tag">&lt;scope&gt;</span>test<span class="tag">&lt;/scope&gt;</span>
-<span class="tag">&lt;/dependency&gt;</span>
-<span class="tag">&lt;dependency&gt;</span>
-  <span class="tag">&lt;groupId&gt;</span>org.juzu<span class="tag">&lt;/groupId&gt;</span>
-  <span class="tag">&lt;artifactId&gt;</span>juzu-bom-arquillian-tomcat7<span class="tag">&lt;/artifactId&gt;</span>
-  <span class="tag">&lt;scope&gt;</span>test<span class="tag">&lt;/scope&gt;</span>
-<span class="tag">&lt;/dependency&gt;</span></code></pre>
+<pre class="CodeRay"><code class="xml language-xml">&lt;dependency&gt;
+  &lt;groupId&gt;junit&lt;/groupId&gt;
+  &lt;artifactId&gt;junit&lt;/artifactId&gt;
+  &lt;version&gt;4.10&lt;/version&gt;
+  &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.juzu&lt;/groupId&gt;
+  &lt;artifactId&gt;juzu-depchain-arquillian&lt;/artifactId&gt;
+  &lt;version&gt;0.7.0&lt;/version&gt;
+  &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.juzu&lt;/groupId&gt;
+  &lt;artifactId&gt;juzu-depchain-arquillian-tomcat7&lt;/artifactId&gt;
+  &lt;version&gt;0.7.0&lt;/version&gt;
+  &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <em>juzu-bom-arquillian</em> and <em>juzu-bom-arquillian-tomcat7</em> provides setup for Arquillian and Selenium for Tomcat7
+<p>The <em>juzu-depchain-arquillian</em> and <em>juzu-depchain-tomcat7</em> provides setup for Arquillian and Selenium for Tomcat7
 based testing.</p>
 </div>
 <div class="sect1">
@@ -1583,7 +1586,7 @@ can be found in the package you downloaded in the <em>booking</em> directory.</p
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2013-11-04 16:21:37 CET
+Last updated 2013-11-12 11:11:27 CET
 </div>
 </div>
 </body>
