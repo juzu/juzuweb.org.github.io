@@ -1,139 +1,142 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Juzu Web Framework</title>
-    <link rel="stylesheet" href="css/site.css">
-    <script src="js/jquery-1.7.1.min.js"></script>
-    <!-- Doc here : http://www.asual.com/jquery/address/docs/ -->
-    <script src="js/jquery.address-1.4.min.js"></script>
-    <script src="js/bootstrap-dropdown.js"></script>
 
-    <!--
-    Does not work at the moment for some reason
-    <script src="js/google-code-prettify/prettify.js"></script>
-    -->
+    <!-- Juzuweb CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
 
-    <script>
-      $(document).ready(function() {
+    <!--[if lt IE 9]><script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
 
-        // The page navigation
-        $.address.change(function(event){
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
 
-          // Get anchor
-          var anchor = event.value.substring(1);
-          if (anchor == "")
-            anchor = "home";
+    <!-- Juzuweb Javascript -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/juzu.js"></script>
 
-          //
-          var page = $(".page:has(a[name=" + anchor + "])");
-          if (page.length == 1) {
-            page.filter(function() {
-              return this != window.previous;
-            }).each(function() {
+    <!-- Juzuweb Favicons -->
 
-              // Do show/hide
-              $(".page").hide();
-              $(this).show();
+  </head>
+  <body class="body-page">
 
-              // Reset page to top
-              $(window).scrollTop(0);
-
-              // Update previous
-              window.previous = this;
-            });
-          } else {
-            // Should log something somehow
-          }
-        });
-      });
-    </script>
-    
-</head>
-<body>
-
-  <div>
-
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
+    <div id="wrapper" class="wrapper">
+      <nav id="navbarTop" class="navbar navbar-top affix-top" role="navigation"><!-- data-spy="affix" data-offset-top="200px" data-offset-bottom="200" -->
         <div class="container">
-          <ul id="tabs" class="nav">
-
-            <li><a href="#home">Home</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Project<b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#features">Features</a></li>
-                <li><a href="https://github.com/juzu/juzu/blob/master/roadmap.asciidoc">Roadmap</a></li>
-                <li><a href="http://github.com/juzu/juzu">Contribute</a></li>
-              </ul>
-            </li>
-
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="tutorial/index.html">Tutorial</a></li>
-                <li><a href="reference/index.html">Reference</a></li>
-                <li><a href="javadoc/index.html" target="blank_">Javadoc</a></li>
-              </ul>
-            </li>
-
-            <li><a href="#screencasts">Screencasts</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-
-      <div class="page">
-        <a name="home"></a>
-        <div class="hero-unit">
-          <div id="logo" class="center">
-            <h1>Juzu Web Framework 0.7.0</h1>
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><img src="images/logo-juzu.png" alt="Logo Juzu Web Framework"></a>
           </div>
-          <p>Develop powerful web applications</p>
-          <p>Emphasises on simplicity and type safety</p>
-          <p>Open source project and open minded</p>
-        </div>
-        <div class="row">
-          <div class="span4">
-            <h3>Links</h3>
-            <address>
-              <strong>Users:</strong> <a href="http://groups.google.com/group/juzu">juzu@googlegroups.com</a><br />
-              <strong>Developers:</strong> <a href="http://github.com/juzu/juzu">GitHub</a><br />
-              <strong>CI:</strong> <a href="https://juzu.ci.cloudbees.com/">Cloudbees</a><br />
-            </address>
-          </div>
-          <div class="span4">
-            <h3>Use</h3>
-            Latest <a href="http://search.maven.org/remotecontent?filepath=org/juzu/juzu-distrib/0.7.0/juzu-distrib-0.7.0.zip">0.7.0</a>.<br/>
-            Snapshot <a href="https://repository-juzu.forge.cloudbees.com/snapshot/">repository</a>.<br/>
-            </p>
-          </div>
-          <div class="span4">
-            <h3>Run</h3>
-            <ul class="unstyled">
-              <li>Servlet containers</li>
-              <li>Web portals like <a href="http://www.exoplatform.com/company/en/products/overview">eXo Platform</a> or <a href="http://www.gatein.org">GateIn</a></li>
-              <li>Vert.x</li>
+          
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#">Home</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle">Project <b class="caret-square"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#"><span>Features</span></a></li>
+                  <li><a href="#"><span>Road map</span></a></li>
+                  <li><a href="#"><span>Contribute</span></a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle">Documentation <b class="caret-square"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#"><span>Action</span></a></li>
+                  <li><a href="#"><span>Another action</span></a></li>
+                  <li><a href="#"><span>Something else here</span></a></li>
+                  <li><a href="#"><span>Separated link</span></a></li>
+                  <li><a href="#"><span>One more separated link</span></a></li>
+                </ul>
+              </li>
+              <li><a href="#">Screencasts</a></li>
             </ul>
-          </div>
-        </div>
-      </div>
-        
-      <div class="page">
-        <a name="features"></a>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav><!-- /.navbar-top -->
+      <header id="header">
 
+        <div class="header-banner">
+          <div class="background-banner">
+            <div class="container">
+                <div class="cleafix">
+                  <div class="social-box">
+                    <ul class="social-list-link">
+                      <li><a href="#"><i class="icon-jz-soc-github"></i></a></li>
+                      <li><a href="#"><i class="icon-jz-soc-facebook"></i></a></li>
+                      <li><a href="#"><i class="icon-jz-soc-twitter"></i></a></li>
+                      <li><a href="#"><i class="icon-jz-soc-linkedin"></i></a></li>
+                      <li><a href="#"><i class="icon-jz-soc-exo"></i></a></li>
+                    </ul>
+                  </div>
+                  <div class="banner-content">
+                    <h2 class="title">Juzu Web Framework</h2>
+                    <h3 class="desc">Develop powerful web applications<br>Emphasises on simplicity and type safety<br>Open source project and open minded</h3>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div> <!-- /.header-banner -->
+
+      </header><!-- /#header -->
+
+      <section id="main">
+        <div class="features-top-box">
+          <div class="container">
+            <div class="box-top clearfix">
+              <div class="pediment-cont one">
+                <h3 class="title">Download</h3>
+                <span class="desc">or check out<br>the sources</span>
+              </div>
+              <div class="pediment-cont two">
+                <h3 class="title">Juzu in Action</h3>
+                <span class="desc">Demos<br>Screencasts</span>
+              </div>
+            </div>
+            <div class="box-bottom clearfix">
+              <div class="pediment-cont three">
+                <h2 class="title">Features</h2>
+                <a class="features-findout" href="#">
+                    <strong>Find out</strong>
+                </a>
+              </div>
+              <div class="pediment-cont four">
+                <h3 class="title">Run</h3>
+                <span class="desc">Servlet containers<br>Web portals like<br><a href="#">eXo Platform</a><br>or <a href="#">GateIn</a> Vert.x</span>
+              </div>
+            </div>
+          </div>
+        </div><!-- /.features-top-box -->
+
+        <div class="docs-content">
+            <section class="container">
+        <h1 class="title-section">Features</h1>
         <h1 class="page-header">Deployment</h1>
         <p>Juzu deploys on
-         <ul>
+         </p><ul>
             <li>Any servlet container</li>
             <li><a href="http://www.gatein.org">GateIn</a>: 3.2 and 3.3</li>
             <li><a href="http://www.liferay.com">Liferay</a>: tested on Liferay 6.10 and 5.x</li>
             <li>The Vert.x Platform</li>
           </ul>
-        </p>
+        <p></p>
 
         <h1 class="page-header">Dependency Injection integration</h1>
         <p>
@@ -167,8 +170,7 @@
         <p>Juzu programming model is inspired by the Play! Framework that provides a simple and efficient programming
           model for the web.</p>
         <p>Controller are methods annotated with <code>@Action</code> or <code>@View</code>:</p>
-        <pre>
-  @Action
+        <pre>  @Action
   public Response purchaseProduct(String productId) { ... }
 
   @View
@@ -267,7 +269,8 @@ PortletPreferences prefs;
         <p>
           The command line to use for creating a simple Juzu application using the Maven archetype
         </p>
-        <pre>mvn archetype:generate \
+        <pre>
+   mvn archetype:generate \
   -DarchetypeGroupId=org.juzu \
   -DarchetypeArtifactId=juzu-archetype \
   -DarchetypeVersion=0.7.0 \
@@ -310,40 +313,17 @@ public static URLBuilder showProduct(String productId) { ... }
           Juzu should report error through the Java Compiler, making error reporting integrated universally with build
           systems and IDE.
         </p>
-      </div>
-
-      <div class="page">
-        <a name="screencasts"></a>
-        <div class="row">
-          <div class="span4">
-            <h3><a href="http://vimeo.com/33184509">Hello Juzu</a></h3>
-            <iframe src="http://player.vimeo.com/video/33184509" width="284" height="160" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-          </div>
-          <div class="span4">
-            <h3><a href="http://vimeo.com/33370178">Template type safe parameters</a></h3>
-            <iframe src="http://player.vimeo.com/video/33370178" width="284" height="160" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-          </div>
-          <div class="span4">
-            <h3><a href="http://vimeo.com/33519963">Dev mode</a></h3>
-            <iframe src="http://player.vimeo.com/video/33519963" width="284" height="160" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-          </div>
+      
+            </section>
         </div>
-        <div class="row">
-          <div class="span4">
-            <h3><a href="http://vimeo.com/defrancea">Building with Maven/Eclipse</a></h3>
-              <iframe src="http://player.vimeo.com/video/44722647" width="284" height="160" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-          </div>
-          <div class="span4">
-            <h3><a href="http://vimeo.com/44737191">LESS plugin</a></h3>
-              <iframe src="http://player.vimeo.com/video/44737191" width="284" height="160" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-          </div>
-          <div class="span4">
-          </div>
+      </section><!-- #main -->
+
+      <footer id="footer">
+        <div class="container">
+            <p class="copy-right">Copyright ©2013. All rights reserved. <a href="#" title="Juzu Web Framework">Juzu</a></p>
         </div>
-      </div>
+      </footer><!-- #footer -->
+    </div><!-- #wrapper .wrapper -->
 
-    </div>
-  </div>
-
-</body>
+  </body>
 </html>

@@ -1,0 +1,24 @@
+// Mockup use Bootstrap 3.1.1
+
+juzu.github.com/
+¦
++-- less/
+¦   +-- site.less
+¦       +-- variables.less
+¦       +-- mixins.less
+¦       +-- style.less
+¦       +-- utilities.less
+¦
++-- css/
+¦   +-- bootstrap.min.css
+¦   +-- site.css
+¦
++-- js/
+¦   +-- bootstrap.js
+¦   +-- bootstrap.min.js
+¦
++-- fonts/
+    +-- glyphicons-halflings-regular.eot
+    +-- glyphicons-halflings-regular.svg
+    +-- glyphicons-halflings-regular.ttf
+    +-- glyphicons-halflings-regular.woff
