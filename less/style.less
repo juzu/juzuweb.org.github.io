@@ -1,8 +1,5 @@
 /* Replace Bootstrap Style */
 //=======================================
-.container {
-	width: 960px;
-}
 a {
 	color: @linkColor;
 	&:hover, &:focus, &:active {
@@ -126,11 +123,6 @@ body {
 		background-position: -152px -57px;
 	}
 }
-.title-section {
-	text-align: center;
-	min-height: 45px;
-	background: url("@{imageDirectory}/bg-title-section.png") no-repeat center bottom transparent;
-}
 .caret-square {
 	display: inline-block;
 	width: 17px;
@@ -229,6 +221,7 @@ body {
 	background: url("@{imageDirectory}/bg-navbar-top-affix.png") repeat-x 0 0 transparent;
 	background-clip: border-box;
 	border-radius: 0px;
+	z-index: 1400;
 	.navbar-brand {
 		.transition(all 300ms ease-in-out);
 		position: absolute;
@@ -288,7 +281,6 @@ body {
 }
 .features-top-box {
 	height: 254px;
-	margin-bottom: 100px;
 	background: url("@{imageDirectory}/bg-features.png") no-repeat center top transparent;
 	.pediment-cont {
 		text-align: center;
@@ -340,6 +332,13 @@ body {
 }
 /* Docs Style*/
 //=======================================
+.title-section {
+	padding-top: 100px;
+	padding-bottom: 18px;
+	text-align: center;
+	min-height: 45px;
+	background: url("@{imageDirectory}/bg-title-section.png") no-repeat center bottom transparent;
+}
 .page-header {
 	color: @linkColor;
 }
@@ -347,6 +346,9 @@ body {
 	margin-bottom: 50px;
 	ul {
 		padding-left: 14px;
+		li {
+			list-style-image: url("@{imageDirectory}/list-style-disc.png");
+		}
 	}
 	pre {
 		background-color: #fff;
@@ -354,6 +356,62 @@ body {
 		.box-shadow(0 2px 3px 0 rgba(0, 0, 0, .15));
 	}
 }
+.list-screen {
+	margin-top: 30px;
+	iframe {
+		max-width: 100%;
+	}
+	.title {
+		font-size: 18px;
+		line-height: 20px;
+		max-height: 40px;
+		overflow: hidden;
+		margin-bottom: 5px;
+		a {
+			color: @textColor;
+			&:hover {
+				color: @linkColor;
+			}
+		}
+	}
+	.desc {
+		font-size: 16px;
+	}
 
+	.row-screen {
+		margin: 0 -2.1666%;
+		position: relative;
+		margin-bottom: 20px;
+		.colum {
+			float: left;
+			margin: 0 1.1666%;
+			padding: 0.7em 0.6em 0.6em 0.8em;
+			position: relative;
+			width: 30%;
+			.panel {
+				margin-bottom: 0;
+			}
+		}
+		.backgrounds {
+			height: 100%;
+			position: absolute;
+			width: 100%;
+			.colum {
+				background-color: #FFFFFF;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+				margin-bottom: 20px;
+				height: 100%;
+			}
+		}
+	}
+
+}
 /* Responsive Style*/
 //=======================================
+@media (min-width: 960px) {
+	.container {
+		width: 960px;
+	}
+}

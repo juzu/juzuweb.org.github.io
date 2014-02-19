@@ -1,7 +1,4 @@
 /* Replace Bootstrap Style */
-.container {
-  width: 960px;
-}
 a {
   color: #526ca8;
 }
@@ -107,11 +104,6 @@ body {
 .icon-jz-soc-exo:hover {
   background-position: -152px -57px;
 }
-.title-section {
-  text-align: center;
-  min-height: 45px;
-  background: url("../images/bg-title-section.png") no-repeat center bottom transparent;
-}
 .caret-square {
   display: inline-block;
   width: 17px;
@@ -204,6 +196,7 @@ body {
   background: url("../images/bg-navbar-top-affix.png") repeat-x 0 0 transparent;
   background-clip: border-box;
   border-radius: 0px;
+  z-index: 1400;
 }
 .navbar-top.affix .navbar-brand {
   -webkit-transition: all 300ms ease-in-out;
@@ -265,7 +258,6 @@ body {
 }
 .features-top-box {
   height: 254px;
-  margin-bottom: 100px;
   background: url("../images/bg-features.png") no-repeat center top transparent;
 }
 .features-top-box .pediment-cont {
@@ -312,6 +304,13 @@ body {
   padding-top: 14px;
 }
 /* Docs Style*/
+.title-section {
+  padding-top: 100px;
+  padding-bottom: 18px;
+  text-align: center;
+  min-height: 45px;
+  background: url("../images/bg-title-section.png") no-repeat center bottom transparent;
+}
 .page-header {
   color: #526ca8;
 }
@@ -321,10 +320,68 @@ body {
 .docs-content ul {
   padding-left: 14px;
 }
+.docs-content ul li {
+  list-style-image: url("../images/list-style-disc.png");
+}
 .docs-content pre {
   background-color: #fff;
   border: 1px solid #cccccc;
   -webkit-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.15);
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.15);
 }
+.list-screen {
+  margin-top: 30px;
+}
+.list-screen iframe {
+  max-width: 100%;
+}
+.list-screen .title {
+  font-size: 18px;
+  line-height: 20px;
+  max-height: 40px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+.list-screen .title a {
+  color: #333333;
+}
+.list-screen .title a:hover {
+  color: #526ca8;
+}
+.list-screen .desc {
+  font-size: 16px;
+}
+.list-screen .row-screen {
+  margin: 0 -2.1666%;
+  position: relative;
+  margin-bottom: 20px;
+}
+.list-screen .row-screen .colum {
+  float: left;
+  margin: 0 1.1666%;
+  padding: 0.7em 0.6em 0.6em 0.8em;
+  position: relative;
+  width: 30%;
+}
+.list-screen .row-screen .colum .panel {
+  margin-bottom: 0;
+}
+.list-screen .row-screen .backgrounds {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+.list-screen .row-screen .backgrounds .colum {
+  background-color: #FFFFFF;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+  margin-bottom: 20px;
+  height: 100%;
+}
 /* Responsive Style*/
+@media (min-width: 960px) {
+  .container {
+    width: 960px;
+  }
+}

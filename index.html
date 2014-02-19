@@ -47,26 +47,24 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">Home</a></li>
+              <li><a href="#home">Home</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle">Project <b class="caret-square"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#"><span>Features</span></a></li>
-                  <li><a href="#"><span>Road map</span></a></li>
-                  <li><a href="#"><span>Contribute</span></a></li>
+                  <li><a href="#features"><span>Features</span></a></li>
+                  <li><a href="https://github.com/juzu/juzu/blob/master/roadmap.asciidoc"><span>Road map</span></a></li>
+                  <li><a href="http://github.com/juzu/juzu"><span>Contribute</span></a></li>
                 </ul>
               </li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle">Documentation <b class="caret-square"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#"><span>Action</span></a></li>
-                  <li><a href="#"><span>Another action</span></a></li>
-                  <li><a href="#"><span>Something else here</span></a></li>
-                  <li><a href="#"><span>Separated link</span></a></li>
-                  <li><a href="#"><span>One more separated link</span></a></li>
+                  <li><a href="tutorial/index.html"><span>Tutorial</span></a></li>
+                  <li><a href="reference/index.html"><span>Reference</span></a></li>
+                  <li><a href="javadoc/index.html" target="blank_"><span>Javadoc</span></a></li>
                 </ul>
               </li>
-              <li><a href="#">Screencasts</a></li>
+              <li><a href="#screencasts">Screencasts</a></li>
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -97,7 +95,7 @@
 
       </header><!-- /#header -->
 
-      <section id="main">
+      <div id="main">
         <div class="features-top-box">
           <div class="container">
             <div class="box-top clearfix">
@@ -113,7 +111,7 @@
             <div class="box-bottom clearfix">
               <div class="pediment-cont three">
                 <h2 class="title">Features</h2>
-                <a class="features-findout" href="#">
+                <a class="features-findout" href="#features">
                     <strong>Find out</strong>
                 </a>
               </div>
@@ -125,9 +123,9 @@
           </div>
         </div><!-- /.features-top-box -->
 
-        <div class="docs-content">
-            <section class="container">
-        <h1 class="title-section">Features</h1>
+        <section class="docs-content">
+            <div class="container">
+        <h1 id="features" class="title-section">Features</h1>
         <h1 class="page-header">Deployment</h1>
         <p>Juzu deploys on
          </p><ul>
@@ -313,13 +311,55 @@ public static URLBuilder showProduct(String productId) { ... }
           Juzu should report error through the Java Compiler, making error reporting integrated universally with build
           systems and IDE.
         </p>
-      
-            </section>
-        </div>
-      </section><!-- #main -->
+            <h1 id="screencasts" class="title-section">Screencasts</h1>
+            <div class="list-screen">
+              <div class="row-screen">
+                <div class="backgrounds">
+                    <div class="colum"></div>
+                    <div class="colum"></div>
+                    <div class="colum"></div>
+                </div>
+                <div class="colum">
+                      <iframe src="http://player.vimeo.com/video/33184509" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                      <h4 class="title"><a href="http://vimeo.com/33184509">Hello Juzu</a></h4>
+                      <p class="desc">This is how to make a simple hello work in Juzu!</p>
+                </div>
+                <div class="colum">
+                      <iframe src="http://player.vimeo.com/video/33370178" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                      <h4 class="title"><a href="http://vimeo.com/33370178">Template type safe parameters</a></h4>
+                      <p class="desc">How to safety use new parameters from your code to your template.</p>
+                </div>
+                <div class="colum">
+                      <iframe src="http://player.vimeo.com/video/33519963" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                      <h4 class="title"><a href="http://vimeo.com/33519963">Dev mode</a></h4>
+                      <p class="desc">Find out how the dev mode is working in order to build and debug powerful juzu apps.</p>
+                </div>
+                <div class="clearfix"></div>
+              </div><!-- /.row-screen -->
+              <div class="row-screen">
+                <div class="backgrounds">
+                    <div class="colum"></div>
+                    <div class="colum"></div>
+                </div>
+                <div class="colum">
+                      <iframe src="http://player.vimeo.com/video/44722647" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                      <h4 class="title"><a href="http://vimeo.com/defrancea">Building with Maven/Eclipse</a></h4>
+                      <p class="desc">This is how to make a simple hello work in Juzu!</p>
+                </div>
+                <div class="colum">
+                      <iframe src="http://player.vimeo.com/video/44737191" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                      <h4 class="title"><a href="http://vimeo.com/44737191">LESS plugin</a></h4>
+                      <p class="desc">How to safety use new parameters from your code to your template.</p>
+                </div>
+                <div class="clearfix"></div>
+              </div><!-- /.row-screen -->
+            </div><!-- /.list-screen -->
+
+            </div><!-- /container -->
+        </section><!-- /.docs-content -->
+      </div><!-- #main -->
 
       <footer id="footer">
-        <div class="container">
             <p class="copy-right">Copyright ©2013. All rights reserved. <a href="#" title="Juzu Web Framework">Juzu</a></p>
         </div>
       </footer><!-- #footer -->
