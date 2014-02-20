@@ -35,7 +35,7 @@
         <div class="container">
           <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -45,7 +45,7 @@
           </div>
           
           <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="nav navbar-nav navbar-right">
               <li><a href="#home">Home</a></li>
               <li class="dropdown">
@@ -101,24 +101,24 @@
             <div class="box-top clearfix">
               <div class="pediment-cont one">
                 <h3 class="title">Download</h3>
-                <span class="desc">or check out<br>the sources</span>
+                <span class="desc">or check out <br>the sources</span>
               </div>
               <div class="pediment-cont two">
                 <h3 class="title">Juzu in Action</h3>
-                <span class="desc">Demos<br>Screencasts</span>
+                <span class="desc">Demos <br>Screencasts</span>
               </div>
             </div>
             <div class="box-bottom clearfix">
               <div class="pediment-cont three">
-                <h2 class="title">Features</h2>
-                <a class="features-findout" href="#features">
-                    <strong>Find out</strong>
-                </a>
+                <h3 class="title">Run</h3>
+                <span class="desc">Servlet containers <br>Web portals like <br><a href="#">eXo Platform</a> <br>or <a href="#">GateIn</a> Vert.x</span>
               </div>
               <div class="pediment-cont four">
-                <h3 class="title">Run</h3>
-                <span class="desc">Servlet containers<br>Web portals like<br><a href="#">eXo Platform</a><br>or <a href="#">GateIn</a> Vert.x</span>
-              </div>
+                  <h2 class="title">Features</h2>
+                  <a class="features-findout" href="#features">
+                      <strong>Find out</strong>
+                  </a>
+                </div>
             </div>
           </div>
         </div><!-- /.features-top-box -->
@@ -168,11 +168,12 @@
         <p>Juzu programming model is inspired by the Play! Framework that provides a simple and efficient programming
           model for the web.</p>
         <p>Controller are methods annotated with <code>@Action</code> or <code>@View</code>:</p>
-        <pre>  @Action
-  public Response purchaseProduct(String productId) { ... }
+        <pre>
+@Action
+public Response purchaseProduct(String productId) { ... }
 
-  @View
-  public void showProduct(String productId) { ... }</pre>
+@View
+public void showProduct(String productId) { ... }</pre>
         <p>The <code>productId</code> defines the name of the parameter when a link is build in templates:</p>
         <pre>&lt;a href="@{showProduct(productId='tomato'"&gt;Tomato&lt;/a&gt;</pre>
         <p>It also works for forms and should be used like this:</p>
@@ -268,12 +269,12 @@ PortletPreferences prefs;
           The command line to use for creating a simple Juzu application using the Maven archetype
         </p>
         <pre>
-   mvn archetype:generate \
-  -DarchetypeGroupId=org.juzu \
-  -DarchetypeArtifactId=juzu-archetype \
-  -DarchetypeVersion=0.7.0 \
-  -DgroupId=&lt;my.groupid&gt; \
-  -DartifactId=&lt;my-artifactId&gt;</pre>
+mvn archetype:generate \
+-DarchetypeGroupId=org.juzu \
+-DarchetypeArtifactId=juzu-archetype \
+-DarchetypeVersion=0.7.0 \
+-DgroupId=&lt;my.groupid&gt; \
+-DartifactId=&lt;my-artifactId&gt;</pre>
 
         <h1 class="page-header">Building your app <small>Universal build</small></h1>
         <p>Juzu integrates at the heart of the Java compiler thanks to Annotation Processing Tools (APT). APT allows to
@@ -289,13 +290,15 @@ PortletPreferences prefs;
           build time.
         </p>
         <p>A controller method such as</p>
-        <pre>public class Controller {
-@View
-public void showProduct(String productId) { }
+        <pre>
+public class Controller {
+  @View
+  public void showProduct(String productId) { }
 }</pre>
         <p>Generates an url literal like</p>
-        <pre>public class Controller_ {
-public static URLBuilder showProduct(String productId) { ... }
+        <pre>
+public class Controller_ {
+  public static URLBuilder showProduct(String productId) { ... }
 }</pre>
         <p>That can be used</p>
         <pre>URLBuilder url = Controller_.showProduct("myproduct");</pre>
@@ -322,17 +325,17 @@ public static URLBuilder showProduct(String productId) { ... }
                 <div class="colum">
                       <iframe src="http://player.vimeo.com/video/33184509" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
                       <h4 class="title"><a href="http://vimeo.com/33184509">Hello Juzu</a></h4>
-                      <p class="desc">This is how to make a simple hello work in Juzu!</p>
+                      <span class="desc">This is how to make a simple hello work in Juzu!</span>
                 </div>
                 <div class="colum">
                       <iframe src="http://player.vimeo.com/video/33370178" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
                       <h4 class="title"><a href="http://vimeo.com/33370178">Template type safe parameters</a></h4>
-                      <p class="desc">How to safety use new parameters from your code to your template.</p>
+                      <span class="desc">How to safety use new parameters from your code to your template.</span>
                 </div>
                 <div class="colum">
                       <iframe src="http://player.vimeo.com/video/33519963" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
                       <h4 class="title"><a href="http://vimeo.com/33519963">Dev mode</a></h4>
-                      <p class="desc">Find out how the dev mode is working in order to build and debug powerful juzu apps.</p>
+                      <span class="desc">Find out how the dev mode is working in order to build and debug powerful juzu apps.</span>
                 </div>
                 <div class="clearfix"></div>
               </div><!-- /.row-screen -->
@@ -344,12 +347,12 @@ public static URLBuilder showProduct(String productId) { ... }
                 <div class="colum">
                       <iframe src="http://player.vimeo.com/video/44722647" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
                       <h4 class="title"><a href="http://vimeo.com/defrancea">Building with Maven/Eclipse</a></h4>
-                      <p class="desc">This is how to make a simple hello work in Juzu!</p>
+                      <span class="desc">This is how to make a simple hello work in Juzu!</span>
                 </div>
                 <div class="colum">
                       <iframe src="http://player.vimeo.com/video/44737191" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
                       <h4 class="title"><a href="http://vimeo.com/44737191">LESS plugin</a></h4>
-                      <p class="desc">How to safety use new parameters from your code to your template.</p>
+                      <span class="desc">How to safety use new parameters from your code to your template.</span>
                 </div>
                 <div class="clearfix"></div>
               </div><!-- /.row-screen -->
