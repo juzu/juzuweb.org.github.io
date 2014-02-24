@@ -834,3 +834,16 @@
 	// "call" the loopingClass the first time with highest value
 	.style_margin_padding (@index);
 }
+
+.setBgPosition(@pos-x; @pos-y) {
+  background-position: @pos-x @pos-y;
+}
+.setBackground(@width; @height; @pos-x: 0; @pos-y: 0; @url: ~"@{imageDirectory}/background.png"; @bg-size-x: 186px; @bg-szie-y: 330px; @bgColor: transparent;) {
+  width: @width;
+  height: @height;
+  background-image: url(@url);
+  .setBgPosition(@pos-x; @pos-y);
+  background-repeat: no-repeat;
+  background-color: @bgColor;
+  background-size: @bg-size-x @bg-szie-y;
+}

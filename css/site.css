@@ -65,51 +65,59 @@ body {
 /* Common Style */
 [class^=icon-jz-] {
   display: inline-block;
-  background-image: url("../images/icons.png");
+  width: auto;
+  height: auto;
+  background-image: url(../images/background.png);
+  background-position: 0 0;
   background-repeat: no-repeat;
   background-color: transparent;
+  background-size: 186px 330px;
   vertical-align: text-bottom;
 }
 [class^=icon-jz-soc-] {
-  width: 34px;
+  width: 33px;
   height: 32px;
 }
 .icon-jz-soc-github {
-  background-position: 0 -21px;
+  background-position: 0 -79px;
 }
 .icon-jz-soc-github:hover {
-  background-position: 0 -57px;
+  background-position: 0 -115px;
 }
 .icon-jz-soc-facebook {
-  background-position: -38px -21px;
+  background-position: -37px -79px;
 }
 .icon-jz-soc-facebook:hover {
-  background-position: -38px -57px;
+  background-position: -37px -115px;
 }
 .icon-jz-soc-twitter {
-  background-position: -76px -21px;
+  background-position: -74px -79px;
 }
 .icon-jz-soc-twitter:hover {
-  background-position: -76px -57px;
+  background-position: -74px -115px;
 }
 .icon-jz-soc-linkedin {
-  background-position: -114px -21px;
+  background-position: -111px -79px;
 }
 .icon-jz-soc-linkedin:hover {
-  background-position: -114px -57px;
+  background-position: -111px -115px;
 }
 .icon-jz-soc-exo {
-  background-position: -152px -21px;
+  background-position: -148px -79px;
 }
 .icon-jz-soc-exo:hover {
-  background-position: -152px -57px;
+  background-position: -148px -115px;
 }
 .caret-square {
   display: inline-block;
+  vertical-align: middle;
   width: 17px;
   height: 17px;
-  background: url("../images/icons.png") no-repeat 0 0 transparent;
-  vertical-align: middle;
+  background-image: url(../images/background.png);
+  background-position: 0 -58px;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: 186px 330px;
 }
 .navbar-top {
   height: 85px;
@@ -127,6 +135,14 @@ body {
 }
 .navbar-top .navbar-brand {
   padding: 0;
+  width: 136px;
+  height: 54px;
+  background-image: url(../images/background.png);
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: 186px 330px;
+  text-indent: -9999px;
 }
 .navbar-top .dropdown-menu {
   right: 50%;
@@ -136,10 +152,21 @@ body {
 }
 .navbar-top .dropdown-menu:after {
   content: "";
-  display: block;
-  width: 12px;
-  height: 7px;
-  background: url("../images/icons.png") no-repeat -42px 0 transparent;
+  border-bottom: 8px solid #fff;
+  border-left: 10px solid rgba(0, 0, 0, 0);
+  border-right: 10px solid rgba(0, 0, 0, 0);
+  position: absolute;
+  bottom: 100%;
+  right: 50%;
+  -webkit-transform: translate(50%, 0);
+  -ms-transform: translate(50%, 0);
+  transform: translate(50%, 0);
+}
+.navbar-top .dropdown-menu:before {
+  content: "";
+  border-bottom: 10px solid #ccc;
+  border-left: 11px solid rgba(0, 0, 0, 0);
+  border-right: 11px solid rgba(0, 0, 0, 0);
   position: absolute;
   bottom: 100%;
   right: 50%;
@@ -177,7 +204,7 @@ body {
 }
 .navbar-top .navbar-nav > li:hover .caret-square {
   margin-left: 10px;
-  background: url("../images/icons.png") no-repeat -21px 0 transparent;
+  background-position: -21px -58px;
 }
 .navbar-top .navbar-brand {
   left: -136px;
@@ -191,8 +218,6 @@ body {
   padding-top: 85px;
 }
 .navbar-top.affix {
-  -webkit-transition: all 250ms ease-in-out;
-  transition: all 250ms ease-in-out;
   position: fixed;
   top: 0;
   left: 0;
@@ -205,11 +230,9 @@ body {
   z-index: 1400;
 }
 .navbar-top.affix .navbar-brand {
-  -webkit-transition: all 300ms ease-in-out;
-  transition: all 300ms ease-in-out;
   position: absolute;
   left: 30px;
-  top: 6px;
+  top: 5px;
   margin-left: 0;
 }
 .navbar-top.affix + #header {
@@ -294,10 +317,18 @@ body {
   padding: 15px 20px 14px;
 }
 .docs-content ul {
-  padding-left: 14px;
+  padding: 0;
 }
 .docs-content ul li {
-  list-style-image: url("../images/list-style-disc.png");
+  padding-left: 14px;
+  list-style: none;
+  width: auto;
+  height: auto;
+  background-image: url(../images/list-style-disc.png);
+  background-position: left 10px;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: 7px 7px;
 }
 .docs-content pre {
   background-color: #fff;
@@ -333,16 +364,32 @@ body {
 }
 .features-findout {
   display: inline-block;
+  background: url("../images/bg-features-findout.png") no-repeat 0 0 transparent;
   width: 186px;
   height: 69px;
+  background-image: url(../images/background.png);
+  background-position: 0 -186px;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: 186px 330px;
   text-align: center;
   color: #fff;
   padding-top: 10px;
-  background: url("../images/bg-features-findout.png") no-repeat 0 0 transparent;
 }
 .features-findout:hover {
-  background-position: 0 -73px;
+  background-position: 0 -259px;
   color: #fff;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+  .navbar-top .navbar-brand,
+  .caret-square,
+  [class^=icon-jz-],
+  .features-findout {
+    background-image: url("../images/x2/background.png");
+  }
+  .docs-content ul li {
+    background-image: url("../images/x2/list-style-disc.png");
+  }
 }
 /* Responsive Style*/
 @media (min-width: 960px) {
@@ -386,6 +433,14 @@ body {
   }
   .features-top-box .box-bottom .pediment-cont.four .title {
     margin-bottom: 20px;
+  }
+  .navbar-top.affix {
+    -webkit-transition: all 250ms ease-in-out;
+    transition: all 250ms ease-in-out;
+  }
+  .navbar-top.affix .navbar-brand {
+    -webkit-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
   }
 }
 @media (max-width: 959px) {
@@ -432,23 +487,23 @@ body {
   }
   .icon-jz-soc-github,
   .icon-jz-soc-github:hover {
-    background-position: 0 -93px;
+    background-position: 0 -151px;
   }
   .icon-jz-soc-facebook,
   .icon-jz-soc-facebook:hover {
-    background-position: -38px -93px;
+    background-position: -37px -151px;
   }
   .icon-jz-soc-twitter,
   .icon-jz-soc-twitter:hover {
-    background-position: -76px -93px;
+    background-position: -74px -151px;
   }
   .icon-jz-soc-linkedin,
   .icon-jz-soc-linkedin:hover {
-    background-position: -114px -93px;
+    background-position: -111px -151px;
   }
   .icon-jz-soc-exo,
   .icon-jz-soc-exo:hover {
-    background-position: -152px -93px;
+    background-position: -148px -151px;
   }
   .header-banner .banner-content .desc {
     margin-bottom: 0;
