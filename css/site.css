@@ -53,6 +53,9 @@ a:active {
 body {
   background: url("../images/texture.jpg") repeat 0 0 #ffffff;
 }
+.page {
+  min-height: 500px;
+}
 #footer {
   height: 65px;
   padding-top: 20px;
@@ -184,6 +187,7 @@ body {
   color: #fff;
 }
 .navbar-top .navbar-nav > li > a {
+  font-family: "Helvetica Neue Medium", Helvetica, Arial, sans-serif;
   color: #7c7c82;
   font-size: 16px;
 }
@@ -205,14 +209,6 @@ body {
 }
 .navbar-top .navbar-brand {
   left: -136px;
-}
-.navbar-top.affix-top {
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
-.navbar-top.affix-top + #main {
-  padding-top: 85px;
 }
 .navbar-top.affix {
   position: fixed;
@@ -524,6 +520,9 @@ body {
   }
 }
 @media (min-width: 768px) {
+  .navbar-top .navbar-nav > li:first-child {
+    margin-right: 50px;
+  }
   .navbar-top .navbar-nav > li:hover .dropdown-menu {
     display: block;
   }

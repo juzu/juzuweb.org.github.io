@@ -70,6 +70,9 @@ a {
 body {
 	background: url("@{imageDirectory}/texture.jpg") repeat 0 0 #fff;
 }
+.page {
+	min-height: 500px;
+}
 #footer {
 	height: 65px;
 	padding-top: 20px;
@@ -182,6 +185,7 @@ body {
 	.navbar-nav {
 		> li {
 			> a {
+				font-family: "Helvetica Neue Medium",Helvetica,Arial,sans-serif;
 				color: @textGray;
 				font-size: 16px;
 				.caret-square {
@@ -212,14 +216,14 @@ body {
 		left: -136px;
 	}
 }
-.navbar-top.affix-top {
-	position: fixed;
-	top: 0;
-	width: 100%;
-	+ #main {
-		padding-top: 85px;
-	}
-}
+//.navbar-top.affix-top {
+//	position: fixed;
+//	top: 0;
+//	width: 100%;
+//	+ #main {
+//		padding-top: 85px;
+//	}
+//}
 .navbar-top.affix{
 	position: fixed;
 	top: 0;
