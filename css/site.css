@@ -54,7 +54,7 @@ body {
   background: url("../images/texture.jpg") repeat 0 0 #ffffff;
 }
 .page {
-  min-height: 500px;
+  min-height: 600px;
 }
 #footer {
   height: 65px;
@@ -574,7 +574,7 @@ body {
     padding: 20px;
   }
   .navbar-top .navbar-brand {
-    padding-left: 10px;
+    margin-left: 10px!important;
   }
   .navbar-top .navbar-collapse {
     background-color: #f2f2f2;

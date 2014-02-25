@@ -1,18 +1,5 @@
 !function ($) {
 
-  $(function(){
-
-		/*$('#navbarTop').affix({
-			offset: {
-			  top: 85
-			, bottom: function () {
-			    return (this.bottom = $('.footer').outerHeight(true))
-			  }
-			}
-		})*/
-
-	})
-
  	// set menu again after click on feature and screen
 	$(function(){
 		$('.affixToggle').click(function(){		
