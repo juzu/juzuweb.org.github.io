@@ -199,9 +199,6 @@ body {
 .navbar-top .navbar-nav > li:last-child > a {
   padding-right: 0;
 }
-.navbar-top .navbar-nav > li:hover .dropdown-menu {
-  display: block;
-}
 .navbar-top .navbar-nav > li:hover .caret-square {
   margin-left: 10px;
   background-position: -21px -58px;
@@ -214,7 +211,7 @@ body {
   top: 0;
   width: 100%;
 }
-.navbar-top.affix-top + #header {
+.navbar-top.affix-top + #main {
   padding-top: 85px;
 }
 .navbar-top.affix {
@@ -235,7 +232,7 @@ body {
   top: 5px;
   margin-left: 0;
 }
-.navbar-top.affix + #header {
+.navbar-top.affix + #main {
   padding-top: 64px;
 }
 .header-banner {
@@ -287,7 +284,6 @@ body {
 }
 /* Docs Style*/
 .title-section {
-  padding-top: 80px;
   padding-bottom: 18px;
   text-align: center;
   min-height: 45px;
@@ -297,8 +293,8 @@ body {
   color: #526ca8;
 }
 .docs-content {
+  margin-bottom: 80px;
   font-size: 16px;
-  margin-bottom: 50px;
 }
 .docs-content p,
 .docs-content pre,
@@ -392,6 +388,24 @@ body {
   }
 }
 /* Responsive Style*/
+@media (max-width: 1024px) {
+  #footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    height: auto;
+    padding: 0;
+    background: url("../images/texture.jpg") repeat-x 0 0 transparent;
+  }
+  #footer > .inner {
+    padding: 10px 0;
+    background: url("../images/bg-shadow-footer.png") no-repeat scroll center top rgba(0, 0, 0, 0.1);
+  }
+  #footer > .inner .copy-right {
+    margin: 0;
+  }
+}
 @media (min-width: 960px) {
   .container {
     width: 960px;
@@ -510,6 +524,12 @@ body {
   }
 }
 @media (min-width: 768px) {
+  .navbar-top .navbar-nav > li:hover .dropdown-menu {
+    display: block;
+  }
+  #footer {
+    margin-top: 100px;
+  }
   .list-screen {
     margin-bottom: 20px;
   }

@@ -1,5 +1,23 @@
 /* Responsive Style*/
 //=======================================
+@media (max-width: 1024px){
+	#footer {
+		position: fixed;
+		width: 100%;
+		bottom: 0;
+		left: 0;
+		height: auto;
+		padding: 0;
+		background: url("@{imageDirectory}/texture.jpg") repeat-x 0 0 transparent;
+		> .inner {
+			padding: 10px 0;
+			background: url("@{imageDirectory}/bg-shadow-footer.png") no-repeat scroll center top rgba(0, 0, 0, 0.1);
+			.copy-right {
+				margin: 0;
+			}
+		}
+	}
+}
 @media (min-width: 960px) {
 	.container {
 		width: 960px;
@@ -120,6 +138,12 @@
 }
 @media (min-width: 768px) {
 	// List Screencasts - Equal Height
+	.navbar-top .navbar-nav > li:hover .dropdown-menu {
+		display: block;
+	}
+	#footer {
+		margin-top: 100px;
+	}
 	.list-screen {
 		margin-bottom: 20px;
 		.row-screen {
