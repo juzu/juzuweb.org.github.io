@@ -20,46 +20,6 @@
   <script src="js/bootstrap-3.1/respond.min.js"></script>
   <![endif]-->
 
-  <!-- Juzuweb Javascript -->
-  <script src="js/bootstrap-3.1/jquery.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap-3.1/bootstrapmin.js"></script>
-  <script type="text/javascript" src="js/bootstrap-3.1/juzu.js"></script>
-  <script src="js/bootstrap-3.1/jquery.address-1.5.min.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-
-    // The page navigation
-    $.address.change(function(event){
-
-      // Get anchor
-      var anchor = event.value.substring(1);
-      if (anchor == "")
-      anchor = "home";
-
-      //
-      var page = $(".page:has(a[name=" + anchor + "])");
-      if (page.length == 1) {
-      page.filter(function() {
-        return this != window.previous;
-      }).each(function() {
-
-        // Do show/hide
-        $(".page").hide();
-        $(this).show();
-
-        // Reset page to top
-        $(window).scrollTop(0);
-
-        // Update previous
-        window.previous = this;
-      });
-      } else {
-      // Should log something somehow
-      }
-    });
-    });
-  </script>
-
   <!-- Juzuweb Favicons -->
 
   </head>
@@ -84,7 +44,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a class="noAffix" href="#home">Home</a></li>
         <li class="dropdown">
-        <a href="#" class="dropdown-toggle noAffix" data-toggle="dropdown" >Project <b class="caret-square"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Project <b class="caret-square"></b></a>
         <ul class="dropdown-menu">
           <li><a class="affixToggle" href="#features"><span>Features</span></a></li>
           <li><a href="https://github.com/juzu/juzu/blob/master/roadmap.asciidoc"><span>Road map</span></a></li>
@@ -92,7 +52,7 @@
         </ul>
         </li>
         <li class="dropdown">
-        <a href="#" class="dropdown-toggle noAffix" data-toggle="dropdown" >Documentation <b class="caret-square"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Documentation <b class="caret-square"></b></a>
         <ul class="dropdown-menu">
           <li><a href="tutorial/index.html"><span>Tutorial</span></a></li>
           <li><a href="reference/index.html"><span>Reference</span></a></li>
@@ -409,5 +369,44 @@ public class Controller_ {
     </footer><!-- /#footer -->
   </div><!-- /#wrapper /.wrapper -->
 
+  <!-- Juzuweb Javascript -->
+  <!-- Currenly using Jquery v.1.7.1 because Jquery Address conflict with Jequery v.11.0 -->
+  <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap-3.1/jquery.address-1.5.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap-3.1/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap-3.1/juzu.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      // The page navigation
+      $.address.change(function(event){
+
+        // Get anchor
+        var anchor = event.value.substring(1);
+        if (anchor == "")
+        anchor = "home";
+
+        //
+        var page = $(".page:has(a[name=" + anchor + "])");
+        if (page.length == 1) {
+        page.filter(function() {
+          return this != window.previous;
+        }).each(function() {
+
+          // Do show/hide
+          $(".page").hide();
+          $(this).show();
+
+          // Reset page to top
+          $(window).scrollTop(0);
+
+          // Update previous
+          window.previous = this;
+        });
+        } else {
+        // Should log something somehow
+        }
+      });
+    });
+  </script>
   </body>
 </html>

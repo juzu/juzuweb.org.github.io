@@ -519,12 +519,14 @@ body {
     margin-bottom: 0;
   }
 }
+@media (min-width: 1025px) {
+  .navbar-top .navbar-nav > li:hover .dropdown-menu {
+    display: block;
+  }
+}
 @media (min-width: 768px) {
   .navbar-top .navbar-nav > li:first-child {
     margin-right: 50px;
-  }
-  .navbar-top .navbar-nav > li:hover .dropdown-menu {
-    display: block;
   }
   #footer {
     margin-top: 100px;
