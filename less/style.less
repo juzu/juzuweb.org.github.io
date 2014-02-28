@@ -11,21 +11,25 @@ a {
 .navbar-nav {
 	> li {
 		.dropdown-menu {
-			border-radius: 3px;
+			border-radius: @widthRadiusDropdown;
 		}
 	}
 }
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+	background: none;
+}
 .dropdown-menu {
 	background-clip: border-box;
-	border: 1px solid #ccc;
+	border: 1px solid rgba(0, 0, 0, .2);
 	padding-top: 0;
 	padding-bottom: 0;
+	border-radius: @widthRadiusDropdown;
 	> li {
 		&:first-child > a {
-			.border-top-radius(3px);
+			.border-top-radius(@widthRadiusDropdown);
 		}
 		&:last-child > a {
-			.border-bottom-radius(3px);
+			.border-bottom-radius(@widthRadiusDropdown);
 		}
 		> a {
 			padding: 0 15px;
@@ -67,14 +71,31 @@ a {
 }
 /* Layout Style */
 //=======================================
+html, body {
+	height: 100%;
+	-webkit-overflow-scrolling: touch;
+}
 body {
 	background: url("@{imageDirectory}/texture.jpg") repeat 0 0 #fff;
 }
 .page {
-	min-height: 600px;
+	//min-height: 550px;
+	margin-bottom: 50px;
+}
+#wrapper {
+	min-height: 100%;
+	padding-bottom: 65px;
+	> .inner {
+	}
+}
+#main {
+	//overflow: auto;
 }
 #footer {
+	clear: both;
 	height: 65px;
+	margin-top: -65px;
+	position: relative;
 	padding-top: 20px;
 	text-align: center;
 	background: url("@{imageDirectory}/bg-shadow-footer.png") no-repeat center top rgba(0, 0, 0, .1);
@@ -180,6 +201,28 @@ body {
 					color: #fff;
 				}
 			}
+			&:first-child {
+				&.after  {
+					z-index: 1000;
+				}
+				&:after {
+					content: "";
+					border-bottom: 9px solid @linkColor;
+					border-left: 11px solid rgba(0, 0, 0, 0);
+					border-right: 11px solid rgba(0, 0, 0, 0);
+					position: absolute;
+					bottom: 100%;
+					right: 50%;
+					.translate(50%, 0);
+					z-index: 100;
+					display: none;
+				}
+				&:hover {
+					&:after {
+						display: block;
+					}
+				}
+			}
 		}
 	}
 	.navbar-nav {
@@ -193,14 +236,16 @@ body {
 				}
 				&:hover, &:focus, &:active {
 					color: @linkColor;
-					background: none;
-					
+					background: none!important;
 				}
 			}
 			&:last-child {
 				> a {
 					padding-right: 0;
 				}
+			}
+			.caret-square {
+				vertical-align: -2px;
 			}
 			&:hover {
 				.caret-square {
@@ -303,7 +348,6 @@ body {
 	color: @linkColor;
 }
 .docs-content {
-	margin-bottom: 80px;
 	font-size: 16px;
 	p, pre, h1, .h1, h2, .h2, h3, .h3, ul, ol {
 		margin-bottom: 15px;
