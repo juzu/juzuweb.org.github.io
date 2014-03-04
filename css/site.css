@@ -672,9 +672,6 @@ body {
   .navbar-top .open .dropdown-menu .dropdown-header {
     padding: 0 0 0 15px;
   }
-  .navbar-top .dropdown .dropdown-toggle {
-    display: none!important;
-  }
   .navbar-top.affix {
     -webkit-transition: none;
     transition: none;
