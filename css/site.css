@@ -425,13 +425,13 @@ body {
 }
 /* Responsive Style*/
 @media (max-width: 1024px) {
+  #wrapper {
+    padding-bottom: 40px;
+  }
   #footer {
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    left: 0;
+    padding-top: 0;
+    margin-top: -40px;
     height: auto;
-    padding: 0;
     background: url("../images/texture.jpg") repeat-x 0 0 transparent;
   }
   #footer > .inner {
@@ -668,6 +668,13 @@ body {
   .navbar-top .dropdown-menu a > span:before {
     display: none;
   }
+  .navbar-top .open .dropdown-menu > li > a,
+  .navbar-top .open .dropdown-menu .dropdown-header {
+    padding: 0 0 0 15px;
+  }
+  .navbar-top .dropdown .dropdown-toggle {
+    display: none!important;
+  }
   .navbar-top.affix {
     -webkit-transition: none;
     transition: none;
@@ -701,5 +708,8 @@ body {
   }
   .docs-content .pre {
     font-size: 13px;
+  }
+  .navbar-top.affix .navbar-collapse {
+    margin-top: 7px;
   }
 }

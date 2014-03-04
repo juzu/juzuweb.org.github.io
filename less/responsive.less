@@ -1,13 +1,13 @@
 /* Responsive Style*/
 //=======================================
 @media (max-width: 1024px){
+	#wrapper {
+		padding-bottom: 40px;
+	}
 	#footer {
-		position: fixed;
-		width: 100%;
-		bottom: 0;
-		left: 0;
+		padding-top: 0;
+		margin-top: -40px;
 		height: auto;
-		padding: 0;
 		background: url("@{imageDirectory}/texture.jpg") repeat-x 0 0 transparent;
 		> .inner {
 			padding: 10px 0;
@@ -255,7 +255,14 @@
 				}
 			}
 		}
-
+		.open .dropdown-menu > li > a, .open .dropdown-menu .dropdown-header {
+			padding: 0 0 0 15px;
+		}
+		.dropdown {
+			.dropdown-toggle {
+				display: none!important;
+			}
+		}
 		// Navbar Top with Affix
 		&.affix {
 			.transition(none);
@@ -291,5 +298,8 @@
 		.pre {
 			font-size: 13px;
 		}
+	}
+	.navbar-top.affix .navbar-collapse {
+		margin-top: 7px;
 	}
 }
