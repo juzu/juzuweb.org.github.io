@@ -1,3 +1,4 @@
+    </div><!-- /.inner -->
   </div><!-- /#wrapper /.wrapper -->
   <footer id="footer">
     <div class="inner">

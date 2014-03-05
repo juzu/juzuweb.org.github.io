@@ -26,3 +26,4 @@
   <body class="body-page">
 
   <div id="wrapper" class="wrapper">
+    <div class="inner">

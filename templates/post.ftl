@@ -1,5 +1,6 @@
 <#include "header.ftl">
-	
+
+  <#assign affix="affix">
 	<#include "menu.ftl">
 	
 	<div class="page-header">
