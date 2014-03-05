@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+  <packaging>jar</packaging>
+
+  <groupId>org.juzu</groupId>
+  <artifactId>juzu-site</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <name>Juzu Website</name>
+  <description>The website</description>
+
+  <properties>
+    <juzu.version>0.7.0</juzu.version>
+  </properties>
+
+  <scm>
+    <connection>scm:git:git://github.com/juzu/juzu.github.com.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/juzu/juzu.github.com.git</developerConnection>
+    <url>https://github.com/juzu/juzu.github.com</url>
+  </scm>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.juzu</groupId>
+      <artifactId>juzu-doc-reference-guide</artifactId>
+      <classifier>html</classifier>
+      <type>zip</type>
+      <version>${juzu.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.juzu</groupId>
+      <artifactId>juzu-doc-reference-api</artifactId>
+      <classifier>javadoc</classifier>
+      <version>${juzu.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.juzu</groupId>
+      <artifactId>juzu-doc-tutorial-guide</artifactId>
+      <classifier>html</classifier>
+      <type>zip</type>
+      <version>${juzu.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>br.com.ingenieux</groupId>
+        <artifactId>jbake-maven-plugin</artifactId>
+        <version>0.0.6</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <phase>process-resources</phase>
+            <configuration>
+              <inputDirectory>${project.basedir}</inputDirectory>
+              <outputDirectory>${project.build.directory}/output</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+<!--
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.7</version>
+        <executions>
+          <execution>
+            <phase>generate-resources</phase>
+            <configuration>
+              <target>
+                <property name="site" value="${project.build.directory}/classes/"/>
+                <property name="tutorial" value="${site}/tutorial/"/>
+                <property name="reference" value="${site}/reference/"/>
+                <property name="javadoc" value="${site}/javadoc/"/>
+                <unzip src="${org.juzu:juzu-doc-tutorial-guide:zip:html}" dest="${tutorial}"/>
+                <unzip src="${org.juzu:juzu-doc-reference-guide:zip:html}" dest="${reference}"/>
+                <unzip src="${org.juzu:juzu-doc-reference-api:jar:javadoc}" dest="${javadoc}"/>
+                <rename src="${tutorial}/book.html" dest="${tutorial}/index.html"/>
+                <rename src="${reference}/book.html" dest="${reference}/index.html"/>
+                <copy file="src/main/resources/css/cerulean-2.2.2.min.css" tofile="${tutorial}/css/bootstrap/bootstrap-2.2.2.min.css" overwrite="true"/>
+                <copy file="src/main/resources/css/cerulean-2.2.2.min.css" tofile="${reference}/css/bootstrap/bootstrap-2.2.2.min.css" overwrite="true"/>
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+-->
+      <plugin>
+        <groupId>com.github.github</groupId>
+        <artifactId>site-maven-plugin</artifactId>
+        <version>0.8</version>
+        <configuration>
+          <message>Deploy documentation for ${project.version}</message>
+          <outputDirectory>${project.build.directory}/classes</outputDirectory>
+          <branch>refs/heads/master</branch>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>site</goal>
+            </goals>
+            <phase>site</phase>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
