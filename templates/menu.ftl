@@ -14,11 +14,11 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#home">Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Project <b class="caret-square"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="#features"><span>Features</span></a></li>
+          <li><a href="features.html"><span>Features</span></a></li>
           <li><a href="https://github.com/juzu/juzu/blob/master/roadmap.asciidoc"><span>Road map</span></a></li>
           <li><a href="http://github.com/juzu/juzu"><span>Contribute</span></a></li>
         </ul>
@@ -31,7 +31,7 @@
           <li><a href="javadoc/index.html" target="blank_"><span>Javadoc</span></a></li>
         </ul>
         </li>
-        <li><a href="#screencasts">Screencasts</a></li>
+        <li><a href="screencasts.html">Screencasts</a></li>
       </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
