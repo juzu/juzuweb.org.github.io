@@ -62,7 +62,7 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 body {
-  background: url("../../images/texture.jpg") repeat 0 0 #ffffff;
+  background: url("../images/texture.jpg") repeat 0 0 #ffffff;
 }
 .page {
   margin-bottom: 50px;
@@ -78,7 +78,7 @@ body {
   position: relative;
   padding-top: 20px;
   text-align: center;
-  background: url("../../images/bg-shadow-footer.png") no-repeat center top rgba(0, 0, 0, 0.1);
+  background: url("../images/bg-shadow-footer.png") no-repeat center top rgba(0, 0, 0, 0.1);
 }
 #footer .copy-right {
   color: #808080;
@@ -88,7 +88,7 @@ body {
   display: inline-block;
   width: auto;
   height: auto;
-  background-image: url(../../images/background.png);
+  background-image: url(../images/background.png);
   background-position: 0 0;
   background-repeat: no-repeat;
   background-color: transparent;
@@ -134,7 +134,7 @@ body {
   vertical-align: middle;
   width: 17px;
   height: 17px;
-  background-image: url(../../images/background.png);
+  background-image: url(../images/background.png);
   background-position: 0 -58px;
   background-repeat: no-repeat;
   background-color: transparent;
@@ -146,7 +146,7 @@ body {
   border-radius: 0;
   border: none;
   margin: 0;
-  background: url("../../images/texture.jpg") repeat 0 0 #ffffff;
+  background: url("../images/texture.jpg") repeat 0 0 #ffffff;
 }
 .navbar-top .navbar-toggle {
   background-color: #526ca8;
@@ -158,7 +158,7 @@ body {
   padding: 0;
   width: 136px;
   height: 54px;
-  background-image: url(../../images/background.png);
+  background-image: url(../images/background.png);
   background-position: 0 0;
   background-repeat: no-repeat;
   background-color: transparent;
@@ -258,7 +258,7 @@ body {
   width: 100%;
   height: 64px;
   padding: 6px 0 4px;
-  background: url("../../images/bg-navbar-top-affix.png") repeat-x 0 0 transparent;
+  background: url("../images/bg-navbar-top-affix.png") repeat-x 0 0 transparent;
   background-clip: border-box;
   border-radius: 0px;
   z-index: 1400;
@@ -274,12 +274,12 @@ body {
 }
 .header-banner {
   border-top: 1px solid #d1d1d1;
-  background: url("../../images/bg-repeat-banner.png") repeat-x left top #526ca8;
+  background: url("../images/bg-repeat-banner.png") repeat-x left top #526ca8;
   color: #fff;
 }
 .header-banner .background-banner {
   height: 259px;
-  background: url("../../images/bg-header-banner.png") no-repeat center top transparent;
+  background: url("../images/bg-header-banner.png") no-repeat center top transparent;
 }
 .header-banner .banner-content {
   overflow: hidden;
@@ -324,7 +324,7 @@ body {
   padding-bottom: 18px;
   text-align: center;
   min-height: 45px;
-  background: url("../../images/bg-title-section.png") no-repeat center bottom transparent;
+  background: url("../images/bg-title-section.png") no-repeat center bottom transparent;
 }
 .page-header {
   color: #526ca8;
@@ -356,7 +356,7 @@ body {
   list-style: none;
   width: auto;
   height: auto;
-  background-image: url(../../images/list-style-disc.png);
+  background-image: url(../images/list-style-disc.png);
   background-position: left 10px;
   background-repeat: no-repeat;
   background-color: transparent;
@@ -396,10 +396,10 @@ body {
 }
 .features-findout {
   display: inline-block;
-  background: url("../../images/bg-features-findout.png") no-repeat 0 0 transparent;
+  background: url("../images/bg-features-findout.png") no-repeat 0 0 transparent;
   width: 186px;
   height: 69px;
-  background-image: url(../../images/background.png);
+  background-image: url(../images/background.png);
   background-position: 0 -186px;
   background-repeat: no-repeat;
   background-color: transparent;
@@ -432,11 +432,11 @@ body {
     padding-top: 0;
     margin-top: -40px;
     height: auto;
-    background: url("../../images/texture.jpg") repeat-x 0 0 transparent;
+    background: url("../images/texture.jpg") repeat-x 0 0 transparent;
   }
   #footer > .inner {
     padding: 10px 0;
-    background: url("../../images/bg-shadow-footer.png") no-repeat scroll center top rgba(0, 0, 0, 0.1);
+    background: url("../images/bg-shadow-footer.png") no-repeat scroll center top rgba(0, 0, 0, 0.1);
   }
   #footer > .inner .copy-right {
     margin: 0;
@@ -448,7 +448,7 @@ body {
   }
   .features-top-box {
     height: 254px;
-    background: url("../../images/bg-features.png") no-repeat center top transparent;
+    background: url("../images/bg-features.png") no-repeat center top transparent;
   }
   .features-top-box .pediment-cont {
     text-align: center;
