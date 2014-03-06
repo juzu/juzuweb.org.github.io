@@ -20,7 +20,7 @@
         <ul class="dropdown-menu">
           <li><a href="features.html"><span>Features</span></a></li>
           <li><a href="https://github.com/juzu/juzu/blob/master/roadmap.asciidoc"><span>Road map</span></a></li>
-          <li><a href="http://github.com/juzu/juzu"><span>Contribute</span></a></li>
+          <li><a href="https://github.com/juzu/juzu"><span>Contribute</span></a></li>
         </ul>
         </li>
         <li class="dropdown">

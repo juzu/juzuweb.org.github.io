@@ -11,9 +11,9 @@
           <div class="cleafix">
           <div class="social-box">
             <ul class="social-list-link">
-            <li><a target="_blank" href="https://github.com/juzu/juzu.github.com/"><i class="icon-jz-soc-github"></i></a></li>
+            <li><a target="_blank" href="https://github.com/juzu/juzu"><i class="icon-jz-soc-github"></i></a></li>
             <li><a target="_blank" href="https://www.facebook.com/eXoPlatform"><i class="icon-jz-soc-facebook"></i></a></li>
-            <li><a target="_blank" href="#"><i class="icon-jz-soc-twitter"></i></a></li>
+            <li><a target="_blank" href="https://twitter.com/juzuweb"><i class="icon-jz-soc-twitter"></i></a></li>
             <li><a target="_blank" href="https://www.linkedin.com/company/exo-platform"><i class="icon-jz-soc-linkedin"></i></a></li>
             <li><a target="_blank" href="http://community.exoplatform.com/portal/intranet/forum/forum/forum0b6b8fbd0ab9b62a3210b5e01a30cabe"><i class="icon-jz-soc-exo"></i></a></li>
             </ul>
