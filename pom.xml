@@ -63,7 +63,6 @@
           </execution>
         </executions>
       </plugin>
-<!--
       <plugin>
         <artifactId>maven-antrun-plugin</artifactId>
         <version>1.7</version>
@@ -72,7 +71,7 @@
             <phase>generate-resources</phase>
             <configuration>
               <target>
-                <property name="site" value="${project.build.directory}/classes/"/>
+                <property name="site" value="${project.build.directory}/output/"/>
                 <property name="tutorial" value="${site}/tutorial/"/>
                 <property name="reference" value="${site}/reference/"/>
                 <property name="javadoc" value="${site}/javadoc/"/>
@@ -81,8 +80,6 @@
                 <unzip src="${org.juzu:juzu-doc-reference-api:jar:javadoc}" dest="${javadoc}"/>
                 <rename src="${tutorial}/book.html" dest="${tutorial}/index.html"/>
                 <rename src="${reference}/book.html" dest="${reference}/index.html"/>
-                <copy file="src/main/resources/css/cerulean-2.2.2.min.css" tofile="${tutorial}/css/bootstrap/bootstrap-2.2.2.min.css" overwrite="true"/>
-                <copy file="src/main/resources/css/cerulean-2.2.2.min.css" tofile="${reference}/css/bootstrap/bootstrap-2.2.2.min.css" overwrite="true"/>
               </target>
             </configuration>
             <goals>
@@ -91,7 +88,6 @@
           </execution>
         </executions>
       </plugin>
--->
       <plugin>
         <groupId>com.github.github</groupId>
         <artifactId>site-maven-plugin</artifactId>
