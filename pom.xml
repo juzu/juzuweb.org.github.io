@@ -94,7 +94,7 @@
         <version>0.8</version>
         <configuration>
           <message>Deploy documentation for ${project.version}</message>
-          <outputDirectory>${project.build.directory}/classes</outputDirectory>
+          <outputDirectory>${project.build.directory}/output</outputDirectory>
           <branch>refs/heads/master</branch>
         </configuration>
         <executions>
