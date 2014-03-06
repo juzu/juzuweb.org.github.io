@@ -1,6 +1,6 @@
 <#include "header.ftl">
 
-  <#assign affix="affix-top">
+  <#assign affix="affix">
 	<#include "menu.ftl">
 	
 	${content.body}
