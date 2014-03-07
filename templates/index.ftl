@@ -41,7 +41,7 @@
         <div class="box-bottom clearfix">
         <div class="pediment-cont three">
           <h3 class="title">Run</h3>
-          <span class="desc">Servlet containers <br>Web portals like <br><a href="#">eXo Platform</a> <br>or <a href="#">GateIn</a> Vert.x</span>
+          <span class="desc">Servlet containers <br>Web portals like <br><a href="http://www.exoplatform.com">eXo Platform</a></span>
         </div>
         <div class="pediment-cont four">
           <h2 class="title">Features</h2>
