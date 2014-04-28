@@ -12,7 +12,7 @@
   <description>The website</description>
 
   <properties>
-    <juzu.version>0.8.0</juzu.version>
+    <juzu.version>1.0.0-beta2</juzu.version>
   </properties>
 
   <scm>
@@ -38,6 +38,13 @@
     <dependency>
       <groupId>org.juzu</groupId>
       <artifactId>juzu-doc-tutorial-guide</artifactId>
+      <classifier>html</classifier>
+      <type>zip</type>
+      <version>${juzu.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.juzu</groupId>
+      <artifactId>juzu-doc-extension-guide</artifactId>
       <classifier>html</classifier>
       <type>zip</type>
       <version>${juzu.version}</version>
@@ -75,11 +82,14 @@
                 <property name="tutorial" value="${site}/tutorial/"/>
                 <property name="reference" value="${site}/reference/"/>
                 <property name="javadoc" value="${site}/javadoc/"/>
+                <property name="extension" value="${site}/extension/"/>
                 <unzip src="${org.juzu:juzu-doc-tutorial-guide:zip:html}" dest="${tutorial}"/>
                 <unzip src="${org.juzu:juzu-doc-reference-guide:zip:html}" dest="${reference}"/>
                 <unzip src="${org.juzu:juzu-doc-reference-api:jar:javadoc}" dest="${javadoc}"/>
+                <unzip src="${org.juzu:juzu-doc-extension-guide:zip:html}" dest="${extension}"/>
                 <rename src="${tutorial}/book.html" dest="${tutorial}/index.html"/>
                 <rename src="${reference}/book.html" dest="${reference}/index.html"/>
+                <rename src="${extension}/book.html" dest="${extension}/index.html"/>
               </target>
             </configuration>
             <goals>

@@ -29,6 +29,7 @@
           <li><a href="tutorial/index.html"><span>Tutorial</span></a></li>
           <li><a href="reference/index.html"><span>Reference</span></a></li>
           <li><a href="javadoc/index.html" target="blank_"><span>Javadoc</span></a></li>
+          <li><a href="extension/index.html"><span>Extension</span></a></li>
         </ul>
         </li>
         <li><a href="screencasts.html">Screencasts</a></li>
