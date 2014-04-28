@@ -2,7 +2,7 @@
   </div><!-- /#wrapper /.wrapper -->
   <footer id="footer">
     <div class="inner">
-      <p class="copy-right">Copyright ©2013. All rights reserved. <a href="#" title="Juzu Web Framework">Juzu</a></p>
+      <p class="copy-right">Copyright ©2014. All rights reserved. <a href="#" title="Juzu Web Framework">Juzu</a></p>
     </div>
   </footer><!-- /#footer -->
 
