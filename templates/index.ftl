@@ -30,12 +30,12 @@
       <div class="container">
         <div class="box-top clearfix">
         <div class="pediment-cont one">
-          <h3 class="title">Download</h3>
-          <span class="desc">or check out <br>the sources</span>
+          <h3 class="title"><a href="http://search.maven.org/remotecontent?filepath=org/juzu/juzu-distrib/${config.juzu_version}/juzu-distrib-${config.juzu_version}.zip">Download</a></h3>
+          <span class="desc">or check out <br>the <a href="https://github.com/juzu/juzu/releases/tag/${config.juzu_version}">sources</a></span>
         </div>
         <div class="pediment-cont two">
           <h3 class="title">Juzu in Action</h3>
-          <span class="desc">Demos <br>Screencasts</span>
+          <span class="desc"><a href="screencasts.html">Screencasts</a></span>
         </div>
         </div>
         <div class="box-bottom clearfix">
