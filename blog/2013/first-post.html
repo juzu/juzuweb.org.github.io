@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Juzu Web Framework</title>
+
+  <!-- Juzuweb CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/site.css" rel="stylesheet">
+
+  <!--[if lt IE 9]><script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="js/bootstrap-3.1/html5shiv.js"></script>
+  <script src="js/bootstrap-3.1/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Juzuweb Favicons -->
+
+  </head>
+  <body class="body-page">
+
+  <div id="wrapper" class="wrapper">
+    <div class="inner">
+
+    <nav id="navbarTop" class="navbar navbar-top affix" role="navigation">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Juzu Web Framework</a>
+      </div>
+      
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Project <b class="caret-square"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="features.html"><span>Features</span></a></li>
+          <li><a href="https://github.com/juzu/juzu/blob/master/roadmap.asciidoc"><span>Road map</span></a></li>
+          <li><a href="https://github.com/juzu/juzu"><span>Contribute</span></a></li>
+        </ul>
+        </li>
+        <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Documentation <b class="caret-square"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="tutorial/index.html"><span>Tutorial</span></a></li>
+          <li><a href="reference/index.html"><span>Reference</span></a></li>
+          <li><a href="javadoc/index.html" target="blank_"><span>Javadoc</span></a></li>
+          <li><a href="extension/index.html"><span>Extension</span></a></li>
+        </ul>
+        </li>
+        <li><a href="screencasts.html">Screencasts</a></li>
+      </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+    </nav><!-- /.navbar-top -->
+	
+	<div class="page-header">
+		<h1>First Post</h1>
+	</div>
+
+	<p><em>24 July 2013</em></p>
+
+	<p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel diam purus. Curabitur ut nisi lacus.</p>
+
+<ul>
+<li><a href="http://example.org">http://example.org</a></li>
+<li><a href="http://example.org">Example.org</a></li>
+</ul>
+
+<p>Nam id nisl quam. Donec a lorem sit amet libero pretium vulputate vel ut purus. Suspendisse leo arcu, 
+mattis et imperdiet luctus, pulvinar vitae mi. Quisque fermentum sollicitudin feugiat. Mauris nec leo 
+ligula. Vestibulum tristique odio ut risus ultricies a hendrerit quam iaculis. Duis tempor elit sit amet 
+ligula vehicula et iaculis sem placerat. Fusce dictum, metus at volutpat lacinia, elit massa auctor risus, 
+id auctor arcu enim eu augue. Donec ultrices turpis in mi imperdiet ac venenatis sapien sodales.</p> 
+
+<pre class="prettyprint">
+<code>
+package org.jbake;
+
+public class Oven {
+	public static void main(String[] args) {
+		System.out.print("Baking!");
+  }
+}
+</code>
+</pre>
+
+<p>In consequat imperdiet nunc quis bibendum. Nulla semper, erat quis ornare tristique, lectus massa posuere 
+libero, ut vehicula lectus nunc ut lorem. Aliquam erat volutpat.</p>
+</p>
+
+	<hr>
+	
+    </div><!-- /.inner -->
+  </div><!-- /#wrapper /.wrapper -->
+  <footer id="footer">
+    <div class="inner">
+      <p class="copy-right">Copyright ©2014. All rights reserved. <a href="#" title="Juzu Web Framework">Juzu</a></p>
+    </div>
+  </footer><!-- /#footer -->
+
+  <!-- Juzuweb Javascript -->
+  <!-- Currenly using Jquery v.1.7.1 because Jquery Address conflict with Jequery v.11.0 -->
+  <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap-3.1/jquery.address-1.5.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap-3.1/dropdown.js"></script>
+  <script type="text/javascript" src="js/bootstrap-3.1/collapse.js"></script>
+  <script type="text/javascript" src="js/bootstrap-3.1/juzu.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      // The page navigation
+      $.address.change(function(event){
+
+        // Get anchor
+        var anchor = event.value.substring(1);
+        if (anchor == "")
+        anchor = "home";
+
+        //
+        var page = $(".page:has(a[name=" + anchor + "])");
+        if (page.length == 1) {
+        page.filter(function() {
+          return this != window.previous;
+        }).each(function() {
+
+          // Do show/hide
+          $(".page").hide();
+          $(this).show();
+
+          // Reset page to top
+          $(window).scrollTop(0);
+
+          // Update previous
+          window.previous = this;
+        });
+        } else {
+        // Should log something somehow
+        }
+      });
+    });
+  </script>
+  </body>
+</html>

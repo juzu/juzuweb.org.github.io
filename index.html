@@ -1,389 +1,173 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    <title>Juzu Web Framework</title>
-    <link rel="stylesheet" href="css/site.css">
-    <script src="js/jquery-1.7.1.min.js"></script>
-    <!-- Doc here : http://www.asual.com/jquery/address/docs/ -->
-    <script src="js/jquery.address-1.4.min.js"></script>
-    <script src="js/bootstrap-dropdown.js"></script>
+    <!DOCTYPE html>
+<html lang="en">
+  <head>
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!--
-    Does not work at the moment for some reason
-    <script src="js/google-code-prettify/prettify.js"></script>
-    -->
+  <title>Juzu Web Framework</title>
 
-    <script>
-      $(document).ready(function() {
+  <!-- Juzuweb CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/site.css" rel="stylesheet">
+
+  <!--[if lt IE 9]><script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="js/bootstrap-3.1/html5shiv.js"></script>
+  <script src="js/bootstrap-3.1/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Juzuweb Favicons -->
+
+  </head>
+  <body class="body-page">
+
+  <div id="wrapper" class="wrapper">
+    <div class="inner">
 
 
-        // The page navigation
-        $.address.change(function(event){
-
-
-          // Get anchor
-          var anchor = event.value.substring(1);
-          if (anchor == "")
-            anchor = "home";
-
-          //
-          var page = $(".page:has(a[name=" + anchor + "])");
-          if (page.length > 0) {
-            $(".page").hide();
-            page.each(function() {
-                $(this).show();
-
-                // Reset page to top
-                $(window).scrollTop(0);
-            });
-          } else {
-            // Should log something somehow
-          }
-        });
-      });
-    </script>
-    
-</head>
-<body>
-
-  <div>
-
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <ul id="tabs" class="nav">
-
-            <li><a href="#home">Home</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Project<b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#roadmap">Roadmap</a></li>
-                <li><a href="http://github.com/juzu/juzu">Contribute</a></li>
-              </ul>
-            </li>
-
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#tutorial">Tutorial</a></li>
-                <li><a href="#reference">Reference</a></li>
-              </ul>
-            </li>
-
-            <li><a href="#screencasts">Screencasts</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
+    <nav id="navbarTop" class="navbar navbar-top affix-top" role="navigation">
     <div class="container">
-
-      <div class="page">
-        <a name="home"></a>
-        <div class="hero-unit">
-          <div class="center">
-            <h1>Juzu Web Framework</h1>
-          </div>
-          <p>Develop powerful web applications</p>
-          <p>Emphasises on simplicity and type safety</p>
-          <p>Open source project and open minded</p>
-        </div>
-        <div class="row">
-          <div class="span4">
-            <h3>Community</h3>
-            <address>
-            <strong>Users:</strong> <a href="http://groups.google.com/group/juzu">juzu@googlegroups.com</a><br />
-            <strong>Developers:</strong> <a href="http://github.com/juzu/juzu">GitHub</a><br />
-            </address>
-          </div>
-          <div class="span4">
-            <h3>Download</h3>
-              The latest 0.4.4 release is available, <a href="https://github.com/juzu/juzu/downloads">download it</a>.
-            </p>
-          </div>
-          <div class="span4">
-            <h3>Portal enabled</h3>
-            <p>Juzu works on GateIn and Liferay portals.</p>
-          </div>
-        </div>
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Juzu Web Framework</a>
       </div>
-        
-      <div class="page">
-        <a name="features"></a>
-
-        <h1>Deployment</h1>
-        <p>Juzu deploys on
-         <ul>
-            <li>GateIn/Tomcat</li>
-            <li>GateIn/JBoss 5.1: requires to remove the seam and cdi deployer in AS5.1</li>
-            <li>Lifera/Tomcat: tested on Liferay 6.10 and 5.x</li>
-          </ul>
-        </p>
-
-        <h1>Dependency Injection integration</h1>
-        <p>
-          Juzu leverages the JSR-330 specification to perform dependency injection, this specification is supported by the most
-          popular dependency injection frameworks such as Weld, Spring and Guice. At the moment the Weld and Spring
-          frameworks are supported by Juzu.
-        </p>
-        <h2>Scopes</h2>
-        <p>The <code>@inject</code> specification provides the notion of scope and Juzu leverages it to manage the life
-          cycle of the various objects. Juzu provides a set of scope that can be used to control the scope of objects:</p>
-        <ul>
-          <li>Application scope (<code>@Singleton</code> annotation provides by <code>@inject</code> specification)</li>
-          <li>Request scope</li>
-          <li>Session scope</li>
-          <li>Flash scope</li>
+      
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Project <b class="caret-square"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="features.html"><span>Features</span></a></li>
+          <li><a href="https://github.com/juzu/juzu/blob/master/roadmap.asciidoc"><span>Road map</span></a></li>
+          <li><a href="https://github.com/juzu/juzu"><span>Contribute</span></a></li>
         </ul>
-        <h2>IOC flavor <small>Your church</small></h2>
-        <h3>CDI</h3>
-        <p>Weld is the default dependency injection framework.</p>
-        <h3>Spring</h3>
-        <p>Spring is used by setting the <code>spring</code> value for the <code>juzu.inject</code> portlet init parameter.
-          Spring beans are declared in the <code>spring.xml</code> file.</p>
-        <h3>Configuration</h3>
-        <p>
-          The IOC container implementation can be done in the <code>portlet.xml</code> file:
-        </p>
-        <pre>&lt;init-param&gt;
-  &lt;name&gt;juzu.inject&lt;/name&gt;
-  &lt;value&gt;weld&lt;/value&gt;
-  &lt;!--
-  &lt;value&gt;spring&lt;/value&gt;
-  --&gt;
-&lt;/init-param&gt;</pre>
-
-        <h1>Programming</h1>
-        <h2>Controller</h2>
-        <p>Juzu programming model is inspired by the Play! Framework that provides a simple and efficient programming
-          model for the web. Portlet programming model is very close to Play! programming model and thus it makes a lot
-          of sense to deliver a powerful and simple programming model.</p>
-        <p>Controller are methods annotated with <code>@Action</code> or <code>@View</code>:</p>
-        <pre>
-  @Action
-  public Response purchaseProduct(String productId) { ... }
-
-  @View
-  public void showProduct(String productId) { ... }</pre>
-        <p>The <code>productId</code> defines the name of the parameter when a link is build in templates:</p>
-        <pre>&lt;a href="@{showProduct(productId='tomato'"&gt;Tomato&lt;/a&gt;</pre>
-        <p>It also works for forms and should be used like this:</p>
-        <pre>&lt;form action="@{purchaseProduct" method="POST"&gt;
-  &lt;select name="productId"&gt;
-      ...
-  &lt;/select&gt;
-&lt;/form&gt;</pre>
-        <p>Controller method takes String argument at the moment, later support for other types will be added.
-          Multivalued string are supported with the <code>String[]</code> or <code>List&lt;String&gt;</code> types.</p>
-        <h2>Templating</h2>
-        <p>Juzu templates engine is based on Groovy and provide a powerful set of instructions.</p>
-        <h3>Template URL resolution</h3>
-        <p>Juzu validates the application templates during the compilation phase and will attempt to resolve any link
-          against a controller method: application links are validated at compilation time.</p>
-        <pre>&lt;a href="@{index()}"&gt;Link&lt;/a&gt;</pre>
-        <h3>Template parameters</h3>
-        <p>Template can have parameters</p>
-        <pre>#{param name=temperature/}
-The ${temperature}</pre>
-        <p>Such parameters that can be used in a type safe way in a controller that renders the template</p>
-        <pre>template.with().temperature("30").render();</pre>
-        <h3>Template declaration</h3>
-        <pre>@Path("myTemplate.gtml")
-private Template myTemplate;</pre>
-        <p>Takes the corresponding template file and generates the corresponding Groovy source code to be compiled.</p>
-        <h3>Template injection</h3>
-        <pre>@Inject
-@Path("MyTemplate.gtmpl");
-private Template template;</pre>
-        <h3>Tag library</h3>
-        <p>The Tab library supports a few tags at the moment</p>
-        <ul>
-          <li>decorate : decorate a template with another template</li>
-          <li>template parameter : declare a template parameter and provide a typed interface for invoking a template from a controller</li>
-          <li>include : include a template in a template</li>
-          <li>title : set the portlet title</li>
+        </li>
+        <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Documentation <b class="caret-square"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="tutorial/index.html"><span>Tutorial</span></a></li>
+          <li><a href="reference/index.html"><span>Reference</span></a></li>
+          <li><a href="javadoc/index.html" target="blank_"><span>Javadoc</span></a></li>
+          <li><a href="extension/index.html"><span>Extension</span></a></li>
         </ul>
-        <p>The taglib API is not yet pluggable but will be.</p>
+        </li>
+        <li><a href="screencasts.html">Screencasts</a></li>
+      </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+    </nav><!-- /.navbar-top -->
 
-        <h1>Maven archetype</h1>
-        <p>
-          The command line to use for creating a simple Juzu application using the Maven archetype
-        </p>
-        <pre>mvn archetype:generate \
-  -DarchetypeGroupId=org.juzu \
-  -DarchetypeArtifactId=juzu-archetype \
-  -DarchetypeVersion=0.4.4 \
-  -DgroupId=&lt;my.groupid&gt; \
-  -DartifactId=&lt;my-artifactId&gt;</pre>
-
-        <h1>Building your app <small>Universal build</small></h1>
-        <p>Juzu integrates at the heart of the Java compiler thanks to Annotation Processing Tools (APT). APT allows to
-          perform code generation in a fully portable manner, it just work with the Java compiler in a very transparent
-          manner and thus is integrated with any build system or IDE that uses a Java 6 compiler.
-        </p>
-        <h2>Build time validation</h2>
-        <p>Validates various things during at build time.</p>
-        <h2>Compiler integration</h2>
-        <h3>URL literal generation</h3>
-        <p>
-          URL literal emulates first call support for application URLs, it allows an application to uses valid URLs at
-          build time.
-        </p>
-        <p>A controller method such as</p>
-        <pre>public class Controller {
-@View
-public void showProduct(String productId) { }
-}</pre>
-        <p>Generates an url literal like</p>
-        <pre>public class Controller_ {
-public static URLBuilder showProduct(String productId) { ... }
-}</pre>
-        <p>That can be used</p>
-        <pre>URLBuilder url = Controller_.showProduct("myproduct");</pre>
-        <h3>Eclipse incremental support</h3>
-        <p>
-          Eclipse compiler works in a different fashion than the Oracle compiler. Juzu annotation processor was designed
-          to work nicely with the Eclipse compiler and provide incremental updates to the files generated by the application.
-        </p>
-        <h2>Live mode</h2>
-        <p>Juzu features a dev mode in which the application is recompiled in real time.</p>
-        <h2>Error reporting</h2>
-        <p>
-          Juzu should report error through the Java Compiler, making error reporting integrated universally with build
-          systems and IDE.
-        </p>
-      </div>
-
-      <div class="page">
-        <a name="tutorial"></a>
-        <script type="text/javascript">
-          $(function() {
-            $("<div></div>").load("tutorial.html", function() {
-              $(this).find(".book").children().appendTo("#tutorial");
-              /* prettyPrint(); */
-            });
-          })
-        </script>
-        <div id="tutorial"></div>
-      </div>
-
-      <div class="page">
-        <a name="screencasts"></a>
-        <div class="row">
-          <div class="span4">
-            <h3>Hello Juzu</h3>
-            <p>
-              <object width="284" height="160"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=33184509&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=00adef&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" /><embed src="http://vimeo.com/moogaloop.swf?clip_id=33184509&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=00adef&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="284" height="160"></embed></object>
-            </p>
+    <div id="main">
+    <div class="page">
+      <div class="header-banner">
+      <div class="background-banner">
+        <div class="container">
+          <div class="cleafix">
+          <div class="social-box">
+            <ul class="social-list-link">
+            <li><a target="_blank" href="https://github.com/juzu/juzu"><i class="icon-jz-soc-github"></i></a></li>
+            <li><a target="_blank" href="https://www.facebook.com/eXoPlatform"><i class="icon-jz-soc-facebook"></i></a></li>
+            <li><a target="_blank" href="https://twitter.com/juzuweb"><i class="icon-jz-soc-twitter"></i></a></li>
+            <li><a target="_blank" href="https://www.linkedin.com/company/exo-platform"><i class="icon-jz-soc-linkedin"></i></a></li>
+            <li><a target="_blank" href="http://community.exoplatform.com/portal/intranet/forum/forum/forum0b6b8fbd0ab9b62a3210b5e01a30cabe"><i class="icon-jz-soc-exo"></i></a></li>
+            </ul>
           </div>
-          <div class="span4">
-            <h3>Type Safe Parameters</h3>
-            <p>
-              <object width="284" height="160"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=33370178&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=00adef&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" /><embed src="http://vimeo.com/moogaloop.swf?clip_id=33370178&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=00adef&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="284" height="160"></embed></object>
-            </p>
+          <div class="banner-content">
+            <h2 class="title">Juzu Web Framework</h2>
+            <h3 class="desc">Develop powerful web applications<br>Emphasises on simplicity and type safety<br>Open source project and open minded</h3>
           </div>
-          <div class="span4">
-            <h3>Live Mode</h3>
-            <p>
-              <object width="284" height="160"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=33519963&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=00adef&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" /><embed src="http://vimeo.com/moogaloop.swf?clip_id=33519963&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=00adef&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="284" height="160"></embed></object>
-            </p>
+          </div>
+        </div><!-- /.container -->
+      </div><!-- /.background-banner -->
+      </div> <!-- /.header-banner -->
+      <div class="features-top-box">
+      <div class="container">
+        <div class="box-top clearfix">
+        <div class="pediment-cont one">
+          <h3 class="title"><a href="http://search.maven.org/remotecontent?filepath=org/juzu/juzu-distrib/1.0.0-beta2/juzu-distrib-1.0.0-beta2.zip">Download</a></h3>
+          <span class="desc">or check out <br>the <a href="https://github.com/juzu/juzu/releases/tag/1.0.0-beta2">sources</a></span>
+        </div>
+        <div class="pediment-cont two">
+          <h3 class="title">Juzu in Action</h3>
+          <span class="desc"><a href="screencasts.html">Screencasts</a></span>
+        </div>
+        </div>
+        <div class="box-bottom clearfix">
+        <div class="pediment-cont three">
+          <h3 class="title">Run</h3>
+          <span class="desc">Servlet containers <br>Web portals like <br><a href="http://www.exoplatform.com">eXo Platform</a></span>
+        </div>
+        <div class="pediment-cont four">
+          <h2 class="title">Features</h2>
+          <a class="features-findout" href="features.html">
+            <strong>Find out</strong>
+          </a>
           </div>
         </div>
       </div>
+      </div><!-- /.features-top-box -->
+    </div><!-- /.page one -->
 
-      <div class="page">
-        <a name="reference"></a>
-        <script type="text/javascript">
-          $(function() {
-            $("<div></div>").load("reference.html", function() {
-              $(this).find(".book").children().appendTo("#reference");
-              /* prettyPrint(); */
-            });
-          })
-        </script>
-        <div id="reference"></div>
-      </div>
-
-      <div class="page">
-        <a name="roadmap"></a>
-
-        <blockquote>
-          <p>1.0</p>
-          <small>Cross site scripting (xss) support</small>
-          <small>Servlet support & Routing engine</small>
-          <small>Request context stacking</small>
-          <small>Extensible taglib</small>
-          <small>Application import</small>
-          <small>Form bean validation</small>
-          <small>Portlet Eventing Support</small>
-          <small>Controller inheritance</small>
-        </blockquote>
-
-        <blockquote>
-          <p>Next 0.5</p>
-          <small>Form bean</small>
-          <small>Reference guide</small>
-          <small>Plugin support</small>
-          <small>Asset plugin</small>
-          <small>Ajax plugin</small>
-          <small>Lifecycle support with @PostConstruct and @PreDestroy</small>
-          <small>Portlet preferences injection</small>
-        </blockquote>
-
-        <blockquote class="pull-right">
-          <p class="done">0.4.4</p>
-          <small>change how a builder is obtained from a template using the word "with()"</small>
-          <small>improve controller response creation allowing better control for ajax serving and control flow</small>
-        </blockquote>
-
-        <blockquote class="pull-right" style="clear:both">
-          <p class="done">0.4.3</p>
-          <small>Added SecurityContext and HttpContext API</small>
-          <small>URL xml escaping</small>
-          <small>multivaluated controller method arguments</small>
-          <small>fix maven archetype webAppDirectory value</small>
-        </blockquote>
-
-        <blockquote class="pull-right" style="clear:both">
-          <p class="done">0.4.2</p>
-          <small>template type safe parameters</small>
-          <small>Eclipse Hello World screencast</small>
-          <small>Template type safe parameters screencast</small>
-          <small>use unchecked exception for wrapping IOException</small>
-          <small>integration with web application classloading in dev mode</small>
-          <small>introduce declarative injection binding to register injection provider</small>
-          <small>update to Weld 1.1.4</small>
-          <small>friendly error display</small>
-          <small>bug fixes</small>
-        </blockquote>
-
-        <blockquote class="pull-right" style="clear:both">
-          <p class="done">0.4.1</p>
-          <small>eclipse incremental compilation support (experimental)</small>
-          <small>tutorial: documentation and sample</small>
-          <small>maven archetype</small>
-        </blockquote>
-
-        <blockquote class="pull-right" style="clear:both">
-          <p class="done">0.3 milestone</p>
-          <small>Liferay support</small>
-          <small>Weld and Spring integration</small>
-          <small>basic packaging</small>
-        </blockquote>
-
-        <blockquote class="pull-right" style="clear:both">
-          <p class="done">0.2 milestone</p>
-        </blockquote>
-
-        <blockquote class="pull-right" style="clear:both">
-          <p class="done">0.1 milestone</p>
-          <small>booking demo adapted from Play!</small>
-        </blockquote>
-      </div>
+    </div><!-- /#main -->
+    </div><!-- /.inner -->
+  </div><!-- /#wrapper /.wrapper -->
+  <footer id="footer">
+    <div class="inner">
+      <p class="copy-right">Copyright ©2014. All rights reserved. <a href="#" title="Juzu Web Framework">Juzu</a></p>
     </div>
-  </div>
+  </footer><!-- /#footer -->
 
-</body>
+  <!-- Juzuweb Javascript -->
+  <!-- Currenly using Jquery v.1.7.1 because Jquery Address conflict with Jequery v.11.0 -->
+  <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap-3.1/jquery.address-1.5.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap-3.1/dropdown.js"></script>
+  <script type="text/javascript" src="js/bootstrap-3.1/collapse.js"></script>
+  <script type="text/javascript" src="js/bootstrap-3.1/juzu.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      // The page navigation
+      $.address.change(function(event){
+
+        // Get anchor
+        var anchor = event.value.substring(1);
+        if (anchor == "")
+        anchor = "home";
+
+        //
+        var page = $(".page:has(a[name=" + anchor + "])");
+        if (page.length == 1) {
+        page.filter(function() {
+          return this != window.previous;
+        }).each(function() {
+
+          // Do show/hide
+          $(".page").hide();
+          $(this).show();
+
+          // Reset page to top
+          $(window).scrollTop(0);
+
+          // Update previous
+          window.previous = this;
+        });
+        } else {
+        // Should log something somehow
+        }
+      });
+    });
+  </script>
+  </body>
 </html>

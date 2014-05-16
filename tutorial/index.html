@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="Asciidoctor 0.1.3">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Juzu Reference Guide</title>
+<link rel="stylesheet" href="./rocket-panda.css">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.1.0/css/font-awesome.min.css">
+<style>
+.CodeRay {
+  background-color: hsl(0,0%,95%);
+  border: 1px solid silver;
+  color: black;
+}
+.CodeRay pre {
+  margin: 0px;
+}
+
+span.CodeRay { white-space: pre; border: 0px; padding: 2px; }
+
+table.CodeRay { border-collapse: collapse; width: 100%; padding: 2px; }
+table.CodeRay td { padding: 2px 4px; vertical-align: top; }
+
+.CodeRay .line-numbers {
+  background-color: hsl(180,65%,90%);
+  color: gray;
+  text-align: right;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+.CodeRay .line-numbers a {
+  background-color: hsl(180,65%,90%) !important;
+  color: gray !important;
+  text-decoration: none !important;
+}
+.CodeRay .line-numbers a:target { color: blue !important; }
+.CodeRay .line-numbers .highlighted { color: red !important; }
+.CodeRay .line-numbers .highlighted a { color: red !important; }
+.CodeRay span.line-numbers { padding: 0px 4px; }
+.CodeRay .line { display: block; float: left; width: 100%; }
+.CodeRay .code { width: 100%; }
+
+.CodeRay .debug { color: white !important; background: blue !important; }
+
+.CodeRay .annotation { color:#007 }
+.CodeRay .attribute-name { color:#b48 }
+.CodeRay .attribute-value { color:#700 }
+.CodeRay .binary { color:#509 }
+.CodeRay .char .content { color:#D20 }
+.CodeRay .char .delimiter { color:#710 }
+.CodeRay .char { color:#D20 }
+.CodeRay .class { color:#B06; font-weight:bold }
+.CodeRay .class-variable { color:#369 }
+.CodeRay .color { color:#0A0 }
+.CodeRay .comment { color:#777 }
+.CodeRay .comment .char { color:#444 }
+.CodeRay .comment .delimiter { color:#444 }
+.CodeRay .complex { color:#A08 }
+.CodeRay .constant { color:#036; font-weight:bold }
+.CodeRay .decorator { color:#B0B }
+.CodeRay .definition { color:#099; font-weight:bold }
+.CodeRay .delimiter { color:black }
+.CodeRay .directive { color:#088; font-weight:bold }
+.CodeRay .doc { color:#970 }
+.CodeRay .doc-string { color:#D42; font-weight:bold }
+.CodeRay .doctype { color:#34b }
+.CodeRay .entity { color:#800; font-weight:bold }
+.CodeRay .error { color:#F00; background-color:#FAA }
+.CodeRay .escape  { color:#666 }
+.CodeRay .exception { color:#C00; font-weight:bold }
+.CodeRay .float { color:#60E }
+.CodeRay .function { color:#06B; font-weight:bold }
+.CodeRay .global-variable { color:#d70 }
+.CodeRay .hex { color:#02b }
+.CodeRay .imaginary { color:#f00 }
+.CodeRay .include { color:#B44; font-weight:bold }
+.CodeRay .inline { background-color: hsla(0,0%,0%,0.07); color: black }
+.CodeRay .inline-delimiter { font-weight: bold; color: #666 }
+.CodeRay .instance-variable { color:#33B }
+.CodeRay .integer  { color:#00D }
+.CodeRay .key .char { color: #60f }
+.CodeRay .key .delimiter { color: #404 }
+.CodeRay .key { color: #606 }
+.CodeRay .keyword { color:#080; font-weight:bold }
+.CodeRay .label { color:#970; font-weight:bold }
+.CodeRay .local-variable { color:#963 }
+.CodeRay .namespace { color:#707; font-weight:bold }
+.CodeRay .octal { color:#40E }
+.CodeRay .operator { }
+.CodeRay .predefined { color:#369; font-weight:bold }
+.CodeRay .predefined-constant { color:#069 }
+.CodeRay .predefined-type { color:#0a5; font-weight:bold }
+.CodeRay .preprocessor { color:#579 }
+.CodeRay .pseudo-class { color:#00C; font-weight:bold }
+.CodeRay .regexp .content { color:#808 }
+.CodeRay .regexp .delimiter { color:#404 }
+.CodeRay .regexp .modifier { color:#C2C }
+.CodeRay .regexp { background-color:hsla(300,100%,50%,0.06); }
+.CodeRay .reserved { color:#080; font-weight:bold }
+.CodeRay .shell .content { color:#2B2 }
+.CodeRay .shell .delimiter { color:#161 }
+.CodeRay .shell { background-color:hsla(120,100%,50%,0.06); }
+.CodeRay .string .char { color: #b0b }
+.CodeRay .string .content { color: #D20 }
+.CodeRay .string .delimiter { color: #710 }
+.CodeRay .string .modifier { color: #E40 }
+.CodeRay .string { background-color:hsla(0,100%,50%,0.05); }
+.CodeRay .symbol .content { color:#A60 }
+.CodeRay .symbol .delimiter { color:#630 }
+.CodeRay .symbol { color:#A60 }
+.CodeRay .tag { color:#070 }
+.CodeRay .type { color:#339; font-weight:bold }
+.CodeRay .value { color: #088; }
+.CodeRay .variable  { color:#037 }
+
+.CodeRay .insert { background: hsla(120,100%,50%,0.12) }
+.CodeRay .delete { background: hsla(0,100%,50%,0.12) }
+.CodeRay .change { color: #bbf; background: #007; }
+.CodeRay .head { color: #f8f; background: #505 }
+.CodeRay .head .filename { color: white; }
+
+.CodeRay .delete .eyecatcher { background-color: hsla(0,100%,50%,0.2); border: 1px solid hsla(0,100%,45%,0.5); margin: -1px; border-bottom: none; border-top-left-radius: 5px; border-top-right-radius: 5px; }
+.CodeRay .insert .eyecatcher { background-color: hsla(120,100%,50%,0.2); border: 1px solid hsla(120,100%,25%,0.5); margin: -1px; border-top: none; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; }
+
+.CodeRay .insert .insert { color: #0c0; background:transparent; font-weight:bold }
+.CodeRay .delete .delete { color: #c00; background:transparent; font-weight:bold }
+.CodeRay .change .change { color: #88f }
+.CodeRay .head .head { color: #f4f }
+
+</style>
+</head>
+<body class="book toc2">
+<div id="header">
+<h1>Juzu Reference Guide</h1>
+<span id="author">Julien Viet</span><br>
+<span id="email"><a href="http://www.julienviet.com">http://www.julienviet.com</a></span><br>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ol type="none" class="sectlevel0">
+<li><a href="#quickstart">Quickstart</a></li>
+<li>
+<ol type="none" class="sectlevel1">
+<li><a href="#_deploy_the_applications">Deploy the applications</a></li>
+<li><a href="#_interacting_with_the_application">Interacting with the application</a></li>
+<li>
+<ol type="none" class="sectlevel2">
+<li><a href="#_packaging_the_application_in_tomcat">Packaging the application in Tomcat</a></li>
+<li><a href="#_packaging_the_application_for_the_gatein_portal">Packaging the application for the GateIn portal</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#template_overview">Template overwiew</a></li>
+<li><a href="#dependency_injection">Dependency Injection</a></li>
+<li><a href="#views">Views</a></li>
+<li><a href="#actions">Actions</a></li>
+<li><a href="#type_safe_templating">Type safe templating</a></li>
+<li><a href="#styled">Styling the application</a></li>
+<li>
+<ol type="none" class="sectlevel1">
+<li><a href="#_the_style">The style</a></li>
+<li>
+<ol type="none" class="sectlevel2">
+<li><a href="#_a_la_carte">A la carte</a></li>
+</ol>
+</li>
+<li><a href="#_plugins_in_action">Plugins in action</a></li>
+<li>
+<ol type="none" class="sectlevel2">
+<li><a href="#_less_compilation">Less compilation</a></li>
+<li><a href="#_serving_stylesheet">Serving Stylesheet</a></li>
+<li><a href="#_bringing_css_to_life">Bringing CSS to life</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#ajax">Adding Ajax</a></li>
+<li>
+<ol type="none" class="sectlevel1">
+<li><a href="#_javascript_to_the_rescue">Javascript to the rescue</a></li>
+<li>
+<ol type="none" class="sectlevel2">
+<li><a href="#_adding_scripts">Adding scripts</a></li>
+<li><a href="#_the_collapse_plugin">The collapse plugin</a></li>
+</ol>
+</li>
+<li><a href="#_bridge_the_gap_with_ajax">Bridge the gap with Ajax</a></li>
+<li>
+<ol type="none" class="sectlevel2">
+<li><a href="#_resource_controller">Resource controller</a></li>
+<li><a href="#_jquery">jQuery</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#testing">Testing our application</a></li>
+<li>
+<ol type="none" class="sectlevel1">
+<li><a href="#_setting_up_the_test">Setting up the test</a></li>
+<li><a href="#_testing_the_app">Testing the app</a></li>
+</ol>
+</li>
+<li><a href="#_wrap_up">Wrap up</a></li>
+</ol>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Juzu is a web framework based on MVC concepts for developing applications. Juzu is an
+open source project developed on <a href="https://github.com/juzu/juzu">GitHub</a> licensed under the
+<a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2 License</a>.</p>
+</div>
+<div class="paragraph">
+<p>This tutorial will make you familliar with Juzu, to reach your objective you will develop a weather application
+in several steps, each step introducing a new feature to gradually build the application.</p>
+</div>
+
+</div>
+</div>
+<h1 id="quickstart" class="sect0"><a class="anchor" href="#quickstart"></a>Quickstart</h1>
+<div class="sect1">
+<h2 id="_deploy_the_applications"><a class="anchor" href="#_deploy_the_applications"></a>Deploy the applications</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Before diving in the technical part of this tutorial, we need to study how to deploy the examples and how to use them.
+In the package you downloaded you will find a war file adapted to your portal server in the <code>/tutorial</code> directory:</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p><code>juzu-tutorial-examples-tomcat.war</code> for the Tomcat server</p>
+</li>
+<li>
+<p><code>juzu-tutorial-examples-gatein.war</code> for the GateIn portal server</p>
+</li>
+<li>
+<p><code>juzu-tutorial-examples-liferay.war</code> for the Liferay portal server</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-note" title="Note"></i>
+</td>
+<td class="content">
+
+In Tomcat server the application is executed as a Servlet whereas in GateIn or Liferay, the application is
+executed as a Portlet.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The main reason we have several servers is that the jars are not exactly the same, each is adapted to the
+server you will use. When you deploy the applications, the deployment process will print information in the
+console, similar to:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre>INFO: Deploying web application archive juzu-tutorial-tomcat.war
+[Weather1Portlet] Using injection CDI_WELD
+[Weather1Portlet] Building application
+[Weather1Portlet] Starting Weather1Application
+[Weather2Portlet] Using injection CDI_WELD
+[Weather2Portlet] Building application
+[Weather2Portlet] Starting Weather2Application
+[Weather3Portlet] Using injection INJECT_SPRING
+[Weather3Portlet] Building application
+[Weather3Portlet] Starting Weather3Application
+....</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As we can notice, there are 8 applications deployed, one for each of the topic of this tutorial</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p>Weather1Application: <a href="#quickstart">Quickstart</a></p>
+</li>
+<li>
+<p>Weather2Application: <a href="#template_overview">Template overwiew</a></p>
+</li>
+<li>
+<p>Weather3Application: <a href="#dependency_injection">Dependency Injection</a></p>
+</li>
+<li>
+<p>Weather4Application: <a href="#views">Views</a></p>
+</li>
+<li>
+<p>Weather5Application: <a href="#actions">Actions</a></p>
+</li>
+<li>
+<p>Weather6Application: <a href="#type_safe_templating">Type safe templating</a></p>
+</li>
+<li>
+<p>Weather7Application: <a href="#styled">Styling the application</a></p>
+</li>
+<li>
+<p>Weather8Application: <a href="#ajax">Adding Ajax</a></p>
+</li>
+</ul>
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_interacting_with_the_application"><a class="anchor" href="#_interacting_with_the_application"></a>Interacting with the application</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The first version of the application shows the most basic Juzu application. Our application is declared in the
+<code>examples.tutorial.weather1</code> package package annotated with the <code>@Application</code> annotation This annotation declares
+a Juzu application and does not require any mandatory value. Like classes, methods or fields, Java packages can be
+annotated, such packages declaration are represented by a special file named <code>package-info.java</code>.</p>
+</div>
+<div class="paragraph">
+<p>The first thing to do when developping a Juzu application is to declare the application. The package of the application
+must be annotated with the <code>@juzu.Application</code> annotation to declare the application. The Java file
+<em>examples/tutorial/weather1/package-info.java</em> contains the package declaration along with the annotation:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="annotation">@Application</span>
+<span class="annotation">@Route</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/weather1</span><span class="delimiter">&quot;</span></span>)
+<span class="annotation">@Portlet</span>
+<span class="keyword">package</span> <span class="namespace">examples.tutorial.weather1</span>;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Along with the <code>@Application</code> annotation there are two other annotations <code>@Route</code> and <code>@Portlet</code>:</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p>The <code>@Route</code> annotation defines the route of the application when the application is used as a servlet. It binds
+the application to the <em>/weather1</em> path.</p>
+</li>
+<li>
+<p>The <code>@Portlet</code> annotation generates a portlet application class used by the portlet container</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Both annotations are not coupled, you can use either the <code>@Route</code> or the <code>@Portlet</code> annotation, or both
+ if you want tod deploy your application in both runtimes.</p>
+</div>
+<div class="paragraph">
+<p>This is enough to create an empty Juzu application, now let&#8217;s see the application itself!</p>
+</div>
+<div class="paragraph">
+<p>Usually an application is made of controllers and templates, in this example, the <code>Weather</code> Java class contains a method
+annotated with the <code>@View</code> annotation, which turns the <code>Weather</code> class into a Juzu controller. The controller method
+<code>index()</code> is the name of the default method that Juzu will call.</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">Weather</span> {
+
+  <span class="annotation">@Inject</span>
+  <span class="annotation">@Path</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">index.gtmpl</span><span class="delimiter">&quot;</span></span>)
+  Template index;
+
+  <span class="annotation">@View</span>
+  <span class="directive">public</span> Response.Content index() {
+    <span class="keyword">return</span> index.ok();
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Methods annotated by <code>@View</code> have the unique purpose of providing markup, they are called <em>views</em>. In our case,
+the method delegates the rendering to the <code>index.gtmpl</code> template. The template is injected in the controller thanks
+to the <code>@Inject</code> annotation and the <code>@Path("index.gtmpl")</code> annotation.</p>
+</div>
+<div class="paragraph">
+<p>By default templates are located in the <code>templates</code> package of the application, in our case the
+<code>examples.tutorial.weather1.templates</code> package. The <code>@Path</code> annotation specifies the path of the template in this
+package. The templates are located in the same source tree than the java classes because the files must be available
+for the Java compiler.</p>
+</div>
+<div class="paragraph">
+<p>The last step of this section is to explain how to package the application, let&#8217;s see how to do that.</p>
+</div>
+<div class="sect2">
+<h3 id="_packaging_the_application_in_tomcat"><a class="anchor" href="#_packaging_the_application_in_tomcat"></a>Packaging the application in Tomcat</h3>
+<div class="paragraph">
+<p>There are two servlets used for serving the application:</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p>The <code>JuzuServlet</code> serves the Juzu applications contained in the war file</p>
+</li>
+<li>
+<p>The <code>AssetServlet</code> serves the asset of the applications such as stylesheets or JavaScript</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>By default we don&#8217;t need to provide a <em>web.xml</em> descriptor since, the <code>JuzuServet</code> is generated thanks to the
+<em>servlet</em> plugin and the <code>AssetServlet</code> is registered by Juzu dynamically.</p>
+</div>
+
+</div>
+<div class="sect2">
+<h3 id="_packaging_the_application_for_the_gatein_portal"><a class="anchor" href="#_packaging_the_application_for_the_gatein_portal"></a>Packaging the application for the GateIn portal</h3>
+<div class="paragraph">
+<p>Our application is annotated with the <code>juzu.plugin.portlet.Portlet</code> annotation. The <code>@Portlet</code> annotation
+generates a Java class <code>examples.tutorial.weather1.Weather1Portlet</code> that we specifies in the <em>WEB-INF/portlet.xml</em>
+deployment descriptor of the web application:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;portlet&gt;</span>
+  <span class="tag">&lt;portlet-name&gt;</span>Weather1Portlet<span class="tag">&lt;/portlet-name&gt;</span>
+  <span class="tag">&lt;portlet-class&gt;</span>examples.tutorial.weather1.Weather1Portlet<span class="tag">&lt;/portlet-class&gt;</span>
+<span class="tag">&lt;/portlet&gt;</span></code></pre>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<h1 id="template_overview" class="sect0"><a class="anchor" href="#template_overview"></a>Template overwiew</h1>
+<div class="paragraph">
+<p>Now we will improve our application by exploring a bit the templating engine.  We will show a quick overview of Juzu
+templating system. Templates are essentially made of static part (usually markup) and dynamic parts. In this section
+we will focus on explaining the use of dynamic expression in a template.</p>
+</div>
+<div class="paragraph">
+<p>The application shows how a view can provide variable input for a dynamic template with parameters. Our application has
+ a view controller and a template, but now the template contains the <code>${ }</code> expression that makes it dynamic.</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">The weather temperature in <span class="error">$</span>{location} is <span class="error">$</span>{temperature} degrees.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Like before the template is used in the view controller but now we use a <code>Map</code> containing the <code>location</code> and
+<code>temperature</code> parameters.</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@View</span>
+  <span class="directive">public</span> Response.Content index() {
+    <span class="predefined-type">Map</span>&lt;<span class="predefined-type">String</span>, <span class="predefined-type">Object</span>&gt; parameters = <span class="keyword">new</span> <span class="predefined-type">HashMap</span>&lt;<span class="predefined-type">String</span>, <span class="predefined-type">Object</span>&gt;();
+    parameters.put(<span class="string"><span class="delimiter">&quot;</span><span class="content">location</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">marseille</span><span class="delimiter">&quot;</span></span>);
+    parameters.put(<span class="string"><span class="delimiter">&quot;</span><span class="content">temperature</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">20</span><span class="delimiter">&quot;</span></span>);
+    <span class="keyword">return</span> index.with(parameters).ok();
+  }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>During the template rendering, the <code>location</code> and <code>temperature</code> expressions are resolved to the value
+provided by the view controller. When a template is rendered, an optional map can be provided, this map will be
+available during the rendering of the template for resolving expression.</p>
+</div>
+
+<h1 id="dependency_injection" class="sect0"><a class="anchor" href="#dependency_injection"></a>Dependency Injection</h1>
+<div class="paragraph">
+<p>The next step is to make our application obtain real data instead of the hardcoded values we used in the
+previous section. For this matter we use a remote service that we encapsulate into the <code>WeatherService</code>.</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">WeatherService</span> {
+
+  <span class="comment">/** A cache for temperatures. */</span>
+  <span class="directive">private</span> <span class="directive">final</span> <span class="predefined-type">HashMap</span>&lt;<span class="predefined-type">String</span>, <span class="predefined-type">String</span>&gt; cache = <span class="keyword">new</span> <span class="predefined-type">HashMap</span>&lt;<span class="predefined-type">String</span>, <span class="predefined-type">String</span>&gt;();
+
+  <span class="comment">/**
+   * Returns the temperature for the specifed location in celsius degrees.
+   *
+   * @param location the location
+   * @return the temperature
+   */</span>
+  <span class="directive">public</span> <span class="predefined-type">String</span> getTemperature(<span class="predefined-type">String</span> location) {
+    <span class="predefined-type">String</span> temperature = cache.get(location);
+    <span class="keyword">if</span> (temperature == <span class="predefined-constant">null</span>) {
+      cache.put(location, temperature = retrieveTemperature(location));
+    }
+    <span class="keyword">return</span> temperature;
+  }
+
+  <span class="directive">private</span> <span class="predefined-type">String</span> getValue(<span class="predefined-type">String</span> url, <span class="predefined-type">String</span> xpath) <span class="directive">throws</span> <span class="exception">Exception</span> {
+    <span class="predefined-type">XPathExpression</span> expr = <span class="predefined-type">XPathFactory</span>.
+        newInstance().newXPath().compile(xpath);
+    InputSource src = <span class="keyword">new</span> InputSource(url);
+    <span class="keyword">return</span> expr.evaluate(src);
+  }
+
+  <span class="comment">/**
+   * Retrieve the temperature.
+   *
+   * @param location the location
+   * @return the temperature
+   */</span>
+  <span class="directive">protected</span> <span class="predefined-type">String</span> retrieveTemperature(<span class="predefined-type">String</span> location) {
+    <span class="keyword">try</span> {
+      <span class="comment">// First we get the location WOEID</span>
+      <span class="predefined-type">String</span> woeidURL =
+          <span class="string"><span class="delimiter">&quot;</span><span class="content">http://query.yahooapis.com/v1/public/yql</span><span class="delimiter">&quot;</span></span> +
+              <span class="string"><span class="delimiter">&quot;</span><span class="content">?q=select%20*%20from%20geo.places%20where%20text%3D%22</span><span class="delimiter">&quot;</span></span> +
+              <span class="predefined-type">URLEncoder</span>.encode(location, <span class="string"><span class="delimiter">&quot;</span><span class="content">UTF-8</span><span class="delimiter">&quot;</span></span>) +
+              <span class="string"><span class="delimiter">&quot;</span><span class="content">%22&amp;format=xml</span><span class="delimiter">&quot;</span></span>;
+      <span class="predefined-type">String</span> woeid = getValue(woeidURL, <span class="string"><span class="delimiter">&quot;</span><span class="content">//*[local-name()='woeid']/text()</span><span class="delimiter">&quot;</span></span>);
+
+      <span class="comment">// Now get weather temperature</span>
+      <span class="predefined-type">String</span> weatherURL =
+          <span class="string"><span class="delimiter">&quot;</span><span class="content">http://weather.yahooapis.com/forecastrss?w=</span><span class="delimiter">&quot;</span></span> +
+              <span class="predefined-type">URLEncoder</span>.encode(woeid, <span class="string"><span class="delimiter">&quot;</span><span class="content">UTF-8</span><span class="delimiter">&quot;</span></span>) +
+              <span class="string"><span class="delimiter">&quot;</span><span class="content">&amp;u=c</span><span class="delimiter">&quot;</span></span>;
+      <span class="keyword">return</span> getValue(weatherURL, <span class="string"><span class="delimiter">&quot;</span><span class="content">//*[local-name()='condition']/@temp</span><span class="delimiter">&quot;</span></span>);
+    }
+    <span class="keyword">catch</span> (<span class="exception">Exception</span> e) {
+      <span class="comment">// Unavailable</span>
+      <span class="keyword">return</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">?</span><span class="delimiter">&quot;</span></span>;
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Juzu uses dependency injection to interact with a service layer. The <a href="http://jcp.org/en/jsr/detail?id=330">JSR-330</a>,
+ also knowns as <code>@Inject</code>, defines an API for dependency injection. The <code>WeatherService</code> is injected in the
+ controller with the <code>weatherService</code> field annotated with the <code>@Inject</code> annotation:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@Inject</span>
+  WeatherService weatherService;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This service is then simply used into our controller <code>index()</code> method:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@View</span>
+  <span class="directive">public</span> Response.Content index() {
+    <span class="predefined-type">Map</span>&lt;<span class="predefined-type">String</span>, <span class="predefined-type">Object</span>&gt; parameters = <span class="keyword">new</span> <span class="predefined-type">HashMap</span>&lt;<span class="predefined-type">String</span>, <span class="predefined-type">Object</span>&gt;();
+    parameters.put(<span class="string"><span class="delimiter">&quot;</span><span class="content">location</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">marseille</span><span class="delimiter">&quot;</span></span>);
+    parameters.put(<span class="string"><span class="delimiter">&quot;</span><span class="content">temperature</span><span class="delimiter">&quot;</span></span>, weatherService.getTemperature(<span class="string"><span class="delimiter">&quot;</span><span class="content">marseille</span><span class="delimiter">&quot;</span></span>));
+    <span class="keyword">return</span> index.with(parameters).ok();
+  }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As we can see, Juzu relies on the portable <code>@Inject</code> annotation to declare sinjections. Injection is performed by the
+dependency injection container. At the moment the following containers are supported:</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p><a href="http://www.springsource.org/">Spring Framework</a></p>
+</li>
+<li>
+<p><a href="http://seamframework.org/Weld">JBoss Weld</a></p>
+</li>
+<li>
+<p><a href="http://code.google.com/p/google-guice/wiki/Guice30">Google Guice 3.0</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>By default it uses the <em>Weld</em> container, if you want instead to use <em>Spring</em> container instead the configuration
+is done by a init param defined in the deployment descriptor:</p>
+</div>
+<div class="listingblock">
+<div class="title">Using Spring IOC in a servlet</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;init-param&gt;</span>
+  <span class="tag">&lt;param-name&gt;</span>juzu.inject<span class="tag">&lt;/param-name&gt;</span>
+  <span class="tag">&lt;param-value&gt;</span>spring<span class="tag">&lt;/param-value&gt;</span>
+<span class="tag">&lt;/init-param&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The same can be achieved for a portlet of course:</p>
+</div>
+<div class="listingblock">
+<div class="title">Using Spring IOC in a portlet</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;init-param&gt;</span>
+  <span class="tag">&lt;name&gt;</span>juzu.inject<span class="tag">&lt;/name&gt;</span>
+  <span class="tag">&lt;value&gt;</span>spring<span class="tag">&lt;/value&gt;</span>
+<span class="tag">&lt;/init-param&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the case of <em>Spring</em> injection, the file <em>spring.xml</em> file is needed, it contains the service declarations for
+the Spring container.</p>
+</div>
+<div class="paragraph">
+<p>Juzu provides more advanced dependency injection, in particular it uses the <code>Qualifier</code> and <code>Scope</code> features defined
+  by the JSR-330 specification, however they are not covered in this tutorial.</p>
+</div>
+
+<h1 id="views" class="sect0"><a class="anchor" href="#views"></a>Views</h1>
+<div class="paragraph">
+<p>So far we seen a basic view controller, in this section we will study more in depth view controllers. A view
+controller is invoked by Juzu when the application needs to be rendered, which can happen anytime during the lifecycle
+of an application.</p>
+</div>
+<div class="paragraph">
+<p>This version has still the <code>index()</code> view controller, but now it has also an overloaded <code>index(String location)</code>
+method that accept a <code>location</code> argument as a view parameter.</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@View</span>
+  <span class="annotation">@Route</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/show/{location}</span><span class="delimiter">&quot;</span></span>)
+  <span class="directive">public</span> Response.Content index(<span class="predefined-type">String</span> location) {
+    <span class="predefined-type">Map</span>&lt;<span class="predefined-type">String</span>, <span class="predefined-type">Object</span>&gt; parameters = <span class="keyword">new</span> <span class="predefined-type">HashMap</span>&lt;<span class="predefined-type">String</span>, <span class="predefined-type">Object</span>&gt;();
+    parameters.put(<span class="string"><span class="delimiter">&quot;</span><span class="content">location</span><span class="delimiter">&quot;</span></span>, location);
+    parameters.put(<span class="string"><span class="delimiter">&quot;</span><span class="content">temperature</span><span class="delimiter">&quot;</span></span>, weatherService.getTemperature(location));
+    <span class="keyword">return</span> index.with(parameters).ok();
+  }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Since our our application package is annotated with the <code>@Route("/weather4")</code> annotation, an URL like
+<em>/weather4/show/marseille</em> invokes this controller method with the <em>marseille</em> location.</p>
+</div>
+<div class="paragraph">
+<p>View parameters are bound to the current navigation of the application and their value are managed by the framework.
+At this point it is normal to wonder how a view parameter value can change. Let&#8217;s have a closer look at the
+<code>index.gtmpl</code> application template.</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">The weather temperature in <span class="error">$</span>{location} is <span class="error">$</span>{temperature} degrees.
+&lt;a href=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{index(location = 'marseille')}</span><span class="delimiter">&quot;</span></span>&gt;Marseille&lt;/a&gt;
+&lt;a href=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{index(location = 'paris')}</span><span class="delimiter">&quot;</span></span>&gt;Paris&lt;/a&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The template now has two links changing view parameters when they are processed. Such links are created by a
+special syntax that references the view method, for instance the script fragment <code>@{index(location = <em>paris</em>)}</code>
+generates an url that updates the <code>location</code> view parameter to the <code>paris</code> value when it is processed.</p>
+</div>
+<div class="paragraph">
+<p>The initial controller method <code>index()</code> is still there but now it simply invokes the <code>index(String location)</code>
+controller with a predefined value.</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@View</span>
+  <span class="directive">public</span> Response.Content index() {
+    <span class="keyword">return</span> index(<span class="string"><span class="delimiter">&quot;</span><span class="content">marseille</span><span class="delimiter">&quot;</span></span>);
+  }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We could&#8217;t close this section without talking a bit about <strong>safe urls</strong>. Juzu is deeply integrated at the heart of the
+Java compiler and performs many checks to detect applications bugs during the application compilation. Among those
+checks, templates are validated and the url syntax <code>@{ }</code> is checked against the application controllers. In fact
+Juzu will resolve an url syntax until it finds one controller that resolves the specified name and parameters. If not
+Juzu will make the compilation fail and give detailled information about the error. This kind of feature makes Juzu really
+unique among all other web frameworks, we will see some other later.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-note" title="Note"></i>
+</td>
+<td class="content">
+
+Juzu leverages the <a href="http://download.oracle.com/javase/6/docs/technotes/guides/apt/index.html">Annotation Processing Tool</a>
+(APT) facility standardized since Java 6. APT works with any Java compiler and is not specific to a build system or IDE,
+it just works anywhere, we will see later that it even works with Eclipse incremental compiler.
+</td>
+</tr>
+</table>
+</div>
+
+<h1 id="actions" class="sect0"><a class="anchor" href="#actions"></a>Actions</h1>
+<div class="paragraph">
+<p>Now it&#8217;s time to introduce action controllers, actions are method annotated by the <code>@Action</code> annotation.</p>
+</div>
+<div class="paragraph">
+<p>The role of an action controller is to process actions parameters. Each parameter of an action controller method is
+mapped to the incoming request processed by Juzu, such parameters can be encoded directly in the URL or be
+present in the form that triggers the action.</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">The weather temperature in <span class="error">$</span>{location} is <span class="error">$</span>{temperature} degrees.
+
+&lt;ul&gt;&lt;% locations.each() { location -&gt; %&gt;
+&lt;li&gt;&lt;a href=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{index(location = location)}</span><span class="delimiter">&quot;</span></span>&gt;<span class="error">$</span>{location}&lt;/a&gt;&lt;/li&gt;
+&lt;% } %&gt;
+&lt;/ul&gt;
+
+&lt;form action=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{add()}</span><span class="delimiter">&quot;</span></span> method=<span class="string"><span class="delimiter">&quot;</span><span class="content">post</span><span class="delimiter">&quot;</span></span>&gt;
+   &lt;input type=<span class="string"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span> name=<span class="string"><span class="delimiter">&quot;</span><span class="content">location</span><span class="delimiter">&quot;</span></span> value=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>/&gt;
+   &lt;input type=<span class="string"><span class="delimiter">&quot;</span><span class="content">submit</span><span class="delimiter">&quot;</span></span>/&gt;
+&lt;/form&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example, we use a form which contains the the <code>location</code> action parameters. In order to create an action
+url we use the same syntax than view url <code>@{add()}</code> but this time we don&#8217;t need to set any parameter,
+instead the form parameters will be used when the form is submitted. However this is not mandatory and instead we
+could have url parameters such as <code>@{add(location = <em>washington</em>}</code>, such syntax is valid specially when it is
+used without a form. Obviously there is the possibility to mix form and action parameters.</p>
+</div>
+<div class="paragraph">
+<p>When the url is processed, the following action controller method will be invoked:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@Action</span>
+  <span class="annotation">@Route</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/add</span><span class="delimiter">&quot;</span></span>)
+  <span class="directive">public</span> Response.View add(<span class="predefined-type">String</span> location) {
+    locations.add(location);
+    <span class="keyword">return</span> Weather_.index(location);
+  }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The method is annotated with two annotations:</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p><code>@Action</code> declares an action controller method</p>
+</li>
+<li>
+<p><code>@Route("/add")</code> binds the action on the ///weather5/add// route</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code>location</code> parameter is not declared in the route because it can be invoked by a form and the <code>location</code>
+parameter is part of it.</p>
+</div>
+<div class="paragraph">
+<p>The method returns a <code>Response.View</code> object. This object instructs Juzu to use the <code>index(String location)</code>
+ controller view after the action. The <code>Weather_</code> controller compagnion provides a type safe way for generating
+ the response: <code>Weather_.index(location)</code>. Our action just needs to return it, Juzu will take care of showing
+ the corresponding view after invoking the action.</p>
+</div>
+
+<h1 id="type_safe_templating" class="sect0"><a class="anchor" href="#type_safe_templating"></a>Type safe templating</h1>
+<div class="paragraph">
+<p>We have seen previously how to render templates from a controller and how we can pass parameters for rendering
+a template. Templates use <code>${ }</code> expressions that often refers to parameters passed by the controller. For this purpose
+we used an <code>HashMap</code> for storing the various parameters used during rendering.</p>
+</div>
+<div class="paragraph">
+<p>This syntax is a generic way and uses an untyped syntax, indeed if a template parameter name changes the controller
+will continue to compile because of the generic parameter map.  To improve this situation, parameters can be declared
+thanks to a <code>param</code> tag inside the template:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="error">#</span>{param name=location/}
+<span class="error">#</span>{param name=temperature/}
+<span class="error">#</span>{param name=locations/}
+
+The weather temperature in <span class="error">$</span>{location} is <span class="error">$</span>{temperature} degrees.
+
+&lt;ul&gt;&lt;% locations.each() { location -&gt; %&gt;
+&lt;li&gt;&lt;a href=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{index(location = location)}</span><span class="delimiter">&quot;</span></span>&gt;<span class="error">$</span>{location}&lt;/a&gt;&lt;/li&gt;
+&lt;% } %&gt;
+&lt;/ul&gt;
+
+&lt;form action=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{add()}</span><span class="delimiter">&quot;</span></span> method=<span class="string"><span class="delimiter">&quot;</span><span class="content">post</span><span class="delimiter">&quot;</span></span>&gt;
+   &lt;input type=<span class="string"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span> name=<span class="string"><span class="delimiter">&quot;</span><span class="content">location</span><span class="delimiter">&quot;</span></span> value=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>/&gt;
+   &lt;input type=<span class="string"><span class="delimiter">&quot;</span><span class="content">submit</span><span class="delimiter">&quot;</span></span>/&gt;
+&lt;/form&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For example the <code>location</code> parameter is declared by the <code>#{param name=location/}</code> tag. During the Java compilation,
+Juzu leverage such parameter declarations to provide a more convenient way to render a template.</p>
+</div>
+<div class="paragraph">
+<p>The tight integration with the Java compiler allows Juzu to generate a template class for each template
+of the application, those template classes inherits the <code>Template</code> class and adds specific methods for passing them
+parameters in a safe manner.</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@View</span>
+  <span class="directive">public</span> Response.Content index(<span class="predefined-type">String</span> location) {
+    <span class="keyword">return</span> index.
+      with().
+      location(location).
+      temperature(weatherService.getTemperature(location)).
+      locations(locations).
+      ok();
+  }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As we can see, the <code>HashMap</code> is not used anymore and now we use a type safe and compact expression for rendering the
+template. Each declared parameter generates a method named by the parameter name, for the <code>location</code> parameter,
+we do have now a <code>location(String location)</code> method that can be used.</p>
+</div>
+<div class="paragraph">
+<p>To make the syntax fluent, the parameter methods can be chained, finally the <code>ok()</code> method is invoked to produce
+a response, however it does not require any parameter since all parameters where passed thanks to the parameter methods.</p>
+</div>
+<div class="paragraph">
+<p>The Java name of the generated template class is the name of the template in the <code>templates</code> package of the application.
+In our case we do obtain the <code>examples.tutorial.weather6.templates.index</code> class name. It is very easy to use our
+subclass by injecting the template subclass instead of the generic <code>Template</code> class.</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@View</span>
+  <span class="directive">public</span> Response.Content index() {
+    <span class="keyword">return</span> index(<span class="string"><span class="delimiter">&quot;</span><span class="content">marseille</span><span class="delimiter">&quot;</span></span>);
+  }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Of course it is possible to import this value and use directly the <code>index</code> class name. We used directly the full
+qualified name of the class for the sake of the clarity.</p>
+</div>
+
+<h1 id="styled" class="sect0"><a class="anchor" href="#styled"></a>Styling the application</h1>
+<div class="paragraph">
+<p>Our application is almost complete, in this section we will work on the look and feel to make the application
+appealing. We will use the famous <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> framework and show how
+it integrates well in Juzu applications.</p>
+</div>
+<div class="sect1">
+<h2 id="_the_style"><a class="anchor" href="#_the_style"></a>The style</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Bootstrap provides a solid fundation for building quickly attractive applications.  Bootstrap is based on the dynamic
+stylesheet language <a href="http://lesscss.org/">Less</a> and provides a very modular organization. We will perform trivial
+modifications to a subset of the Less files and integrate them in our application.</p>
+</div>
+<div class="sect2">
+<h3 id="_a_la_carte"><a class="anchor" href="#_a_la_carte"></a>A la carte</h3>
+<div class="paragraph">
+<p>We will then modify the <code>bootstrap.less</code> file to keep only what is necessary for our application:</p>
+</div>
+<div class="listingblock">
+<div class="title">The necessary Bootstrap less files</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This version of bootstrap.less is a trimmed down of the original files.</p>
+</div>
+
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_plugins_in_action"><a class="anchor" href="#_plugins_in_action"></a>Plugins in action</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Juzu can be extended with plugins, in this section we will use two of them</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p>The Less plugin compiles less files into css files</p>
+</li>
+<li>
+<p>The Asset plugin inject asset such as stylesheet or javascript in the application page</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_less_compilation"><a class="anchor" href="#_less_compilation"></a>Less compilation</h3>
+<div class="paragraph">
+<p>Juzu provides native support for the Less language via the Less plugin and the <code>@Less</code> annotation. It allows a set of less
+files to be transformed into the corresponding css files during the java compilation, achieving two important steps during
+the compilation phase:</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p>The less files are transformed into ready to use css files</p>
+</li>
+<li>
+<p>It ensures a maximum of safety: the Less parser will report any error in the source</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Our first step is to create the <code>examples.tutorial.weather7.assets</code> package, we copy the Bootstrap Less files into this package and
+annotate the <code>examples.tutorial</code> package with the <code>@Less</code> annotation to trigger the compilation of the stylesheet
+ in the <code>assets</code> package:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="annotation">@Application</span>
+<span class="annotation">@Portlet</span>
+<span class="annotation">@Servlet</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/weather7/*</span><span class="delimiter">&quot;</span></span>)
+<span class="annotation">@Less</span>(<span class="annotation">@Stylesheet</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">bootstrap.less</span><span class="delimiter">&quot;</span></span>))
+<span class="keyword">package</span> <span class="namespace">examples.tutorial.weather7</span>;
+
+<span class="keyword">import</span> <span class="include">juzu.Application</span>;
+<span class="keyword">import</span> <span class="include">juzu.plugin.asset.Asset</span>;
+<span class="keyword">import</span> <span class="include">juzu.plugin.less4j.Less</span>;
+<span class="keyword">import</span> <span class="include">juzu.plugin.portlet.Portlet</span>;
+<span class="keyword">import</span> <span class="include">juzu.plugin.servlet.Servlet</span>;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This annotation triggers the compilation of the <code>bootstrap.less</code> in the <code>assets</code> package, it also declares
+the resulting css file as an asset.</p>
+</div>
+
+</div>
+<div class="sect2">
+<h3 id="_serving_stylesheet"><a class="anchor" href="#_serving_stylesheet"></a>Serving Stylesheet</h3>
+<div class="paragraph">
+<p>Now that we have worked out the CSS details we need to make our stylesheet available in the application page. The <em>asset</em>
+plugin will achieve this result for us. This plugin provides declarative configuration for the various assets required
+by an application. It works both for stylesheets and javascript, in this section we use it for stylesheet:</p>
+</div>
+<div class="listingblock">
+<div class="title">Declaring and serving Bootstrap CSS in our application</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="annotation">@Application</span>
+<span class="annotation">@Application</span>
+<span class="annotation">@Portlet</span>
+<span class="annotation">@Servlet</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/weather7/*</span><span class="delimiter">&quot;</span></span>)
+<span class="annotation">@Less</span>(<span class="annotation">@Stylesheet</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">bootstrap.less</span><span class="delimiter">&quot;</span></span>))
+<span class="annotation">@Assets</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">*</span><span class="delimiter">&quot;</span></span>)
+<span class="keyword">package</span> <span class="namespace">examples.tutorial.weather7</span>;
+
+<span class="keyword">import</span> <span class="include">juzu.Application</span>;
+<span class="keyword">import</span> <span class="include">juzu.plugin.asset.Assets</span>;
+<span class="keyword">import</span> <span class="include">juzu.plugin.less4j.Less</span>;
+<span class="keyword">import</span> <span class="include">juzu.plugin.portlet.Portlet</span>;
+<span class="keyword">import</span> <span class="include">juzu.plugin.servlet.Servlet</span>;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>@Assets</code> annotation declares the application to serve during a request, by default we server all assets
+with the value <code>*</code>, in our case we only have the single bootstrap stylesheet.</p>
+</div>
+
+</div>
+<div class="sect2">
+<h3 id="_bringing_css_to_life"><a class="anchor" href="#_bringing_css_to_life"></a>Bringing CSS to life</h3>
+<div class="paragraph">
+<p>After this step we need to modify our application template to use the various styles provided by Bootstrap:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/bootstrap.png" alt="Bootstrapized application cycle" width="400">
+</div>
+
+</div>
+<div class="paragraph">
+<p>We will not explain that in details, however we will study the important modifications:</p>
+</div>
+<div class="sect3">
+<h4 id="_accordion"><a class="anchor" href="#_accordion"></a>Accordion</h4>
+<div class="paragraph">
+<p>The Bootstrap provides the <a id="Collapse component&gt;&gt;http://twitter.github.com/bootstrap/javascript.html#collapse"></a>. We will
+not use the entire Collapse component here but instead reuse the CSS rules to display the available cities:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">accordion-group</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">accordion-heading</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;a</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">accordion-toggle</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{index(location = current)}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>${current}<span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">accordion-body</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">accordion-inner</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>The weather temperature in ${current} is ${temperature}<span class="entity">&amp;deg;</span> ${grade.toUpperCase()}.<span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
+</div>
+</div>
+
+</div>
+<div class="sect3">
+<h4 id="_adding_a_city"><a class="anchor" href="#_adding_a_city"></a>Adding a city</h4>
+<div class="paragraph">
+<p>Finally the form for adding is modified to reuse <a id="Bootstrap form support&gt;&gt;http://twitter.github.com/bootstrap/base-css.html#forms"></a>:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;form</span> <span class="attribute-name">action</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{add()}</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">method</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">post</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+  <span class="tag">&lt;fieldset&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">controls</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+      <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">input-append</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+         <span class="tag">&lt;input</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">span2</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">size</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">16</span><span class="delimiter">&quot;</span></span><span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">location</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+         <span class="tag">&lt;button</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">submit</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">btn</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Add<span class="tag">&lt;/button&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;/fieldset&gt;</span>
+<span class="tag">&lt;/form&gt;</span></code></pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+<h1 id="ajax" class="sect0"><a class="anchor" href="#ajax"></a>Adding Ajax</h1>
+<div class="paragraph">
+<p>Now that our application look great, we are going to add a final touch to our application and make it more dynamic.</p>
+</div>
+<div class="paragraph">
+<p>In the previous section we introduced the accordion user interface component, but it was used in a static way. In this
+section we will make it dynamic and introduce the Ajax plugin.</p>
+</div>
+<div class="paragraph">
+<p>The accordion component can be combined to the jQuery collapse plugin providing the capability to unfold an item to
+display the weather of the location. When the item is unfolded an ajax request is performed to the application to
+retrieve the markup that will be inserted.</p>
+</div>
+<div class="sect1">
+<h2 id="_javascript_to_the_rescue"><a class="anchor" href="#_javascript_to_the_rescue"></a>Javascript to the rescue</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The application will use several Javascript libraries:</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p>The jQuery library provides the fundations for building our application</p>
+</li>
+<li>
+<p>The Bootstrap accordion component provides scripts as a jQuery plugin</p>
+</li>
+<li>
+<p>Juzu provides Ajax helpers as a jQuery plugin</p>
+</li>
+<li>
+<p>A small custom script to setup the accordion plugin with the ajax plugin</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_adding_scripts"><a class="anchor" href="#_adding_scripts"></a>Adding scripts</h3>
+<div class="paragraph">
+<p>The Asset plugin was introduced in the previous section to handle the serving of the Bootstrap stylesheets. The <code>@Script</code>
+annotation can be used also for embedding scripts, but it provides more control about the script, in particular
+a dependency mechanism to control the order of scripts that we will use: indeed jQuery plugins have to be loaded after the
+jQuery library is loaded.</p>
+</div>
+<div class="paragraph">
+<p>We extend the <code>@Scripts</code> and <code>@Stylesheets</code> annotation to add our scripts:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="annotation">@Application</span>
+<span class="annotation">@Scripts</span>({
+    <span class="annotation">@Script</span>(id = <span class="string"><span class="delimiter">&quot;</span><span class="content">jquery</span><span class="delimiter">&quot;</span></span>, value = <span class="string"><span class="delimiter">&quot;</span><span class="content">jquery-1.7.1.min.js</span><span class="delimiter">&quot;</span></span>),
+    <span class="annotation">@Script</span>(id = <span class="string"><span class="delimiter">&quot;</span><span class="content">transition</span><span class="delimiter">&quot;</span></span>, value = <span class="string"><span class="delimiter">&quot;</span><span class="content">bootstrap-transition.js</span><span class="delimiter">&quot;</span></span>, depends = <span class="string"><span class="delimiter">&quot;</span><span class="content">jquery</span><span class="delimiter">&quot;</span></span>),
+    <span class="annotation">@Script</span>(id = <span class="string"><span class="delimiter">&quot;</span><span class="content">collapse</span><span class="delimiter">&quot;</span></span>, value = <span class="string"><span class="delimiter">&quot;</span><span class="content">bootstrap-collapse.js</span><span class="delimiter">&quot;</span></span>, depends = {<span class="string"><span class="delimiter">&quot;</span><span class="content">jquery</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">transition</span><span class="delimiter">&quot;</span></span>}),
+    <span class="annotation">@Script</span>(value = <span class="string"><span class="delimiter">&quot;</span><span class="content">weather.js</span><span class="delimiter">&quot;</span></span>, depends = {<span class="string"><span class="delimiter">&quot;</span><span class="content">jquery</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">collapse</span><span class="delimiter">&quot;</span></span>})
+  })
+<span class="annotation">@Stylesheets</span>(<span class="annotation">@Stylesheet</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/examples/tutorial/weather7/assets/bootstrap.css</span><span class="delimiter">&quot;</span></span>))
+<span class="annotation">@Assets</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">*</span><span class="delimiter">&quot;</span></span>)
+<span class="keyword">package</span> <span class="namespace">examples.tutorial.weather8</span>;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The declaration is straightforward, any <code>@Script</code> or <code>@Stylesheet</code> annotation may configure</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p>an optional <code>id</code> used for creating dependencies between script assets</p>
+</li>
+<li>
+<p>a mandatory <code>value</code> for the script name</p>
+</li>
+<li>
+<p>an optional <code>location</code> for resolving the script</p>
+</li>
+<li>
+<p>an optional <code>depends</code> that declares the ids a script depends on</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-note" title="Note"></i>
+</td>
+<td class="content">
+
+we reuse the bootstrap stylesheet generated by the <em>weather7</em> application by using an absolute path
+ for this asset.
+</td>
+</tr>
+</table>
+</div>
+
+</div>
+<div class="sect2">
+<h3 id="_the_collapse_plugin"><a class="anchor" href="#_the_collapse_plugin"></a>The collapse plugin</h3>
+<div class="paragraph">
+<p>The Bootstrap collapse plugin allows the user to unfold a city to display its weather, you can see how it works
+in the <a href="http://twitter.github.com/bootstrap/javascript.html#collapse">Bootstrap manual</a>. In our case we modify
+the <code>index.gtmpl</code> to use it, in particular the <code>accordion-group</code> part:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">accordion-group</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">accordion-heading</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">accordion-toggle</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">#${current}</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-parent</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">${id}</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-toggle</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">collapse</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>${current}<span class="tag">&lt;/a&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+  <span class="error">&lt;</span>% def expanded = i != index ? 'in' : ''; %<span class="error">&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">${current}</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">accordion-body collapse ${expanded}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">accordion-inner</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There are two noticeable points to explain:</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p>The <code>accordion-inner</code> is empty now, the reason is that the weather will be loaded using jQuery ajax capabilities</p>
+</li>
+<li>
+<p>The <code>div.collapse</code> element id is set to the current item location, this value will be reused during an ajax
+interaction, we will see more about this later.</p>
+</li>
+</ul>
+</div>
+
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_bridge_the_gap_with_ajax"><a class="anchor" href="#_bridge_the_gap_with_ajax"></a>Bridge the gap with Ajax</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now our application loads a set of dynamic tabs managed by jQuery and the collapse plugin, it&#8217;s time to develop the ajax
+part: our goal is to load a markup fragment to insert in an accordion item when it is unfolded. We will develop a bit
+of client side Javascript and a resource controller on the Weather controller.</p>
+</div>
+<div class="sect2">
+<h3 id="_resource_controller"><a class="anchor" href="#_resource_controller"></a>Resource controller</h3>
+<div class="paragraph">
+<p>We need a controller method to server the markup of the weather of a particular city. Until now we have studied view
+and action controllers, for this use case we will use a new type of controller : the <em>resource</em> controller.</p>
+</div>
+<div class="paragraph">
+<p>Resource controllers are pretty much like a view controllers except that they must produce the entire response sent to the
+client and that is precisely what we want to achieve on the server side.</p>
+</div>
+<div class="paragraph">
+<p>Our application requires a single resource controller method that we will call <code>getFragment</code>, it will render a markup
+fragment for a specific city location:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@Inject</span>
+  <span class="annotation">@Path</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">fragment.gtmpl</span><span class="delimiter">&quot;</span></span>)
+  examples.tutorial.weather8.templates.fragment fragment;
+
+  <span class="annotation">@Ajax</span>
+  <span class="annotation">@Resource</span>
+  <span class="annotation">@Route</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/fragment</span><span class="delimiter">&quot;</span></span>)
+  <span class="directive">public</span> Response.Content getFragment(<span class="predefined-type">String</span> location) {
+    <span class="keyword">return</span> fragment.
+      with().
+      location(location).
+      temperature(weatherService.getTemperature(location)).
+      ok();
+  }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The fragment template is very simple and only renders the portion of the screen that will be updated by the client
+side javascript code when an item is unfolded:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="error">#</span>{param name=location/}
+<span class="error">#</span>{param name=temperature/}
+&lt;p&gt;The weather temperature in <span class="error">$</span>{location} is <span class="error">$</span>{temperature} degrees C&lt;/p&gt;</code></pre>
+</div>
+</div>
+
+</div>
+<div class="sect2">
+<h3 id="_jquery"><a class="anchor" href="#_jquery"></a>jQuery</h3>
+<div class="paragraph">
+<p>The last part of our application is the javascript part that will react on the collapse plugin component to load
+the markup from the <code>getFragment</code> controller when the item is unfolded. We create the javascript file <code>weather.js</code>
+in the <code>examples.tutorial.weather8.assets</code>:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="javascript language-javascript"><span class="predefined">$</span>(<span class="keyword">function</span> () {
+
+  <span class="comment">// Setup an event listener on the .collapse element when it is shown</span>
+  <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">.collapse</span><span class="delimiter">'</span></span>).on(<span class="string"><span class="delimiter">'</span><span class="content">show</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> () {
+
+    <span class="comment">// Get the location attribute from the dom</span>
+    <span class="keyword">var</span> location = <span class="predefined">$</span>(<span class="local-variable">this</span>).attr(<span class="string"><span class="delimiter">&quot;</span><span class="content">id</span><span class="delimiter">&quot;</span></span>);
+
+    <span class="comment">// Update the .accordion-inner fragment</span>
+    <span class="predefined">$</span>(<span class="local-variable">this</span>).
+      closest(<span class="string"><span class="delimiter">&quot;</span><span class="content">.accordion-group</span><span class="delimiter">&quot;</span></span>).
+      find(<span class="string"><span class="delimiter">&quot;</span><span class="content">.accordion-inner</span><span class="delimiter">&quot;</span></span>).
+      each(<span class="keyword">function</span> () {
+
+      <span class="comment">// Load the fragment from the resource controller</span>
+      <span class="predefined">$</span>(<span class="local-variable">this</span>).jzLoad(
+        <span class="string"><span class="delimiter">&quot;</span><span class="content">Weather.getFragment()</span><span class="delimiter">&quot;</span></span>,
+        {<span class="key"><span class="delimiter">&quot;</span><span class="content">location</span><span class="delimiter">&quot;</span></span>:location});
+
+    });
+  });
+
+  <span class="comment">// Setup the collapse component</span>
+  <span class="predefined">$</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">.collapse</span><span class="delimiter">&quot;</span></span>).collapse();
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following construct is important because it ensures that the code inside the function will be executed
+ when jQuery is loaded:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="javascript language-javascript"><span class="predefined">$</span>(<span class="keyword">function</span>() {
+  <span class="comment">//</span>
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you take time to read the collapse plugin component <a href="http://twitter.github.com/bootstrap/javascript.html#collapse">documentation</a>
+you will see that there are two important things to do for integrating it in our application:</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p>We must setup an event listener on <code>.collapse</code> elements to react to the <code>shown</code> event</p>
+</li>
+<li>
+<p>The collapase component is setup with the <code>$(".collapse").collapse()</code> code</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The important code is inside the <code>show</code> event listener:</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p>The location to display is extracted from the element <code>id</code> on the <code>div.collapse</code> component</p>
+</li>
+<li>
+<p>We find the appropriate element to update with the <code>$(this).closest(".accordion-group").find(".accordion-inner")</code> selectors</p>
+</li>
+<li>
+<p>On the <code>.accordion-inner</code> element we invoke the resource controller with the <code>jzLoad(&#8230;)</code> function</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code>jzLoad</code> function is a jQuery plugin provided by the Juzu ajax plugin. It allows to invoke a controller method using
+ ajax and cares about propagating the call to the resource controller method. It replaces the standard jQuery <code>load</code> function
+ and accepts the same argument. However the url part is replaced by a controller method, <code>Weather.getFragment()</code> in our case.</p>
+</div>
+<div class="paragraph">
+<p>The Juzu ajax plugin takes care of finding the right URL for invoking the controller method. It is designed to work in a
+standalone javascript file without requiring <code>&lt;script&gt;</code> tags in the page and works even when multiples instances of the
+portlets are on the same page.</p>
+</div>
+<div class="paragraph">
+<p>When the ajax plugin operates on <code>@Ajax</code> controller method, it wraps the markup with a DOM structure that contains the
+URL for the <code>@Ajax</code> method of the application:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">jz</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attribute-name">data-method-id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Weather.getFragment()</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-url</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://localhost:8080/.....</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+  ...
+<span class="tag">&lt;/div&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>jzLoad</code> function is invoked on a portion of the DOM that is wrapped by the <code>div.jz</code> element and this
+function will simply locate the correct URL using the <code>data-method-id</code> attribute. This makes the same script
+work with different portlets on the same page.</p>
+</div>
+<div class="paragraph">
+<p>Note also that in our code we never used any jQuery selector containing id in order to allow several instances of the
+same application to work without conflicts.</p>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<h1 id="testing" class="sect0"><a class="anchor" href="#testing"></a>Testing our application</h1>
+<div class="paragraph">
+<p>The last chapter of our tutorial will teach you how to test a Juzu application. Juzu applications can be tested
+using existing tools, we will use in this chapter the following tools:</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p><a href="http://www.junit.org">JUnit 4</a></p>
+</li>
+<li>
+<p><a href="http://arquillian.org">Arquillian</a> : a framework for managing web containers</p>
+</li>
+<li>
+<p><a href="http://www.jboss.org/shrinkwrap">ShrinkWrap</a>: Arquillian&#8217;s little brother for creating Java archives easily</p>
+</li>
+<li>
+<p><a href="http://seleniumhq.org/docs/03_webdriver.html">Selenium WebDriver</a> : a simple API for simulating browser behavior</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For making testing easy, Juzu provides a Maven dependencies called <em>depchains</em> containing dependencies for
+testing an application with those tools:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml">&lt;dependency&gt;
+  &lt;groupId&gt;junit&lt;/groupId&gt;
+  &lt;artifactId&gt;junit&lt;/artifactId&gt;
+  &lt;version&gt;4.10&lt;/version&gt;
+  &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.juzu&lt;/groupId&gt;
+  &lt;artifactId&gt;juzu-depchain-arquillian&lt;/artifactId&gt;
+  &lt;version&gt;1.0.0-beta2&lt;/version&gt;
+  &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.juzu&lt;/groupId&gt;
+  &lt;artifactId&gt;juzu-depchain-arquillian-tomcat7&lt;/artifactId&gt;
+  &lt;version&gt;1.0.0-beta2&lt;/version&gt;
+  &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <em>juzu-depchain-arquillian</em> and <em>juzu-depchain-tomcat7</em> provides setup for Arquillian and Selenium for Tomcat7
+based testing.</p>
+</div>
+<div class="sect1">
+<h2 id="_setting_up_the_test"><a class="anchor" href="#_setting_up_the_test"></a>Setting up the test</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s start by setting up our test class with Arquillian, the goal is to run the Weather application during the
+test. We will rely on the <a href="http://tomcat.apache.org">Tomcat</a> servlet container for running our application and
+on the Arquillian framework for starting and stopping Tomcat. Arquillian provides a JUnit runner for managing
+a web container during a unit test:</p>
+</div>
+<div class="listingblock">
+<div class="title">Using the Arquillian runner</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="annotation">@RunWith</span>(Arquillian.class)
+<span class="directive">public</span> <span class="type">class</span> <span class="class">WeatherTestCase</span> {
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-note" title="Note"></i>
+</td>
+<td class="content">
+
+Arquillian supports also the TestNG framework
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This only setup Tomcat during the test, we need to deploy the Weather application and for this we use Arquillian
+ <code>@Deployment</code> annotation and we return a ShrinkWrap <code>WebArchive</code> object that will be deployed in Tomcat
+by Arquillian. <code>WebArchive</code> are easy to build programmatically, however we will use an helper provided by Juzu
+to build the base archive:</p>
+</div>
+<div class="listingblock">
+<div class="title">Application deployment</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@Deployment</span>
+  <span class="directive">public</span> <span class="directive">static</span> WebArchive deployment() {
+    <span class="predefined-type">String</span> webXml = DescriptorBuilder.DEFAULT.
+        injector(InjectorProvider.SPRING).
+        listener(<span class="string"><span class="delimiter">&quot;</span><span class="content">org.springframework.web.context.ContextLoaderListener</span><span class="delimiter">&quot;</span></span>).
+        toWebXml();
+    WebArchive war = ShrinkWrap.create(WebArchive.class);
+    war.setWebXML(<span class="keyword">new</span> StringAsset(webXml));
+    war.addAsWebInfResource(<span class="keyword">new</span> <span class="predefined-type">File</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">src/test/resources/applicationContext.xml</span><span class="delimiter">&quot;</span></span>));
+    war.addPackages(<span class="predefined-constant">true</span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">examples.tutorial</span><span class="delimiter">&quot;</span></span>);
+    <span class="keyword">return</span> war;
+  }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For testing our application we will use Selenium WebDriver managed by Arquillian. Arquillian can inject WebDriver
+thanks to the <em>Drone</em> extension and it is quite easy to achieve. We also need the base URL of the Weather
+application after it is deployed:</p>
+</div>
+<div class="listingblock">
+<div class="title">Arquillian injection</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@Drone</span>
+  WebDriver driver;
+
+  <span class="annotation">@ArquillianResource</span>
+  <span class="predefined-type">URL</span> deploymentURL;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The last step of the setup is a little helper method for creating application URL for our applications
+<em>weather1</em>, <em>weather2</em>, &#8230;</p>
+</div>
+<div class="listingblock">
+<div class="title">Creating URL for an application</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="directive">public</span> <span class="predefined-type">URL</span> getApplicationURL(<span class="predefined-type">String</span> application) {
+    <span class="keyword">try</span> {
+      <span class="keyword">return</span> deploymentURL.toURI().resolve(application).toURL();
+    }
+    <span class="keyword">catch</span> (<span class="exception">Exception</span> e) {
+      AssertionFailedError afe = <span class="keyword">new</span> AssertionFailedError();
+      afe.initCause(e);
+      <span class="keyword">throw</span> afe;
+    }
+  }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This method simply generates an URL based on the application name, for example <code>getApplicationURL("weather1")</code> returns
+ the URL for the <em>weather1</em> application.</p>
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_testing_the_app"><a class="anchor" href="#_testing_the_app"></a>Testing the app</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now that our test class is done we can write a few tests for the application:</p>
+</div>
+<div class="listingblock">
+<div class="title">Creating URL for an application</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@Test</span>
+  <span class="annotation">@RunAsClient</span>
+  <span class="directive">public</span> <span class="type">void</span> testWeather1() <span class="directive">throws</span> <span class="exception">Exception</span> {
+    <span class="predefined-type">URL</span> url = getApplicationURL(<span class="string"><span class="delimiter">&quot;</span><span class="content">weather1</span><span class="delimiter">&quot;</span></span>); <span class="comment">// <i class="conum">1</i> Retrieve the application</span>
+    driver.get(url.toString());
+    WebElement body = driver.findElement(By.tagName(<span class="string"><span class="delimiter">&quot;</span><span class="content">body</span><span class="delimiter">&quot;</span></span>));
+    assertTrue(body.getText().contains(<span class="string"><span class="delimiter">&quot;</span><span class="content">The weather application</span><span class="delimiter">&quot;</span></span>)); <span class="comment">// <i class="conum">2</i> Check markup is correct</span>
+  }</code></pre>
+</div>
+</div>
+
+</div>
+</div>
+
+<h1 id="_wrap_up" class="sect0"><a class="anchor" href="#_wrap_up"></a>Wrap up</h1>
+<div class="paragraph">
+<p>We reached the ends our walk through Juzu, now you can learn more and study the Booking application. This application
+can be found in the package you downloaded in the <em>booking</em> directory.</p>
+</div>
+
+
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2014-04-28 12:43:58 CEST
+</div>
+</div>
+</body>
+</html>
