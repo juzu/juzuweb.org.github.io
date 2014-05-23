@@ -139,7 +139,18 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ol type="none" class="sectlevel0">
+<li><a href="#_plugins">Plugins</a></li>
+<li>
+<ol type="none" class="sectlevel1">
+<li><a href="#_metamodel_plugins">Metamodel plugins</a></li>
+<li><a href="#_runtime_plugins">Runtime plugins</a></li>
+<li><a href="#_entity_processors">Entity processors</a></li>
 <li><a href="#_value_types">Value types</a></li>
+<li><a href="#_provider_factories">Provider factories</a></li>
+<li><a href="#_templating_engine">Templating engine</a></li>
+</ol>
+</li>
+<li><a href="#_value_types_2">Value types</a></li>
 <li>
 <ol type="none" class="sectlevel1">
 <li><a href="#_implementing_the_code_valuetype_code">Implementing the <code>ValueType</code></a></li>
@@ -165,6 +176,8 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 </li>
 </ol>
 </li>
+<li><a href="#_asset_minifier">Asset minifier</a></li>
+<li><a href="#_provider_factories_2">Provider factories</a></li>
 <li><a href="#templatespi">Templating SPI</a></li>
 <li>
 <ol type="none" class="sectlevel1">
@@ -181,6 +194,30 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 <li><a href="#_qualified_template_class">Qualified template class</a></li>
 </ol>
 </li>
+<li><a href="#_bundlegen_plugin_tutorial">Bundlegen plugin tutorial</a></li>
+<li>
+<ol type="none" class="sectlevel1">
+<li><a href="#_unbreakable_resource_bundles">Unbreakable resource bundles</a></li>
+<li><a href="#_the_implementation">The implementation</a></li>
+<li>
+<ol type="none" class="sectlevel2">
+<li><a href="#_the_metamodel_plugin_structure">The metamodel plugin structure</a></li>
+<li><a href="#_processing_the_code_bundlegen_code_annotation">Processing the <code>@BundleGen</code> annotation</a></li>
+<li><a href="#_generating_the_bundle_source">Generating the bundle source</a></li>
+<li><a href="#_testing_the_plugin">Testing the plugin</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#_metrics_plugin_tutorial">Metrics plugin tutorial</a></li>
+<li>
+<ol type="none" class="sectlevel1">
+<li><a href="#_creating_a_juzu_service">Creating a Juzu service</a></li>
+<li><a href="#_service_initialization">Service initialization</a></li>
+<li><a href="#_intercepting_the_request">Intercepting the request</a></li>
+<li><a href="#_testing_the_plugin_2">Testing the plugin</a></li>
+</ol>
+</li>
 </ol>
 </div>
 </div>
@@ -192,10 +229,97 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 open source project developed on <a href="https://github.com/juzu/juzu">GitHub</a> licensed under the
 <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2 License</a>.</p>
 </div>
+<div class="paragraph">
+<p>This chapter continues the exploration of the architecture of Juzu, it is an essential read if you want to understand how Juzu
+globally works and a recommanded read if you extend Juzu. Juzu philosophy is to provide a minimal core that
+is extended with plugins: this design allows to extend Juzu with no need to touch its core.</p>
+</div>
 
 </div>
 </div>
-<h1 id="_value_types" class="sect0"><a class="anchor" href="#_value_types"></a>Value types</h1>
+<h1 id="_plugins" class="sect0"><a class="anchor" href="#_plugins"></a>Plugins</h1>
+<div class="paragraph">
+<p>Juzu plugins can be classified according several criterions. Let&#8217;s study the different kind of plugins possible.</p>
+</div>
+<div class="sect1">
+<h2 id="_metamodel_plugins"><a class="anchor" href="#_metamodel_plugins"></a>Metamodel plugins</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A metamodel plugin is executed at compilation time when the application is compiled. Usually it reacts to Java
+annotations in order to:</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p>Validate the application : make checks depending on Java annotations</p>
+</li>
+<li>
+<p>Read or write application resources : create new resources</p>
+</li>
+<li>
+<p>Generate Java code : the generated code will be transparently compiled by the Java compiler</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When a metamodel plugin is not happy, it can fail the current by reporting an error to the Java compiler.</p>
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_runtime_plugins"><a class="anchor" href="#_runtime_plugins"></a>Runtime plugins</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A runtime plugin is executed during the execution of the web application. A runtime plugin can create objects
+that will be available for the application. Such objects are usually consumed by the application thanks to the
+IOC container.</p>
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_entity_processors"><a class="anchor" href="#_entity_processors"></a>Entity processors</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Entity processors map the request and response stream to Java objects.</p>
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_value_types"><a class="anchor" href="#_value_types"></a>Value types</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Value types map the controller request parameters to request parameters.</p>
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_provider_factories"><a class="anchor" href="#_provider_factories"></a>Provider factories</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A provider factory provides plugability for integrating beans that are not managed natively by the IOC container
+but needs to be integrated inside the container.</p>
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_templating_engine"><a class="anchor" href="#_templating_engine"></a>Templating engine</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Juzu can easily be extended with new templating engine. Templating engine integrates of course at runtime, however
+they can optionally be part of the compilation phase of the application for validating templates or for creating
+resources or classes to be used at runtime.</p>
+</div>
+
+</div>
+</div>
+
+<h1 id="_value_types_2" class="sect0"><a class="anchor" href="#_value_types_2"></a>Value types</h1>
 <div class="paragraph">
 <p>Value types is a Juzu plugin for dealing with controller parameters that can trivially be converted from and to strings.
 In this section we will explain how the <code>juzu.impl.value.ValueType</code> interface works.</p>
@@ -472,6 +596,132 @@ loaded via the <code>java.util.ServiceLoader</code> interface.</p>
 
 </div>
 
+</div>
+</div>
+
+<h1 id="_asset_minifier" class="sect0"><a class="anchor" href="#_asset_minifier"></a>Asset minifier</h1>
+<div class="paragraph">
+<p>An asset minifier is simple interface providing the opportunity to transform the original source files into
+a new version that is a minified version of this source.</p>
+</div>
+<div class="paragraph">
+<p>A minifier should implement the <code>juzu.plugin.assetMinifier</code> interface and provide a no argument constructor.
+Minification occurs at compilation time when the annotations are processed: Juzu instantiates a minifier to
+transform the physical asset and write the minified version on the disk. The minified asset name uses the original
+asset name with the <em>-min</em> suffix placed before the asset name extension, for instance <em>jquery.js</em> will be
+named as <em>jquery-min.js</em>, this is totally transparent for the user.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s look at the implementation of the  minifier:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">NormalizeJSMinifier</span> <span class="directive">implements</span> Minifier {
+
+  <span class="annotation">@Override</span>
+  <span class="directive">public</span> <span class="predefined-type">InputStream</span> minify(<span class="predefined-type">String</span> name, <span class="predefined-type">String</span> type, <span class="predefined-type">InputStream</span> stream) <span class="directive">throws</span> <span class="exception">IOException</span> {
+    <span class="keyword">if</span> (type.equals(<span class="string"><span class="delimiter">&quot;</span><span class="content">script</span><span class="delimiter">&quot;</span></span>)) {
+      NormalizeJSReader reader = <span class="keyword">new</span> NormalizeJSReader(<span class="keyword">new</span> <span class="predefined-type">InputStreamReader</span>(stream));
+      <span class="predefined-type">String</span> s = Tools.read(reader);
+      <span class="keyword">return</span> <span class="keyword">new</span> <span class="predefined-type">ByteArrayInputStream</span>(s.getBytes());
+    } <span class="keyword">else</span> {
+      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">IOException</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">Can only process scripts and not </span><span class="delimiter">&quot;</span></span> + type + <span class="string"><span class="delimiter">&quot;</span><span class="content"> asset</span><span class="delimiter">&quot;</span></span>);
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>minify</code> method provides three arguments:
+. the asset value, for instance <em>jquery.js</em>
+. the asset type with possible values of <em>script</em> and <em>stylesheet</em>
+. the asset stream</p>
+</div>
+<div class="paragraph">
+<p>The implementation is quite simple it wraps, the <code>InputStream</code> argument and returns the minifying stream.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-note" title="Note"></i>
+</td>
+<td class="content">
+
+in this implementation the stream is buffered before returning the stream because Java does not provide an
+out of the box <code>ReaderInputStream</code> but if it would be the case, that could be done on the fly instead of buffering. In
+all case the implementation can chose between buffering the stream or transforming on the fly.
+</td>
+</tr>
+</table>
+</div>
+
+<h1 id="_provider_factories_2" class="sect0"><a class="anchor" href="#_provider_factories_2"></a>Provider factories</h1>
+<div class="paragraph">
+<p>Provider factories provide plugability for integrating beans that are not managed by the IOC container. A provider
+factory is dynamic: it is a factory for <code>javax.inject.Provider</code> that returns a provider for a specificied class. Usually
+provider factories will lookup the service in a registry (like another IOC container) and returns a provider that
+return them lazily or not.</p>
+</div>
+<div class="paragraph">
+<p>The provider factory defines the <code>getProvider</code> method:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="comment">/**
+   * Returns a provider for a specific type or null if it cannot be produced.
+   *
+   * @param implementationType the implementation class object
+   * @param &lt;T&gt;                the implementation generic type
+   * @return a provider for this class or null
+   * @throws Exception any exception that would prevent to obtain the provider
+   */</span>
+  &lt;T&gt; <span class="predefined-type">Provider</span>&lt;? <span class="directive">extends</span> T&gt; getProvider(<span class="predefined-type">Class</span>&lt;T&gt; implementationType)
+    <span class="directive">throws</span> <span class="exception">Exception</span>;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The factory implementation must provide a public zero argument constructor and it will be instantiated
+during the application boostrap by Juzu to obtain the provider. The returned providers will then be bound into
+the IOC container.</p>
+</div>
+<div class="paragraph">
+<p>The IOC container uses the <code>java.util.ServiceLoader</code> discovery mechanism for finding provider factories when
+ injection occurs.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s study a simple example with a provider for the current time:</p>
+</div>
+<div class="listingblock">
+<div class="title">Time provider factory</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="keyword">package</span> <span class="namespace">my</span>;
+
+<span class="directive">public</span> <span class="type">class</span> <span class="class">TimeProviderFactory</span> <span class="directive">implements</span> java.inject.ProviderFactory {
+  <span class="directive">public</span> &lt;T&gt; <span class="predefined-type">Provider</span>&lt;? <span class="directive">extends</span> T&gt; getProvider(<span class="directive">final</span> <span class="predefined-type">Class</span>&lt;T&gt; implementationType) <span class="directive">throws</span> <span class="exception">Exception</span> {
+    <span class="keyword">if</span> (implementationType == java.util.Date.class) {
+      <span class="keyword">return</span> <span class="keyword">new</span> <span class="predefined-type">Provider</span>&lt;T&gt;() {
+        <span class="directive">public</span> T get() {
+          <span class="keyword">return</span> implementationType.cast(<span class="keyword">new</span> java.util.Date());
+        }
+      };
+    }
+    <span class="keyword">else</span> {
+      <span class="keyword">return</span> <span class="predefined-constant">null</span>;
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This provider should be declared in the <em>META-INF/services/juzu.inject.ProviderFactory</em> file:</p>
+</div>
+<div class="listingblock">
+<div class="title">Time provider configuration</div>
+<div class="content monospaced">
+<pre>my.TimeProvider</pre>
 </div>
 </div>
 
@@ -825,7 +1075,7 @@ controller and the whole application
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="images/request/interaction3.png" alt="At work" width="250">
+<img src="images/templatespi/lifecycle3.png" alt="At work" width="750">
 </div>
 <div class="title">Figure 3. index groovy at work</div>
 </div>
@@ -899,11 +1149,824 @@ are used as only the <code>index</code> type declares the fluent API.</p>
 </div>
 </div>
 
+<h1 id="_bundlegen_plugin_tutorial" class="sect0"><a class="anchor" href="#_bundlegen_plugin_tutorial"></a>Bundlegen plugin tutorial</h1>
+<div class="paragraph">
+<p>The bundlegen plugin tutorial provides guidance for the implementation of a Juzu metamodel plugin.</p>
+</div>
+<div class="sect1">
+<h2 id="_unbreakable_resource_bundles"><a class="anchor" href="#_unbreakable_resource_bundles"></a>Unbreakable resource bundles</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The bundlegen plugin generates a typed Java class for a resource bundle:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="annotation">@BundleGen</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">mybundle</span><span class="delimiter">&quot;</span></span>)
+<span class="annotation">@Application</span>
+<span class="keyword">package</span> <span class="namespace">my.app</span>;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Le&#8217;t suppose we have this <code>mybundle.properties</code> file:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre>hello_world=Hello World</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will generate a <code>bundlegen</code> Java class, the application can then retrieve the entries via static methods:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="predefined-type">String</span> s = bundlegen.hello_world();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The bundle will be loaded using the current user locale, providing unbreakable resource bundles!</p>
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_implementation"><a class="anchor" href="#_the_implementation"></a>The implementation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We will provide now a detailled analysis of the plugin structure and code. This plugin is a <em>metamodel plugin</em>,
+it does all the work during the compilation: it processes <code>@BundleGen</code> annotations in order to generate
+a Java class source for this bundle. The generated source will be transparently compiled by the Java compiler
+ in the same compilation phase than the application.</p>
+</div>
+<div class="paragraph">
+<p>The plugin will be packaged under the <code>examples.plugin.bundlegen</code>
+package and provides three classes:</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p><code>examples.plugin.bundlegen.BundleGen</code> annotation is the plugin <em>API</em> : the application will use this annotation for
+describing its bundles</p>
+</li>
+<li>
+<p><code>examples.plugin.bundlegen.impl.BundlResolver</code> is an utility class used by the generated code at <em>runtime</em> for
+loading a bundle</p>
+</li>
+<li>
+<p><code>examples.plugin.bundlegen.impl.BundleGenMetaModelPlugin</code> is the metamodel plugin triggered during by the
+compilation phase by Juzu</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_the_metamodel_plugin_structure"><a class="anchor" href="#_the_metamodel_plugin_structure"></a>The metamodel plugin structure</h3>
+<div class="paragraph">
+<p>Let&#8217;s begin by describing the overral plugin structure.  The metamodel plugin <code>BundleGenMetaModelPlugin</code> extends
+the <code>juzu.impl.plugin.application.metamodel.ApplicationMetaModelPlugin</code> base class. It must provide a no arguments public constructor</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="directive">public</span> BundleGenMetaModelPlugin() {
+    <span class="local-variable">super</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">bundlegen</span><span class="delimiter">&quot;</span></span>);
+  }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This plugin must be declared in the <em>META-INF/services/juzu.impl.plugin.application.metamodel.ApplicationMetaModelPlugin</em>
+file:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code>examples.plugin.bundlegen.impl.BundleGenMetaModelPlugin</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To process the <code>@BundleGen</code> annotation the plugin needs to declare the annotations it has interest for, this
+is done in the <code>init</code> method.</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@Override</span>
+  <span class="directive">public</span> <span class="predefined-type">Set</span>&lt;<span class="predefined-type">Class</span>&lt;? <span class="directive">extends</span> <span class="predefined-type">Annotation</span>&gt;&gt; init(ProcessingContext env) {
+    <span class="keyword">return</span> <span class="predefined-type">Collections</span>.&lt;<span class="predefined-type">Class</span>&lt;? <span class="directive">extends</span> <span class="predefined-type">Annotation</span>&gt;&gt;singleton(BundleGen.class);
+  }</code></pre>
+</div>
+</div>
+
+</div>
+<div class="sect2">
+<h3 id="_processing_the_code_bundlegen_code_annotation"><a class="anchor" href="#_processing_the_code_bundlegen_code_annotation"></a>Processing the <code>@BundleGen</code> annotation</h3>
+<div class="paragraph">
+<p>During compilation our plugin will receive lifecycle callbacks for the <code>BundleGen</code> annotation:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@Override</span>
+  <span class="directive">public</span> <span class="type">void</span> processAnnotationAdded(ApplicationMetaModel application, AnnotationKey key, AnnotationState added) {
+    <span class="predefined-type">Name</span> type = key.getType();
+    <span class="keyword">if</span> (type.toString().equals(BundleGen.class.getName())) {
+      ElementHandle.Package pkg = (ElementHandle.Package)key.getElement();
+      bundles.put(pkg, (<span class="predefined-type">String</span>)added.get(<span class="string"><span class="delimiter">&quot;</span><span class="content">value</span><span class="delimiter">&quot;</span></span>));
+    }
+  }
+
+  <span class="annotation">@Override</span>
+  <span class="directive">public</span> <span class="type">void</span> processAnnotationRemoved(ApplicationMetaModel application, AnnotationKey key, AnnotationState removed) {
+    <span class="predefined-type">Name</span> type = key.getType();
+    <span class="keyword">if</span> (type.toString().equals(BundleGen.class.getName())) {
+      ElementHandle.Package pkg = (ElementHandle.Package)key.getElement();
+      bundles.remove(pkg);
+    }
+  }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The two callbacks are used to maintain a map with all the known annotations by the plugin. Indeed code generation
+will not occur in those callbacks but in a later callback (<code>prePassivate</code>). The annotation key object provides
+access to:</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p>the element declaring the annotation, in our case it is an <code>ElementHandle.Package</code> since our annotation
+can only target Java packages</p>
+</li>
+<li>
+<p>the annotation type, we use it to check this is our annotation: in our case the check is here for
+educational purpose since we only register interest for the <code>@BundleGen</code> annotation</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The annotation state is a map containing the various annotation members: we retrieve the <code>value</code> member that is
+the name of the resource bundle we will use later.</p>
+</div>
+
+</div>
+<div class="sect2">
+<h3 id="_generating_the_bundle_source"><a class="anchor" href="#_generating_the_bundle_source"></a>Generating the bundle source</h3>
+<div class="paragraph">
+<p>Until now we focused on the plugin structure and the lifecycles of the framework. This part will show the implementation
+ of the <code>prePassivate</code> callback we mentionned earlier:</p>
+</div>
+<div class="listingblock">
+<div class="title">The <code>prePassivate</code> callback</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@Override</span>
+  <span class="directive">public</span> <span class="type">void</span> prePassivate(ApplicationMetaModel application) {
+    <span class="keyword">for</span> (<span class="predefined-type">Map</span>.Entry&lt;ElementHandle.Package, <span class="predefined-type">String</span>&gt; entry : bundles.entrySet()) {
+      ElementHandle.Package pkg = entry.getKey();
+      <span class="predefined-type">String</span> bundleName = entry.getValue();
+      processBundle(application, pkg, bundleName);
+    }
+  }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The
+<code>prePassivate</code> method has the <code>application</code> argument which is the current application being processed it
+can be used to access the overral application structure. The implementation simply iterates the
+<code>bundles</code> map of the plugin calling the <code>processBundle</code> method:</p>
+</div>
+<div class="listingblock">
+<div class="title">The <code>processBundle</code> method</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="directive">private</span> <span class="type">void</span> processBundle(ApplicationMetaModel application, ElementHandle.Package pkg, <span class="predefined-type">String</span> bundleName) {
+    ProcessingContext context = application.getProcessingContext();
+    PackageElement pkgElt = context.get(pkg);
+    <span class="predefined-type">Properties</span> properties = loadBundle(context, pkg, bundleName);
+    <span class="keyword">if</span> (properties == <span class="predefined-constant">null</span>) {
+      <span class="keyword">throw</span> BUNDLE_NOT_FOUND.failure(pkgElt, bundleName);
+    } <span class="keyword">else</span> {
+      <span class="keyword">try</span> {
+        generateBundleClass(context, properties, pkgElt, bundleName);
+      }
+      <span class="keyword">catch</span> (<span class="exception">IOException</span> e) {
+        <span class="keyword">throw</span> CANNOT_CREATE_BUNDLE.failure(pkgElt, bundleName).initCause(e);
+      }
+    }
+  }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>processBundle</code> does three things:</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p>it uses processing context to load the resource bundle via the <code>loadBundle</code> method</p>
+</li>
+<li>
+<p>when the bundle is found, the class generation is delegated to the <code>generateBundleClass</code> method</p>
+</li>
+<li>
+<p>error handling</p>
+<div class="ulist">
+
+<ul>
+<li>
+<p>when the bundle is not found, the plugin raises a <code>BUNDLE_NOT_FOUND</code> exception</p>
+</li>
+<li>
+<p>when the <code>generateBundleClass* method thows an +IOException</code> the <code>CANNOT_CREATE_BUNDLE</code> exception is raised</p>
+</li>
+</ul>
+</div>
+
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Raising an error is done via the <code>juzu.impl.compiler.ProcessingException</code>.  Providing the package
+element is important as it allows the compiler to do a precise error reporting when showing the error.
+Such exception can be created directly or via the <code>juzu.impl.compiler.MessageCode</code> class: it uses
+the <code>ProcessingException</code> to create the notion of message code:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="directive">public</span> <span class="directive">static</span> <span class="directive">final</span> MessageCode BUNDLE_NOT_FOUND = <span class="keyword">new</span> MessageCode(<span class="string"><span class="delimiter">&quot;</span><span class="content">BUNDLE_NOT_FOUND</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">The bundle %1$s cannot be resolved</span><span class="delimiter">&quot;</span></span>);
+  <span class="directive">public</span> <span class="directive">static</span> <span class="directive">final</span> MessageCode CANNOT_CREATE_BUNDLE = <span class="keyword">new</span> MessageCode(<span class="string"><span class="delimiter">&quot;</span><span class="content">CANNOT_CREATE_BUNDLE</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">The bundle %1$s cannot be created</span><span class="delimiter">&quot;</span></span>);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>loadBundle</code> implementation uses the current <code>ProcessingContext</code> to load
+the bundle property file the user will provide in the package containing the <code>@BundleGen</code> annotation:</p>
+</div>
+<div class="listingblock">
+<div class="title">The <code>loadBundle</code> method</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="directive">private</span> <span class="predefined-type">Properties</span> loadBundle(ProcessingContext context, ElementHandle.Package pkg, <span class="predefined-type">String</span> bundleName) {
+    Path.Absolute absolute = pkg.getPackageName().resolve(bundleName + <span class="string"><span class="delimiter">&quot;</span><span class="content">.properties</span><span class="delimiter">&quot;</span></span>);
+    FileObject bundle = context.resolveResourceFromSourcePath(pkg, absolute);
+    <span class="keyword">if</span> (bundle != <span class="predefined-constant">null</span>) {
+      <span class="keyword">try</span> {
+        <span class="predefined-type">InputStream</span> in = bundle.openInputStream();
+        <span class="predefined-type">Properties</span> properties = <span class="keyword">new</span> <span class="predefined-type">Properties</span>();
+        properties.load(in);
+        <span class="keyword">return</span> properties;
+      }
+      <span class="keyword">catch</span> (<span class="exception">IOException</span> e) {
+        context.log(<span class="predefined-type">Level</span>.SEVERE, <span class="string"><span class="delimiter">&quot;</span><span class="content">Could not load resource bundle</span><span class="delimiter">&quot;</span></span>, e);
+      }
+    }
+    <span class="keyword">return</span> <span class="predefined-constant">null</span>;
+  }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally let&#8217;s wrap up the bundle processing by looking at the <code>generateBundleClass</code> method which generates the
+Java class:</p>
+</div>
+<div class="listingblock">
+<div class="title">The <code>generateBundleClass</code> method</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="directive">private</span> <span class="type">void</span> generateBundleClass(ProcessingContext context, <span class="predefined-type">Properties</span> properties, PackageElement pkgElt, <span class="predefined-type">String</span> bundleName) <span class="directive">throws</span> <span class="exception">IOException</span> {
+    <span class="predefined-type">String</span> fqn = pkgElt.getQualifiedName() + <span class="string"><span class="delimiter">&quot;</span><span class="content">.</span><span class="delimiter">&quot;</span></span> + bundleName;
+    JavaFileObject source = context.createSourceFile(fqn, pkgElt);
+    <span class="predefined-type">PrintWriter</span> writer = <span class="keyword">new</span> <span class="predefined-type">PrintWriter</span>(source.openWriter());
+    writer.println(<span class="string"><span class="delimiter">&quot;</span><span class="content">package </span><span class="delimiter">&quot;</span></span> + pkgElt.getQualifiedName() + <span class="string"><span class="delimiter">&quot;</span><span class="content">;</span><span class="delimiter">&quot;</span></span>);
+    writer.println(<span class="string"><span class="delimiter">&quot;</span><span class="content">import examples.plugin.bundlegen.impl.BundleResolver;</span><span class="delimiter">&quot;</span></span>);
+    writer.println(<span class="string"><span class="delimiter">&quot;</span><span class="content">public class </span><span class="delimiter">&quot;</span></span> + bundleName + <span class="string"><span class="delimiter">&quot;</span><span class="content"> {</span><span class="delimiter">&quot;</span></span>);
+    <span class="keyword">for</span> (<span class="predefined-type">String</span> key : properties.stringPropertyNames()) {
+      writer.println(<span class="string"><span class="delimiter">&quot;</span><span class="content">public static String </span><span class="delimiter">&quot;</span></span> + key + <span class="string"><span class="delimiter">&quot;</span><span class="content">() {</span><span class="delimiter">&quot;</span></span>);
+      writer.println(<span class="string"><span class="delimiter">&quot;</span><span class="content">return BundleResolver.resolve(</span><span class="delimiter">&quot;</span></span> + bundleName + <span class="string"><span class="delimiter">&quot;</span><span class="content">.class, </span><span class="char">\&quot;</span><span class="delimiter">&quot;</span></span> + key + <span class="string"><span class="delimiter">&quot;</span><span class="char">\&quot;</span><span class="content">);</span><span class="delimiter">&quot;</span></span>);
+      writer.println(<span class="string"><span class="delimiter">&quot;</span><span class="content">}</span><span class="delimiter">&quot;</span></span>);
+    }
+    writer.println(<span class="string"><span class="delimiter">&quot;</span><span class="content">}</span><span class="delimiter">&quot;</span></span>);
+    writer.close();
+  }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The implementation is quite straightforward, it creates a source file that returns a <code>JavaFileObject</code> whose
+ writer is used to to print the source code of the bundle. The generated bundle class contains one method
+ for each property of resource bundle.</p>
+</div>
+
+</div>
+<div class="sect2">
+<h3 id="_testing_the_plugin"><a class="anchor" href="#_testing_the_plugin"></a>Testing the plugin</h3>
+<div class="paragraph">
+<p>The last part of the <code>bundlegen</code> tutorial explains how to test a compilation plugin. We will
+use create a mock application from its sources, this way we will test the plugin works from the source
+files to the runtime.</p>
+</div>
+<div class="paragraph">
+<p>We will study three tests each one focusing on a different aspect of the plugin usage:</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p>successful generation of the bundle class</p>
+</li>
+<li>
+<p>runtime resolving of the bundle via the bundle class</p>
+</li>
+<li>
+<p>correct error reporting when the bundle properties file does not exist</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_testing_the_bundle_generation"><a class="anchor" href="#_testing_the_bundle_generation"></a>Testing the bundle generation</h4>
+<div class="paragraph">
+<p>For this part, we will only use the Juzu compiler interface which is a wrapper of the underlying Java compiler
+that can be used for writing unit tests. This wrapper allows us to compile an application from its sources. Our
+test application contains the following package declaration:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="annotation">@BundleGen</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">mybundle</span><span class="delimiter">&quot;</span></span>)
+<span class="annotation">@Application</span>
+<span class="keyword">package</span> <span class="namespace">examples.app1</span>;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The resource bundle properties contains a single property:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code>abc=def</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The sources of the application are located in the <em>resources</em> of the project, the only thing needed for the compiler
+to resolve the source is the package of the application.</p>
+</div>
+<div class="listingblock">
+<div class="title">The <code>testGenerateBundle</code> test</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@Test</span>
+  <span class="directive">public</span> <span class="type">void</span> testGenerateBundle() <span class="directive">throws</span> <span class="exception">Exception</span> {
+    CompilerAssert&lt;<span class="predefined-type">File</span>, <span class="predefined-type">File</span>&gt; compilerAssert = compiler(<span class="string"><span class="delimiter">&quot;</span><span class="content">examples.app1</span><span class="delimiter">&quot;</span></span>); <span class="comment">//<i class="conum">1</i></span>
+    compilerAssert.assertCompile();                                        <span class="comment">//<i class="conum">2</i></span>
+    ReadWriteFileSystem&lt;<span class="predefined-type">File</span>&gt; output = compilerAssert.getClassOutput();    <span class="comment">//<i class="conum">3</i></span>
+    <span class="predefined-type">ClassLoader</span> loader = <span class="keyword">new</span> <span class="predefined-type">URLClassLoader</span>(<span class="keyword">new</span> <span class="predefined-type">URL</span><span class="type">[]</span>{ output.getURL() }); <span class="comment">//<i class="conum">4</i></span>
+    <span class="predefined-type">Class</span>&lt;?&gt; bundleClass = loader.loadClass(<span class="string"><span class="delimiter">&quot;</span><span class="content">examples.app1.mybundle</span><span class="delimiter">&quot;</span></span>);     <span class="comment">//<i class="conum">5</i></span>
+    <span class="predefined-type">Method</span> m = bundleClass.getDeclaredMethod(<span class="string"><span class="delimiter">&quot;</span><span class="content">abc</span><span class="delimiter">&quot;</span></span>);                       <span class="comment">//<i class="conum">6</i></span>
+    assertEquals(<span class="predefined-type">String</span>.class, m.getReturnType());
+  }</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+
+<table>
+<tr>
+<td><i class="conum">1</i></td>
+<td>Create the compiler from the tested application package</td>
+</tr>
+<tr>
+<td><i class="conum">2</i></td>
+<td>Triggers compilation</td>
+</tr>
+<tr>
+<td><i class="conum">3</i></td>
+<td>Get the file system where the compiler created the compiled classes</td>
+</tr>
+<tr>
+<td><i class="conum">4</i></td>
+<td>Create a classloader for loading the bundle class</td>
+</tr>
+<tr>
+<td><i class="conum">5</i></td>
+<td>Load the bundle class</td>
+</tr>
+<tr>
+<td><i class="conum">6</i></td>
+<td>Assert the bundle class structure</td>
+</tr>
+</table>
+</div>
+
+</div>
+<div class="sect3">
+<h4 id="_testing_the_plugin_failure"><a class="anchor" href="#_testing_the_plugin_failure"></a>Testing the plugin failure</h4>
+<div class="paragraph">
+<p>In the previous section we tested the expected behavior of the plugin when it works, we also need to test
+the behavior of the plugin when the bundle does not exist. The absence of the bundle properties file
+will raise a compilation error with the <code>BUNDLE_NOT_FOUND</code> message code. By default the compiler will
+use the message defined in the constant, however we can set the compiler in the special <code>formalErrorReporting</code>
+mode that will use instead the message code value, making easier to write our test:</p>
+</div>
+<div class="listingblock">
+<div class="title">The <code>testBundleNotFound</code> test</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@Test</span>
+  <span class="directive">public</span> <span class="type">void</span> testBundleNotFound() <span class="directive">throws</span> <span class="exception">Exception</span> {
+    CompilerAssert&lt;<span class="predefined-type">File</span>, <span class="predefined-type">File</span>&gt; compilerAssert = compiler(<span class="string"><span class="delimiter">&quot;</span><span class="content">examples.app2</span><span class="delimiter">&quot;</span></span>);
+    compilerAssert.formalErrorReporting();                                     <span class="comment">//<i class="conum">1</i></span>
+    <span class="predefined-type">List</span>&lt;CompilationError&gt; errors = compilerAssert.failCompile();              <span class="comment">//<i class="conum">2</i></span>
+    assertEquals(<span class="integer">1</span>, errors.size());                                            <span class="comment">//<i class="conum">3</i></span>
+    CompilationError error = errors.get(<span class="integer">0</span>);
+    assertEquals(BundleGenMetaModelPlugin.BUNDLE_NOT_FOUND, error.getCode());  <span class="comment">//<i class="conum">4</i></span>
+    assertEquals(<span class="predefined-type">Collections</span>.singletonList(<span class="string"><span class="delimiter">&quot;</span><span class="content">mybundle</span><span class="delimiter">&quot;</span></span>), error.getArguments());
+    <span class="predefined-type">File</span> source = error.getSourceFile();
+    assertEquals(<span class="string"><span class="delimiter">&quot;</span><span class="content">package-info.java</span><span class="delimiter">&quot;</span></span>, source.getName());
+    assertEquals(<span class="string"><span class="delimiter">&quot;</span><span class="content">app2</span><span class="delimiter">&quot;</span></span>, source.getParentFile().getName());
+  }</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+
+<table>
+<tr>
+<td><i class="conum">1</i></td>
+<td>Set the <code>formalErrorReporting</code> mode</td>
+</tr>
+<tr>
+<td><i class="conum">2</i></td>
+<td>We call now the <code>failCompile</code> that returns a list of compilation errors</td>
+</tr>
+<tr>
+<td><i class="conum">3</i></td>
+<td>We shall have a single error</td>
+</tr>
+<tr>
+<td><i class="conum">4</i></td>
+<td>Among other checks we assert that the <code>BUNDLE_NOT_FOUND</code> code was used</td>
+</tr>
+</table>
+</div>
+
+</div>
+<div class="sect3">
+<h4 id="_testing_the_bundle_resolution"><a class="anchor" href="#_testing_the_bundle_resolution"></a>Testing the bundle resolution</h4>
+<div class="paragraph">
+<p>Last but not last, we will test now the runtime behavior. A very simple controller will test the behavior
+ at runtime:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">Controller</span> {
+  <span class="annotation">@View</span>
+  <span class="directive">public</span> Response index() {
+    <span class="keyword">return</span> Response.ok(<span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;abc&gt;</span><span class="delimiter">&quot;</span></span> + mybundle.abc() + <span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;/abc&gt;</span><span class="delimiter">&quot;</span></span>);
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The previous test only required a compiler, now we need to execute our application. Juzu provides
+a mocking framework that takes an application, compiles and then run it.</p>
+</div>
+<div class="listingblock">
+<div class="title">The <code>testResolveBundle</code> test</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@Test</span>
+  <span class="directive">public</span> <span class="type">void</span> testResolveBundle() <span class="directive">throws</span> <span class="exception">Exception</span> {
+    MockApplication&lt;<span class="predefined-type">File</span>&gt; application = application(InjectorProvider.GUICE, <span class="string"><span class="delimiter">&quot;</span><span class="content">examples.app1</span><span class="delimiter">&quot;</span></span>); <span class="comment">//<i class="conum">1</i></span>
+    application.init();                                                                       <span class="comment">//<i class="conum">2</i></span>
+    MockClient client = application.client();
+    MockViewBridge view = client.render();                                                    <span class="comment">//<i class="conum">3</i></span>
+    <span class="predefined-type">String</span> markup = view.assertStringResponse();
+    assertEquals(<span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;abc&gt;def&lt;/abc&gt;</span><span class="delimiter">&quot;</span></span>, markup);                                                   <span class="comment">//<i class="conum">4</i></span>
+  }</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+
+<table>
+<tr>
+<td><i class="conum">1</i></td>
+<td>Create a mock application</td>
+</tr>
+<tr>
+<td><i class="conum">2</i></td>
+<td>The init step compiles and starts the application</td>
+</tr>
+<tr>
+<td><i class="conum">3</i></td>
+<td>Render the application, this invokes the <code>index</code> method of the application</td>
+</tr>
+<tr>
+<td><i class="conum">4</i></td>
+<td>Assert the returned application markup is correct</td>
+</tr>
+</table>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+<h1 id="_metrics_plugin_tutorial" class="sect0"><a class="anchor" href="#_metrics_plugin_tutorial"></a>Metrics plugin tutorial</h1>
+<div class="paragraph">
+<p>The Metrics plugin tutorial provides guidance for the implementation of a Juzu service. This plugin provides an
+integration of the <a href="http://metrics.codahale.com">Metrics</a> library in Juzu. Metrics is an easy to use library for reporting
+and publishing metrics.</p>
+</div>
+<div class="paragraph">
+<p>In this section we will study three Juzu runtime aspects:</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p>creation of a Juzu service</p>
+</li>
+<li>
+<p>intercepting a Juzu request</p>
+</li>
+<li>
+<p>binding a bean in the <em>IOC</em> container</p>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_creating_a_juzu_service"><a class="anchor" href="#_creating_a_juzu_service"></a>Creating a Juzu service</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A Juzu service is a class extending the <code>juzu.impl.plugin.application.ApplicationService</code> abstract class. The
+service must be declared in a +META-INF/services/juzu.impl.plugin.application.ApplicationService_ file:</p>
+</div>
+<div class="listingblock">
+<div class="title">The <code>META-INF/services/juzu.impl.plugin.application.ApplicationService</code> service declaration</div>
+<div class="content monospaced">
+<pre>examples.plugin.metrics.MetricsService</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Our service constructor must be a public no argument constructor, it calls the super constructor with the
+service name <em>metrics</em>:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="directive">public</span> MetricsService() {
+    <span class="local-variable">super</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">metrics</span><span class="delimiter">&quot;</span></span>);
+    registry = <span class="keyword">new</span> MetricRegistry();
+    responses = registry.timer(<span class="string"><span class="delimiter">&quot;</span><span class="content">juzu.responses</span><span class="delimiter">&quot;</span></span>);
+  }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The constructor initializes two fields:</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p>the <code>registry</code> field, a Metrics registry that holds all the metrics, this registry will be bound in the IOC container
+so an application or another service can be injected with this registry for publishing custom metrics</p>
+</li>
+<li>
+<p>the <code>responses</code> field, a Metrics timer, bound in registry that will accumulate request statistics</p>
+</li>
+</ul>
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_service_initialization"><a class="anchor" href="#_service_initialization"></a>Service initialization</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After the service is created, Juzu will call its <code>init</code> method to perform the initialization step. The <code>init</code>
+method can return a <code>ServiceDescriptor</code> that will instruct Juzu to load the service. The service can chose
+to return null instead of the descriptor, the null value tells Juzu to discard the service instead.</p>
+</div>
+<div class="paragraph">
+<p>The service descriptor contains a list of <code>BeanDescriptor</code> classes: this is the list of the beans the service
+ wants to register in the IOC container. In our case we want to expose the Metrics registry as a singleton
+ bean so it can be injected in the whole application:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@Override</span>
+  <span class="directive">public</span> ServiceDescriptor init(ServiceContext context) <span class="directive">throws</span> <span class="exception">Exception</span> {
+    <span class="predefined-type">Provider</span>&lt;MetricRegistry&gt; registryProvider = <span class="keyword">new</span> <span class="predefined-type">Provider</span>&lt;MetricRegistry&gt;() {
+      <span class="annotation">@Override</span>
+      <span class="directive">public</span> MetricRegistry get() {
+        <span class="keyword">return</span> registry;
+      }
+    }; <span class="comment">//<i class="conum">1</i></span>
+    <span class="predefined-type">BeanDescriptor</span> registryDescriptor = <span class="predefined-type">BeanDescriptor</span>.createFromProvider(  <span class="comment">//<i class="conum">2</i></span>
+        MetricRegistry.class,
+        Scope.SINGLETON,
+        <span class="predefined-type">Collections</span>.&lt;<span class="predefined-type">Annotation</span>&gt;emptyList(),
+        registryProvider);
+    <span class="keyword">return</span> <span class="keyword">new</span> ServiceDescriptor(<span class="predefined-type">Arrays</span>.asList(registryDescriptor));        <span class="comment">//<i class="conum">3</i></span>
+  }</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+
+<table>
+<tr>
+<td><i class="conum">1</i></td>
+<td>Create a <code>javax.inject.Provider</code> that wraps the <code>registry</code> field</td>
+</tr>
+<tr>
+<td><i class="conum">2</i></td>
+<td>Create a singleton bean descriptor</td>
+</tr>
+<tr>
+<td><i class="conum">3</i></td>
+<td>Return the service descriptor with the registry bean</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>After the service is initialized, the service will be <em>started</em>, this event can be intercepted with the
+<code>javax.annotation.PostConstruct</code> callback: our service will use it to bind the registry into the static
+<code>SharedMetricRegistries</code> exposed by Metrics:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@PostConstruct</span>
+  <span class="directive">public</span> <span class="type">void</span> start() {
+    SharedMetricRegistries.add(application.getPackageName(), registry);
+  }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The registry is bound under the application package name, making sure that registries will be namespaced
+correctly to avoid collisions.</p>
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_intercepting_the_request"><a class="anchor" href="#_intercepting_the_request"></a>Intercepting the request</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We have now a fully initiliazed Metrics registry and timer, let&#8217;s see how to intercept the Juzu requests
+to collect statistics in this timer. Intercepting a request is done by implementing the <code>juzu.impl.request.RequestFilter</code>
+interface for a specific request stage.</p>
+</div>
+<div class="paragraph">
+<p>The application request is indeed decomposed into four stages:</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p><em>unmarshalling</em> : unmarshalls the request entity when there is one</p>
+</li>
+<li>
+<p><em>handler</em>       : determine the handler arguments and get the application handler from the IOC container</p>
+</li>
+<li>
+<p><em>lifecycle</em>     : trigger the controller lifecycle and calls the <code>juzu.request.RequestLifeCycle</code> interface when necessary</p>
+</li>
+<li>
+<p><em>invoke</em>        : performs the handler method invocation on the controller</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Our service can use mostly any of these stage as it just wants to count the number of requests, so it will use
+the <em>invoke</em> stage and thus our service implements the <code>RequestFilter&lt;Stage.Invoke&gt;</code> interface:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@Override</span>
+  <span class="directive">public</span> Response handle(Stage.Invoke argument) {
+    <span class="directive">final</span> <span class="predefined-type">Timer</span>.Context context = responses.time();
+    <span class="keyword">try</span> {
+      <span class="keyword">return</span> argument.invoke();
+    } <span class="keyword">finally</span> {
+      context.stop();
+    }
+  }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The implementation is quite trivial, it uses the <code>responses</code> timer to collect the request statistic.</p>
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_testing_the_plugin_2"><a class="anchor" href="#_testing_the_plugin_2"></a>Testing the plugin</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We will test the plugin via the <code>MockApplication</code> object provided by Juzu, the test application is quite simple with
+a single controller:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">Controller</span> {
+
+  <span class="annotation">@Inject</span>
+  <span class="directive">public</span> Controller(MetricRegistry registry) {
+    registry.meter(<span class="string"><span class="delimiter">&quot;</span><span class="content">custom</span><span class="delimiter">&quot;</span></span>);
+  }
+
+  <span class="annotation">@View</span>
+  <span class="directive">public</span> Response index() {
+    <span class="keyword">return</span> Response.ok(<span class="string"><span class="delimiter">&quot;</span><span class="content">ok</span><span class="delimiter">&quot;</span></span>);
+  }
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p>the constructor is injected with the registry and it publishes a custom meter</p>
+</li>
+<li>
+<p>the <code>index</code> method handles the application request and returns a simple <em>ok</em> value</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Our test will assert three things:</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p>the Metrics registry is published in the <code>SharedMetricRegistries</code></p>
+</li>
+<li>
+<p>the Metrics registry recorded the request succesfully</p>
+</li>
+<li>
+<p>the Metrics registry can be used by the application</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@Test</span>
+  <span class="directive">public</span> <span class="type">void</span> testTimer() <span class="directive">throws</span> <span class="exception">Exception</span> {
+    SharedMetricRegistries.clear();                                                             <span class="comment">//<i class="conum">1</i></span>
+    MockApplication&lt;<span class="predefined-type">File</span>&gt; application = application(InjectorProvider.GUICE, <span class="string"><span class="delimiter">&quot;</span><span class="content">examples.metrics</span><span class="delimiter">&quot;</span></span>);<span class="comment">//<i class="conum">2</i></span>
+    application.init();
+    MockClient client = application.client();
+    MockViewBridge view = client.render();                                                      <span class="comment">//<i class="conum">3</i></span>
+    assertEquals(<span class="string"><span class="delimiter">&quot;</span><span class="content">ok</span><span class="delimiter">&quot;</span></span>, view.assertStringResponse());
+    assertEquals(<span class="predefined-type">Collections</span>.singleton(<span class="string"><span class="delimiter">&quot;</span><span class="content">examples.metrics</span><span class="delimiter">&quot;</span></span>), SharedMetricRegistries.names());    <span class="comment">//<i class="conum">4</i></span>
+    MetricRegistry registry = SharedMetricRegistries.getOrCreate(<span class="string"><span class="delimiter">&quot;</span><span class="content">examples.metrics</span><span class="delimiter">&quot;</span></span>);
+    <span class="predefined-type">Timer</span> timer = registry.getTimers().get(<span class="string"><span class="delimiter">&quot;</span><span class="content">juzu.responses</span><span class="delimiter">&quot;</span></span>);                                   <span class="comment">//<i class="conum">5</i></span>
+    assertEquals(<span class="integer">1</span>, timer.getCount());
+    Meter meter = registry.getMeters().get(<span class="string"><span class="delimiter">&quot;</span><span class="content">custom</span><span class="delimiter">&quot;</span></span>);                                           <span class="comment">//<i class="conum">6</i></span>
+    assertNotNull(meter);
+  }</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+
+<table>
+<tr>
+<td><i class="conum">1</i></td>
+<td>Clear the <code>SharedMetricRegistries</code></td>
+</tr>
+<tr>
+<td><i class="conum">2</i></td>
+<td>Create the mock application</td>
+</tr>
+<tr>
+<td><i class="conum">3</i></td>
+<td>Invoke the application</td>
+</tr>
+<tr>
+<td><i class="conum">4</i></td>
+<td>Check our registry was published under the application package name</td>
+</tr>
+<tr>
+<td><i class="conum">5</i></td>
+<td>Get the timer and check it recorded the statistic</td>
+</tr>
+<tr>
+<td><i class="conum">6</i></td>
+<td>Check the application used the registry via injection succesfully</td>
+</tr>
+</table>
+</div>
+
+</div>
+</div>
+
 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2014-04-28 12:44:53 CEST
+Last updated 2014-05-23 13:47:37 CEST
 </div>
 </div>
 </body>

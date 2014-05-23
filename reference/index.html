@@ -164,6 +164,14 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 <li><a href="#_testing">Testing</a></li>
 </ol>
 </li>
+<li><a href="#_hello_world">Hello World</a></li>
+<li>
+<ol type="none" class="sectlevel1">
+<li><a href="#_step_1_application_package">Step 1: application package</a></li>
+<li><a href="#_step_2_hello_world_controller">Step 2: hello world controller</a></li>
+<li><a href="#_step_3_adding_a_template">Step 3: adding a template</a></li>
+</ol>
+</li>
 <li><a href="#phases">Phases</a></li>
 <li>
 <ol type="none" class="sectlevel1">
@@ -287,7 +295,6 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 <li><a href="#_application_beans">Application beans</a></li>
 </ol>
 </li>
-<li><a href="#_provider_factories">Provider factories</a></li>
 <li><a href="#_provided_container">Provided container</a></li>
 <li>
 <ol type="none" class="sectlevel2">
@@ -413,13 +420,8 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 <li><a href="#_webjars_plugin">WebJars plugin</a></li>
 <li>
 <ol type="none" class="sectlevel1">
-<li><a href="#_juzu_webjars_plugin">Juzu WebJars Plugin</a></li>
-<li>
-<ol type="none" class="sectlevel2">
 <li><a href="#_usage_2">Usage</a></li>
 <li><a href="#_building_2">Building</a></li>
-</ol>
-</li>
 </ol>
 </li>
 <li><a href="#_shiro_plugin">Shiro plugin</a></li>
@@ -433,40 +435,52 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 <li><a href="#_multiple_realms">Multiple Realms</a></li>
 </ol>
 </li>
-<li><a href="#servlet">Servlet</a></li>
+<li><a href="#_authz_plugin">Authz plugin</a></li>
 <li>
 <ol type="none" class="sectlevel1">
-<li><a href="#_juzu_servlet_plugin">Juzu Servlet Plugin</a></li>
+<li><a href="#_granting_access_to_specific_roles">Granting access to specific roles</a></li>
+<li><a href="#_denying_access">Denying access</a></li>
+<li><a href="#_granting_access">Granting access</a></li>
+<li><a href="#_denying_access_2">Denying access</a></li>
+<li><a href="#_cascading">Cascading</a></li>
+</ol>
+</li>
+<li><a href="#servlet">Servlet plugin</a></li>
 <li>
-<ol type="none" class="sectlevel2">
+<ol type="none" class="sectlevel1">
 <li><a href="#_servlet_declaration">Servlet declaration</a></li>
 <li><a href="#servlet_bundle">Resource bundle declaration</a></li>
 <li><a href="#_asset_server_automatic_registration">Asset server automatic registration</a></li>
 </ol>
 </li>
-</ol>
-</li>
-<li><a href="#_portlet">Portlet</a></li>
+<li><a href="#_portlet_plugin">Portlet plugin</a></li>
 <li>
 <ol type="none" class="sectlevel1">
-<li><a href="#_juzu_portlet_plugin">Juzu Portlet Plugin</a></li>
-<li>
-<ol type="none" class="sectlevel2">
 <li><a href="#_portlet_class_generation">Portlet class generation</a></li>
 <li><a href="#_portlet_preferences_injection">Portlet preferences injection</a></li>
+<li>
+<ol type="none" class="sectlevel2">
 <li><a href="#_resource_bundle_injection">Resource bundle injection</a></li>
-<li><a href="#_building_3">Building</a></li>
 </ol>
 </li>
+<li><a href="#_building_3">Building</a></li>
 </ol>
 </li>
 <li><a href="#_appendix">Appendix</a></li>
 <li>
 <ol type="none" class="sectlevel1">
-<li><a href="#_appendix_2">Appendix</a></li>
+<li><a href="#_maven_configurations">Maven configurations</a></li>
 <li>
 <ol type="none" class="sectlevel2">
-<li><a href="#_maven_configurations">Maven configurations</a></li>
+<li><a href="#servlet_guice">Guice for a Servlet Container</a></li>
+<li><a href="#servlet_spring">Spring for a Servlet Container</a></li>
+<li><a href="#servlet_cdi">CDI for a Servlet Container</a></li>
+<li><a href="#ee_guice">Guice for an EE Container</a></li>
+<li><a href="#ee_spring">Spring for an EE Container</a></li>
+<li><a href="#ee_cdi">CDI for an EE Container</a></li>
+<li><a href="#gatein_guice">Guice for GateIn Portal</a></li>
+<li><a href="#gatein_spring">Spring for GateIn Portal</a></li>
+<li><a href="#gatein_cdi">CDI for GateIn Portal</a></li>
 </ol>
 </li>
 </ol>
@@ -969,7 +983,7 @@ described in the <a href="http://docs.jboss.org/weld/reference/1.0.0/en-US/html/
 <pre>mvn archetype:generate \
    -DarchetypeGroupId=org.juzu \
    -DarchetypeArtifactId=juzu-archetype \
-   -DarchetypeVersion=1.0.0-beta2 \
+   -DarchetypeVersion=1.0.0-cr1 \
    -DgroupId=org.example \
    -DartifactId=myapp \
    -DpackageName=org.example.myapp \
@@ -1002,7 +1016,7 @@ provides out of the box:</p>
 <pre>mvn archetype:generate \
    -DarchetypeGroupId=org.juzu \
    -DarchetypeArtifactId=juzu-archetype \
-   -DarchetypeVersion=1.0.0-beta2 \
+   -DarchetypeVersion=1.0.0-cr1 \
    -DgroupId=org.example \
    -DartifactId=myapp \
    -DpackageName=org.example.myapp \
@@ -1102,8 +1116,8 @@ repositories {
   mavenCentral()
 }
 dependencies {
-  compile group: 'org.juzu', name: 'juzu-core', version: '1.0.0-beta2'
-  compile group: 'org.juzu', name: 'juzu-plugins-servlet', version: '1.0.0-beta2'
+  compile group: 'org.juzu', name: 'juzu-core', version: '1.0.0-cr1'
+  compile group: 'org.juzu', name: 'juzu-plugins-servlet', version: '1.0.0-cr1'
   compile group: 'javax.inject', name: 'javax.inject', version: '1'
   providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.0.1'
   runtime group: 'org.springframework', name: 'spring-web', version: '3.2.4.RELEASE'
@@ -1483,6 +1497,117 @@ with your build system and redeploy it, this will reinitialize the runtime and y
 <div class="paragraph">
 <p>Juzu applications are web applications, so you can test your application like any other web application. The Juzu tutorial
 provides an extensive chapter that covers an example of testing an application with the JUnit, Arquillian and Selenium.</p>
+</div>
+
+</div>
+</div>
+
+<h1 id="_hello_world" class="sect0"><a class="anchor" href="#_hello_world"></a>Hello World</h1>
+<div class="paragraph">
+<p>The first section <a href="#builddeployruntest">Build, deploy, run and test</a> of this guide covers the entire life cycle of an application, this section
+will teach you about the structure of a basic Hello World application written with Juzu. The goal of this chapter is
+not to show you an entire Juzu application, since the Juzu tutorial already serves this purpose, instead the goal is to
+show you how to write the most basic application as any Hello World app does.</p>
+</div>
+<div class="paragraph">
+<p>We suppose you have setup already the application structure, which means you have a Java project with the
+correct dependencies for compiling the Juzu application.</p>
+</div>
+<div class="sect1">
+<h2 id="_step_1_application_package"><a class="anchor" href="#_step_1_application_package"></a>Step 1: application package</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The first step is to decide the application package name. Indeed a Juzu application belongs to a single Java
+package and its subpackages, allowing several applications in the same unit of compilation. Let&#8217;s name our
+application <code>examples.helloworld</code>. That&#8217;s how Juzu identifies an application, by its package name.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s create this package and most importantly the Java <em>named package</em>: the named package is a file named
+ <em>package-info.java</em> that resides a the package folder, it can be used for documenting a package but also
+to annotating a package. Indeed Java packages can be annoated and Juzu use the <code>@juzu.Application</code> package
+annotation for declaring an application:</p>
+</div>
+<div class="listingblock">
+<div class="title">The <em>examples/helloworld/package-info.java</em> file</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="annotation">@Application</span>
+<span class="keyword">package</span> <span class="namespace">examples.helloworld</span>;
+
+<span class="keyword">import</span> <span class="include">juzu.Application</span>;</code></pre>
+</div>
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_step_2_hello_world_controller"><a class="anchor" href="#_step_2_hello_world_controller"></a>Step 2: hello world controller</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Juzu follows the MVC paradygm for creating application and thus we need to provide at least one controller
+ to handle web requests, let&#8217;s create one!</p>
+</div>
+<div class="listingblock">
+<div class="title">The <em>examples/helloworld/HelloWorldController.java</em> file</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="keyword">import</span> <span class="include">juzu.View</span>;
+<span class="keyword">import</span> <span class="include">juzu.Response</span>;
+
+<span class="directive">public</span> <span class="type">class</span> <span class="class">HelloWorldController</span> {
+  <span class="annotation">@View</span>
+  <span class="directive">public</span> Response index() {
+    <span class="keyword">return</span> Reponse.ok(<span class="string"><span class="delimiter">&quot;</span><span class="content">Hello World</span><span class="delimiter">&quot;</span></span>);
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That&#8217;s it, our application will now say <em>Hello World</em> to any incoming request. The <code>@View</code> annotation defines
+ a Juzu view and the method name <code>index</code> is a special name that catches any unmatched request. It returns
+ a response object that contains the markup of the page.</p>
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_step_3_adding_a_template"><a class="anchor" href="#_step_3_adding_a_template"></a>Step 3: adding a template</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s wrap up this by adding a template for the view. We need to create first an <em>helloworld.gtmpl</em> template in
+the <code>templates</code> sub package:</p>
+</div>
+<div class="listingblock">
+<div class="title">The <em>examples/helloworl/templates/helloworld.gtmpl</em> file</div>
+<div class="content monospaced">
+<pre>Hello Wolrd</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This template can then be used by injecting it in the controller using dependency injection:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="keyword">package</span> <span class="namespace">examples.helloworld</span>;
+
+<span class="keyword">import</span> <span class="include">juzu.Path</span>;
+<span class="keyword">import</span> <span class="include">juzu.Response</span>;
+<span class="keyword">import</span> <span class="include">juzu.View</span>;
+<span class="keyword">import</span> <span class="include">juzu.template.Template</span>;
+
+<span class="keyword">import</span> <span class="include">javax.inject.Inject</span>;
+
+<span class="directive">public</span> <span class="type">class</span> <span class="class">HelloWorldController</span> {
+
+  <span class="annotation">@Inject</span>
+  <span class="annotation">@Path</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">helloworld.gtmpl</span><span class="delimiter">&quot;</span></span>)
+  Template helloworld;
+
+  <span class="annotation">@View</span>
+  <span class="directive">public</span> Response index() {
+    <span class="keyword">return</span> helloworld.ok();
+  }
+}</code></pre>
+</div>
 </div>
 
 </div>
@@ -2075,7 +2200,8 @@ Juzu supports simple data types such as string or integers, structured data type
 to more simple types such as number, etc..</p>
 </li>
 <li>
-<p>Structured data types using the <code>@juzu.Mapped</code> annotation</p>
+<p>Structured data types which are distinguished from other parameters by annotating the controller handler parameter annotation
+with the the <code>@juzu.Mapped</code> annotation</p>
 </li>
 </ul>
 </div>
@@ -2308,8 +2434,7 @@ when the parameter of a primitive value is not present in the request, the defau
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java"><span class="annotation">@juzu</span>.Mapped
-<span class="directive">public</span> <span class="type">class</span> <span class="class">User</span> {
+<pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">User</span> {
 
   <span class="directive">public</span> <span class="predefined-type">String</span> username;
   <span class="directive">public</span> <span class="predefined-type">String</span> password;
@@ -2322,6 +2447,19 @@ when the parameter of a primitive value is not present in the request, the defau
     <span class="local-variable">this</span>.password = password;
     <span class="local-variable">this</span>.username = username;
   }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The controller handler needs to declare the parameter using this type with the <code>@Mapped</code> annotation:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="annotation">@Action</span>
+<span class="annotation">@Route</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/login</span><span class="delimiter">&quot;</span></span>)
+<span class="directive">public</span> Response login(<span class="annotation">@Mapped</span> User user) {
+  ...
 }</code></pre>
 </div>
 </div>
@@ -2387,7 +2525,7 @@ It works with the servlet bridge and the portlet bridge.</p>
 <pre class="CodeRay"><code class="xml language-xml">&lt;dependency&gt;
   &lt;groupId&gt;org.juzu&lt;/groupId&gt;
   &lt;artifactId&gt;juzu-plugin-upload&lt;/artifactId&gt;
-  &lt;version&gt;1.0.0-beta2&lt;/version&gt;
+  &lt;version&gt;1.0.0-cr1&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
@@ -2465,7 +2603,7 @@ decode to a Jackson native tree or perform mapping to Java object using Jackson 
 <pre class="CodeRay"><code class="xml language-xml">&lt;dependency&gt;
   &lt;groupId&gt;org.juzu&lt;/groupId&gt;
   &lt;artifactId&gt;juzu-plugin-jackson&lt;/artifactId&gt;
-  &lt;version&gt;1.0.0-beta2&lt;/version&gt;
+  &lt;version&gt;1.0.0-cr1&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
@@ -2779,7 +2917,7 @@ the Jackson mapper. The plugin can be used in your Maven build using a simple de
 <pre class="CodeRay"><code class="xml language-xml">&lt;dependency&gt;
   &lt;groupId&gt;org.juzu&lt;/groupId&gt;
   &lt;artifactId&gt;juzu-plugin-jackson&lt;/artifactId&gt;
-  &lt;version&gt;1.0.0-beta2&lt;/version&gt;
+  &lt;version&gt;1.0.0-cr1&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
@@ -2923,7 +3061,7 @@ if you project contains several applications, you should configure a Juzu servle
 <h3 id="_servlet_configuration"><a class="anchor" href="#_servlet_configuration"></a>Servlet configuration</h3>
 <div class="paragraph">
 <p>Declaring a Juzu servlet is done in the <em>web.xml</em> file of the web application or using annotations. Annotation
-based is described in the <a href="#servlet">Servlet</a> chapter.</p>
+based is described in the <a href="#servlet">Servlet plugin</a> chapter.</p>
 </div>
 <div class="listingblock">
 <div class="title">The Juzu servlet configuration</div>
@@ -3510,78 +3648,6 @@ to declare qualifiers in an <code>@Binding</code> annotation due to limitations 
 
 </div>
 
-</div>
-
-</div>
-</div>
-<div class="sect1">
-<h2 id="_provider_factories"><a class="anchor" href="#_provider_factories"></a>Provider factories</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Provider factories provides plugability for integrating beans that are not managed by the IOC container. The provider
-factory is a factory for <code>javax.inject.Provider</code> whose purpose is to return a provider for a specific class. Usually
-provider factories will lookup the service in a registry (like another IOC container) and returns a provider that
-return them lazily or not.</p>
-</div>
-<div class="paragraph">
-<p>The provider factory defines the <code>getProvider</code> method:</p>
-</div>
-<div class="listingblock">
-
-<div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java">  <span class="comment">/**
-   * Returns a provider for a specific type or null if it cannot be produced.
-   *
-   * @param implementationType the implementation class object
-   * @param &lt;T&gt;                the implementation generic type
-   * @return a provider for this class or null
-   * @throws Exception any exception that would prevent to obtain the provider
-   */</span>
-  &lt;T&gt; <span class="predefined-type">Provider</span>&lt;? <span class="directive">extends</span> T&gt; getProvider(<span class="predefined-type">Class</span>&lt;T&gt; implementationType)
-    <span class="directive">throws</span> <span class="exception">Exception</span>;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The factory implementation must provide a public zero argument constructor and it will be instantiated
-during the application boostrap by Juzu to obtain the provider. The returned providers will then be bound into
-the IOC container.</p>
-</div>
-<div class="paragraph">
-<p>The IOC container uses the <code>java.util.ServiceLoader</code> discovery mechanism for finding provider factories when
- injection occurs.</p>
-</div>
-<div class="paragraph">
-<p>Let&#8217;s study a simple example with a provider for the current time:</p>
-</div>
-<div class="listingblock">
-<div class="title">Time provider factory</div>
-<div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java"><span class="keyword">package</span> <span class="namespace">my</span>;
-
-<span class="directive">public</span> <span class="type">class</span> <span class="class">TimeProviderFactory</span> <span class="directive">implements</span> java.inject.ProviderFactory {
-  <span class="directive">public</span> &lt;T&gt; <span class="predefined-type">Provider</span>&lt;? <span class="directive">extends</span> T&gt; getProvider(<span class="directive">final</span> <span class="predefined-type">Class</span>&lt;T&gt; implementationType) <span class="directive">throws</span> <span class="exception">Exception</span> {
-    <span class="keyword">if</span> (implementationType == java.util.Date.class) {
-      <span class="keyword">return</span> <span class="keyword">new</span> <span class="predefined-type">Provider</span>&lt;T&gt;() {
-        <span class="directive">public</span> T get() {
-          <span class="keyword">return</span> implementationType.cast(<span class="keyword">new</span> java.util.Date());
-        }
-      };
-    }
-    <span class="keyword">else</span> {
-      <span class="keyword">return</span> <span class="predefined-constant">null</span>;
-    }
-  }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This provider should be declared in the <em>META-INF/services/juzu.inject.ProviderFactory</em> file:</p>
-</div>
-<div class="listingblock">
-<div class="title">Time provider configuration</div>
-<div class="content monospaced">
-<pre>my.TimeProvider</pre>
-</div>
 </div>
 
 </div>
@@ -4516,7 +4582,7 @@ file. The corresponding Java class to declare is created by concatenating the ap
 </div>
 </div>
 <div class="paragraph">
-<p>If you are using the <a href="#servlet">Servlet</a> plugin, the <code>@Servlet</code> annotation allows to configure, please refer to the <a href="#servlet_bundle">Resource bundle declaration</a>
+<p>If you are using the <a href="#servlet">Servlet plugin</a> plugin, the <code>@Servlet</code> annotation allows to configure, please refer to the <a href="#servlet_bundle">Resource bundle declaration</a>
 part.</p>
 </div>
 <div class="sect2">
@@ -4601,6 +4667,17 @@ of script and stylesheet assets used by an application.</p>
 <td>declares the <em>jquery-ui.css</em> asset</td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>By default script assets are inserted in the <em>head</em> section of the page, obviously they can also be inserted
+in the <em>footer</em> as well by setting the <code>header</code> value to <em>false</em>:</p>
+</div>
+<div class="listingblock">
+<div class="title">Configuring a footer script</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="annotation">@Scripts</span>(<span class="annotation">@Script</span>(alue = <span class="string"><span class="delimiter">&quot;</span><span class="content">myfooterscript.js</span><span class="delimiter">&quot;</span></span>, header = <span class="predefined-constant">false</span>))
+<span class="keyword">package</span> <span class="namespace">my.application</span>;</code></pre>
+</div>
 </div>
 
 </div>
@@ -4705,6 +4782,12 @@ the war file containing the application.</p>
 is served instead of the original file, because it has a smaller size. Juzu allows to provide a minified version
 of an asset that will be used in _prod+ run mode.</p>
 </div>
+<div class="sect3">
+<h4 id="_ahead_of_time_minification"><a class="anchor" href="#_ahead_of_time_minification"></a>Ahead of time minification</h4>
+<div class="paragraph">
+<p>When an assets is already minified, it can be used in addition of regular asset. This is done via the <code>minified</code>
+member of the asset annotation.</p>
+</div>
 <div class="listingblock">
 <div class="title">Providing a minified version of jQuery</div>
 <div class="content monospaced">
@@ -4713,6 +4796,51 @@ of an asset that will be used in _prod+ run mode.</p>
   minified = <span class="string"><span class="delimiter">&quot;</span><span class="content">jquery.min.js</span><span class="delimiter">&quot;</span></span>))
 <span class="keyword">package</span> <span class="namespace">my.application</span>;</code></pre>
 </div>
+</div>
+
+</div>
+<div class="sect3">
+<h4 id="_on_the_fly_minification"><a class="anchor" href="#_on_the_fly_minification"></a>On-the-fly minification</h4>
+<div class="paragraph">
+<p>Juzu can minify assets on the fly by providing a minifier in assets declarations:</p>
+</div>
+<div class="listingblock">
+<div class="title">Minifying with the NormalizeJS minifier</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="annotation">@Scripts</span>(<span class="annotation">@Script</span>(value = <span class="string"><span class="delimiter">&quot;</span><span class="content">jquery.js</span><span class="delimiter">&quot;</span></span>), minifier = NormalizeJSMinifier.class),
+<span class="keyword">package</span> <span class="namespace">my.application</span>;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>NormalizeJS</code> minifier is simple minifier that strip the comments out of the asset. This minifier is bundled in
+Juzu core. While it does not have a great performance concerning minification, it does not require any external
+ dependency.</p>
+</div>
+<div class="paragraph">
+<p>The <code>Closure Compiler</code> plugin provides a very performant minifier based on <em>Google Closure Compiler</em> library, using
+it requires a dependency on the plugin:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.juzu&lt;/groupId&gt;
+  &lt;artifactId&gt;juzu-plugin-closurecompiler&lt;/artifactId&gt;
+  &lt;version&gt;1.0.0-cr1&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then it can be used as a minifier:</p>
+</div>
+<div class="listingblock">
+<div class="title">Minifying with the Google Closure minifier</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="annotation">@Scripts</span>(<span class="annotation">@Script</span>(value = <span class="string"><span class="delimiter">&quot;</span><span class="content">jquery.js</span><span class="delimiter">&quot;</span></span>), minifier = ClosureMinifier.class),
+<span class="keyword">package</span> <span class="namespace">my.application</span>;</code></pre>
+</div>
+</div>
+
 </div>
 
 </div>
@@ -5490,7 +5618,7 @@ can be used, this option will trim the whitespace when processing the file : <co
 <pre class="CodeRay"><code class="xml language-xml">&lt;dependency&gt;
   &lt;groupId&gt;org.juzu&lt;/groupId&gt;
   &lt;artifactId&gt;juzu-plugins-less&lt;/artifactId&gt;
-  &lt;version&gt;1.0.0-beta2&lt;/version&gt;
+  &lt;version&gt;1.0.0-cr1&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
@@ -5501,9 +5629,6 @@ can be used, this option will trim the whitespace when processing the file : <co
 </div>
 
 <h1 id="_webjars_plugin" class="sect0"><a class="anchor" href="#_webjars_plugin"></a>WebJars plugin</h1>
-<div class="sect1">
-<h2 id="_juzu_webjars_plugin"><a class="anchor" href="#_juzu_webjars_plugin"></a>Juzu WebJars Plugin</h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p><a href="http://www.webjars.org/">WebJars</a> are client-side web libraries (e.g. jQuery &amp; Bootstrap) packaged into jar files.
 WebJars allow to declaratively set the version, use a consistent version across an application, and easily deal with transitive dependencies.</p>
@@ -5512,8 +5637,9 @@ WebJars allow to declaratively set the version, use a consistent version across 
 <p>Juzu provides a WebJars plugin that copies resources in jar libraries to application assets and then served by the <em>Asset</em>
 plugin or the <em>AMD</em> plugin.</p>
 </div>
-<div class="sect2">
-<h3 id="_usage_2"><a class="anchor" href="#_usage_2"></a>Usage</h3>
+<div class="sect1">
+<h2 id="_usage_2"><a class="anchor" href="#_usage_2"></a>Usage</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="title">Annotating an application package for declaring WebJars</div>
 <div class="content monospaced">
@@ -5612,8 +5738,10 @@ releases), in that case you can specify the version to help the plugin find the 
 </div>
 
 </div>
-<div class="sect2">
-<h3 id="_building_2"><a class="anchor" href="#_building_2"></a>Building</h3>
+</div>
+<div class="sect1">
+<h2 id="_building_2"><a class="anchor" href="#_building_2"></a>Building</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Add the WebJars plugin jar to your compilation classpath.</p>
 </div>
@@ -5626,11 +5754,9 @@ releases), in that case you can specify the version to help the plugin find the 
 <pre class="CodeRay"><code class="xml language-xml">&lt;dependency&gt;
   &lt;groupId&gt;org.juzu&lt;/groupId&gt;
   &lt;artifactId&gt;juzu-plugins-webjars&lt;/artifactId&gt;
-  &lt;version&gt;1.0.0-beta2&lt;/version&gt;
+  &lt;version&gt;1.0.0-cr1&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
-</div>
-
 </div>
 
 </div>
@@ -5890,15 +6016,143 @@ If the application use <code>Guice</code> or <code>Spring</code>, it should use 
 </div>
 </div>
 
-<h1 id="servlet" class="sect0"><a class="anchor" href="#servlet"></a>Servlet</h1>
+<h1 id="_authz_plugin" class="sect0"><a class="anchor" href="#_authz_plugin"></a>Authz plugin</h1>
+<div class="paragraph">
+<p>The <em>Authz</em> plugin provides a lightweight implementation of the <code>javax.annotation.security</code> annotations <code>@DenyAll</code>,
+<code>@RolesAllowed</code> and <code>@PermitAll</code>. Those annotations were originally created for Java EE containers in which authorization
+is done based on the current user roles. Juzu implements a lightweight authorization manager that performs access
+enforcement based on these three annotations.</p>
+</div>
+<div class="paragraph">
+<p>Authorization is performed on the user roles, provided by the underlying bridge via the <code>juzu.request.SecurityContext</code>
+interface.</p>
+</div>
+<div class="paragraph">
+<p>The plugin jars needs to be on the classpath of the application:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.juzu&lt;/groupId&gt;
+  &lt;artifactId&gt;juzu-plugin-authz&lt;/artifactId&gt;
+  &lt;version&gt;1.0.0-cr1&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
 <div class="sect1">
-<h2 id="_juzu_servlet_plugin"><a class="anchor" href="#_juzu_servlet_plugin"></a>Juzu Servlet Plugin</h2>
+<h2 id="_granting_access_to_specific_roles"><a class="anchor" href="#_granting_access_to_specific_roles"></a>Granting access to specific roles</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>The <code>@RolesAllowed</code> annotation can be used to restrict the access to a set of specific roles.</p>
+</div>
+<div class="listingblock">
+<div class="title">Restrict the access to the <em>manager</em> role</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="annotation">@View</span>
+<span class="annotation">@Route</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/admin</span><span class="delimiter">&quot;</span></span>)
+<span class="annotation">@RolesAllowed</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">manager</span><span class="delimiter">&quot;</span></span>)
+<span class="directive">public</span> Response Response admin() { ... }</code></pre>
+</div>
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_denying_access"><a class="anchor" href="#_denying_access"></a>Denying access</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_granting_access"><a class="anchor" href="#_granting_access"></a>Granting access</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>@DenyAll</code> annotation can be used to restrict the access to anyone.</p>
+</div>
+<div class="listingblock">
+<div class="title">Restrict the access to the <em>manager</em> role</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="annotation">@View</span>
+<span class="annotation">@Route</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/admin</span><span class="delimiter">&quot;</span></span>)
+<span class="annotation">@DenyAll</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">manager</span><span class="delimiter">&quot;</span></span>)
+<span class="directive">public</span> Response Response nevercallme() { ... }</code></pre>
+</div>
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_denying_access_2"><a class="anchor" href="#_denying_access_2"></a>Denying access</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>@PermitAll</code> annotation can be used to grant the access to anyone.</p>
+</div>
+<div class="listingblock">
+<div class="title">Granting full the access</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="annotation">@View</span>
+<span class="annotation">@Route</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/admin</span><span class="delimiter">&quot;</span></span>)
+<span class="annotation">@PermitAll</span>
+<span class="directive">public</span> Response Response index() { ... }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This annotation is not really useful, however it is implemented by Juzu. Note that the first version of the annotation
+can only annotated a method and the last version allows also to annotation a class which allows to make all handlers
+of a controller denied.</p>
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_cascading"><a class="anchor" href="#_cascading"></a>Cascading</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The security annotations can also be used on controller classes to restrict the access on a the controller handlers.</p>
+</div>
+<div class="listingblock">
+<div class="title">Restrict the access to the <em>manager</em> role</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="annotation">@RolesAllowed</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">manager</span><span class="delimiter">&quot;</span></span>)
+<span class="directive">public</span> <span class="type">class</span> <span class="class">MyController</span> {
+
+  <span class="annotation">@View</span>
+  <span class="annotation">@Route</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/admin</span><span class="delimiter">&quot;</span></span>)
+  <span class="directive">public</span> Response Response admin() { ... }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Class scoped declarations can of course be overriden on a per method basis:</p>
+</div>
+<div class="listingblock">
+<div class="title">Overriding the class <code>@RolesAllowed</code> declaration on the <code>index</code> handler</div>
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="annotation">@RolesAllowed</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">manager</span><span class="delimiter">&quot;</span></span>)
+<span class="directive">public</span> <span class="type">class</span> <span class="class">MyController</span> {
+
+  <span class="annotation">@View</span>
+  <span class="annotation">@PermitAll</span>
+  <span class="directive">public</span> Response index() { ... }
+
+  <span class="annotation">@View</span>
+  <span class="annotation">@Route</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/admin</span><span class="delimiter">&quot;</span></span>)
+  <span class="directive">public</span> Response Response admin() { ... }
+}</code></pre>
+</div>
+</div>
+
+</div>
+</div>
+
+<h1 id="servlet" class="sect0"><a class="anchor" href="#servlet"></a>Servlet plugin</h1>
 <div class="paragraph">
 <p>The servlet plugin enhance Juzu servlet applications.</p>
 </div>
-<div class="sect2">
-<h3 id="_servlet_declaration"><a class="anchor" href="#_servlet_declaration"></a>Servlet declaration</h3>
+<div class="sect1">
+<h2 id="_servlet_declaration"><a class="anchor" href="#_servlet_declaration"></a>Servlet declaration</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>A Juzu servlet application is managed by a JuzuServlet configured with the application name. Since Servlet 3.0,
 configuration can be easier thanks to servlet annotations. Juzu leverages this capability and is able to generate a
@@ -5923,8 +6177,10 @@ servlet for an application with the juzu.plugin.servlet.Servlet annotation:</p>
 </div>
 
 </div>
-<div class="sect2">
-<h3 id="servlet_bundle"><a class="anchor" href="#servlet_bundle"></a>Resource bundle declaration</h3>
+</div>
+<div class="sect1">
+<h2 id="servlet_bundle"><a class="anchor" href="#servlet_bundle"></a>Resource bundle declaration</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The <code>@Servlet</code> annotation allows to declare a resource bundle:</p>
 </div>
@@ -5938,27 +6194,25 @@ servlet for an application with the juzu.plugin.servlet.Servlet annotation:</p>
 </div>
 
 </div>
-<div class="sect2">
-<h3 id="_asset_server_automatic_registration"><a class="anchor" href="#_asset_server_automatic_registration"></a>Asset server automatic registration</h3>
+</div>
+<div class="sect1">
+<h2 id="_asset_server_automatic_registration"><a class="anchor" href="#_asset_server_automatic_registration"></a>Asset server automatic registration</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The jar of the servlet plugin contains a <em>web-fragment.xml</em> that automatically declares the asset servlet simplifying
 further more the configuration of the application.</p>
 </div>
 
 </div>
-
-</div>
 </div>
 
-<h1 id="_portlet" class="sect0"><a class="anchor" href="#_portlet"></a>Portlet</h1>
-<div class="sect1">
-<h2 id="_juzu_portlet_plugin"><a class="anchor" href="#_juzu_portlet_plugin"></a>Juzu Portlet Plugin</h2>
-<div class="sectionbody">
+<h1 id="_portlet_plugin" class="sect0"><a class="anchor" href="#_portlet_plugin"></a>Portlet plugin</h1>
 <div class="paragraph">
 <p>The portlet plugin enhance Juzu portlet applications.</p>
 </div>
-<div class="sect2">
-<h3 id="_portlet_class_generation"><a class="anchor" href="#_portlet_class_generation"></a>Portlet class generation</h3>
+<div class="sect1">
+<h2 id="_portlet_class_generation"><a class="anchor" href="#_portlet_class_generation"></a>Portlet class generation</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>A Juzu portlet application is managed by a <code>JuzuPortlet</code> configured with the application name. The
 <code>@juzu.plugin.portlet.Portlet</code> annotation can be used to generate a subclass of the <code>JuzuPortlet</code> that configures
@@ -6017,8 +6271,10 @@ generated class in the application:</p>
 </div>
 
 </div>
-<div class="sect2">
-<h3 id="_portlet_preferences_injection"><a class="anchor" href="#_portlet_preferences_injection"></a>Portlet preferences injection</h3>
+</div>
+<div class="sect1">
+<h2 id="_portlet_preferences_injection"><a class="anchor" href="#_portlet_preferences_injection"></a>Portlet preferences injection</h2>
+<div class="sectionbody">
 <div class="dlist">
 <dl>
 <dt class="hdlist1">During the various phase of an application, the current portlet preferences can be injected</dt>
@@ -6047,8 +6303,6 @@ can only be performed during an action phase.
 </tr>
 </table>
 </div>
-
-</div>
 <div class="sect2">
 <h3 id="_resource_bundle_injection"><a class="anchor" href="#_resource_bundle_injection"></a>Resource bundle injection</h3>
 <div class="paragraph">
@@ -6075,8 +6329,12 @@ can only be performed during an action phase.
 </div>
 
 </div>
-<div class="sect2">
-<h3 id="_building_3"><a class="anchor" href="#_building_3"></a>Building</h3>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_building_3"><a class="anchor" href="#_building_3"></a>Building</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Add the Portlet plugin jar to your compilation classpath.</p>
 </div>
@@ -6089,11 +6347,9 @@ can only be performed during an action phase.
 <pre class="CodeRay"><code class="xml language-xml">&lt;dependency&gt;
   &lt;groupId&gt;org.juzu&lt;/groupId&gt;
   &lt;artifactId&gt;juzu-plugins-portlet&lt;/artifactId&gt;
-  &lt;version&gt;1.0.0-beta2&lt;/version&gt;
+  &lt;version&gt;1.0.0-cr1&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
-</div>
-
 </div>
 
 </div>
@@ -6101,12 +6357,10 @@ can only be performed during an action phase.
 
 <h1 id="_appendix" class="sect0"><a class="anchor" href="#_appendix"></a>Appendix</h1>
 <div class="sect1">
-<h2 id="_appendix_2"><a class="anchor" href="#_appendix_2"></a>Appendix</h2>
+<h2 id="_maven_configurations"><a class="anchor" href="#_maven_configurations"></a>Maven configurations</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_maven_configurations"><a class="anchor" href="#_maven_configurations"></a>Maven configurations</h3>
-<div class="sect3">
-<h4 id="servlet_guice"><a class="anchor" href="#servlet_guice"></a>Guice for a Servlet Container</h4>
+<h3 id="servlet_guice"><a class="anchor" href="#servlet_guice"></a>Guice for a Servlet Container</h3>
 <div class="listingblock">
 
 <div class="content monospaced">
@@ -6128,8 +6382,8 @@ can only be performed during an action phase.
 </div>
 
 </div>
-<div class="sect3">
-<h4 id="servlet_spring"><a class="anchor" href="#servlet_spring"></a>Spring for a Servlet Container</h4>
+<div class="sect2">
+<h3 id="servlet_spring"><a class="anchor" href="#servlet_spring"></a>Spring for a Servlet Container</h3>
 <div class="listingblock">
 
 <div class="content monospaced">
@@ -6151,8 +6405,8 @@ can only be performed during an action phase.
 </div>
 
 </div>
-<div class="sect3">
-<h4 id="servlet_cdi"><a class="anchor" href="#servlet_cdi"></a>CDI for a Servlet Container</h4>
+<div class="sect2">
+<h3 id="servlet_cdi"><a class="anchor" href="#servlet_cdi"></a>CDI for a Servlet Container</h3>
 <div class="listingblock">
 
 <div class="content monospaced">
@@ -6174,8 +6428,8 @@ can only be performed during an action phase.
 </div>
 
 </div>
-<div class="sect3">
-<h4 id="ee_guice"><a class="anchor" href="#ee_guice"></a>Guice for an EE Container</h4>
+<div class="sect2">
+<h3 id="ee_guice"><a class="anchor" href="#ee_guice"></a>Guice for an EE Container</h3>
 <div class="listingblock">
 
 <div class="content monospaced">
@@ -6198,8 +6452,8 @@ can only be performed during an action phase.
 </div>
 
 </div>
-<div class="sect3">
-<h4 id="ee_spring"><a class="anchor" href="#ee_spring"></a>Spring for an EE Container</h4>
+<div class="sect2">
+<h3 id="ee_spring"><a class="anchor" href="#ee_spring"></a>Spring for an EE Container</h3>
 <div class="listingblock">
 
 <div class="content monospaced">
@@ -6222,8 +6476,8 @@ can only be performed during an action phase.
 </div>
 
 </div>
-<div class="sect3">
-<h4 id="ee_cdi"><a class="anchor" href="#ee_cdi"></a>CDI for an EE Container</h4>
+<div class="sect2">
+<h3 id="ee_cdi"><a class="anchor" href="#ee_cdi"></a>CDI for an EE Container</h3>
 <div class="listingblock">
 
 <div class="content monospaced">
@@ -6242,8 +6496,8 @@ can only be performed during an action phase.
 </div>
 
 </div>
-<div class="sect3">
-<h4 id="gatein_guice"><a class="anchor" href="#gatein_guice"></a>Guice for GateIn Portal</h4>
+<div class="sect2">
+<h3 id="gatein_guice"><a class="anchor" href="#gatein_guice"></a>Guice for GateIn Portal</h3>
 <div class="listingblock">
 
 <div class="content monospaced">
@@ -6272,8 +6526,8 @@ can only be performed during an action phase.
 </div>
 
 </div>
-<div class="sect3">
-<h4 id="gatein_spring"><a class="anchor" href="#gatein_spring"></a>Spring for GateIn Portal</h4>
+<div class="sect2">
+<h3 id="gatein_spring"><a class="anchor" href="#gatein_spring"></a>Spring for GateIn Portal</h3>
 <div class="listingblock">
 
 <div class="content monospaced">
@@ -6301,8 +6555,8 @@ can only be performed during an action phase.
 </div>
 
 </div>
-<div class="sect3">
-<h4 id="gatein_cdi"><a class="anchor" href="#gatein_cdi"></a>CDI for GateIn Portal</h4>
+<div class="sect2">
+<h3 id="gatein_cdi"><a class="anchor" href="#gatein_cdi"></a>CDI for GateIn Portal</h3>
 <div class="listingblock">
 
 <div class="content monospaced">
@@ -6346,15 +6600,13 @@ can only be performed during an action phase.
 </div>
 
 </div>
-
-</div>
 </div>
 
 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2014-04-28 12:44:28 CEST
+Last updated 2014-05-23 13:47:21 CEST
 </div>
 </div>
 </body>

@@ -876,7 +876,39 @@ modifications to a subset of the Less files and integrate them in our applicatio
 <div class="listingblock">
 <div class="title">The necessary Bootstrap less files</div>
 <div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java"></code></pre>
+<pre class="CodeRay"><code class="java language-java"><span class="comment">/*!
+ * Bootstrap v2.0.3
+ *
+ * Copyright 2012 Twitter, Inc
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Designed and built with all the love in the world @twitter by @mdo and @fat.
+ */</span>
+
+<span class="comment">// CSS Reset</span>
+<span class="annotation">@import</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">reset.less</span><span class="delimiter">&quot;</span></span>;
+
+<span class="comment">// Core variables and mixins</span>
+<span class="annotation">@import</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">variables.less</span><span class="delimiter">&quot;</span></span>; <span class="comment">// Modify this for custom colors, font-sizes, etc</span>
+<span class="annotation">@import</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">mixins.less</span><span class="delimiter">&quot;</span></span>;
+
+<span class="comment">// Grid system and page structure</span>
+<span class="annotation">@import</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">scaffolding.less</span><span class="delimiter">&quot;</span></span>;
+
+<span class="comment">// Base CSS</span>
+<span class="annotation">@import</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">type.less</span><span class="delimiter">&quot;</span></span>;
+<span class="annotation">@import</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">forms.less</span><span class="delimiter">&quot;</span></span>;
+
+<span class="comment">// Components: common</span>
+<span class="annotation">@import</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">component-animations.less</span><span class="delimiter">&quot;</span></span>;
+
+<span class="comment">// Components: Buttons &amp; Alerts</span>
+<span class="annotation">@import</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">buttons.less</span><span class="delimiter">&quot;</span></span>;
+<span class="annotation">@import</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">button-groups.less</span><span class="delimiter">&quot;</span></span>;
+
+<span class="comment">// Components: Misc</span>
+<span class="annotation">@import</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">accordion.less</span><span class="delimiter">&quot;</span></span>;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1393,13 +1425,13 @@ testing an application with those tools:</p>
 &lt;dependency&gt;
   &lt;groupId&gt;org.juzu&lt;/groupId&gt;
   &lt;artifactId&gt;juzu-depchain-arquillian&lt;/artifactId&gt;
-  &lt;version&gt;1.0.0-beta2&lt;/version&gt;
+  &lt;version&gt;1.0.0-cr1&lt;/version&gt;
   &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;
 &lt;dependency&gt;
   &lt;groupId&gt;org.juzu&lt;/groupId&gt;
   &lt;artifactId&gt;juzu-depchain-arquillian-tomcat7&lt;/artifactId&gt;
-  &lt;version&gt;1.0.0-beta2&lt;/version&gt;
+  &lt;version&gt;1.0.0-cr1&lt;/version&gt;
   &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
@@ -1535,7 +1567,7 @@ can be found in the package you downloaded in the <em>booking</em> directory.</p
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2014-04-28 12:43:58 CEST
+Last updated 2014-05-23 13:46:52 CEST
 </div>
 </div>
 </body>
