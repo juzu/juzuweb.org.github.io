@@ -1,3 +1,10 @@
+# Version
+
+The Juzu version should be changed in the files:
+
+- `jbake.properties` : property `juzu.version`
+- `pom.xml` : property `juzu.version`
+
 # Preview howto
 
 - install jbake 2.2.1 (http://jbake.org)
