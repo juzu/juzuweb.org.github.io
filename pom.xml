@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-  <packaging>jar</packaging>
+  <packaging>pom</packaging>
 
   <groupId>org.juzu</groupId>
   <artifactId>juzu-site</artifactId>
@@ -13,7 +13,14 @@
 
   <properties>
     <juzu.version>1.0.0-cr1</juzu.version>
+    <!-- Old version for doc -->
+    <juzu.version-0.6.2>0.6.2</juzu.version-0.6.2>
   </properties>
+
+  <!-- Docs for old versions -->
+  <modules>
+    <module>${juzu.version-0.6.2}</module>
+  </modules>
 
   <scm>
     <connection>scm:git:git://github.com/juzu/juzu.github.com.git</connection>
@@ -92,7 +99,10 @@
         <executions>
           <execution>
             <configuration>
+
               <target>
+
+                <!-- Latest version -->
                 <property name="site" value="${project.build.directory}/output/"/>
                 <property name="tutorial" value="${site}/tutorial/"/>
                 <property name="reference" value="${site}/reference/"/>
@@ -105,7 +115,17 @@
                 <rename src="${tutorial}/book.html" dest="${tutorial}/index.html"/>
                 <rename src="${reference}/book.html" dest="${reference}/index.html"/>
                 <rename src="${extension}/book.html" dest="${extension}/index.html"/>
+
+                <!-- Old version -->
+                <property name="docs-previous-version" value="target/output"/>
+
+                <!-- 0.6.2 -->
+                <copy todir="${site}/${juzu.version-0.6.2}">
+                  <fileset dir="${juzu.version-0.6.2}/${docs-previous-version}/${juzu.version-0.6.2}" />
+                </copy>
+
               </target>
+
             </configuration>
             <goals>
               <goal>run</goal>
