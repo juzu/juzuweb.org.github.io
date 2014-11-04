@@ -11,10 +11,6 @@
   <name>Juzu Website</name>
   <description>The website</description>
 
-  <properties>
-    <juzu.version>0.6.2</juzu.version>
-  </properties>
-
   <dependencies>
     
     <!-- Current version -->
@@ -23,20 +19,20 @@
       <artifactId>juzu-doc-reference-guide</artifactId>
       <classifier>html</classifier>
       <type>zip</type>
-      <version>${juzu.version}</version>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>org.juzu</groupId>
       <artifactId>juzu-doc-reference-api</artifactId>
       <classifier>javadoc</classifier>
-      <version>${juzu.version}</version>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>org.juzu</groupId>
       <artifactId>juzu-doc-tutorial-guide</artifactId>
       <classifier>html</classifier>
       <type>zip</type>
-      <version>${juzu.version}</version>
+      <version>${project.version}</version>
     </dependency>
 
   </dependencies>
@@ -54,11 +50,11 @@
                 <property name="site" value="${project.build.directory}/output/"/>
 
                 <!-- current version -->
-                <unzip src="${org.juzu:juzu-doc-tutorial-guide:zip:html}" dest="${site}/${juzu.version}/tutorial/"/>
-                <unzip src="${org.juzu:juzu-doc-reference-guide:zip:html}" dest="${site}/${juzu.version}/reference"/>
-                <unzip src="${org.juzu:juzu-doc-reference-api:jar:javadoc}" dest="${site}/${juzu.version}/javadoc"/>
-                <rename src="${site}/${juzu.version}/tutorial/book.html" dest="${site}/${juzu.version}/tutorial/index.html"/>
-                <rename src="${site}/${juzu.version}/reference/book.html" dest="${site}/${juzu.version}/reference/index.html"/>
+                <unzip src="${org.juzu:juzu-doc-tutorial-guide:zip:html}" dest="${site}/${project.version}/tutorial/"/>
+                <unzip src="${org.juzu:juzu-doc-reference-guide:zip:html}" dest="${site}/${project.version}/reference"/>
+                <unzip src="${org.juzu:juzu-doc-reference-api:jar:javadoc}" dest="${site}/${project.version}/javadoc"/>
+                <rename src="${site}/${project.version}/tutorial/book.html" dest="${site}/${project.version}/tutorial/index.html"/>
+                <rename src="${site}/${project.version}/reference/book.html" dest="${site}/${project.version}/reference/index.html"/>
 
               </target>
             </configuration>
