@@ -19,17 +19,17 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Project <b class="caret-square"></b></a>
         <ul class="dropdown-menu">
           <li><a href="features.html"><span>Features</span></a></li>
-          <li><a href="https://github.com/juzu/juzu/blob/master/roadmap.asciidoc"><span>Road map</span></a></li>
-          <li><a href="https://github.com/juzu/juzu"><span>Contribute</span></a></li>
+          <li><a target="_blank" href="https://github.com/juzu/juzu"><span>Contribute</span></a></li>
         </ul>
         </li>
         <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Documentation <b class="caret-square"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="tutorial/index.html"><span>Tutorial</span></a></li>
-          <li><a href="reference/index.html"><span>Reference</span></a></li>
-          <li><a href="javadoc/index.html" target="blank_"><span>Javadoc</span></a></li>
-          <li><a href="extension/index.html"><span>Extension</span></a></li>
+          <li><a target="_blank" href="tutorial/index.html"><span>Tutorial</span></a></li>
+          <li><a target="_blank" href="portlet-tutorial/index.html"><span>Portlet Tutorial</span></a></li>
+          <li><a target="_blank" href="reference/index.html"><span>Reference</span></a></li>
+          <li><a target="_blank" href="javadoc/index.html" target="blank_"><span>Javadoc</span></a></li>
+          <li><a target="_blank" href="extension/index.html"><span>Extension</span></a></li>
         </ul>
         </li>
         <li><a href="screencasts.html">Screencasts</a></li>
