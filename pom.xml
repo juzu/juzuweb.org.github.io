@@ -1,161 +1,172 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-  <packaging>pom</packaging>
+    <packaging>pom</packaging>
 
-  <groupId>org.juzu</groupId>
-  <artifactId>juzu-site</artifactId>
-  <version>1.0-SNAPSHOT</version>
+    <groupId>org.juzu</groupId>
+    <artifactId>juzu-site</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
-  <name>Juzu Website</name>
-  <description>The website</description>
+    <name>Juzu Website</name>
+    <description>The website</description>
 
-  <properties>
-    <juzu.version>1.0.0-cr1</juzu.version>
-    <!-- Old version for doc -->
-    <juzu.version-0.6.2>0.6.2</juzu.version-0.6.2>
-  </properties>
+    <properties>
+        <juzu.version>1.0.0-cr1</juzu.version>
+        <!-- Old version for doc -->
+        <juzu.version-0.6.2>0.6.2</juzu.version-0.6.2>
+    </properties>
 
-  <!-- Docs for old versions -->
-  <modules>
-    <module>${juzu.version-0.6.2}</module>
-  </modules>
+    <!-- Docs for old versions -->
+    <modules>
+        <module>${juzu.version-0.6.2}</module>
+    </modules>
 
-  <scm>
-    <connection>scm:git:git://github.com/juzu/juzu.github.com.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/juzu/juzu.github.com.git</developerConnection>
-    <url>https://github.com/juzu/juzu.github.com</url>
-  </scm>
+    <scm>
+        <connection>scm:git:git://github.com/juzu/juzu.github.com.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/juzu/juzu.github.com.git</developerConnection>
+        <url>https://github.com/juzu/juzu.github.com</url>
+    </scm>
 
-  <distributionManagement>
-    <site>
-      <id>site_id</id>
-      <url>scm:git:git@github.com:juzu/juzu.github.com.git</url>
-    </site>
-  </distributionManagement>
+    <distributionManagement>
+        <site>
+            <id>site_id</id>
+            <url>scm:git:git@github.com:juzu/juzu.github.com.git</url>
+        </site>
+    </distributionManagement>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.juzu</groupId>
-      <artifactId>juzu-doc-reference-guide</artifactId>
-      <classifier>html</classifier>
-      <type>zip</type>
-      <version>${juzu.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.juzu</groupId>
-      <artifactId>juzu-doc-reference-api</artifactId>
-      <classifier>javadoc</classifier>
-      <version>${juzu.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.juzu</groupId>
-      <artifactId>juzu-doc-tutorial-guide</artifactId>
-      <classifier>html</classifier>
-      <type>zip</type>
-      <version>${juzu.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.juzu</groupId>
-      <artifactId>juzu-doc-extension-guide</artifactId>
-      <classifier>html</classifier>
-      <type>zip</type>
-      <version>${juzu.version}</version>
-    </dependency>
-  </dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>org.juzu</groupId>
+            <artifactId>juzu-doc-reference-guide</artifactId>
+            <classifier>html</classifier>
+            <type>zip</type>
+            <version>${juzu.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.juzu</groupId>
+            <artifactId>juzu-doc-reference-api</artifactId>
+            <classifier>javadoc</classifier>
+            <version>${juzu.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.juzu</groupId>
+            <artifactId>juzu-doc-tutorial-guide</artifactId>
+            <classifier>html</classifier>
+            <type>zip</type>
+            <version>${juzu.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.juzu</groupId>
+            <artifactId>juzu-doc-extension-guide</artifactId>
+            <classifier>html</classifier>
+            <type>zip</type>
+            <version>${juzu.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.juzu</groupId>
+            <artifactId>juzu-doc-tutorial-portlet-guide</artifactId>
+            <classifier>html</classifier>
+            <type>zip</type>
+            <version>${juzu.version}</version>
+        </dependency>
+    </dependencies>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>br.com.ingenieux</groupId>
-        <artifactId>jbake-maven-plugin</artifactId>
-        <version>0.0.6</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-            <phase>site</phase>
-            <configuration>
-              <inputDirectory>${project.basedir}</inputDirectory>
-              <outputDirectory>${project.build.directory}/output</outputDirectory>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <version>3.3</version>
-        <configuration>
-          <skip>true</skip>
-          <skipDeploy>true</skipDeploy>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-antrun-plugin</artifactId>
-        <version>1.7</version>
-        <executions>
-          <execution>
-            <configuration>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>br.com.ingenieux</groupId>
+                <artifactId>jbake-maven-plugin</artifactId>
+                <version>0.0.6</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <phase>site</phase>
+                        <configuration>
+                            <inputDirectory>${project.basedir}</inputDirectory>
+                            <outputDirectory>${project.build.directory}/output</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <skip>true</skip>
+                    <skipDeploy>true</skipDeploy>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <configuration>
 
-              <target>
+                            <target>
 
-                <!-- Latest version -->
-                <property name="site" value="${project.build.directory}/output/"/>
-                <property name="tutorial" value="${site}/tutorial/"/>
-                <property name="reference" value="${site}/reference/"/>
-                <property name="javadoc" value="${site}/javadoc/"/>
-                <property name="extension" value="${site}/extension/"/>
-                <unzip src="${org.juzu:juzu-doc-tutorial-guide:zip:html}" dest="${tutorial}"/>
-                <unzip src="${org.juzu:juzu-doc-reference-guide:zip:html}" dest="${reference}"/>
-                <unzip src="${org.juzu:juzu-doc-reference-api:jar:javadoc}" dest="${javadoc}"/>
-                <unzip src="${org.juzu:juzu-doc-extension-guide:zip:html}" dest="${extension}"/>
-                <rename src="${tutorial}/book.html" dest="${tutorial}/index.html"/>
-                <rename src="${reference}/book.html" dest="${reference}/index.html"/>
-                <rename src="${extension}/book.html" dest="${extension}/index.html"/>
+                                <!-- Latest version -->
+                                <property name="site" value="${project.build.directory}/output/"/>
+                                <property name="tutorial" value="${site}/tutorial/"/>
+                                <property name="reference" value="${site}/reference/"/>
+                                <property name="javadoc" value="${site}/javadoc/"/>
+                                <property name="extension" value="${site}/extension/"/>
+                                <property name="portlet-tutorial" value="${site}/portlet-tutorial/"/>
+                                <unzip src="${org.juzu:juzu-doc-tutorial-guide:zip:html}" dest="${tutorial}"/>
+                                <unzip src="${org.juzu:juzu-doc-reference-guide:zip:html}" dest="${reference}"/>
+                                <unzip src="${org.juzu:juzu-doc-reference-api:jar:javadoc}" dest="${javadoc}"/>
+                                <unzip src="${org.juzu:juzu-doc-extension-guide:zip:html}" dest="${extension}"/>
+                                <unzip src="${org.juzu:juzu-doc-tutorial-portlet-guide:zip:html}" dest="${portlet-tutorial}"/>
+                                <rename src="${tutorial}/book.html" dest="${tutorial}/index.html"/>
+                                <rename src="${reference}/book.html" dest="${reference}/index.html"/>
+                                <rename src="${extension}/book.html" dest="${extension}/index.html"/>
 
-                <!-- Old version -->
-                <property name="docs-previous-version" value="target/output"/>
+                                <!-- Old version -->
+                                <property name="docs-previous-version" value="target/output"/>
 
-                <!-- 0.6.2 -->
-                <copy todir="${site}/${juzu.version-0.6.2}">
-                  <fileset dir="${juzu.version-0.6.2}/${docs-previous-version}/${juzu.version-0.6.2}" />
-                </copy>
+                                <!-- 0.6.2 -->
+                                <copy todir="${site}/${juzu.version-0.6.2}">
+                                    <fileset
+                                            dir="${juzu.version-0.6.2}/${docs-previous-version}/${juzu.version-0.6.2}"/>
+                                </copy>
 
-              </target>
+                            </target>
 
-            </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
-            <phase>site</phase>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-scm-publish-plugin</artifactId>
-        <version>1.0</version>
-        <configuration>
-          <pubScmUrl>scm:git:https://github.com/juzu/juzu.github.com</pubScmUrl>
-          <scmBranch>master</scmBranch>
-          <username>${github.global.userName}</username>
-          <password>${github.global.password}</password>
-          <content>${project.build.directory}/output</content>
-          <tryUpdate>true</tryUpdate>
-        </configuration>
-        <executions>
-          <execution>
-            <phase>site-deploy</phase>
-            <goals>
-              <goal>publish-scm</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>site</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-scm-publish-plugin</artifactId>
+                <version>1.0</version>
+                <configuration>
+                    <pubScmUrl>scm:git:https://github.com/juzu/juzu.github.com</pubScmUrl>
+                    <scmBranch>master</scmBranch>
+                    <username>${github.global.userName}</username>
+                    <password>${github.global.password}</password>
+                    <content>${project.build.directory}/output</content>
+                    <tryUpdate>true</tryUpdate>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>site-deploy</phase>
+                        <goals>
+                            <goal>publish-scm</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
