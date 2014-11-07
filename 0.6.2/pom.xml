@@ -8,7 +8,7 @@
   <artifactId>juzu-site-doc</artifactId>
   <version>0.6.2</version>
 
-  <name>Juzu Website</name>
+  <name>Juzu Website doc ${project.version}</name>
   <description>The website</description>
 
   <dependencies>
