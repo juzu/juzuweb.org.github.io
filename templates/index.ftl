@@ -2,57 +2,176 @@
 
     <#assign affix="affix-top">
     <#include "menu.ftl">
+	<section class="section-banner">
+		<section class="banner">
+			<div class="caption">
+				<h2 class="clearfix"><span class="first-line pull-left">Web Framework to develop powerful web applications</span></h2>
+				<h2 class="clearfix"><span class="second-line pull-right">Emphasises on simplicity and type safety</span></h2>
+				<h2 class="clearfix"><span class="third-line pull-right">Open source and open minded </span></h2>
+			</div>
+		</section> <!-- end banner -->
+	</section>
+	
+	<div class="whiteBlock">
+		<div class="container">
+			<div class="features">
+				<div class="page-header"><h1 class="big-title-with-arrow">Features</h1></div>
+				<div class="row">
+					<div class="col-md-6">
+						<h3 class="title-with-line"><span>Web Client Programming</span></h3>
+						<p>Juzu makes client side programming easy as it supports declarative assets for JavaScript and Stylesheet.</p>
+						<p>You can also easily reuse client-side web libraries in your project with the Webjars support.</p>
+					</div>
+					<div class="col-md-6">
+						<div class="resources bgBlue1">
+							<pre><code>@WebJars(@WebJar("jquery"))
+  @Scripts(
+     {
+         @Script(id = "jquery", value = "jquery/1.10.2/jquery.js"),
+         @Script(value = "javascripts/myJs.js", depends = "jquery")
+       }
+   )
+  @Assets("*")</code></pre>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-md-push-6">
+						<h3 class="title-with-line"><span>Controller</span></h3>
+						<p>Process all the requests of your application using controllers: a simply annotated method of the application with @View, @Action, @Resources or @Event.</p>
+						<p>Controllers request parameters can be Primitive Types, Multivalued Type and Bean types.</p>
+					</div>
+					<div class="col-md-6 col-md-pull-6">
+						<div class="resources bgOrange">
+							 <pre><code>@View 
+  public Response.Content index() { 
+    ...
+  }
 
-    <div id="main">
-    <div class="page">
-      <div class="header-banner">
-      <div class="background-banner">
-        <div class="container">
-          <div class="cleafix">
-          <div class="social-box">
-            <ul class="social-list-link">
-            <li><a target="_blank" href="https://github.com/juzu/juzu"><i class="icon-jz-soc-github"></i></a></li>
-            <li><a target="_blank" href="https://www.facebook.com/eXoPlatform"><i class="icon-jz-soc-facebook"></i></a></li>
-            <li><a target="_blank" href="https://twitter.com/juzuweb"><i class="icon-jz-soc-twitter"></i></a></li>
-            <li><a target="_blank" href="https://www.linkedin.com/company/exo-platform"><i class="icon-jz-soc-linkedin"></i></a></li>
-            <li><a target="_blank" href="http://community.exoplatform.com/portal/g/:spaces:juzu/juzu/forum"><i class="icon-jz-soc-exo"></i></a></li>
-            </ul>
-          </div>
-          <div class="banner-content">
-            <h2 class="title">Juzu Web Framework</h2>
-            <h3 class="desc">Develop powerful web applications<br>Emphasises on simplicity and type safety<br>Open source project and open minded</h3>
-          </div>
-          </div>
-        </div><!-- /.container -->
-      </div><!-- /.background-banner -->
-      </div> <!-- /.header-banner -->
-      <div class="features-top-box">
-      <div class="container">
-        <div class="box-top clearfix">
-        <div class="pediment-cont one">
-          <h3 class="title"><a href="http://search.maven.org/remotecontent?filepath=org/juzu/juzu-distrib/${config.juzu_version}/juzu-distrib-${config.juzu_version}.zip">Download</a></h3>
-          <span class="desc">or check out <br>the <a href="https://github.com/juzu/juzu/releases/tag/${config.juzu_version}">sources</a></span>
-        </div>
-        <div class="pediment-cont two">
-          <h3 class="title">Juzu in Action</h3>
-          <span class="desc"><a href="screencasts.html">Screencasts</a></span>
-        </div>
-        </div>
-        <div class="box-bottom clearfix">
-        <div class="pediment-cont three">
-          <h3 class="title">Run</h3>
-          <span class="desc">Servlet containers <br>Web portals like <br><a href="http://www.exoplatform.com">eXo Platform</a></span>
-        </div>
-        <div class="pediment-cont four">
-          <h2 class="title">Features</h2>
-          <a class="features-findout" href="features.html">
-            <strong>Find out</strong>
-          </a>
-          </div>
-        </div>
-      </div>
-      </div><!-- /.features-top-box -->
-    </div><!-- /.page one -->
-
-    </div><!-- /#main -->
+  @Action 
+  public Response login(@Mapped User user) {
+    ...
+  }</code></pre>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<h3 class="title-with-line"><span>Graphical component libraries</span></h3>
+						<p>Create your own libraries of Graphical Component and reuse it in any Juzu application by implementing simple tags.</p>
+						<p>Simple tags allow creation of custom tags with templates.</p>
+					</div>
+					<div class="col-md-6">
+						<div class="resources bgGreen">
+							<pre><code>//my reusable footer
+&lt;div class="footer"&gt;
+Created with &lt;a href="http://www.github.com/juzu"&gt;juzu&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+						</div>
+					</div>
+				</div>
+				<div class="loadMore text-center"><a href="#">See all the features</a></div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="grayBlock">
+		<div class="container">
+			<div class="video">
+				<div class="page-header"><h1 class="big-title-with-arrow">Video</h1></div>
+				<div class="row">
+					<div class="col-md-5">
+						<div class="info">Hello Juzu.<br /> This is how to make a simple hello word in Juzu!</div>
+					</div>
+					<div class="col-md-7">
+						<div class="video-wrapper text-center"><iframe height="281" frameborder="0" width="500" allowfullscreen="" mozallowfullscreen="" webkitallowfullscreen="" src="//player.vimeo.com/video/74553180"></iframe></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="whiteBlock">
+		<div class="container">
+			<div class="download">
+				<div class="page-header"><h1 class="big-title-with-arrow">Download</h1></div>
+				<div class="row">
+					<div class="col-md-4"><div class="big-text text-blue">1.0.0</div></div>
+					<div class="col-md-8">
+						<div class="info3">
+							<p>Tutorial: <a href="#" class="text-blue">Weather</a></p>
+							<p>Guide: <a href="#" class="text-blue">Reference</a>, <a href="#" class="text-blue">extension</a></p>
+							<p>Doc: <a href="#" class="text-blue">Javadoc</a></p>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4"><div class="big-text text-gray">0.6.2</div></div>
+					<div class="col-md-8">
+						<div class="info3">
+							<p>Tutorial: <a href="#" class="text-blue">Weather</a></p>
+							<p>Guide: <a href="#" class="text-blue">Reference</a>, <a href="#" class="text-blue">extension</a></p>
+							<p>Doc: <a href="#" class="text-blue">Javadoc</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="grayBlock">
+		<div class="container">
+			<div class="partner">
+				<div class="page-header"><h1 class="big-title-with-arrow">They can run Juzu web applications</h1></div>
+				
+				<div class="row">
+					<div class="col-md-12">
+						<div class="col-md-12">
+							<div class="col-md-12">
+								<div class="col-md-3">
+									<div class="panel">
+										<div class="panel-body">
+											<a class="thumbnail" href="#"><img class="img-responsive" src="../images/logo/tomcat.png" /></a>
+											<h4>Tomcat</h4>
+											<p>or Any Servlet container</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="panel">
+										<div class="panel-body">
+											<a class="thumbnail" href="#"><img class="img-responsive" src="../images/logo/exo.png" /></a>
+											<h4>eXo Platform</h4>
+											<p>The Enterprise Social Platform</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="panel">
+										<div class="panel-body">
+											<a class="thumbnail" href="#"><img class="img-responsive" src="../images/logo/vertx.png" /></a>
+											<h4>Vert.x</h4>
+											<p>Application platform for the JVM</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="panel">
+										<div class="panel-body">
+											<a class="thumbnail" href="#"><img class="img-responsive" src="../images/logo/gatein.png" /></a>
+											<h4>GateIn</h4>
+											<p>Open Source Website Framework</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
     <#include "footer.ftl">
