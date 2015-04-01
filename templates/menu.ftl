@@ -19,14 +19,7 @@
 				<div class="collapse navbar-collapse" id="navbarCollapse">
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="index.html">Home</a></li>
-						<li class="active dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Feature <i class="arrowIcon"></i></a>
-							<ul class="dropdown-menu">
-								<li><a href="features.html"><span>Features</span></a></li>
-								<li><a href="https://github.com/juzu/juzu/blob/master/roadmap.asciidoc"><span>Road map</span></a></li>
-								<li><a href="https://github.com/juzu/juzu"><span>Contribute</span></a></li>
-							</ul>
-						</li>
+						<li><a href="features.html">Features</a></li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Documentation <i class="arrowIcon"></i></a>
 							<ul class="dropdown-menu">
@@ -34,11 +27,12 @@
 								<li><a href="reference/index.html"><span>Reference</span></a></li>
 								<li><a href="javadoc/index.html" target="blank_"><span>Javadoc</span></a></li>
 								<li><a href="extension/index.html"><span>Extension</span></a></li>
+								<li><a href="tutorial-portlet/index.html"><span>Tutorial portlet</span></a></li>
 							</ul>
 						</li>
 						<li><a href="screencasts.html">Screencasts</a></li>
 						<li class="menu-icon-item">
-							<ul>
+							<ul class="clearfix">
 								<li><a href="https://github.com/crashub/crash"><i class="uiIconCrash uiIconGithub"></i></a></li>
 								<li><a href="https://twitter.com/crashub"><i class="uiIconCrash uiIconTwitter"></i></a></li>
 								<li><a href="http://community.exoplatform.com/portal/g/:spaces:crash/crash/forum"><i class="uiIconCrash uiIconExo"></i></a></li>

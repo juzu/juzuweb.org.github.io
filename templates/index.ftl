@@ -94,8 +94,8 @@ Created with &lt;a href="http://www.github.com/juzu"&gt;juzu&lt;/a&gt;
 	
 	<div class="whiteBlock">
 		<div class="container">
-			<div class="download">
-				<div class="page-header"><h1 class="big-title-with-arrow">Download</h1></div>
+			<div class="documentation">
+				<div class="page-header"><h1 class="big-title-with-arrow">Documentation</h1></div>
 				<div class="row">
 					<div class="col-md-4"><div class="big-text text-blue">1.0.0</div></div>
 					<div class="col-md-8">
@@ -126,48 +126,44 @@ Created with &lt;a href="http://www.github.com/juzu"&gt;juzu&lt;/a&gt;
 				<div class="page-header"><h1 class="big-title-with-arrow">They can run Juzu web applications</h1></div>
 				
 				<div class="row">
-					<div class="col-md-12">
-						<div class="col-md-12">
-							<div class="col-md-12">
-								<div class="col-md-3">
-									<div class="panel">
-										<div class="panel-body">
-											<a class="thumbnail" href="#"><img class="img-responsive" src="../images/logo/tomcat.png" /></a>
-											<h4>Tomcat</h4>
-											<p>or Any Servlet container</p>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="panel">
-										<div class="panel-body">
-											<a class="thumbnail" href="#"><img class="img-responsive" src="../images/logo/exo.png" /></a>
-											<h4>eXo Platform</h4>
-											<p>The Enterprise Social Platform</p>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="panel">
-										<div class="panel-body">
-											<a class="thumbnail" href="#"><img class="img-responsive" src="../images/logo/vertx.png" /></a>
-											<h4>Vert.x</h4>
-											<p>Application platform for the JVM</p>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="panel">
-										<div class="panel-body">
-											<a class="thumbnail" href="#"><img class="img-responsive" src="../images/logo/gatein.png" /></a>
-											<h4>GateIn</h4>
-											<p>Open Source Website Framework</p>
-										</div>
-									</div>
-								</div>
-							</div>
+								
+				<div class="col-sm-6 col-xs-12 col-md-4 col-lg-3">
+					<div class="panel">
+						<div class="panel-body">
+							<a class="thumbnail" href="#"><img class="img-responsive" src="../images/logo/tomcat.png" /></a>
+							<h4>Tomcat</h4>
+							<p>or Any Servlet container</p>
 						</div>
 					</div>
+				</div>
+				<div class="col-sm-6 col-xs-12 col-md-4 col-lg-3">
+					<div class="panel">
+						<div class="panel-body">
+							<a class="thumbnail" href="#"><img class="img-responsive" src="../images/logo/exo.png" /></a>
+							<h4>eXo Platform</h4>
+							<p>The Enterprise Social Platform</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6 col-xs-12 col-md-4 col-lg-3">
+					<div class="panel">
+						<div class="panel-body">
+							<a class="thumbnail" href="#"><img class="img-responsive" src="../images/logo/vertx.png" /></a>
+							<h4>Vert.x</h4>
+							<p>Application platform for the JVM</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6 col-xs-12 col-md-4 col-lg-3">
+					<div class="panel">
+						<div class="panel-body">
+							<a class="thumbnail" href="#"><img class="img-responsive" src="../images/logo/gatein.png" /></a>
+							<h4>GateIn</h4>
+							<p>Open Source Website Framework</p>
+						</div>
+					</div>
+				</div>
+								
 				</div>
 			</div>
 		</div>
