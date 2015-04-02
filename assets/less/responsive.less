@@ -189,16 +189,6 @@
 					color: @textColor;
 				}
 			} 	
-			> li:hover, li.active {
-				border-radius: 0;
-				border: none;
-				background: transparent;
-				a {
-					color: @textColor;
-					border: none;
-					background: none;
-				}
-			}
 			> li.open {
 				> a, > a:hover, > a:focus {
 					border: none;
@@ -209,19 +199,19 @@
 					border: none;
 					padding-left: 20px;
 					display: block;
-					li {
+					> li {
 						float: none;
 					}
 				}
 			}
-			> li.menu-icon-item > ul {
+			> li.menu-icon-item ul {
 				border-top: 1px solid @lightBlue;
 				text-align: center;
 				padding-left: 0;
-				> li:nth-child(n) {
+				li {
 					border-left: none;
-				    display: inline-block;
-				    float: none;
+					display: inline-block;
+					float: none;
 					a {
 						background: none;
 					}
@@ -273,14 +263,26 @@
 @media (min-width: 768px) and (max-width: 989px) {
 	body {
 		.navbar .navbar-right {
-			> li > a {
-				padding: 7px 8px;
+			> li {
+				> a {
+					padding: 7px 8px;
+				}
 			}
-			> li.menu-icon-item ul {
-				padding-left: 0;
+			> li.dropdown > a {
+				min-width: 175px;	 
 			}
-			li.open .dropdown-menu {
-				min-width: 160px;
+			> li.open {
+				> a, > a:hover, > a:focus {
+					min-width: 175px;
+				}
+				.dropdown-menu {
+					min-width: 175px;
+				}
+			}
+			> li.menu-icon-item {
+				ul {
+					padding-left: 0;
+				}
 			}
 		}
 		.section-banner .banner {

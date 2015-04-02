@@ -43,6 +43,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 				font-size: @font-size-h4;
 				&:hover, &:focus {
 					background-color: transparent;
+					color: @blue;
 				}
 				.arrowIcon {
 					background: url("@{image-path}icon/arrow-icon.png") no-repeat left 2px;
@@ -51,10 +52,13 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 					display: inline-block;
 				}
 			}
-			
 		}
 		
-		> li.open {
+		> li.dropdown > a {
+			min-width: 200px;	 
+		}
+		
+		> li.open{
 			background: transparent;
 			> a, > a:hover, > a:focus {
 				background: transparent;
@@ -62,6 +66,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 				border: 1px solid #bdbdbd;
 				border-radius: 5px 5px 0 0;
 				border-bottom:  none;
+				min-width: 200px;
 				.arrowIcon {
 					background: url("@{image-path}icon/arrow-icon.png") no-repeat left -14px;
 					width: 16px;
@@ -73,7 +78,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 				border: 1px solid #bdbdbd;
 				border-radius: 0 0 5px 5px;
 				border-top: none;
-				min-width: 184px;
+				min-width: 200px;
 				box-shadow: none;
 				padding: 0 0 5px;
 				> li {
