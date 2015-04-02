@@ -1,5 +1,5 @@
 /*320*/
-@media (min-width: 320px) and (max-width:639px) { 
+@media (max-width:639px) { 
 	body {
 		
 		h1 {
@@ -25,7 +25,57 @@
 		.page-header, .video .page-header {
 			margin: 0;
 		}
-		
+		.navbar .navbar-right {
+			position: static;
+			
+			> li {
+				padding: 5px 0;
+				border: none;
+				margin: 0;
+				a {
+					border: none;
+					color: @textColor;
+				}
+			} 	
+			> li:hover, li.active {
+				border-radius: 0;
+				border: none;
+				background: transparent;
+				a {
+					color: @textColor;
+					border: none;
+					background: none;
+				}
+			}
+			> li.open {
+				> a, > a:hover, > a:focus {
+					border: none;
+					background: none;				
+				}
+				
+				.dropdown-menu {
+					border: none;
+					padding-left: 20px;
+					display: block;
+					li {
+						float: none;
+					}
+				}
+			}
+			> li.menu-icon-item > ul {
+				border-top: 1px solid @lightBlue;
+				text-align: center;
+				padding-left: 0;
+				> li:nth-child(n) {
+					border-left: none;
+				    display: inline-block;
+				    float: none;
+					a {
+						background: none;
+					}
+				}
+			}
+		}
 		.section-banner .banner {
 			.caption {
 				padding: 30px 0;
@@ -127,28 +177,54 @@
 		.video .video-wrapper {
 			margin-top: 20px;
 		}
-		
 		.navbar .navbar-right {
 			position: static;
+			
 			> li {
 				padding: 5px 0;
 				border: none;
 				margin: 0;
+				a {
+					border: none;
+					color: @textColor;
+				}
 			} 	
 			> li:hover, li.active {
 				border-radius: 0;
 				border: none;
+				background: transparent;
 				a {
-					color: @lightGray;
+					color: @textColor;
+					border: none;
+					background: none;
 				}
 			}
-			> li > ul {
+			> li.open {
+				> a, > a:hover, > a:focus {
+					border: none;
+					background: none;				
+				}
+				
+				.dropdown-menu {
+					border: none;
+					padding-left: 20px;
+					display: block;
+					li {
+						float: none;
+					}
+				}
+			}
+			> li.menu-icon-item > ul {
 				border-top: 1px solid @lightBlue;
 				text-align: center;
-				> li {
+				padding-left: 0;
+				> li:nth-child(n) {
 					border-left: none;
-					float: none;
-					display: inline-block;
+				    display: inline-block;
+				    float: none;
+					a {
+						background: none;
+					}
 				}
 			}
 		}
@@ -203,6 +279,9 @@
 			> li.menu-icon-item ul {
 				padding-left: 0;
 			}
+			li.open .dropdown-menu {
+				min-width: 160px;
+			}
 		}
 		.section-banner .banner {
 			.caption {
@@ -236,6 +315,14 @@
     		.info3, .info2 {
     			padding: 0;
     		}
+		}
+	}
+}
+
+@media (max-width: 990px) {
+	.features {
+		.bgBlue1:before, .bgOrange:after, .bgGreen:before, .bgViolet:after, .bgBlue2:before {
+			border: none;
 		}
 	}
 }
