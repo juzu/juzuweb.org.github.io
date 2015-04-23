@@ -41,7 +41,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 				border: 1px solid transparent;
 				padding: 7px 20px;
 				font-size: @font-size-h4;
-				&:hover, &:focus {
+				&:hover, &:focus, &:active, &.active {
 					background-color: transparent;
 					color: @blue;
 				}
@@ -122,7 +122,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 						.uiIconCrash {
 							width: 24px;
 							height: 24px;
-							background: url("@{image-path}icon/menu-icon-dark.png") no-repeat left top;
+							background: url("@{image-path}icon/menu-icon-gray.png") no-repeat left top;
 							display: block;
 							&.uiIconGithub {
 								background-position: 0 0;
@@ -160,22 +160,25 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 		.caption {
 			color: @white;
 			width: 100%; 
-			padding: 175px 0;
+			padding: 105px 0;
 			h2 {
 				line-height: 1.2;
 				font-weight: 300;
 				span {
-					background: rgba(255, 255, 255, 0.1);
+					
 					display: inline-block;
 					margin: 5px 0;
 					&.first-line {
 						padding: 5px 20px 5px 95px;
+						background: rgba(255, 255, 255, 0.1);
 					}
 					&.second-line {
 						padding: 5px 60px 5px 20px;
+						background: rgba(81, 114, 170, 0.4);
 					}
 					&.third-line {
 						padding: 5px 400px 5px 20px;
+						background: rgba(0, 0, 0, 0.4);
 					}
 				}
 			}
@@ -289,6 +292,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 		border-radius: 5px;
 		padding: 10px;
 		position: relative;
+		pre code {
+			font-family: "Dosis Bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+			font-weight: bold;
+		}
 	}
 	
 	.bgBlue1 {
@@ -455,7 +462,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 		box-shadow: none;
 		background: transparent;
 		.panel-body {
-			padding: 15px 0;
+			padding: 15px;
 			.thumbnail {
 				border: none;
 				padding: 0;
