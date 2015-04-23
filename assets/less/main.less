@@ -41,7 +41,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 				border: 1px solid transparent;
 				padding: 7px 20px;
 				font-size: @font-size-h4;
-				&:hover, &:focus, &:active, &.active {
+				&:hover, &:focus {
 					background-color: transparent;
 					color: @blue;
 				}
@@ -51,6 +51,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 					height: 16px;
 					display: inline-block;
 				}
+			}
+			&.active a {
+				background-color: transparent;
+				color: @blue;
 			}
 		}
 		

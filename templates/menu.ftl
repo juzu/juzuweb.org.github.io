@@ -18,8 +18,8 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="navbarCollapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="index.html">Home</a></li>
-						<li><a href="features.html">Features</a></li>
+						<li <#if (content.title)??> <#else>class="active"</#if>><a href="/">Home</a></li>
+						<li <#if (content.title)??><#if (content.title == "Features")>class="active"</#if></#if>><a href="/features.html">Features</a></li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Documentation <i class="arrowIcon"></i></a>
 							<ul class="dropdown-menu">
@@ -30,7 +30,7 @@
 								<li><a href="tutorial-portlet/index.html"><span>Tutorial portlet</span></a></li>
 							</ul>
 						</li>
-						<li><a href="screencasts.html">Screencasts</a></li>
+						<li <#if (content.title)??><#if (content.title == "Screencasts")>class="active"</#if></#if>><a href="/screencasts.html">Screencasts</a></li>
 						<li class="menu-icon-item">
 							<ul class="clearfix">
 								<li><a href="https://github.com/crashub/crash"><i class="uiIconCrash uiIconGithub"></i></a></li>
