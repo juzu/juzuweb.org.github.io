@@ -24,13 +24,13 @@ status=published
 					<div class="col-md-6">
 						<div class="resources bgBlue1">
 							<pre><code>@WebJars(@WebJar("jquery"))
-	  @Scripts(
-	     {
-	         @Script(id = "jquery", value = "jquery/1.10.2/jquery.js"),
-	         @Script(value = "javascripts/myJs.js", depends = "jquery")
-	       }
-	   )
-	  @Assets("*")</code></pre>
+@Scripts(
+  {
+    @Script(id = "jquery", value = "jquery/1.10.2/jquery.js"),
+    @Script(value = "javascripts/myJs.js", depends = "jquery")
+  }
+ )
+ @Assets("*")</code></pre>
 						</div>
 					</div>
 				</div>
@@ -43,14 +43,14 @@ status=published
 					<div class="col-md-6 col-md-pull-6">
 						<div class="resources bgOrange">
 							 <pre><code>@View 
-	  public Response.Content index() { 
-	    ...
-	  }
-	
-	  @Action 
-	  public Response login(@Mapped User user) {
-	    ...
-	  }</code></pre>
+public Response.Content index() { 
+  ...
+}
+
+@Action 
+public Response login(@Mapped User user) {
+  ...
+}</code></pre>
 						</div>
 					</div>
 				</div>
@@ -63,9 +63,10 @@ status=published
 					<div class="col-md-6">
 						<div class="resources bgGreen">
 							<pre><code>//my reusable footer
-	&lt;div class="footer"&gt;
-	Created with &lt;a href="http://www.github.com/juzu"&gt;juzu&lt;/a&gt;
-	&lt;/div&gt;</code></pre>
+&lt;div class="footer"&gt;
+Created with &lt;a 
+href="http://www.github.com/juzu"&gt;juzu&lt;/a&gt;
+&lt;/div&gt;</code></pre>
 						</div>
 					</div>
 				</div>
@@ -79,12 +80,13 @@ status=published
 					<div class="col-md-6 col-md-pull-6">
 						<div class="resources bgViolet">
 							 <pre><code>@Bindings({
-	    @Binding(
-	      value = org.juzu.tutorial.services.SecretService.class, 
-	      implementation = org.juzu.tutorial.services.SecretServiceImpl.class, 
-	      scope = Scope.SINGLETON)
-	  })
-	  package org.juzu.tutorial;</code></pre>
+  @Binding(
+    value = org.juzu.tutorial.services.SecretService.class, 
+    implementation = 
+  org.juzu.tutorial.services.SecretServiceImpl.class, 
+    scope = Scope.SINGLETON)
+  })
+  package org.juzu.tutorial;</code></pre>
 						</div>
 					</div>
 				</div>
@@ -105,7 +107,7 @@ status=published
 					<div class="col-md-6">
 						<div class="resources bgBlue2">
 							<pre><code>@Less(value = "bootstrap.less", minify = true)
-	  package my.app;</code></pre>
+package my.app;</code></pre>
 						</div>
 					</div>
 				</div>	
@@ -118,9 +120,9 @@ status=published
 					<div class="col-md-6">	
 						<div class="resources bgBlue2">
 							<pre><code>@Application
-	  @WebJars("jquery.js")
-	  @Assets(scripts = { @Script(id = "jquery", src="jquery.js") })
-	  package my.app;</code></pre>
+@WebJars("jquery.js")
+@Assets(scripts = { @Script(id = "jquery", src="jquery.js") })
+package my.app;</code></pre>
 						</div>
 					</div>
 				</div>
@@ -133,7 +135,7 @@ status=published
 					<div class="col-md-6">
 						<div class="resources bgBlue2">
 							<pre><code>@Inject
-	  PortletPreferences prefs;</code></pre>
+PortletPreferences prefs;</code></pre>
 						</div>
 					</div>
 				</div>
