@@ -100,9 +100,9 @@ Created with &lt;a href="http://www.github.com/juzu"&gt;juzu&lt;/a&gt;
 					<div class="col-md-4"><div class="big-text text-blue">1.0.0</div></div>
 					<div class="col-md-8">
 						<div class="info3">
-							<p>Tutorial: <a href="#" class="text-blue">Weather</a></p>
-							<p>Guide: <a href="#" class="text-blue">Reference</a>, <a href="#" class="text-blue">extension</a></p>
-							<p>Doc: <a href="#" class="text-blue">Javadoc</a></p>
+							<p>Tutorial: <a href="tutorial/index.html" class="text-blue">Weather</a></p>
+							<p>Guide: <a href="reference/index.html" class="text-blue">Reference</a>, <a href="extension/index.html" class="text-blue">extension</a></p>
+							<p>Doc: <a href="javadoc/index.html" class="text-blue">Javadoc</a></p>
 						</div>
 					</div>
 				</div>
@@ -110,9 +110,9 @@ Created with &lt;a href="http://www.github.com/juzu"&gt;juzu&lt;/a&gt;
 					<div class="col-md-4"><div class="big-text text-gray">0.6.2</div></div>
 					<div class="col-md-8">
 						<div class="info3">
-							<p>Tutorial: <a href="#" class="text-blue">Weather</a></p>
-							<p>Guide: <a href="#" class="text-blue">Reference</a>, <a href="#" class="text-blue">extension</a></p>
-							<p>Doc: <a href="#" class="text-blue">Javadoc</a></p>
+							<p>Tutorial: <a href="0.6.2/tutorial/index.html" class="text-blue">Weather</a></p>
+							<p>Guide: <a href="0.6.2/reference/index.html" class="text-blue">Reference</a>, <a href="0.6.2/extension/index.html" class="text-blue">extension</a></p>
+							<p>Doc: <a href="0.6.2/javadoc/index.html" class="text-blue">Javadoc</a></p>
 						</div>
 					</div>
 				</div>
@@ -130,7 +130,7 @@ Created with &lt;a href="http://www.github.com/juzu"&gt;juzu&lt;/a&gt;
 				<div class="col-sm-6 col-xs-12 col-md-4 col-lg-3">
 					<div class="panel">
 						<div class="panel-body">
-							<a class="thumbnail" href="#"><img class="img-responsive" src="../images/logo/tomcat.png" /></a>
+							<a class="thumbnail" href="http://tomcat.apache.org/"><img class="img-responsive" src="../images/logo/tomcat.png" /></a>
 							<h4>Tomcat</h4>
 							<p>or Any Servlet container</p>
 						</div>
@@ -139,7 +139,7 @@ Created with &lt;a href="http://www.github.com/juzu"&gt;juzu&lt;/a&gt;
 				<div class="col-sm-6 col-xs-12 col-md-4 col-lg-3">
 					<div class="panel">
 						<div class="panel-body">
-							<a class="thumbnail" href="#"><img class="img-responsive" src="../images/logo/exo.png" /></a>
+							<a class="thumbnail" href="http://www.exoplatform.com/"><img class="img-responsive" src="../images/logo/exo.png" /></a>
 							<h4>eXo Platform</h4>
 							<p>The Enterprise Social Platform</p>
 						</div>
@@ -148,7 +148,7 @@ Created with &lt;a href="http://www.github.com/juzu"&gt;juzu&lt;/a&gt;
 				<div class="col-sm-6 col-xs-12 col-md-4 col-lg-3">
 					<div class="panel">
 						<div class="panel-body">
-							<a class="thumbnail" href="#"><img class="img-responsive" src="../images/logo/vertx.png" /></a>
+							<a class="thumbnail" href="http://vertx.io/"><img class="img-responsive" src="../images/logo/vertx.png" /></a>
 							<h4>Vert.x</h4>
 							<p>Application platform for the JVM</p>
 						</div>
@@ -157,7 +157,7 @@ Created with &lt;a href="http://www.github.com/juzu"&gt;juzu&lt;/a&gt;
 				<div class="col-sm-6 col-xs-12 col-md-4 col-lg-3">
 					<div class="panel">
 						<div class="panel-body">
-							<a class="thumbnail" href="#"><img class="img-responsive" src="../images/logo/gatein.png" /></a>
+							<a class="thumbnail" href="http://www.gatein.org/"><img class="img-responsive" src="../images/logo/gatein.png" /></a>
 							<h4>GateIn</h4>
 							<p>Open Source Website Framework</p>
 						</div>
