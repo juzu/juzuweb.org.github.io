@@ -85,7 +85,7 @@ Created with &lt;a href="http://www.github.com/juzu"&gt;juzu&lt;/a&gt;
 						<div class="info">Hello Juzu.<br /> This is how to make a simple hello word in Juzu!</div>
 					</div>
 					<div class="col-md-7">
-						<div class="video-wrapper text-center embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" height="281" frameborder="0" width="500" allowfullscreen="" mozallowfullscreen="" webkitallowfullscreen="" src="//player.vimeo.com/video/74553180"></iframe></div>
+						<div class="video-wrapper text-center embed-responsive embed-responsive-16by9"><iframe src="https://player.vimeo.com/video/33184509" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
 					</div>
 				</div>
 			</div>
