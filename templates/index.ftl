@@ -100,7 +100,7 @@ Created with &lt;a href="http://www.github.com/juzu"&gt;juzu&lt;/a&gt;
 					<div class="col-md-4"><div class="big-text text-blue">1.0.0</div></div>
 					<div class="col-md-8">
 						<div class="info3">
-							<p>Tutorial: <a href="tutorial/index.html" class="text-blue">Weather</a></p>
+							<p>Tutorial: <a href="tutorial/index.html" class="text-blue">Weather</a>, <a href="tutorial-portlet/index.html" class="text-blue">JuZcret</a>, </p>
 							<p>Guide: <a href="reference/index.html" class="text-blue">Reference</a>, <a href="extension/index.html" class="text-blue">extension</a></p>
 							<p>Doc: <a href="javadoc/index.html" class="text-blue">Javadoc</a></p>
 						</div>
