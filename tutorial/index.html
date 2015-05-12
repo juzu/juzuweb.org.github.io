@@ -130,6 +130,16 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 .CodeRay .head .head { color: #f4f }
 
 </style>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-1292368-37', 'juzuweb.org');
+    ga('send', 'pageview');
+
+</script>
 </head>
 <body class="book toc2">
 <div id="header">
@@ -1278,12 +1288,14 @@ in the <code>examples.tutorial.weather8.assets</code>:</p>
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="javascript language-javascript"><span class="predefined">$</span>(<span class="keyword">function</span> () {
+<pre class="CodeRay"><code class="javascript language-javascript"><span class="predefined">$</span>.noConflict();
+<span class="predefined">$</span> = <span class="predefined">$</span> || jQuery;
 
-  <span class="comment">// Setup an event listener on the .collapse element when it is shown</span>
-  <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">.collapse</span><span class="delimiter">'</span></span>).on(<span class="string"><span class="delimiter">'</span><span class="content">show</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> () {
+<span class="predefined">$</span>(<span class="keyword">function</span> () {
 
-    <span class="comment">// Get the location attribute from the dom</span>
+        <span class="comment">// Setup an event listener on the .collapse element when it is shown</span>
+  <span class="predefined">$</span>(document).off(<span class="string"><span class="delimiter">'</span><span class="content">show</span><span class="delimiter">'</span></span>).on(<span class="string"><span class="delimiter">'</span><span class="content">show</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">.collapse</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
+        <span class="comment">// Get the location attribute from the dom</span>
     <span class="keyword">var</span> location = <span class="predefined">$</span>(<span class="local-variable">this</span>).attr(<span class="string"><span class="delimiter">&quot;</span><span class="content">id</span><span class="delimiter">&quot;</span></span>);
 
     <span class="comment">// Update the .accordion-inner fragment</span>
@@ -1296,12 +1308,18 @@ in the <code>examples.tutorial.weather8.assets</code>:</p>
       <span class="predefined">$</span>(<span class="local-variable">this</span>).jzLoad(
         <span class="string"><span class="delimiter">&quot;</span><span class="content">Weather.getFragment()</span><span class="delimiter">&quot;</span></span>,
         {<span class="key"><span class="delimiter">&quot;</span><span class="content">location</span><span class="delimiter">&quot;</span></span>:location});
-
     });
   });
 
-  <span class="comment">// Setup the collapse component</span>
-  <span class="predefined">$</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">.collapse</span><span class="delimiter">&quot;</span></span>).collapse();
+  <span class="predefined">$</span>(document).off(<span class="string"><span class="delimiter">'</span><span class="content">click</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">.accordion-toggle</span><span class="delimiter">'</span></span>).on(<span class="string"><span class="delimiter">'</span><span class="content">click</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">.accordion-toggle</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
+          <span class="keyword">if</span> (!<span class="predefined">$</span>(<span class="local-variable">this</span>).data(<span class="string"><span class="delimiter">'</span><span class="content">weather8</span><span class="delimiter">'</span></span>)) {
+                  <span class="predefined">$</span>(<span class="local-variable">this</span>).closest(<span class="string"><span class="delimiter">'</span><span class="content">.accordion-group</span><span class="delimiter">'</span></span>).find(<span class="string"><span class="delimiter">'</span><span class="content">.collapse</span><span class="delimiter">'</span></span>).collapse();
+                  <span class="predefined">$</span>(<span class="local-variable">this</span>).data(<span class="string"><span class="delimiter">'</span><span class="content">weather8</span><span class="delimiter">'</span></span>, <span class="predefined-constant">true</span>);
+          } <span class="keyword">else</span> {
+                  <span class="predefined">$</span>(<span class="local-variable">this</span>).closest(<span class="string"><span class="delimiter">'</span><span class="content">.accordion-group</span><span class="delimiter">'</span></span>).find(<span class="string"><span class="delimiter">'</span><span class="content">.collapse</span><span class="delimiter">'</span></span>).collapse(<span class="string"><span class="delimiter">'</span><span class="content">toggle</span><span class="delimiter">'</span></span>);
+          }
+          <span class="keyword">return</span> <span class="predefined-constant">false</span>;
+  });
 });</code></pre>
 </div>
 </div>
@@ -1425,13 +1443,13 @@ testing an application with those tools:</p>
 &lt;dependency&gt;
   &lt;groupId&gt;org.juzu&lt;/groupId&gt;
   &lt;artifactId&gt;juzu-depchain-arquillian&lt;/artifactId&gt;
-  &lt;version&gt;1.0.0-cr1&lt;/version&gt;
+  &lt;version&gt;1.0.0&lt;/version&gt;
   &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;
 &lt;dependency&gt;
   &lt;groupId&gt;org.juzu&lt;/groupId&gt;
   &lt;artifactId&gt;juzu-depchain-arquillian-tomcat7&lt;/artifactId&gt;
-  &lt;version&gt;1.0.0-cr1&lt;/version&gt;
+  &lt;version&gt;1.0.0&lt;/version&gt;
   &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
@@ -1567,7 +1585,7 @@ can be found in the package you downloaded in the <em>booking</em> directory.</p
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2014-05-23 13:46:52 CEST
+Last updated 2015-04-24 14:05:09 CEST
 </div>
 </div>
 </body>

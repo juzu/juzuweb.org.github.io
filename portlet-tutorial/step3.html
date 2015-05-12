@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="Asciidoctor 0.1.3">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Step 3 - Building a sexy Secret Wall</title>
+<link rel="stylesheet" href="./rocket-panda.css">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.1.0/css/font-awesome.min.css">
+<style>
+.CodeRay {
+  background-color: hsl(0,0%,95%);
+  border: 1px solid silver;
+  color: black;
+}
+.CodeRay pre {
+  margin: 0px;
+}
+
+span.CodeRay { white-space: pre; border: 0px; padding: 2px; }
+
+table.CodeRay { border-collapse: collapse; width: 100%; padding: 2px; }
+table.CodeRay td { padding: 2px 4px; vertical-align: top; }
+
+.CodeRay .line-numbers {
+  background-color: hsl(180,65%,90%);
+  color: gray;
+  text-align: right;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+.CodeRay .line-numbers a {
+  background-color: hsl(180,65%,90%) !important;
+  color: gray !important;
+  text-decoration: none !important;
+}
+.CodeRay .line-numbers a:target { color: blue !important; }
+.CodeRay .line-numbers .highlighted { color: red !important; }
+.CodeRay .line-numbers .highlighted a { color: red !important; }
+.CodeRay span.line-numbers { padding: 0px 4px; }
+.CodeRay .line { display: block; float: left; width: 100%; }
+.CodeRay .code { width: 100%; }
+
+.CodeRay .debug { color: white !important; background: blue !important; }
+
+.CodeRay .annotation { color:#007 }
+.CodeRay .attribute-name { color:#b48 }
+.CodeRay .attribute-value { color:#700 }
+.CodeRay .binary { color:#509 }
+.CodeRay .char .content { color:#D20 }
+.CodeRay .char .delimiter { color:#710 }
+.CodeRay .char { color:#D20 }
+.CodeRay .class { color:#B06; font-weight:bold }
+.CodeRay .class-variable { color:#369 }
+.CodeRay .color { color:#0A0 }
+.CodeRay .comment { color:#777 }
+.CodeRay .comment .char { color:#444 }
+.CodeRay .comment .delimiter { color:#444 }
+.CodeRay .complex { color:#A08 }
+.CodeRay .constant { color:#036; font-weight:bold }
+.CodeRay .decorator { color:#B0B }
+.CodeRay .definition { color:#099; font-weight:bold }
+.CodeRay .delimiter { color:black }
+.CodeRay .directive { color:#088; font-weight:bold }
+.CodeRay .doc { color:#970 }
+.CodeRay .doc-string { color:#D42; font-weight:bold }
+.CodeRay .doctype { color:#34b }
+.CodeRay .entity { color:#800; font-weight:bold }
+.CodeRay .error { color:#F00; background-color:#FAA }
+.CodeRay .escape  { color:#666 }
+.CodeRay .exception { color:#C00; font-weight:bold }
+.CodeRay .float { color:#60E }
+.CodeRay .function { color:#06B; font-weight:bold }
+.CodeRay .global-variable { color:#d70 }
+.CodeRay .hex { color:#02b }
+.CodeRay .imaginary { color:#f00 }
+.CodeRay .include { color:#B44; font-weight:bold }
+.CodeRay .inline { background-color: hsla(0,0%,0%,0.07); color: black }
+.CodeRay .inline-delimiter { font-weight: bold; color: #666 }
+.CodeRay .instance-variable { color:#33B }
+.CodeRay .integer  { color:#00D }
+.CodeRay .key .char { color: #60f }
+.CodeRay .key .delimiter { color: #404 }
+.CodeRay .key { color: #606 }
+.CodeRay .keyword { color:#080; font-weight:bold }
+.CodeRay .label { color:#970; font-weight:bold }
+.CodeRay .local-variable { color:#963 }
+.CodeRay .namespace { color:#707; font-weight:bold }
+.CodeRay .octal { color:#40E }
+.CodeRay .operator { }
+.CodeRay .predefined { color:#369; font-weight:bold }
+.CodeRay .predefined-constant { color:#069 }
+.CodeRay .predefined-type { color:#0a5; font-weight:bold }
+.CodeRay .preprocessor { color:#579 }
+.CodeRay .pseudo-class { color:#00C; font-weight:bold }
+.CodeRay .regexp .content { color:#808 }
+.CodeRay .regexp .delimiter { color:#404 }
+.CodeRay .regexp .modifier { color:#C2C }
+.CodeRay .regexp { background-color:hsla(300,100%,50%,0.06); }
+.CodeRay .reserved { color:#080; font-weight:bold }
+.CodeRay .shell .content { color:#2B2 }
+.CodeRay .shell .delimiter { color:#161 }
+.CodeRay .shell { background-color:hsla(120,100%,50%,0.06); }
+.CodeRay .string .char { color: #b0b }
+.CodeRay .string .content { color: #D20 }
+.CodeRay .string .delimiter { color: #710 }
+.CodeRay .string .modifier { color: #E40 }
+.CodeRay .string { background-color:hsla(0,100%,50%,0.05); }
+.CodeRay .symbol .content { color:#A60 }
+.CodeRay .symbol .delimiter { color:#630 }
+.CodeRay .symbol { color:#A60 }
+.CodeRay .tag { color:#070 }
+.CodeRay .type { color:#339; font-weight:bold }
+.CodeRay .value { color: #088; }
+.CodeRay .variable  { color:#037 }
+
+.CodeRay .insert { background: hsla(120,100%,50%,0.12) }
+.CodeRay .delete { background: hsla(0,100%,50%,0.12) }
+.CodeRay .change { color: #bbf; background: #007; }
+.CodeRay .head { color: #f8f; background: #505 }
+.CodeRay .head .filename { color: white; }
+
+.CodeRay .delete .eyecatcher { background-color: hsla(0,100%,50%,0.2); border: 1px solid hsla(0,100%,45%,0.5); margin: -1px; border-bottom: none; border-top-left-radius: 5px; border-top-right-radius: 5px; }
+.CodeRay .insert .eyecatcher { background-color: hsla(120,100%,50%,0.2); border: 1px solid hsla(120,100%,25%,0.5); margin: -1px; border-top: none; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; }
+
+.CodeRay .insert .insert { color: #0c0; background:transparent; font-weight:bold }
+.CodeRay .delete .delete { color: #c00; background:transparent; font-weight:bold }
+.CodeRay .change .change { color: #88f }
+.CodeRay .head .head { color: #f4f }
+
+</style>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-1292368-37', 'juzuweb.org');
+    ga('send', 'pageview');
+
+</script>
+</head>
+<body class="book toc2">
+<div id="header">
+<h1>Step 3 - Building a sexy Secret Wall</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ol type="none" class="sectlevel0">
+<li><a href="#_introduction">Introduction</a></li>
+<li>
+<ol type="none" class="sectlevel1">
+<li><a href="#_why_less_and_not_only_css">Why Less and not only CSS</a></li>
+</ol>
+</li>
+<li><a href="#_create_a_mockup">Create a Mockup</a></li>
+<li><a href="#_adding_less">Adding Less</a></li>
+<li><a href="#_adding_jquery">Adding jQuery</a></li>
+<li><a href="#_test_less_and_jquery">Test Less and JQuery</a></li>
+<li><a href="#_the_secret_wall">The Secret Wall</a></li>
+<li><a href="#_add_secret">Add Secret</a></li>
+</ol>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>From the step 2 we learn how to add some functionality to our application. We can now see a list of secrets and share new one. It&#8217;s working but it&#8217;s ugly&#8230; so during <strong>step 3</strong> we will focus on the <strong>UI of JuZcret</strong>..</p>
+</div>
+
+</div>
+</div>
+<h1 id="_introduction" class="sect0"><a class="anchor" href="#_introduction"></a>Introduction</h1>
+<div class="paragraph">
+<p>It&#8217;s time to think a little bit about the <strong>design</strong> of <strong>JuZcret application</strong>.<br>
+We have to display a list of secrets that can be enliven by an image. For doing this we will create a <strong>beautiful Secret Wall page</strong>.<br>
+Don&#8217;t forget also that we have the availability to add new secret. We need a new add secret page with a <strong>nice form to share secret easily</strong>.<br>
+During this step you will learn how to incorporate easily <strong>Javascript</strong> and <strong>Less</strong> file in a <strong>Juzu application</strong>.</p>
+</div>
+<div class="sect1">
+<h2 id="_why_less_and_not_only_css"><a class="anchor" href="#_why_less_and_not_only_css"></a>Why Less and not only CSS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Because Less it&#8217;s an <strong>amazing stylesheet dynamic language</strong> that we love to use in eXo and the <strong>integration with Juzu</strong> is so <strong>easy</strong> that you don&#8217;t have any more excuse to not use it.<br>
+Just declare it and <strong>Juzu</strong> will take care to <strong>transform it in CSS</strong> during compilation.<br>
+For newbie, you just need to know that Less <strong>extends CSS language</strong> with many interesting features like variables, mixins, operations and functions. If you want more information I let you check on the <a href="http://lesscss.org/" target="_blank">Less website</a>.</p>
+</div>
+
+</div>
+</div>
+
+<h1 id="_create_a_mockup" class="sect0"><a class="anchor" href="#_create_a_mockup"></a>Create a Mockup</h1>
+<div class="paragraph">
+<p>This tutorial is also a place to give some good practice to <strong>develop nice application</strong>. So before taking the code by storm we will create a <strong>UI mockup</strong> (and then nicely ask BD and UI team some help that always accept to give us with a smile ;)).</p>
+</div>
+<div class="paragraph">
+<p>After hour and hour of thinking is what I created as <strong>mockup for the secret wall</strong> with balsamiq:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/step3/SecretWall-mockup.png" alt="SecretWall Balsamiq mockup" width="600">
+</div>
+
+</div>
+<div class="paragraph">
+<p>I take it with me to ask some help from <strong>UI team</strong> and after some <strong>tricky things</strong> on Photoshop this is what they give me:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/step3/BD-2163_JuZcret_Wall.jpg" alt="SecretWall UI mockup" width="800">
+</div>
+
+</div>
+<div class="paragraph">
+<p>Ok, I yield..!<br>
+And for free, the add secret page:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/step3/BD-2163_JuZcret_share.jpg" alt="Share Secret UI mockup" width="800">
+</div>
+
+</div>
+
+<h1 id="_adding_less" class="sect0"><a class="anchor" href="#_adding_less"></a>Adding Less</h1>
+<div class="paragraph">
+<p>Before using less we need to add a <strong>dependency to juzu-plugins-less4j</strong> in the pom.</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml">    <span class="tag">&lt;dependency&gt;</span>
+        <span class="tag">&lt;groupId&gt;</span>org.juzu<span class="tag">&lt;/groupId&gt;</span>
+        <span class="tag">&lt;artifactId&gt;</span>juzu-plugins-less4j<span class="tag">&lt;/artifactId&gt;</span>
+        <span class="tag">&lt;version&gt;</span>1.0.0<span class="tag">&lt;/version&gt;</span>
+    <span class="tag">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <strong>Juzu Plugin Less4j</strong> will take care of <strong>compiling</strong> automatically the <strong>Less file to CSS</strong> file during the maven compilation. The only thing that we have to do it&#8217;s to create a new file <code>juzcret.less</code> in the <code>org.juzu.tutorial.assets.styles</code> package and then declare it in the <code>package-info.java</code>:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="annotation">@Less</span>(<span class="annotation">@Stylesheet</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">styles/juzcret.less</span><span class="delimiter">&quot;</span></span>))
+<span class="annotation">@Assets</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">*</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you want to <strong>be more productive</strong> and have stylesheets easily <strong>maintainable</strong> and <strong>extendable</strong>, I advise you to use <strong>Less</strong>. if you don&#8217;t want, yes you can use directly CSS file in Juzu application. Add your CSS file in <code>org.juzu.tutorial.assets.styles</code> package and declare it in <code>package-info.java</code> as below:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="annotation">@Stylesheets</span>({<span class="annotation">@Stylesheet</span>(value = <span class="string"><span class="delimiter">&quot;</span><span class="content">styles/my.css</span><span class="delimiter">&quot;</span></span>)})</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You have to notice the <code>@Assets</code> annotation. This annotation allow to <strong>declare assets</strong> (Stylesheet, Script) that will be loaded when the portlet is displayed. By setting ("*") we declare all the assets.</p>
+</div>
+
+<h1 id="_adding_jquery" class="sect0"><a class="anchor" href="#_adding_jquery"></a>Adding jQuery</h1>
+<div class="paragraph">
+<p>We will use <strong>Javascript</strong> to randomly set the width of the secret boxes on the Secret Wall. To simplify this task, we decide to use the <strong>jQuery library</strong>.</p>
+</div>
+<div class="paragraph">
+<p>First create a new file <code>secret.js</code> in the <code>org.juzu.tutorial.assets.javascripts</code> package:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/step3/assets-folder-structure.png" alt="Assets folder structure" width="300">
+</div>
+
+</div>
+<div class="paragraph">
+<p>The <strong>jQuery library</strong> will be simply retrieved from <strong>WebJars</strong> thanks to the <strong>Juzu WebJars plugin</strong>. The Juzu WebJars plugin allow you to easily use <strong>awesome javascript library</strong> (<a href="http://www.webjars.org/" target="_blank">take a look here</a>) in your Juzu project. You just need to add the WebJars dependency in your <code>pom.xml</code> and declare it in the <code>package-info.java</code>. It saves us from downloading and cloning the library file and facilitate the management of your <strong>JavaScript dependencies</strong>.<br>
+In our case we want to use jQuery. We just have to add the <code>juzu-plugins-webjars</code>  and the jQuery webjar dependency in the <code>pom.xml</code>:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;dependency&gt;</span>
+      <span class="tag">&lt;groupId&gt;</span>org.juzu<span class="tag">&lt;/groupId&gt;</span>
+      <span class="tag">&lt;artifactId&gt;</span>juzu-plugins-webjars<span class="tag">&lt;/artifactId&gt;</span>
+      <span class="tag">&lt;version&gt;</span>1.0.0<span class="tag">&lt;/version&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span>
+<span class="tag">&lt;dependency&gt;</span>
+      <span class="tag">&lt;groupId&gt;</span>org.webjars<span class="tag">&lt;/groupId&gt;</span>
+      <span class="tag">&lt;artifactId&gt;</span>jquery<span class="tag">&lt;/artifactId&gt;</span>
+      <span class="tag">&lt;version&gt;</span>1.10.2<span class="tag">&lt;/version&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Before to use it in our application we need to <strong>declare</strong> in <code>package-info.java</code> the <strong>jQuery Webjar</strong> and the 2 assets: <code>jquery.js</code> and our app js: <code>secret.js</code> using <strong>@Script</strong> annotation.</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="annotation">@WebJars</span>(<span class="annotation">@WebJar</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">jquery</span><span class="delimiter">&quot;</span></span>))
+<span class="annotation">@Scripts</span>(
+   {
+       <span class="annotation">@Script</span>(id = <span class="string"><span class="delimiter">&quot;</span><span class="content">jquery</span><span class="delimiter">&quot;</span></span>, value = <span class="string"><span class="delimiter">&quot;</span><span class="content">jquery/1.10.2/jquery.js</span><span class="delimiter">&quot;</span></span>),
+       <span class="annotation">@Script</span>(value = <span class="string"><span class="delimiter">&quot;</span><span class="content">javascripts/secret.js</span><span class="delimiter">&quot;</span></span>, depends = <span class="string"><span class="delimiter">&quot;</span><span class="content">jquery</span><span class="delimiter">&quot;</span></span>)
+     }
+ )
+ <span class="annotation">@Assets</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">*</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Notice that we declare that <code>secret.js</code> depends on jquery. This ensure that <strong>jquery is available</strong> to <code>secret.js</code> at <strong>runtime</strong>.</p>
+</div>
+
+<h1 id="_test_less_and_jquery" class="sect0"><a class="anchor" href="#_test_less_and_jquery"></a>Test Less and JQuery</h1>
+<div class="paragraph">
+<p>We created and declared all necessary files to implement the step-3.<br>
+Configure your <a href="http://community.exoplatform.com/portal/g/:spaces:juzu/juzu/wiki/Develop_Juzu_Portlet_with_JRebel">Juzu project with JRebel</a> if it&#8217;s not done already and compile it:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="text language-text">$ mvn clean install</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace the war in the <code>webapp</code> directory of eXo Platform by the new one just created and <strong>start the server</strong>:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="text language-text">$ ./start_eXo.sh --dev</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Go to <a href="http://localhost:8080/portal/intranet/JuZcret" target="_blank">the JuZcret page</a> and you see exactly the same thing that at the end of step 2:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/step3/same-step2.png" alt="Same step 2" width="800">
+</div>
+
+</div>
+<div class="paragraph">
+<p>Let&#8217;s perform a quick test to see if <strong>JRebel</strong> hot deployment is working and integration of <strong>Less</strong> and <strong>jQuery</strong> also.</p>
+</div>
+<div class="paragraph">
+<p>Modify <code>secret.js</code> with:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="javascript language-javascript">
+(<span class="keyword">function</span> (<span class="predefined">$</span>) {
+
+    <span class="predefined">$</span>(document).ready(<span class="keyword">function</span> () {
+        window.alert(<span class="string"><span class="delimiter">&quot;</span><span class="content">Juzu rocks !</span><span class="delimiter">&quot;</span></span>);
+    });
+
+})(<span class="predefined">$</span>);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Modify <code>juzcret.less</code> with:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="css language-css">// <span class="type">Variables</span>
+//====================
+<span class="directive">@textColor</span>: <span class="type">red</span>;
+
+// <span class="type">Common</span> <span class="type">Style</span>
+//====================
+<span class="class">.secret-wall-list</span> {
+  <span class="key">color</span>: <span class="directive">@textColor</span>;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Compile:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="text language-text">$ mvn clean install</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When you get a Build Successful message, refresh <a href="http://localhost:8080/portal/intranet/JuZcret" target="_blank">the JuZcret page</a>:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/step3/juzu-rock.png" alt="here" width="800">
+</div>
+
+</div>
+<div class="paragraph">
+<p>jQuery <strong>display a pop-up</strong> when the DOM is ready and the CSS resulting from our Less file <strong>change the text color</strong> of secret to red.<br>
+Now we are ready to implement a <strong>nice UI</strong> for our <strong>JuZcret</strong> application.</p>
+</div>
+
+<h1 id="_the_secret_wall" class="sect0"><a class="anchor" href="#_the_secret_wall"></a>The Secret Wall</h1>
+<div class="paragraph">
+<p>Open <code>secretWall.gtmpl</code> template and replace by the new code below:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="html language-html">#{param name=secretsList/}
+
+<span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secret-wall-container</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secret-wall-heading</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">row-fluid</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+            <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">span6</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                <span class="tag">&lt;h3</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">title</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>JuZcret Portlet<span class="tag">&lt;/h3&gt;</span>
+            <span class="tag">&lt;/div&gt;</span>
+
+            <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">span6 text-right</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                <span class="tag">&lt;a</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">btn btn-primary</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{JuZcretApplication.addSecretForm()}</span><span class="delimiter">&quot;</span></span>
+                   <span class="attribute-name">role</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">button</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Share my secret<span class="tag">&lt;/a&gt;</span>
+            <span class="tag">&lt;/div&gt;</span>
+        <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;ul</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secret-wall-list clearfix</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="error">&lt;</span>% secretsList.each { secret -<span class="error">&gt;</span> %<span class="error">&gt;</span>
+        <span class="tag">&lt;li&gt;</span>
+            <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secret-image</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">style</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">background-image: url('${secret.imageURL}')</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secret-mesage</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>${secret.message}<span class="tag">&lt;/div&gt;</span>
+            <span class="tag">&lt;/div&gt;</span>
+        <span class="tag">&lt;/li&gt;</span>
+        <span class="error">&lt;</span>% } %<span class="error">&gt;</span>
+    <span class="tag">&lt;/ul&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Open the <code>juzcret.less file</code> and modify it as below:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="css language-css">// <span class="type">Variables</span>
+//====================
+<span class="directive">@heightSecretItem</span>: <span class="float">238px</span>;
+<span class="directive">@secretItemGutter</span>: <span class="float">6px</span>;
+
+// <span class="type">Mixins</span>
+//====================
+
+// <span class="type">Opacity</span>
+<span class="class">.opacity</span>(<span class="directive">@opacity</span>) {
+  <span class="key">opacity</span>: <span class="directive">@opacity</span>;
+  // <span class="key">IE8</span> <span class="key">filter</span>
+  <span class="directive">@opacity-ie</span>: (<span class="directive">@opacity</span> <span class="error">*</span> <span class="float">100</span>);
+  <span class="key">filter</span>: <span class="error">~</span><span class="string"><span class="delimiter">&quot;</span><span class="content">alpha(opacity=@{opacity-ie})</span><span class="delimiter">&quot;</span></span>;
+}
+
+// <span class="type">Common</span> <span class="type">Style</span>
+//====================
+
+// <span class="type">Secret</span> <span class="type">Wall</span>
+<span class="class">.secret-wall-container</span> {
+  <span class="key">padding</span>: <span class="float">20px</span> <span class="float">30px</span>;
+  .<span class="key">btn-primary</span> {
+    <span class="key">padding-right</span>: <span class="float">20px</span>;
+    <span class="key">padding-left</span>: <span class="float">20px</span>;
+  }
+}
+<span class="class">.secret-wall-container</span>, <span class="class">.secret-wall-container</span> <span class="type">*</span> {
+  <span class="key">-webkit-box-sizing</span>: <span class="value">border-box</span>;
+  <span class="key">-moz-box-sizing</span>: <span class="value">border-box</span>;
+  <span class="key">box-sizing</span>: <span class="value">border-box</span>;
+}
+<span class="class">.secret-wall-heading</span> {
+  <span class="key">margin-bottom</span>: <span class="float">10px</span>;
+  .<span class="key">btn</span> {
+    <span class="key">margin-top</span>: <span class="float">6px</span>;
+  }
+}
+<span class="class">.secret-wall-list</span> {
+  <span class="key">margin</span>: <span class="float">0</span> <span class="error">-</span><span class="directive">@secretItemGutter</span>;
+  &gt; <span class="key">li</span> {
+    <span class="key">float</span>: <span class="value">left</span>;
+    <span class="key">padding</span>: <span class="directive">@secretItemGutter</span>;
+    <span class="key">width</span>: <span class="float">100%</span> / <span class="float">3</span>;
+    .<span class="key">secret-image</span> {
+      <span class="key">background-repeat</span>: <span class="value">no-repeat</span>;
+      <span class="key">background-size</span>: <span class="value">cover</span>;
+      <span class="key">background-color</span>: <span class="color">#000</span>;
+      <span class="key">position</span>: <span class="value">relative</span>;
+      <span class="key">height</span>: <span class="directive">@heightSecretItem</span>;
+      <span class="key">width</span>: <span class="float">100%</span>;
+      <span class="key">display</span>: <span class="value">block</span>;
+      <span class="error">&amp;</span>:<span class="value">before</span> {
+        <span class="key">background</span>: <span class="value">none</span> <span class="value">repeat</span> <span class="value">scroll</span> <span class="float">0</span> <span class="float">0</span> <span class="color">rgba(0, 0, 0, 0.5)</span>;
+        <span class="key">content</span>: <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>;
+        <span class="key">display</span>: <span class="value">block</span>;
+        <span class="key">height</span>: <span class="float">100%</span>;
+        <span class="key">position</span>: <span class="value">absolute</span>;
+        <span class="key">width</span>: <span class="float">100%</span>;
+      }
+    }
+    .<span class="key">secret-mesage</span> {
+      <span class="key">bottom</span>: <span class="float">65px</span>;
+      <span class="key">color</span>: <span class="color">#fff</span>;
+      <span class="key">font-size</span>: <span class="float">20px</span>;
+      <span class="key">font-weight</span>: <span class="value">normal</span>;
+      <span class="key">left</span>: <span class="float">25px</span>;
+      <span class="key">line-height</span>: <span class="float">24px</span>;
+      <span class="key">position</span>: <span class="value">absolute</span>;
+      <span class="key">right</span>: <span class="float">25px</span>;
+      <span class="key">text-align</span>: <span class="value">center</span>;
+      <span class="key">top</span>: <span class="float">25px</span>;
+    }
+    <span class="error">&amp;</span>:<span class="error">n</span><span class="error">t</span><span class="error">h</span><span class="error">-</span><span class="error">c</span><span class="error">h</span><span class="error">i</span><span class="error">l</span><span class="error">d</span>(<span class="float">3</span><span class="value">n</span>+<span class="float">3</span>) {
+      .<span class="key">popover</span>{
+        <span class="key">right</span>: <span class="float">-1px</span>;
+        .<span class="key">arrow</span> {
+          <span class="key">left</span>: <span class="value">auto</span>;
+          <span class="key">right</span>: <span class="float">34px</span>;
+        }
+      }
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Compile:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="text language-text">$ mvn clean install</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When you get a Build Successful message, refresh <a href="http://localhost:8080/portal/intranet/JuZcret" target="_blank">the JuZcret page</a> and take a look to your new <strong>Secret wall</strong>:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/step3/secretwall-no-js.png" alt="Secretwall no js" width="800">
+</div>
+
+</div>
+<div class="paragraph">
+<p>Notice that the title <strong>JuZcret Portlet</strong> in a <code>&lt;h3&gt;</code> tag is displayed in blue on the top left of our application while we didn&#8217;t override the default <code>&lt;h3&gt;</code> tag in <code>juzcret.less</code>. This is displayed in blue because default <code>&lt;h3&gt;</code> tag is <strong>override in exo-platform.css</strong> as <a href="http://exoplatform.github.io/ux-guidelines/Typography/Typography.html#S1" target="_blank">you can see here</a>. When you develop a <strong>Juzu portlet for PLF</strong>, you can <strong>reuse all class</strong> declared in <a href="http://exoplatform.github.io/ux-guidelines">http://exoplatform.github.io/ux-guidelines</a> without need to declare it before. These class are available by default for <strong>all Portlets in PLF</strong>.</p>
+</div>
+<div class="paragraph">
+<p>You have seen that we still have the <strong>Juzu rocks</strong> popup…! Let’s modify the <strong>Javascript</strong> to remove this popup and set a width of <strong>secret boxes randomly</strong>.<br>
+Open the <code>secret.js</code> and modify it as below:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="javascript language-javascript">
+(<span class="keyword">function</span> (<span class="predefined">$</span>) {
+
+    <span class="predefined">$</span>(document).ready(<span class="keyword">function</span> () {
+
+        <span class="comment">//Var to know the number of image in the line</span>
+        <span class="keyword">var</span> counterImg = <span class="integer">0</span>;
+        <span class="comment">//Var to know the place taken by previous image in the line</span>
+        <span class="keyword">var</span> totalWidthLine = <span class="integer">0</span>;
+
+        <span class="keyword">function</span> <span class="function">getRangeRandom</span>(min, max) {
+            <span class="keyword">return</span> Math.ceil(Math.random() * (max - min) + min);
+        }
+
+        <span class="keyword">function</span> <span class="function">randSecretBoxWidth</span>() {
+            <span class="keyword">var</span> randBoxNum = getRangeRandom(<span class="integer">23</span>, <span class="integer">43</span>);
+            <span class="comment">//Test if we are on th third image of the line</span>
+            <span class="keyword">if</span> (counterImg &gt;= <span class="integer">2</span>) {
+                <span class="comment">//The third image of the line fill all the remaining place</span>
+                randBoxNum = <span class="integer">100</span> - totalWidthLine;
+                <span class="comment">//counter place taken by previous image in the line set to 0</span>
+                counterImg = <span class="integer">0</span>;
+                totalWidthLine = <span class="integer">0</span>;
+            }
+            <span class="keyword">else</span> {
+                <span class="comment">//Increase counter and the place taken by previous image in the line</span>
+                counterImg++;
+                totalWidthLine += randBoxNum;
+            }
+            <span class="comment">//Return the width of the secret box</span>
+            <span class="keyword">return</span> randBoxNum;
+        }
+
+        <span class="comment">//Get all secrets boxes</span>
+        <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">.secret</span><span class="delimiter">'</span></span>).each(<span class="keyword">function</span>(idx, listItem) {
+          <span class="comment">//Set a random width</span>
+          listItem.style.width = randSecretBoxWidth() + <span class="string"><span class="delimiter">&quot;</span><span class="content">%</span><span class="delimiter">&quot;</span></span>;
+        });
+    });
+
+})(<span class="predefined">$</span>);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Compile:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="text language-text">$ mvn clean install</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When you get a Build Successful message, refresh <a href="http://localhost:8080/portal/intranet/JuZcret" target="_blank">the JuZcret page</a> and take a look to your new JuZcret wall:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/step3/secretwall-js.png" alt="Secretwall js" width="800">
+</div>
+
+</div>
+
+<h1 id="_add_secret" class="sect0"><a class="anchor" href="#_add_secret"></a>Add Secret</h1>
+<div class="paragraph">
+<p>We have to <strong>modify</strong> also the ugly <strong>add secret form</strong>. Open <code>addSecret.gtmpl</code> template and replace by the new code below:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="html language-html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secret-wall-container</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secret-wall-heading</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">row-fluid</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+            <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">span6</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                <span class="tag">&lt;h3</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">title</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>JuZcret Portlet<span class="tag">&lt;/h3&gt;</span>
+            <span class="tag">&lt;/div&gt;</span>
+            <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">span6 text-right</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                <span class="tag">&lt;a</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">btn btn-primary</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{JuZcretApplication.index()}</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">role</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">button</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Secret Wall<span class="tag">&lt;/a&gt;</span>
+            <span class="tag">&lt;/div&gt;</span>
+        <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text-center</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">uiBox share-secret-box</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+            <span class="tag">&lt;h4</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">title</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Share my secret<span class="tag">&lt;/h4&gt;</span>
+            <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">uiContentBox</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                <span class="tag">&lt;form</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">share-secret-form</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">action</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{JuZcretApplication.addSecret()}</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">method</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">POST</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">role</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">control-group</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                        <span class="tag">&lt;label</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">control-label</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">for</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">mySecret</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>My secret:<span class="tag">&lt;/label&gt;</span>
+                        <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">controls</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                            <span class="tag">&lt;textarea</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">mySecret</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">rows</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">3</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">msg</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">placeholder</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Write your secret here</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/textarea&gt;</span>
+                        <span class="tag">&lt;/div&gt;</span>
+                    <span class="tag">&lt;/div&gt;</span>
+                    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">control-group</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                        <span class="tag">&lt;label</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">control-label</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">for</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secrImgUrl</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Image URL:<span class="tag">&lt;/label&gt;</span>
+                        <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">controls</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                            <span class="tag">&lt;input</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secrImgUrl</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">imgURL</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">placeholder</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                        <span class="tag">&lt;/div&gt;</span>
+                    <span class="tag">&lt;/div&gt;</span>
+                    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">control-group mgB0</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                        <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">controls text-center</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                            <span class="tag">&lt;button</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">submit</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">btn btn-primary</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Share<span class="tag">&lt;/button&gt;</span>
+                        <span class="tag">&lt;/div&gt;</span>
+                    <span class="tag">&lt;/div&gt;</span>
+                <span class="tag">&lt;/form&gt;</span>
+            <span class="tag">&lt;/div&gt;</span>
+        <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Above you can notice that we reuse default PLF UI component like <strong>uiBox</strong> and <strong>uiContentBox</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Open the <code>juzcret.less</code> file and add at the end:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="css language-css">// <span class="type">Add</span> <span class="type">Secret</span>
+
+<span class="class">.share-secret-form</span> {
+  .<span class="key">form-title</span> {
+    <span class="key">margin</span>: <span class="float">0</span> <span class="float">0</span> <span class="float">10px</span>;
+    <span class="key">text-shadow</span>: <span class="value">none</span>;
+  }
+  <span class="key">textarea</span> {
+    <span class="key">min-width</span>: <span class="float">271px</span>;
+    <span class="key">max-width</span>: <span class="float">271px</span>;
+    <span class="key">max-height</span>: <span class="float">300px</span>;
+    <span class="key">margin-bottom</span>: <span class="float">10px</span>;
+    <span class="key">min-height</span>: <span class="float">80px</span>;
+  }
+  <span class="key">textarea</span>, <span class="key">input</span> {
+    <span class="key">margin-bottom</span>: <span class="float">5px</span>;
+  }
+}
+
+<span class="class">.share-secret-box</span> {
+  <span class="key">display</span>: <span class="value">inline-block</span>;
+  <span class="key">text-align</span>: <span class="value">left</span>;
+  <span class="key">margin-top</span>: <span class="float">20px</span>;
+  .<span class="key">title</span> {
+    <span class="key">text-align</span>: <span class="value">center</span>;
+  }
+  .<span class="key">btn</span> {
+    <span class="key">min-width</span>: <span class="float">78px</span>;
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Compile:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="text language-text">$ mvn clean install</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When you get a Build Successful message, refresh <a href="http://localhost:8080/portal/intranet/JuZcret" target="_blank">the JuZcret page</a>, click on the <strong>Share my secret</strong> button on the top right and take a look to your <strong>new Add Secret form</strong>:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/step3/addSecret.png" alt="here" width="800">
+</div>
+
+</div>
+<div class="paragraph">
+<p>That&#8217;s it! Play with the application and <strong>enjoy to add your personal secrets</strong>:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/step3/final-screen.png" alt="Final screen" width="800">
+</div>
+
+</div>
+<div class="paragraph">
+<p>Here we are ! As promised a <strong>sexy JuZcret Portlet</strong> ! And it’s not finish… let&#8217;s continue to <a href="./step4.html">step 4 to add new functionality</a></p>
+</div>
+<div class="paragraph">
+<p><em>Thanks a lot to BD and UI team for their contribution ;)</em></p>
+</div>
+<script type="text/javascript">
+//Get the left menu
+var leftmenu = document.getElementsByClassName("sectlevel0")[0];
+
+//Create back to menu link
+var menuLink = document.createElement("a");
+menuLink.href = "./index.html";
+menuLink.appendChild(document.createTextNode("Menu"));
+var menu = document.createElement("li");
+menu.setAttribute("class", "menuStep");
+menu.appendChild(menuLink);
+
+//Create go to previous step link
+var previousStepLink = document.createElement("a");
+previousStepLink.href = "./step2.html";
+previousStepLink.appendChild(document.createTextNode("Back to previous Step"));
+var previousStep = document.createElement("li");
+previousStep.setAttribute("class", "previousStep");
+previousStep.appendChild(previousStepLink);
+
+//Create go to next step link
+var nextStepLink = document.createElement("a");
+nextStepLink.href = "./step4.html";
+nextStepLink.appendChild(document.createTextNode("Go to next Step"));
+var nextStep = document.createElement("li");
+nextStep.setAttribute("class", "nextStep");
+nextStep.appendChild(nextStepLink);
+
+//Add them to Left Menu
+leftmenu.insertBefore(previousStep, leftmenu.firstChild);
+leftmenu.insertBefore(menu, leftmenu.firstChild);
+leftmenu.appendChild(nextStep);
+</script>
+
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-04-24 14:06:58 CEST
+</div>
+</div>
+</body>
+</html>

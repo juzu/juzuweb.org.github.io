@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="Asciidoctor 0.1.3">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Step 6 - Let&#8217;s all the world create new secrets</title>
+<link rel="stylesheet" href="./rocket-panda.css">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.1.0/css/font-awesome.min.css">
+<style>
+.CodeRay {
+  background-color: hsl(0,0%,95%);
+  border: 1px solid silver;
+  color: black;
+}
+.CodeRay pre {
+  margin: 0px;
+}
+
+span.CodeRay { white-space: pre; border: 0px; padding: 2px; }
+
+table.CodeRay { border-collapse: collapse; width: 100%; padding: 2px; }
+table.CodeRay td { padding: 2px 4px; vertical-align: top; }
+
+.CodeRay .line-numbers {
+  background-color: hsl(180,65%,90%);
+  color: gray;
+  text-align: right;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+.CodeRay .line-numbers a {
+  background-color: hsl(180,65%,90%) !important;
+  color: gray !important;
+  text-decoration: none !important;
+}
+.CodeRay .line-numbers a:target { color: blue !important; }
+.CodeRay .line-numbers .highlighted { color: red !important; }
+.CodeRay .line-numbers .highlighted a { color: red !important; }
+.CodeRay span.line-numbers { padding: 0px 4px; }
+.CodeRay .line { display: block; float: left; width: 100%; }
+.CodeRay .code { width: 100%; }
+
+.CodeRay .debug { color: white !important; background: blue !important; }
+
+.CodeRay .annotation { color:#007 }
+.CodeRay .attribute-name { color:#b48 }
+.CodeRay .attribute-value { color:#700 }
+.CodeRay .binary { color:#509 }
+.CodeRay .char .content { color:#D20 }
+.CodeRay .char .delimiter { color:#710 }
+.CodeRay .char { color:#D20 }
+.CodeRay .class { color:#B06; font-weight:bold }
+.CodeRay .class-variable { color:#369 }
+.CodeRay .color { color:#0A0 }
+.CodeRay .comment { color:#777 }
+.CodeRay .comment .char { color:#444 }
+.CodeRay .comment .delimiter { color:#444 }
+.CodeRay .complex { color:#A08 }
+.CodeRay .constant { color:#036; font-weight:bold }
+.CodeRay .decorator { color:#B0B }
+.CodeRay .definition { color:#099; font-weight:bold }
+.CodeRay .delimiter { color:black }
+.CodeRay .directive { color:#088; font-weight:bold }
+.CodeRay .doc { color:#970 }
+.CodeRay .doc-string { color:#D42; font-weight:bold }
+.CodeRay .doctype { color:#34b }
+.CodeRay .entity { color:#800; font-weight:bold }
+.CodeRay .error { color:#F00; background-color:#FAA }
+.CodeRay .escape  { color:#666 }
+.CodeRay .exception { color:#C00; font-weight:bold }
+.CodeRay .float { color:#60E }
+.CodeRay .function { color:#06B; font-weight:bold }
+.CodeRay .global-variable { color:#d70 }
+.CodeRay .hex { color:#02b }
+.CodeRay .imaginary { color:#f00 }
+.CodeRay .include { color:#B44; font-weight:bold }
+.CodeRay .inline { background-color: hsla(0,0%,0%,0.07); color: black }
+.CodeRay .inline-delimiter { font-weight: bold; color: #666 }
+.CodeRay .instance-variable { color:#33B }
+.CodeRay .integer  { color:#00D }
+.CodeRay .key .char { color: #60f }
+.CodeRay .key .delimiter { color: #404 }
+.CodeRay .key { color: #606 }
+.CodeRay .keyword { color:#080; font-weight:bold }
+.CodeRay .label { color:#970; font-weight:bold }
+.CodeRay .local-variable { color:#963 }
+.CodeRay .namespace { color:#707; font-weight:bold }
+.CodeRay .octal { color:#40E }
+.CodeRay .operator { }
+.CodeRay .predefined { color:#369; font-weight:bold }
+.CodeRay .predefined-constant { color:#069 }
+.CodeRay .predefined-type { color:#0a5; font-weight:bold }
+.CodeRay .preprocessor { color:#579 }
+.CodeRay .pseudo-class { color:#00C; font-weight:bold }
+.CodeRay .regexp .content { color:#808 }
+.CodeRay .regexp .delimiter { color:#404 }
+.CodeRay .regexp .modifier { color:#C2C }
+.CodeRay .regexp { background-color:hsla(300,100%,50%,0.06); }
+.CodeRay .reserved { color:#080; font-weight:bold }
+.CodeRay .shell .content { color:#2B2 }
+.CodeRay .shell .delimiter { color:#161 }
+.CodeRay .shell { background-color:hsla(120,100%,50%,0.06); }
+.CodeRay .string .char { color: #b0b }
+.CodeRay .string .content { color: #D20 }
+.CodeRay .string .delimiter { color: #710 }
+.CodeRay .string .modifier { color: #E40 }
+.CodeRay .string { background-color:hsla(0,100%,50%,0.05); }
+.CodeRay .symbol .content { color:#A60 }
+.CodeRay .symbol .delimiter { color:#630 }
+.CodeRay .symbol { color:#A60 }
+.CodeRay .tag { color:#070 }
+.CodeRay .type { color:#339; font-weight:bold }
+.CodeRay .value { color: #088; }
+.CodeRay .variable  { color:#037 }
+
+.CodeRay .insert { background: hsla(120,100%,50%,0.12) }
+.CodeRay .delete { background: hsla(0,100%,50%,0.12) }
+.CodeRay .change { color: #bbf; background: #007; }
+.CodeRay .head { color: #f8f; background: #505 }
+.CodeRay .head .filename { color: white; }
+
+.CodeRay .delete .eyecatcher { background-color: hsla(0,100%,50%,0.2); border: 1px solid hsla(0,100%,45%,0.5); margin: -1px; border-bottom: none; border-top-left-radius: 5px; border-top-right-radius: 5px; }
+.CodeRay .insert .eyecatcher { background-color: hsla(120,100%,50%,0.2); border: 1px solid hsla(120,100%,25%,0.5); margin: -1px; border-top: none; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; }
+
+.CodeRay .insert .insert { color: #0c0; background:transparent; font-weight:bold }
+.CodeRay .delete .delete { color: #c00; background:transparent; font-weight:bold }
+.CodeRay .change .change { color: #88f }
+.CodeRay .head .head { color: #f4f }
+
+</style>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-1292368-37', 'juzuweb.org');
+    ga('send', 'pageview');
+
+</script>
+</head>
+<body class="book toc2">
+<div id="header">
+<h1>Step 6 - Let&#8217;s all the world create new secrets</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ol type="none" class="sectlevel0">
+<li><a href="#_internalization_and_localization">Internalization and Localization</a></li>
+<li>
+<ol type="none" class="sectlevel1">
+<li><a href="#_internalization">Internalization</a></li>
+<li><a href="#_localization">Localization</a></li>
+</ol>
+</li>
+</ol>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>We are close to end guys. In this step we will make our JuZcret portlet understandable for the <strong>whole world !</strong> Ok for this tutorial we will just manage <strong>french and vietnamese language</strong> but when you will understand the concept feel free to add all languages you want.</p>
+</div>
+
+</div>
+</div>
+<h1 id="_internalization_and_localization" class="sect0"><a class="anchor" href="#_internalization_and_localization"></a>Internalization and Localization</h1>
+<div class="sect1">
+<h2 id="_internalization"><a class="anchor" href="#_internalization"></a>Internalization</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Internalization is the process of <strong>developing software</strong> whose core design does <strong>not make assumptions based on a language</strong>. It means that all messages and labels in the application can be <strong>translated</strong> to all <strong>supported languages</strong>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-note" title="Note"></i>
+</td>
+<td class="content">
+
+Juzu <strong>support i18n natively</strong> in the core. We just need to modify all the labels in all our templates. Next time, remember to do it as soon you start developing your template.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Update the <code>editMode.gtmpl</code> template:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="html language-html">#{param name=enableComment/}
+
+<span class="tag">&lt;form</span> <span class="attribute-name">action</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{JuZcretApplication.enableComment()}</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">method</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">POST</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">role</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;h5&gt;</span><span class="error">&amp;</span>{label.configuration}<span class="tag">&lt;/h5&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">checkbox</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">enableComment</span><span class="delimiter">&quot;</span></span> <span class="error">&lt;</span><span class="error">%</span><span class="error">=</span><span class="attribute-name">enableComment</span> <span class="error">?</span> <span class="error">&quot;</span><span class="attribute-name">checked</span><span class="error">&quot;</span> <span class="attribute-name">:</span> <span class="error">&quot;</span><span class="error">&quot;</span> <span class="error">%</span><span class="tag">&gt;</span>/<span class="error">&gt;</span><span class="error">&amp;</span>{label.enableComment}
+    <span class="tag">&lt;button</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">submit</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="error">&amp;</span>{label.save}<span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;/form&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>
+</p>
+</div>
+<div class="paragraph">
+<p>We need to do it for all the labels in all <strong>JuZcret templates</strong>:</p>
+</div>
+<div class="paragraph">
+<p><code>addsecret.gtmpl</code>:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="html language-html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secret-wall-container</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secret-wall-heading</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">row-fluid</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+            <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">span6</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                <span class="tag">&lt;h3</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">title</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>JuZcret Portlet<span class="tag">&lt;/h3&gt;</span>
+            <span class="tag">&lt;/div&gt;</span>
+            <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">span6 text-right</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                <span class="tag">&lt;a</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">btn btn-primary</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{JuZcretApplication.index()}</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">role</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">button</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="error">&amp;</span>{label.secretWall}<span class="tag">&lt;/a&gt;</span>
+            <span class="tag">&lt;/div&gt;</span>
+        <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text-center</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">uiBox share-secret-box</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+            <span class="tag">&lt;h4</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">title</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="error">&amp;</span>{label.shareSecret}<span class="tag">&lt;/h4&gt;</span>
+            <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">uiContentBox</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                <span class="tag">&lt;form</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">share-secret-form</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">action</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{JuZcretApplication.addSecret()}</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">method</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">POST</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">role</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">control-group</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                        <span class="tag">&lt;label</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">control-label</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">for</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">mySecret</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="error">&amp;</span>{label.mySecret}:<span class="tag">&lt;/label&gt;</span>
+                        <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">controls</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                            <span class="tag">&lt;textarea</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">mySecret</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">rows</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">3</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">msg</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">placeholder</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">&amp;</span><span class="content">{label.writeSecret}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/textarea&gt;</span>
+                        <span class="tag">&lt;/div&gt;</span>
+                    <span class="tag">&lt;/div&gt;</span>
+                    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">control-group</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                        <span class="tag">&lt;label</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">control-label</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">for</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secrImgUrl</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="error">&amp;</span>{label.img}:<span class="tag">&lt;/label&gt;</span>
+                        <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">controls</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                            <span class="tag">&lt;input</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secrImgUrl</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">imgURL</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">placeholder</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                        <span class="tag">&lt;/div&gt;</span>
+                    <span class="tag">&lt;/div&gt;</span>
+                    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">control-group mgB0</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                        <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">controls text-center</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                            <span class="tag">&lt;button</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">submit</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">btn btn-primary</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="error">&amp;</span>{label.share}<span class="tag">&lt;/button&gt;</span>
+                        <span class="tag">&lt;/div&gt;</span>
+                    <span class="tag">&lt;/div&gt;</span>
+                <span class="tag">&lt;/form&gt;</span>
+            <span class="tag">&lt;/div&gt;</span>
+        <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>secretWall.gtmpl</code>:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="html language-html">#{param name=secretsList/}
+#{param name=enableComment/}
+
+<span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secret-wall-container</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secret-wall-heading</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">row-fluid</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+            <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">span6</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                <span class="tag">&lt;h3</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">title</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>JuZcret Portlet<span class="tag">&lt;/h3&gt;</span>
+            <span class="tag">&lt;/div&gt;</span>
+
+            <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">span6 text-right</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                <span class="tag">&lt;a</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">btn btn-primary</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{ JuZcretApplication.addSecretForm()}</span><span class="delimiter">&quot;</span></span>
+                   <span class="attribute-name">role</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">button</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="error">&amp;</span>{label.shareSecret}<span class="tag">&lt;/a&gt;</span>
+            <span class="tag">&lt;/div&gt;</span>
+        <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;ul</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secret-wall-list clearfix</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="error">&lt;</span>% secretsList.each { secret -<span class="error">&gt;</span> %<span class="error">&gt;</span>
+        <span class="tag">&lt;li</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secret</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-secretId</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">${secret.id}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+            <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secret-image</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">style</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">background-image: url('${secret.imageURL}')</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+
+                <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secret-mesage</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>${secret.message}<span class="tag">&lt;/div&gt;</span>
+
+                <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secret-action</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                    <span class="tag">&lt;a</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">btn-like secr-toggle-link toggle-like-comment</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">#</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;i</span>
+                            <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">uiIconThumbUp uiIconWhite</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/i&gt;</span><span class="tag">&lt;span</span>
+                            <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">numb</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/span&gt;</span><span class="tag">&lt;/a&gt;</span>
+                    <span class="tag">&lt;a</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">btn-popup-comment secr-toggle-link toggle-write-comment</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">#</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;i</span>
+                            <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">uiIconComment uiIconWhite</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/i&gt;</span><span class="tag">&lt;span</span>
+                            <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">numb</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/span&gt;</span><span class="tag">&lt;/a&gt;</span>
+                <span class="tag">&lt;/div&gt;</span>
+
+                <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">popover popover-secret fade top</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                    <span class="tag">&lt;button</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">closePopover close</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">button</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="entity">&amp;times;</span><span class="tag">&lt;/button&gt;</span>
+                    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">arrow</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span>
+
+                    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">popover-content</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                        <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secr-comments-box</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                            <span class="tag">&lt;ul</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secr-comments-list</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                                <span class="error">&lt;</span>% secret.getComments().each { comment -<span class="error">&gt;</span> %<span class="error">&gt;</span>
+                                <span class="tag">&lt;li&gt;</span><span class="comment">&lt;!--Add class .open-popover to display popover --&gt;</span>
+                                    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">media</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                                        <span class="tag">&lt;a</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">pull-left</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://localhost:8080/portal/intranet/profile/${comment.userId}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                                            <span class="tag">&lt;img</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://localhost:8080/social-resources/skin/images/ShareImages/UserAvtDefault.png</span><span class="delimiter">&quot;</span></span>
+                                                 <span class="attribute-name">alt</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">avatar</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                                        <span class="tag">&lt;/a&gt;</span>
+
+                                        <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">media-body</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                                            <span class="tag">&lt;div&gt;</span>
+                                                <span class="tag">&lt;a</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">cm-user-name</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://localhost:8080/portal/intranet/profile/${comment.userId}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>${comment.userId}<span class="tag">&lt;/a&gt;</span> <span class="tag">&lt;span</span>
+                                                    <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">cm-time</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>${comment.createdDate}<span class="tag">&lt;/span&gt;</span>
+                                            <span class="tag">&lt;/div&gt;</span>
+
+                                            <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">cm-content</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>${comment.content}<span class="tag">&lt;/div&gt;</span>
+                                        <span class="tag">&lt;/div&gt;</span>
+                                    <span class="tag">&lt;/div&gt;</span>
+                                <span class="tag">&lt;/li&gt;</span>
+                                <span class="error">&lt;</span>% } %<span class="error">&gt;</span>
+                            <span class="tag">&lt;/ul&gt;</span>
+                        <span class="tag">&lt;/div&gt;</span>
+                        <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secr-create-comment clearfix</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                            <span class="tag">&lt;button</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">btn-comment btn btn-primary pull-right</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="error">&amp;</span>{label.comment}<span class="tag">&lt;/button&gt;</span>
+
+                            <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secr-write-comment </span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                                <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">inner</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                                    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">media</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                                        <span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">#</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">pull-left</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;img</span>
+                                                <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://localhost:8080/social-resources/skin/images/ShareImages/UserAvtDefault.png</span><span class="delimiter">&quot;</span></span>
+                                                <span class="attribute-name">alt</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">avatar</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/a&gt;</span>
+
+                                        <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">media-body</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                                            <span class="tag">&lt;textarea</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">comment</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secret-add-comment</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">placeholder</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">&amp;</span><span class="content">{label.addComment}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/textarea&gt;</span>
+                                        <span class="tag">&lt;/div&gt;</span>
+                                    <span class="tag">&lt;/div&gt;</span>
+                                <span class="tag">&lt;/div&gt;</span>
+                            <span class="tag">&lt;/div&gt;</span>
+                        <span class="tag">&lt;/div&gt;</span>
+                    <span class="tag">&lt;/div&gt;</span>
+                <span class="tag">&lt;/div&gt;</span>
+            <span class="tag">&lt;/div&gt;</span>
+        <span class="tag">&lt;/li&gt;</span>
+        <span class="error">&lt;</span>% } %<span class="error">&gt;</span>
+    <span class="tag">&lt;/ul&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That&#8217;s it for internationalizing templates.</p>
+</div>
+<div class="paragraph">
+<p>Now how can I manage the translation of <code>&amp;{label.configuration}</code> ?<br>
+It&#8217;s very <strong>simple and easy in Juzu</strong>. You just need to configure the path of your bundle in the <code>portlet.xml</code> and then create a java resource bundle file (*.properties or *.xml) per language.</p>
+</div>
+<div class="paragraph">
+<p>So first update the <code>portlet.xml</code> file in <code>src/main/webapp/WEB-INF</code> folder:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;portlet-app&gt;</span>
+   <span class="tag">&lt;portlet&gt;</span>
+     <span class="tag">&lt;portlet-name&gt;</span>JuzcretApplication<span class="tag">&lt;/portlet-name&gt;</span>
+     [...]
+     <span class="tag">&lt;/supports&gt;</span>
+     <span class="tag">&lt;resource-bundle&gt;</span>locale.portlet.juzcret<span class="tag">&lt;/resource-bundle&gt;</span>
+     <span class="tag">&lt;portlet-info&gt;</span>
+     [...]
+   <span class="tag">&lt;/portlet&gt;</span>
+<span class="tag">&lt;/portlet-app&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <strong>resource-bundle</strong> tell portlet container to find the resource bundle files in <code>/locale/portlet/juzcret_*.properties</code>.</p>
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_localization"><a class="anchor" href="#_localization"></a>Localization</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Localization is the process of <strong>customizing our app for a particular language</strong>. That process includes the <strong>translation</strong> of labels and messages into a <strong>native language</strong>.<br>
+In this tutorial we will limit support to French and Vietnamese.</p>
+</div>
+<div class="paragraph">
+<p>Add the resource bundle files to this path <code>/src/main/resources/locale/portlet/</code> as we declared in <code>portlet.xml</code>:</p>
+</div>
+<div class="paragraph">
+<p><code>juzcret.properties</code> for default language (English in eXo Platform)</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="text language-text">label.addComment=Add your comment
+label.shareSecret=Share my secret
+label.configuration=Configuration
+label.enableComment=Enable Comment
+label.save=Save
+label.mySecret=My secret
+label.writeSecret=Write your secret here
+label.img=Image URL
+label.share=Share
+label.comment=Comment
+label.secretWall=Secret Wall</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>juzcret_vi.properties</code> for Vietnamese</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="text language-text">label.shareSecret=Chia s\u1EBB b\u00ED m\u1EADt
+label.configuration=C\u1EA5u h\u00ECnh
+label.enableComment=Cho ph\u00E9p b\u00ECnh lu\u1EADn
+label.save=L\u01B0u
+label.mySecret=B\u00ED m\u1EADt c\u1EE7a t\u00F4i
+label.writeSecret=Vi\u1EBFt b\u00ED m\u1EADt \u1EDF \u0111\u00E2y
+label.img=\u0110\u01B0\u1EDDng d\u1EABn \u1EA3nh
+label.share=Chia s\u1EBB
+label.secretWall=T\u01B0\u1EDDng b\u00ED m\u1EADt
+label.addComment=Th\u00EAm b\u00ECnh lu\u1EADn
+label.comment=B\u00ECnh lu\u1EADn</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>juzcret_fr.properties</code> for French</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="text language-text">label.shareSecret=Partager mon secret
+label.configuration=Configuration
+label.enableComment=Activer les commentaires
+label.save=Sauvegarder
+label.mySecret=Mon secret
+label.writeSecret=Ecrit ton secret ici
+label.img=URL de l'image
+label.share=Partager
+label.secretWall=Mur des secrets
+label.addComment=Ajouter votre commentaire
+label.comment=Ajouter</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That&#8217;s all.<br>
+Re-compile and deploy JuZcret eXo Platform as explain in previous step of this tutorial:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="text language-text">$ mvn clean install</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Copy/Paste the war <em>(replace the old one)</em> in the webapp folder of eXo Platform, start the server and open <a href="http://localhost:8080/portal/intranet/JuZcret" target="_blank">JuZcret page created in step 1</a>.</p>
+</div>
+<div class="paragraph">
+<p>Now you can share secret in Vietnamese:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/step6/add-secret-vietnamese.png" alt="Add Vietnamese secret" width="800">
+</div>
+
+</div>
+<div class="paragraph">
+<p>or look at the Secret Wall and add comments in French:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/step6/secret-wall-french.png" alt="French Secret Wall" width="800">
+</div>
+
+</div>
+<div class="paragraph">
+<p>Here we are. An <strong>international JuZcret application</strong> ready for sharing secrets of the people of the world.</p>
+</div>
+<div class="paragraph">
+<p>Hum do you not think that we forgot some important things during all this steps&#8230;? Let&#8217;s fix it in <a href="./step7.html">the last step</a></p>
+</div>
+<script type="text/javascript">
+//Get the left menu
+var leftmenu = document.getElementsByClassName("sectlevel0")[0];
+
+//Create back to menu link
+var menuLink = document.createElement("a");
+menuLink.href = "./index.html";
+menuLink.appendChild(document.createTextNode("Menu"));
+var menu = document.createElement("li");
+menu.setAttribute("class", "menuStep");
+menu.appendChild(menuLink);
+
+//Create go to previous step link
+var previousStepLink = document.createElement("a");
+previousStepLink.href = "./step5.html";
+previousStepLink.appendChild(document.createTextNode("Back to previous Step"));
+var previousStep = document.createElement("li");
+previousStep.setAttribute("class", "previousStep");
+previousStep.appendChild(previousStepLink);
+
+//Create go to next step link
+var nextStepLink = document.createElement("a");
+nextStepLink.href = "./step7.html";
+nextStepLink.appendChild(document.createTextNode("Go to next Step"));
+var nextStep = document.createElement("li");
+nextStep.setAttribute("class", "nextStep");
+nextStep.appendChild(nextStepLink);
+
+//Add them to Left Menu
+leftmenu.insertBefore(previousStep, leftmenu.firstChild);
+leftmenu.insertBefore(menu, leftmenu.firstChild);
+leftmenu.appendChild(nextStep);
+</script>
+</div>
+</div>
+
+
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-04-24 14:06:58 CEST
+</div>
+</div>
+</body>
+</html>

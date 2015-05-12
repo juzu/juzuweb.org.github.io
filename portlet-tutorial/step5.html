@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="Asciidoctor 0.1.3">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Step 5 - Save Secrets</title>
+<link rel="stylesheet" href="./rocket-panda.css">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.1.0/css/font-awesome.min.css">
+<style>
+.CodeRay {
+  background-color: hsl(0,0%,95%);
+  border: 1px solid silver;
+  color: black;
+}
+.CodeRay pre {
+  margin: 0px;
+}
+
+span.CodeRay { white-space: pre; border: 0px; padding: 2px; }
+
+table.CodeRay { border-collapse: collapse; width: 100%; padding: 2px; }
+table.CodeRay td { padding: 2px 4px; vertical-align: top; }
+
+.CodeRay .line-numbers {
+  background-color: hsl(180,65%,90%);
+  color: gray;
+  text-align: right;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+.CodeRay .line-numbers a {
+  background-color: hsl(180,65%,90%) !important;
+  color: gray !important;
+  text-decoration: none !important;
+}
+.CodeRay .line-numbers a:target { color: blue !important; }
+.CodeRay .line-numbers .highlighted { color: red !important; }
+.CodeRay .line-numbers .highlighted a { color: red !important; }
+.CodeRay span.line-numbers { padding: 0px 4px; }
+.CodeRay .line { display: block; float: left; width: 100%; }
+.CodeRay .code { width: 100%; }
+
+.CodeRay .debug { color: white !important; background: blue !important; }
+
+.CodeRay .annotation { color:#007 }
+.CodeRay .attribute-name { color:#b48 }
+.CodeRay .attribute-value { color:#700 }
+.CodeRay .binary { color:#509 }
+.CodeRay .char .content { color:#D20 }
+.CodeRay .char .delimiter { color:#710 }
+.CodeRay .char { color:#D20 }
+.CodeRay .class { color:#B06; font-weight:bold }
+.CodeRay .class-variable { color:#369 }
+.CodeRay .color { color:#0A0 }
+.CodeRay .comment { color:#777 }
+.CodeRay .comment .char { color:#444 }
+.CodeRay .comment .delimiter { color:#444 }
+.CodeRay .complex { color:#A08 }
+.CodeRay .constant { color:#036; font-weight:bold }
+.CodeRay .decorator { color:#B0B }
+.CodeRay .definition { color:#099; font-weight:bold }
+.CodeRay .delimiter { color:black }
+.CodeRay .directive { color:#088; font-weight:bold }
+.CodeRay .doc { color:#970 }
+.CodeRay .doc-string { color:#D42; font-weight:bold }
+.CodeRay .doctype { color:#34b }
+.CodeRay .entity { color:#800; font-weight:bold }
+.CodeRay .error { color:#F00; background-color:#FAA }
+.CodeRay .escape  { color:#666 }
+.CodeRay .exception { color:#C00; font-weight:bold }
+.CodeRay .float { color:#60E }
+.CodeRay .function { color:#06B; font-weight:bold }
+.CodeRay .global-variable { color:#d70 }
+.CodeRay .hex { color:#02b }
+.CodeRay .imaginary { color:#f00 }
+.CodeRay .include { color:#B44; font-weight:bold }
+.CodeRay .inline { background-color: hsla(0,0%,0%,0.07); color: black }
+.CodeRay .inline-delimiter { font-weight: bold; color: #666 }
+.CodeRay .instance-variable { color:#33B }
+.CodeRay .integer  { color:#00D }
+.CodeRay .key .char { color: #60f }
+.CodeRay .key .delimiter { color: #404 }
+.CodeRay .key { color: #606 }
+.CodeRay .keyword { color:#080; font-weight:bold }
+.CodeRay .label { color:#970; font-weight:bold }
+.CodeRay .local-variable { color:#963 }
+.CodeRay .namespace { color:#707; font-weight:bold }
+.CodeRay .octal { color:#40E }
+.CodeRay .operator { }
+.CodeRay .predefined { color:#369; font-weight:bold }
+.CodeRay .predefined-constant { color:#069 }
+.CodeRay .predefined-type { color:#0a5; font-weight:bold }
+.CodeRay .preprocessor { color:#579 }
+.CodeRay .pseudo-class { color:#00C; font-weight:bold }
+.CodeRay .regexp .content { color:#808 }
+.CodeRay .regexp .delimiter { color:#404 }
+.CodeRay .regexp .modifier { color:#C2C }
+.CodeRay .regexp { background-color:hsla(300,100%,50%,0.06); }
+.CodeRay .reserved { color:#080; font-weight:bold }
+.CodeRay .shell .content { color:#2B2 }
+.CodeRay .shell .delimiter { color:#161 }
+.CodeRay .shell { background-color:hsla(120,100%,50%,0.06); }
+.CodeRay .string .char { color: #b0b }
+.CodeRay .string .content { color: #D20 }
+.CodeRay .string .delimiter { color: #710 }
+.CodeRay .string .modifier { color: #E40 }
+.CodeRay .string { background-color:hsla(0,100%,50%,0.05); }
+.CodeRay .symbol .content { color:#A60 }
+.CodeRay .symbol .delimiter { color:#630 }
+.CodeRay .symbol { color:#A60 }
+.CodeRay .tag { color:#070 }
+.CodeRay .type { color:#339; font-weight:bold }
+.CodeRay .value { color: #088; }
+.CodeRay .variable  { color:#037 }
+
+.CodeRay .insert { background: hsla(120,100%,50%,0.12) }
+.CodeRay .delete { background: hsla(0,100%,50%,0.12) }
+.CodeRay .change { color: #bbf; background: #007; }
+.CodeRay .head { color: #f8f; background: #505 }
+.CodeRay .head .filename { color: white; }
+
+.CodeRay .delete .eyecatcher { background-color: hsla(0,100%,50%,0.2); border: 1px solid hsla(0,100%,45%,0.5); margin: -1px; border-bottom: none; border-top-left-radius: 5px; border-top-right-radius: 5px; }
+.CodeRay .insert .eyecatcher { background-color: hsla(120,100%,50%,0.2); border: 1px solid hsla(120,100%,25%,0.5); margin: -1px; border-top: none; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; }
+
+.CodeRay .insert .insert { color: #0c0; background:transparent; font-weight:bold }
+.CodeRay .delete .delete { color: #c00; background:transparent; font-weight:bold }
+.CodeRay .change .change { color: #88f }
+.CodeRay .head .head { color: #f4f }
+
+</style>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-1292368-37', 'juzuweb.org');
+    ga('send', 'pageview');
+
+</script>
+</head>
+<body class="book toc2">
+<div id="header">
+<h1>Step 5 - Save Secrets</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ol type="none" class="sectlevel0">
+<li><a href="#_exo_services_and_exo_jcr_storage">eXo services and eXo JCR storage</a></li>
+<li>
+<ol type="none" class="sectlevel1">
+<li><a href="#_juzcret_jcr_nodetype_declaration">JuzCret JCR NodeType declaration</a></li>
+<li><a href="#_binding_exo_jcr_service">Binding eXo JCR service</a></li>
+<li><a href="#_jcr_service_implementation">JCR service implementation</a></li>
+</ol>
+</li>
+</ol>
+</div>
+</div>
+<div id="content">
+<h1 id="_exo_services_and_exo_jcr_storage" class="sect0"><a class="anchor" href="#_exo_services_and_exo_jcr_storage"></a>eXo services and eXo JCR storage</h1>
+<div class="paragraph">
+<p>We have a <strong>JuZcret application</strong> with some <strong>nice features</strong>. However we&#8217;re saving our secret in memory&#8230; which is good for testing but not for production. It&#8217;s time to learn how to <strong>save our secret</strong> in <strong>eXo JCR</strong>. During this step we will implement a new secret service for save all secrets in JCR instead of memory.</p>
+</div>
+<div class="sect1">
+<h2 id="_juzcret_jcr_nodetype_declaration"><a class="anchor" href="#_juzcret_jcr_nodetype_declaration"></a>JuzCret JCR NodeType declaration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>First of all we will create <strong>JCR node type definition</strong>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-note" title="Note"></i>
+</td>
+<td class="content">
+
+We&#8217;ll not focus on eXo JCR api on this tutorial, but how to <strong>leverage JCR support from eXo Platform</strong> to develop Juzu Portlet. We will not explain in detail the JCR node type definition below. If you need more information to understand the code below, please take a look to the <a href="http://exojcr.jboss.org/" target="_blank">eXo JCR website</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Create a new file <code>secret-nodetypes.xml</code> in <code>src/main/webapp/WEB-INF/conf</code> .<br>
+We will define <code>exo:secret</code> and <code>exo:secretComment</code> node type. Their properties reflect our <strong>JuZcret domain classes</strong>: Secret and Comment.</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;nodeTypes</span> <span class="attribute-name">xmlns:nt</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.jcp.org/jcr/nt/1.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:mix</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.jcp.org/jcr/mix/1.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:jcr</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.jcp.org/jcr/1.0</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;nodeType</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">exo:secret</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">isMixin</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">hasOrderableChildNodes</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">primaryItemName</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+      <span class="tag">&lt;supertypes&gt;</span>
+        <span class="tag">&lt;supertype&gt;</span>nt:base<span class="tag">&lt;/supertype&gt;</span>
+      <span class="tag">&lt;/supertypes&gt;</span>
+      <span class="tag">&lt;propertyDefinitions&gt;</span>
+        <span class="tag">&lt;propertyDefinition</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">exo:id</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">requiredType</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">String</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">autoCreated</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">mandatory</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">onParentVersion</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">COPY</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">protected</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">multiple</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+          <span class="tag">&lt;valueConstraints</span><span class="tag">/&gt;</span>
+        <span class="tag">&lt;/propertyDefinition&gt;</span>
+        <span class="tag">&lt;propertyDefinition</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">exo:message</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">requiredType</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">String</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">autoCreated</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">mandatory</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">onParentVersion</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">COPY</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">protected</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">multiple</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+          <span class="tag">&lt;valueConstraints</span><span class="tag">/&gt;</span>
+        <span class="tag">&lt;/propertyDefinition&gt;</span>
+        <span class="tag">&lt;propertyDefinition</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">exo:imageURL</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">requiredType</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">String</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">autoCreated</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">mandatory</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">onParentVersion</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">COPY</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">protected</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">multiple</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+          <span class="tag">&lt;valueConstraints</span><span class="tag">/&gt;</span>
+        <span class="tag">&lt;/propertyDefinition&gt;</span>
+        <span class="tag">&lt;propertyDefinition</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">exo:likes</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">requiredType</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">String</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">autoCreated</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">mandatory</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">onParentVersion</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">COPY</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">protected</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">multiple</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+          <span class="tag">&lt;valueConstraints</span><span class="tag">/&gt;</span>
+        <span class="tag">&lt;/propertyDefinition&gt;</span>
+        <span class="tag">&lt;propertyDefinition</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">exo:createdDate</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">requiredType</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Date</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">autoCreated</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">mandatory</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">onParentVersion</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">COPY</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">protected</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">multiple</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+          <span class="tag">&lt;valueConstraints</span><span class="tag">/&gt;</span>
+        <span class="tag">&lt;/propertyDefinition&gt;</span>
+      <span class="tag">&lt;/propertyDefinitions&gt;</span>
+      <span class="tag">&lt;childNodeDefinitions&gt;</span>
+        <span class="tag">&lt;childNodeDefinition</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">*</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">defaultPrimaryType</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">autoCreated</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">mandatory</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span>
+          <span class="attribute-name">onParentVersion</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">COPY</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">protected</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">sameNameSiblings</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+          <span class="tag">&lt;requiredPrimaryTypes&gt;</span>
+            <span class="tag">&lt;requiredPrimaryType&gt;</span>exo:secretComment<span class="tag">&lt;/requiredPrimaryType&gt;</span>
+          <span class="tag">&lt;/requiredPrimaryTypes&gt;</span>
+        <span class="tag">&lt;/childNodeDefinition&gt;</span>
+      <span class="tag">&lt;/childNodeDefinitions&gt;</span>
+    <span class="tag">&lt;/nodeType&gt;</span>
+
+    <span class="tag">&lt;nodeType</span>  <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">exo:secretComment</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">isMixin</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">hasOrderableChildNodes</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">primaryItemName</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+      <span class="tag">&lt;supertypes&gt;</span>
+        <span class="tag">&lt;supertype&gt;</span>nt:base<span class="tag">&lt;/supertype&gt;</span>
+      <span class="tag">&lt;/supertypes&gt;</span>
+      <span class="tag">&lt;propertyDefinitions&gt;</span>
+        <span class="tag">&lt;propertyDefinition</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">exo:id</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">requiredType</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">String</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">autoCreated</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">mandatory</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">onParentVersion</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">COPY</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">protected</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">multiple</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+          <span class="tag">&lt;valueConstraints</span><span class="tag">/&gt;</span>
+        <span class="tag">&lt;/propertyDefinition&gt;</span>
+        <span class="tag">&lt;propertyDefinition</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">exo:userId</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">requiredType</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">String</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">autoCreated</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">mandatory</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">onParentVersion</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">COPY</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">protected</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">multiple</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+          <span class="tag">&lt;valueConstraints</span><span class="tag">/&gt;</span>
+        <span class="tag">&lt;/propertyDefinition&gt;</span>
+        <span class="tag">&lt;propertyDefinition</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">exo:content</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">requiredType</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">String</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">autoCreated</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">mandatory</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">onParentVersion</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">COPY</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">protected</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">multiple</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+          <span class="tag">&lt;valueConstraints</span><span class="tag">/&gt;</span>
+        <span class="tag">&lt;/propertyDefinition&gt;</span>
+        <span class="tag">&lt;propertyDefinition</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">exo:createdDate</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">requiredType</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Date</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">autoCreated</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">mandatory</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">onParentVersion</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">COPY</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">protected</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">multiple</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+          <span class="tag">&lt;valueConstraints</span><span class="tag">/&gt;</span>
+        <span class="tag">&lt;/propertyDefinition&gt;</span>
+      <span class="tag">&lt;/propertyDefinitions&gt;</span>
+    <span class="tag">&lt;/nodeType&gt;</span>
+<span class="tag">&lt;/nodeTypes&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When <code>secret-nodetypes.xml</code> file is ready, we need to register it to <strong>eXo JCR service</strong>. Add this new eXo container configuration file <code>/src/main/webapp/WEB-INF/conf/configuration.xml</code>:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;configuration</span>
+  <span class="attribute-name">xmlns:xsi</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.w3.org/2001/XMLSchema-instance</span><span class="delimiter">&quot;</span></span>
+  <span class="attribute-name">xsi:schemaLocation</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.exoplatform.org/xml/ns/kernel_1_2.xsd http://www.exoplatform.org/xml/ns/kernel_1_2.xsd</span><span class="delimiter">&quot;</span></span>
+  <span class="attribute-name">xmlns</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.exoplatform.org/xml/ns/kernel_1_2.xsd</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+
+  <span class="tag">&lt;external-component-plugins&gt;</span>
+    <span class="tag">&lt;target-component&gt;</span>org.exoplatform.services.jcr.RepositoryService<span class="tag">&lt;/target-component&gt;</span>
+    <span class="tag">&lt;component-plugin&gt;</span>
+      <span class="tag">&lt;name&gt;</span>add.nodeType<span class="tag">&lt;/name&gt;</span>
+      <span class="tag">&lt;set-method&gt;</span>addPlugin<span class="tag">&lt;/set-method&gt;</span>
+      <span class="tag">&lt;type&gt;</span>org.exoplatform.services.jcr.impl.AddNodeTypePlugin<span class="tag">&lt;/type&gt;</span>
+      <span class="tag">&lt;init-params&gt;</span>
+        <span class="tag">&lt;values-param&gt;</span>
+          <span class="tag">&lt;name&gt;</span>autoCreatedInNewRepository<span class="tag">&lt;/name&gt;</span>
+          <span class="tag">&lt;description&gt;</span>Node types configuration file<span class="tag">&lt;/description&gt;</span>
+          <span class="tag">&lt;value&gt;</span>war:/conf/secret-nodetypes.xml<span class="tag">&lt;/value&gt;</span>
+        <span class="tag">&lt;/values-param&gt;</span>
+      <span class="tag">&lt;/init-params&gt;</span>
+    <span class="tag">&lt;/component-plugin&gt;</span>
+  <span class="tag">&lt;/external-component-plugins&gt;</span>
+<span class="tag">&lt;/configuration&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This configuration register a <strong>node type plugin</strong> with eXo RepositoryService, which will parse our node type at <code>war:/conf/secret-nodetypes.xml</code> path.</p>
+</div>
+<div class="paragraph">
+<p>The only missing thing now is to make sure that eXo Platform will <strong>scan and process</strong> our <code>configuration.xml</code> file in <strong>tutorial-juzcret webapp</strong> when it initializing the eXo container. This task is not specific to Juzu, it&#8217;s about configuring a webapp as <strong>eXo Platform extension</strong> (for more details about extension, please <a href="http://docs.exoplatform.com/public/topic/PLF41/PLFDeveloperGuide.eXoAdd-ons.PortalExtension.Howto.html?cp=2_3_1_0_1" target="_blank">look at eXo documentation</a>)</p>
+</div>
+<div class="paragraph">
+<p>First, we need to modify the <code>web.xml</code>:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="preprocessor">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot; ?&gt;</span>
+<span class="tag">&lt;web-app</span> <span class="attribute-name">xmlns</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://java.sun.com/xml/ns/javaee</span><span class="delimiter">&quot;</span></span>
+         <span class="attribute-name">xmlns:xsi</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.w3.org/2001/XMLSchema-instance</span><span class="delimiter">&quot;</span></span>
+         <span class="attribute-name">xsi:schemaLocation</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd</span><span class="delimiter">&quot;</span></span>
+         <span class="attribute-name">version</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">3.0</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+  <span class="tag">&lt;display-name&gt;</span>juzu-doc-tutorial-juzcret-examples<span class="tag">&lt;/display-name&gt;</span>
+
+  <span class="comment">&lt;!-- Run mode: prod, dev or live --&gt;</span>
+  <span class="tag">&lt;context-param&gt;</span>
+    <span class="tag">&lt;param-name&gt;</span>juzu.run_mode<span class="tag">&lt;/param-name&gt;</span>
+    <span class="tag">&lt;param-value&gt;</span>${juzu.run_mode:dev}<span class="tag">&lt;/param-value&gt;</span>
+  <span class="tag">&lt;/context-param&gt;</span>
+
+  <span class="comment">&lt;!-- Injection container to use: guice, spring, cdi or weld --&gt;</span>
+  <span class="tag">&lt;context-param&gt;</span>
+    <span class="tag">&lt;param-name&gt;</span>juzu.inject<span class="tag">&lt;/param-name&gt;</span>
+    <span class="tag">&lt;param-value&gt;</span>guice<span class="tag">&lt;/param-value&gt;</span>
+  <span class="tag">&lt;/context-param&gt;</span>
+
+  <span class="tag">&lt;listener&gt;</span>
+    <span class="tag">&lt;listener-class&gt;</span>org.exoplatform.container.web.PortalContainerConfigOwner<span class="tag">&lt;/listener-class&gt;</span>
+  <span class="tag">&lt;/listener&gt;</span>
+<span class="tag">&lt;/web-app&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>eXo container</strong> will need to know which webapp container contains its configuration files. By adding the <code>PortalContainerConfigOwner</code> a <strong>servlet context listener</strong>, we&#8217;ve registered JuZcret webapp context to eXo container to scan and process xml configuration file. Notice that we also need to declare <code>&lt;display-name&gt;</code> tag. eXo container use that information to <strong>map the registered webapp</strong>.</p>
+</div>
+<div class="paragraph">
+<p>At last, we config the JuZcret as a <strong>dependency of eXo container</strong>. Even you&#8217;ve registered the webapp context, we still need to tell eXo container that JuZcret webapp is a <strong>portal container definition dependency</strong>. There are 2 places to add the configuration:</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p><code>TOMCAT/gatein/conf/configuration.xml</code></p>
+</li>
+<li>
+<p>Create a jar file that contains <code>/conf/configuration.xml</code> and put it into tomcat/lib</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-note" title="Note"></i>
+</td>
+<td class="content">
+
+We take the 1st solution for this tutorial, it&#8217;s quicker for the purpose of this tutorial that is not about eXo Platform extension. For your next application, you have to <a href="http://docs.exoplatform.com/public/topic/PLF41/PLFDeveloperGuide.eXoAdd-ons.PortalExtension.Howto.html?cp=2_3_1_0_1" target="_blank">follow the official documentation</a> and create a specific jar that containing this configuration.xml.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Lets modify the <code>TOMCAT/gatein/conf/configuration.xml</code>:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;configuration</span>
+    <span class="attribute-name">xmlns:xsi</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.w3.org/2001/XMLSchema-instance</span><span class="delimiter">&quot;</span></span>
+    <span class="attribute-name">xsi:schemaLocation</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.exoplatform.org/xml/ns/kernel_1_2.xsd http://www.exoplatform.org/xml/ns/kernel_1_2.xsd</span><span class="delimiter">&quot;</span></span>
+    <span class="attribute-name">xmlns</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.exoplatform.org/xml/ns/kernel_1_2.xsd</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+
+<span class="tag">&lt;external-component-plugins&gt;</span>
+<span class="tag">&lt;target-component&gt;</span>org.exoplatform.container.definition.PortalContainerConfig<span class="tag">&lt;/target-component&gt;</span>
+  <span class="tag">&lt;component-plugin&gt;</span>
+  <span class="comment">&lt;!-- The name of the plugin --&gt;</span>
+  <span class="tag">&lt;name&gt;</span>Change PortalContainer Definitions<span class="tag">&lt;/name&gt;</span>
+  <span class="comment">&lt;!-- The name of the method to call on the PortalContainerConfig in order to register the changes on the PortalContainerDefinitions --&gt;</span>
+  <span class="tag">&lt;set-method&gt;</span>registerChangePlugin<span class="tag">&lt;/set-method&gt;</span>
+  <span class="comment">&lt;!-- The full qualified name of the PortalContainerDefinitionChangePlugin --&gt;</span>
+  <span class="tag">&lt;type&gt;</span>org.exoplatform.container.definition.PortalContainerDefinitionChangePlugin<span class="tag">&lt;/type&gt;</span>
+  <span class="tag">&lt;init-params&gt;</span>
+    <span class="tag">&lt;value-param&gt;</span>
+      <span class="tag">&lt;name&gt;</span>apply.default<span class="tag">&lt;/name&gt;</span>
+      <span class="tag">&lt;value&gt;</span>true<span class="tag">&lt;/value&gt;</span>
+    <span class="tag">&lt;/value-param&gt;</span>
+    <span class="tag">&lt;object-param&gt;</span>
+      <span class="tag">&lt;name&gt;</span>change<span class="tag">&lt;/name&gt;</span>
+      <span class="tag">&lt;object</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">org.exoplatform.container.definition.PortalContainerDefinitionChange$AddDependencies</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="comment">&lt;!-- The list of name of the dependencies to add --&gt;</span>
+        <span class="tag">&lt;field</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">dependencies</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+          <span class="tag">&lt;collection</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">java.util.ArrayList</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+            <span class="tag">&lt;value&gt;</span>
+              <span class="tag">&lt;string&gt;</span>juzu-doc-tutorial-juzcret-examples<span class="tag">&lt;/string&gt;</span>
+            <span class="tag">&lt;/value&gt;</span>
+          <span class="tag">&lt;/collection&gt;</span>
+        <span class="tag">&lt;/field&gt;</span>
+      <span class="tag">&lt;/object&gt;</span>
+    <span class="tag">&lt;/object-param&gt;</span>
+  <span class="tag">&lt;/init-params&gt;</span>
+    <span class="tag">&lt;/component-plugin&gt;</span>
+<span class="tag">&lt;/external-component-plugins&gt;</span>
+
+<span class="tag">&lt;import&gt;</span>jar:/conf/platform/configuration.xml<span class="tag">&lt;/import&gt;</span>
+
+<span class="tag">&lt;/configuration&gt;</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-note" title="Note"></i>
+</td>
+<td class="content">
+
+It&#8217;s important to declare our application before the import of <code>jar:/conf/platform/configuration.xml</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>We finish to declare all necessary JCR Node Type for JuZcret and we add the <strong>JuZcret webapp context as a portal container definition dependency</strong>.<br>
+Now we can configure the <strong>eXo JCR service</strong>.</p>
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_binding_exo_jcr_service"><a class="anchor" href="#_binding_exo_jcr_service"></a>Binding eXo JCR service</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>First, we need to declare dependency on eXo kernel. Add <code>exo.jcr.component.ext</code> to the project <code>pom.xml</code>:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml">   <span class="tag">&lt;dependency&gt;</span>
+      <span class="tag">&lt;groupId&gt;</span>org.exoplatform.jcr<span class="tag">&lt;/groupId&gt;</span>
+      <span class="tag">&lt;artifactId&gt;</span>exo.jcr.component.ext<span class="tag">&lt;/artifactId&gt;</span>
+      <span class="tag">&lt;version&gt;</span>1.15.x-SNAPSHOT<span class="tag">&lt;/version&gt;</span>
+      <span class="tag">&lt;scope&gt;</span>provided<span class="tag">&lt;/scope&gt;</span>
+    <span class="tag">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It&#8217;s ready for us to implement the <strong>new secret service</strong> with <strong>JCR api</strong>. Let&#8217;s create a new <code>SecretServiceJCRImpl.java</code> class in the <code>org.juzu.tutorial.services</code> package:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="keyword">package</span> <span class="namespace">org.juzu.tutorial.services</span>;
+
+<span class="keyword">import</span> <span class="include">org.exoplatform.services.jcr.ext.app.SessionProviderService</span>;
+<span class="keyword">import</span> <span class="include">org.exoplatform.services.jcr.ext.hierarchy.NodeHierarchyCreator</span>;
+<span class="keyword">import</span> <span class="include">org.juzu.tutorial.models.Comment</span>;
+<span class="keyword">import</span> <span class="include">org.juzu.tutorial.models.Secret</span>;
+
+<span class="keyword">import</span> <span class="include">javax.inject.Inject</span>;
+<span class="keyword">import</span> <span class="include">java.util.List</span>;
+<span class="keyword">import</span> <span class="include">java.util.Set</span>;
+
+<span class="directive">public</span> <span class="type">class</span> <span class="class">SecretServiceJCRImpl</span> <span class="directive">implements</span> SecretService {
+
+    <span class="directive">private</span> <span class="directive">static</span> <span class="directive">final</span> <span class="predefined-type">String</span> SECRET_APP = <span class="string"><span class="delimiter">&quot;</span><span class="content">SecretApplication</span><span class="delimiter">&quot;</span></span>;
+
+    <span class="directive">private</span> <span class="directive">static</span> <span class="directive">final</span> <span class="predefined-type">String</span> CREATED_DATE = <span class="string"><span class="delimiter">&quot;</span><span class="content">exo:createdDate</span><span class="delimiter">&quot;</span></span>;
+
+    <span class="directive">private</span> <span class="directive">static</span> <span class="directive">final</span> <span class="predefined-type">String</span> ID = <span class="string"><span class="delimiter">&quot;</span><span class="content">exo:id</span><span class="delimiter">&quot;</span></span>;
+
+    <span class="directive">private</span> <span class="directive">static</span> <span class="directive">final</span> <span class="predefined-type">String</span> IMAGE_URL = <span class="string"><span class="delimiter">&quot;</span><span class="content">exo:imageURL</span><span class="delimiter">&quot;</span></span>;
+
+    <span class="directive">private</span> <span class="directive">static</span> <span class="directive">final</span> <span class="predefined-type">String</span> LIKES = <span class="string"><span class="delimiter">&quot;</span><span class="content">exo:likes</span><span class="delimiter">&quot;</span></span>;
+
+    <span class="directive">private</span> <span class="directive">static</span> <span class="directive">final</span> <span class="predefined-type">String</span> MESSAGE = <span class="string"><span class="delimiter">&quot;</span><span class="content">exo:message</span><span class="delimiter">&quot;</span></span>;
+
+    <span class="directive">private</span> <span class="directive">static</span> <span class="directive">final</span> <span class="predefined-type">String</span> CONTENT = <span class="string"><span class="delimiter">&quot;</span><span class="content">exo:content</span><span class="delimiter">&quot;</span></span>;
+
+    <span class="directive">private</span> <span class="directive">static</span> <span class="directive">final</span> <span class="predefined-type">String</span> USER_ID = <span class="string"><span class="delimiter">&quot;</span><span class="content">exo:userId</span><span class="delimiter">&quot;</span></span>;
+
+    <span class="directive">private</span> <span class="directive">static</span> <span class="directive">final</span> <span class="predefined-type">String</span> SECRET_NODE_TYPE = <span class="string"><span class="delimiter">&quot;</span><span class="content">exo:secret</span><span class="delimiter">&quot;</span></span>;
+
+    <span class="directive">private</span> <span class="directive">static</span> <span class="directive">final</span> <span class="predefined-type">String</span> COMMENT_NODE_TYPE = <span class="string"><span class="delimiter">&quot;</span><span class="content">exo:secretComment</span><span class="delimiter">&quot;</span></span>;
+
+    <span class="annotation">@Inject</span>
+    <span class="directive">private</span> SessionProviderService  sessionService;
+
+    <span class="annotation">@Inject</span>
+    <span class="directive">private</span> NodeHierarchyCreator    nodeCreator;
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="predefined-type">List</span>&lt;Secret&gt; getSecrets() {
+        <span class="keyword">return</span> <span class="predefined-constant">null</span>;
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="type">void</span> addSecret(<span class="predefined-type">String</span> message, <span class="predefined-type">String</span> imageUrl) {
+
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> Comment addComment(<span class="predefined-type">String</span> secretId, Comment comment) {
+        <span class="keyword">return</span> <span class="predefined-constant">null</span>;
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="predefined-type">Set</span>&lt;<span class="predefined-type">String</span>&gt; addLike(<span class="predefined-type">String</span> secretId, <span class="predefined-type">String</span> userId) {
+        <span class="keyword">return</span> <span class="predefined-constant">null</span>;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>sessionService</strong> and <strong>nodeCreator</strong> are service components created by eXo container. There must be a bridge between eXo Platform&#8217;s container (eXo container) and JuZcret&#8217;s IOC container (Guice). This means that before to use it we need to bind the necessary services in <code>package-info.java</code>:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="annotation">@Bindings</span>({ <span class="annotation">@Binding</span>(value = SecretService.class, implementation = SecretServiceJCRImpl.class),
+            <span class="annotation">@Binding</span>(value = SessionProviderService.class),
+            <span class="annotation">@Binding</span>(value = NodeHierarchyCreator.class)})
+
+[...]
+
+<span class="keyword">import</span> <span class="include">org.exoplatform.services.jcr.ext.app.SessionProviderService</span>;
+<span class="keyword">import</span> <span class="include">org.exoplatform.services.jcr.ext.hierarchy.NodeHierarchyCreator</span>;
+<span class="keyword">import</span> <span class="include">org.juzu.tutorial.services.SecretService</span>;
+<span class="keyword">import</span> <span class="include">org.juzu.tutorial.services.SecretServiceJCRImpl</span>;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <strong>secret service implementation</strong> is now the JCR version (we update the implementation of <code>SecretService.class</code> to <code>SecretServiceJCRImpl.class</code> instead of <code>SecretServiceMemImpl.class</code>).<br>
+Notice that there is <strong>no declaration</strong> for implementation class of <code>SessionProviderService</code> and <code>NodeHierarchyCreator</code>. We only declare the interfaces because <strong>JuZcret&#8217;s IOC container</strong> will not instantiate those services itself, but retrieve them from <strong>exo&#8217;s container</strong> by delegating the call to <code>KernelProviderFactory</code> (we declared this in step-4 using service loader).</p>
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_jcr_service_implementation"><a class="anchor" href="#_jcr_service_implementation"></a>JCR service implementation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>All necessary services are now managed by <strong>JuZcret&#8217;s container</strong>, and ready to be injected and used.<br>
+The <code>NodeHierarchyCreator</code> service will help us to initialize our JuZcret application <strong>JCR data structure</strong>.<br>
+We create the root node of JuZcret application by adding this method to our secret service:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="keyword">import</span> <span class="include">org.exoplatform.services.jcr.ext.common.SessionProvider</span>;
+<span class="keyword">import</span> <span class="include">javax.jcr.Node</span>;
+
+<span class="directive">public</span> <span class="type">class</span> <span class="class">SecretServiceJCRImpl</span> <span class="directive">implements</span> SecretService {
+  [...]
+  <span class="directive">private</span> Node getSecretHome() <span class="directive">throws</span> <span class="exception">Exception</span> {
+    SessionProvider sProvider = sessionService.getSystemSessionProvider(<span class="predefined-constant">null</span>);
+    Node publicApp = nodeCreator.getPublicApplicationNode(sProvider);
+    <span class="keyword">try</span> {
+      <span class="keyword">return</span> publicApp.getNode(SECRET_APP);
+    } <span class="keyword">catch</span> (<span class="exception">Exception</span> e) {
+      Node secretApp = publicApp.addNode(SECRET_APP, <span class="string"><span class="delimiter">&quot;</span><span class="content">nt:unstructured</span><span class="delimiter">&quot;</span></span>);
+      publicApp.getSession().save();
+      <span class="keyword">return</span> secretApp;
+    }
+  }
+  [...]
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>By calling <code>nodeCreator.getPublicApplicationNode</code> method, we get the common place to put <strong>application data</strong>. If it&#8217;s the first time running JuZcret, we create a new <code>SECRET_APP</code> node with type <code>nt:unstructured</code> node type. This node will then contains childrens with node type <code>exo:secret</code>. This node type should reflect our Secret domain class, and then declare this to <strong>eXo JCR service</strong> (we&#8217;ll back to this part later).</p>
+</div>
+<div class="paragraph">
+<p>Now we get the root application node, let&#8217;s implement the function to <strong>add a new  secret</strong>:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">[...]
+
+<span class="keyword">import</span> <span class="include">java.util.Calendar</span>;
+<span class="keyword">import</span> <span class="include">java.util.UUID</span>;
+
+[...]
+
+<span class="directive">public</span> <span class="type">class</span> <span class="class">SecretServiceJCRImpl</span> <span class="directive">implements</span> SecretService {
+  <span class="error">…</span>
+
+  <span class="directive">public</span> <span class="type">void</span> addSecret(<span class="predefined-type">String</span> message, <span class="predefined-type">String</span> imageUrl) {
+    <span class="predefined-type">String</span> id = <span class="predefined-type">UUID</span>.randomUUID().toString();
+    <span class="keyword">try</span> {
+      Node secretHome = getSecretHome();
+      Node secret = secretHome.addNode(id, SECRET_NODE_TYPE);
+      secret.setProperty(ID, id);
+      secret.setProperty(MESSAGE, message);
+      secret.setProperty(IMAGE_URL, imageUrl);
+      secret.setProperty(CREATED_DATE, <span class="predefined-type">Calendar</span>.getInstance());
+      secret.getSession().save();
+    } <span class="keyword">catch</span> (<span class="exception">Exception</span> e) {
+      e.printStackTrace();
+    }
+  }
+
+  [...]
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It&#8217;s pretty simple <strong>JCR api</strong>, and actually, no Juzu stuff here, the most important thing here is getting the root node using the <code>getSecretHome</code> method:<br>
+There are some other <strong>similar method</strong> that we need to implement: <code>addComment</code>, <code>addLike</code> and <code>getSecrets</code> method:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">[...]
+
+<span class="keyword">import</span> <span class="include">java.util.HashSet</span>
+<span class="include">import</span> <span class="include">java.util.LinkedList</span>;
+<span class="keyword">import</span> <span class="include">javax.jcr.NodeIterator</span>;
+<span class="keyword">import</span> <span class="include">javax.jcr.RepositoryException</span>;
+<span class="keyword">import</span> <span class="include">javax.jcr.Value</span>;
+
+[...]
+
+<span class="annotation">@Override</span>
+  <span class="directive">public</span> <span class="predefined-type">List</span>&lt;Secret&gt; getSecrets() {
+    <span class="predefined-type">List</span>&lt;Secret&gt; secrets = <span class="keyword">new</span> <span class="predefined-type">LinkedList</span>&lt;Secret&gt;();
+    <span class="keyword">try</span> {
+      Node secretHome = getSecretHome();
+      NodeIterator iterChild = secretHome.getNodes();
+      <span class="keyword">while</span> (iterChild.hasNext()) {
+        secrets.add(buildSecret(iterChild.nextNode()));
+      }
+      <span class="keyword">return</span> secrets;
+    } <span class="keyword">catch</span> (<span class="exception">Exception</span> e) {
+      e.printStackTrace();
+      <span class="keyword">return</span> <span class="predefined-constant">null</span>;
+    }
+  }
+
+  <span class="annotation">@Override</span>
+  <span class="directive">public</span> Comment addComment(<span class="predefined-type">String</span> secretId, Comment comment) {
+    <span class="predefined-type">String</span> id = <span class="predefined-type">UUID</span>.randomUUID().toString();
+
+    <span class="keyword">try</span> {
+      Node secret = getSecretNode(secretId);
+
+      <span class="keyword">if</span> (secret != <span class="predefined-constant">null</span>) {
+        Node cNode = secret.addNode(id, COMMENT_NODE_TYPE);
+        cNode.setProperty(ID, id);
+        cNode.setProperty(USER_ID, comment.getUserId());
+        cNode.setProperty(CONTENT, comment.getContent());
+        cNode.setProperty(CREATED_DATE, <span class="predefined-type">Calendar</span>.getInstance());
+
+        cNode.getSession().save();
+        <span class="keyword">return</span> buildComment(cNode);
+      }
+    } <span class="keyword">catch</span> (<span class="exception">Exception</span> e) {
+      e.printStackTrace();
+    }
+    <span class="keyword">return</span> <span class="predefined-constant">null</span>;
+  }
+
+  <span class="annotation">@Override</span>
+  <span class="directive">public</span> <span class="predefined-type">Set</span>&lt;<span class="predefined-type">String</span>&gt; addLike(<span class="predefined-type">String</span> secretId, <span class="predefined-type">String</span> userId) {
+    <span class="keyword">try</span> {
+      Node secret = getSecretNode(secretId);
+
+      <span class="keyword">if</span> (secret != <span class="predefined-constant">null</span>) {
+        <span class="predefined-type">Set</span>&lt;<span class="predefined-type">String</span>&gt; likes = <span class="keyword">new</span> <span class="predefined-type">HashSet</span>&lt;<span class="predefined-type">String</span>&gt;();
+        <span class="keyword">if</span> (secret.hasProperty(LIKES)) {
+          Value<span class="type">[]</span> values = secret.getProperty(LIKES).getValues();
+          <span class="keyword">for</span> (Value v : values) {
+            likes.add(v.getString());
+          }
+        }
+        likes.add(userId);
+        secret.setProperty(LIKES, likes.toArray(<span class="keyword">new</span> <span class="predefined-type">String</span>[likes.size()]));
+
+        secret.save();
+        <span class="keyword">return</span> likes;
+      }
+    } <span class="keyword">catch</span> (<span class="exception">Exception</span> e) {
+      e.printStackTrace();
+    }
+    <span class="keyword">return</span> <span class="predefined-constant">null</span>;
+ }
+
+  <span class="directive">private</span> Node getSecretNode(<span class="predefined-type">String</span> secretId) {
+    <span class="keyword">try</span> {
+      Node secretHome = getSecretHome();
+      Node secret = secretHome.getNode(secretId);
+      <span class="keyword">return</span> secret;
+    } <span class="keyword">catch</span> (<span class="exception">Exception</span> e) {
+      e.printStackTrace();
+      <span class="keyword">return</span> <span class="predefined-constant">null</span>;
+    }
+  }
+
+<span class="directive">private</span> Secret buildSecret(Node secretNode) <span class="directive">throws</span> RepositoryException {
+    Secret secret = <span class="keyword">new</span> Secret();
+
+    <span class="predefined-type">List</span>&lt;Comment&gt; comments = <span class="keyword">new</span> <span class="predefined-type">LinkedList</span>&lt;Comment&gt;();
+    NodeIterator commentIter = secretNode.getNodes();
+    <span class="keyword">while</span> (commentIter.hasNext()) {
+      comments.add(buildComment(commentIter.nextNode()));
+    }
+    secret.setComments(comments);
+
+    secret.setCreatedDate(secretNode.getProperty(CREATED_DATE).getDate().getTime());
+    secret.setId(secretNode.getProperty(ID).getString());
+    secret.setImageURL(secretNode.getProperty(IMAGE_URL).getString());
+
+    <span class="predefined-type">Set</span>&lt;<span class="predefined-type">String</span>&gt; likes = <span class="keyword">new</span> <span class="predefined-type">HashSet</span>&lt;<span class="predefined-type">String</span>&gt;();
+    <span class="keyword">if</span> (secretNode.hasProperty(LIKES)) {
+      <span class="keyword">for</span> (Value userID : secretNode.getProperty(LIKES).getValues()) {
+        likes.add(userID.getString());
+      }
+    }
+    secret.setLikes(likes);
+
+    secret.setMessage(secretNode.getProperty(MESSAGE).getString());
+    <span class="keyword">return</span> secret;
+  }
+
+  <span class="directive">private</span> Comment buildComment(Node commentNode) <span class="directive">throws</span> RepositoryException {
+    Comment comment = <span class="keyword">new</span> Comment();
+    comment.setContent(commentNode.getProperty(CONTENT).getString());
+    comment.setCreatedDate(commentNode.getProperty(CREATED_DATE).getDate().getTime());
+    comment.setId(commentNode.getProperty(ID).getString());
+    comment.setUserId(commentNode.getProperty(USER_ID).getString());
+    <span class="keyword">return</span> comment;
+  }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That&#8217;s all, the secret JCR service is now ready to use.</p>
+</div>
+<div class="paragraph">
+<p>Now re-compile and deploy JuZcret eXo Platform as explain in previous step of this tutorial:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="text language-text">$ mvn clean install</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Copy/Paste the war <em>(replace the old one)</em> in the webapp folder of eXo Platform, start the server and open <a href="http://localhost:8080/portal/intranet/JuZcret" target="_blank">JuZcret page created in step 1</a>.</p>
+</div>
+<div class="paragraph">
+<p>All features: sharing secret, adding comment, like&#8230; should run similarly to previous memory service implementation, except one thing, we <strong>don&#8217;t lose shared secret</strong> or comment after restarting server. The data is now <strong>really persisted !</strong></p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s continue by <a href="./step6.html">adding internationalization in the next step</a></p>
+</div>
+<script type="text/javascript">
+//Get the left menu
+var leftmenu = document.getElementsByClassName("sectlevel0")[0];
+
+//Create back to menu link
+var menuLink = document.createElement("a");
+menuLink.href = "./index.html";
+menuLink.appendChild(document.createTextNode("Menu"));
+var menu = document.createElement("li");
+menu.setAttribute("class", "menuStep");
+menu.appendChild(menuLink);
+
+//Create go to previous step link
+var previousStepLink = document.createElement("a");
+previousStepLink.href = "./step4.html";
+previousStepLink.appendChild(document.createTextNode("Back to previous Step"));
+var previousStep = document.createElement("li");
+previousStep.setAttribute("class", "previousStep");
+previousStep.appendChild(previousStepLink);
+
+//Create go to next step link
+var nextStepLink = document.createElement("a");
+nextStepLink.href = "./step6.html";
+nextStepLink.appendChild(document.createTextNode("Go to next Step"));
+var nextStep = document.createElement("li");
+nextStep.setAttribute("class", "nextStep");
+nextStep.appendChild(nextStepLink);
+
+//Add them to Left Menu
+leftmenu.insertBefore(previousStep, leftmenu.firstChild);
+leftmenu.insertBefore(menu, leftmenu.firstChild);
+leftmenu.appendChild(nextStep);
+</script>
+</div>
+</div>
+
+
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-04-24 14:06:58 CEST
+</div>
+</div>
+</body>
+</html>

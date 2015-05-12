@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="Asciidoctor 0.1.3">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Step 4 -Like and comment Secret</title>
+<link rel="stylesheet" href="./rocket-panda.css">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.1.0/css/font-awesome.min.css">
+<style>
+.CodeRay {
+  background-color: hsl(0,0%,95%);
+  border: 1px solid silver;
+  color: black;
+}
+.CodeRay pre {
+  margin: 0px;
+}
+
+span.CodeRay { white-space: pre; border: 0px; padding: 2px; }
+
+table.CodeRay { border-collapse: collapse; width: 100%; padding: 2px; }
+table.CodeRay td { padding: 2px 4px; vertical-align: top; }
+
+.CodeRay .line-numbers {
+  background-color: hsl(180,65%,90%);
+  color: gray;
+  text-align: right;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+.CodeRay .line-numbers a {
+  background-color: hsl(180,65%,90%) !important;
+  color: gray !important;
+  text-decoration: none !important;
+}
+.CodeRay .line-numbers a:target { color: blue !important; }
+.CodeRay .line-numbers .highlighted { color: red !important; }
+.CodeRay .line-numbers .highlighted a { color: red !important; }
+.CodeRay span.line-numbers { padding: 0px 4px; }
+.CodeRay .line { display: block; float: left; width: 100%; }
+.CodeRay .code { width: 100%; }
+
+.CodeRay .debug { color: white !important; background: blue !important; }
+
+.CodeRay .annotation { color:#007 }
+.CodeRay .attribute-name { color:#b48 }
+.CodeRay .attribute-value { color:#700 }
+.CodeRay .binary { color:#509 }
+.CodeRay .char .content { color:#D20 }
+.CodeRay .char .delimiter { color:#710 }
+.CodeRay .char { color:#D20 }
+.CodeRay .class { color:#B06; font-weight:bold }
+.CodeRay .class-variable { color:#369 }
+.CodeRay .color { color:#0A0 }
+.CodeRay .comment { color:#777 }
+.CodeRay .comment .char { color:#444 }
+.CodeRay .comment .delimiter { color:#444 }
+.CodeRay .complex { color:#A08 }
+.CodeRay .constant { color:#036; font-weight:bold }
+.CodeRay .decorator { color:#B0B }
+.CodeRay .definition { color:#099; font-weight:bold }
+.CodeRay .delimiter { color:black }
+.CodeRay .directive { color:#088; font-weight:bold }
+.CodeRay .doc { color:#970 }
+.CodeRay .doc-string { color:#D42; font-weight:bold }
+.CodeRay .doctype { color:#34b }
+.CodeRay .entity { color:#800; font-weight:bold }
+.CodeRay .error { color:#F00; background-color:#FAA }
+.CodeRay .escape  { color:#666 }
+.CodeRay .exception { color:#C00; font-weight:bold }
+.CodeRay .float { color:#60E }
+.CodeRay .function { color:#06B; font-weight:bold }
+.CodeRay .global-variable { color:#d70 }
+.CodeRay .hex { color:#02b }
+.CodeRay .imaginary { color:#f00 }
+.CodeRay .include { color:#B44; font-weight:bold }
+.CodeRay .inline { background-color: hsla(0,0%,0%,0.07); color: black }
+.CodeRay .inline-delimiter { font-weight: bold; color: #666 }
+.CodeRay .instance-variable { color:#33B }
+.CodeRay .integer  { color:#00D }
+.CodeRay .key .char { color: #60f }
+.CodeRay .key .delimiter { color: #404 }
+.CodeRay .key { color: #606 }
+.CodeRay .keyword { color:#080; font-weight:bold }
+.CodeRay .label { color:#970; font-weight:bold }
+.CodeRay .local-variable { color:#963 }
+.CodeRay .namespace { color:#707; font-weight:bold }
+.CodeRay .octal { color:#40E }
+.CodeRay .operator { }
+.CodeRay .predefined { color:#369; font-weight:bold }
+.CodeRay .predefined-constant { color:#069 }
+.CodeRay .predefined-type { color:#0a5; font-weight:bold }
+.CodeRay .preprocessor { color:#579 }
+.CodeRay .pseudo-class { color:#00C; font-weight:bold }
+.CodeRay .regexp .content { color:#808 }
+.CodeRay .regexp .delimiter { color:#404 }
+.CodeRay .regexp .modifier { color:#C2C }
+.CodeRay .regexp { background-color:hsla(300,100%,50%,0.06); }
+.CodeRay .reserved { color:#080; font-weight:bold }
+.CodeRay .shell .content { color:#2B2 }
+.CodeRay .shell .delimiter { color:#161 }
+.CodeRay .shell { background-color:hsla(120,100%,50%,0.06); }
+.CodeRay .string .char { color: #b0b }
+.CodeRay .string .content { color: #D20 }
+.CodeRay .string .delimiter { color: #710 }
+.CodeRay .string .modifier { color: #E40 }
+.CodeRay .string { background-color:hsla(0,100%,50%,0.05); }
+.CodeRay .symbol .content { color:#A60 }
+.CodeRay .symbol .delimiter { color:#630 }
+.CodeRay .symbol { color:#A60 }
+.CodeRay .tag { color:#070 }
+.CodeRay .type { color:#339; font-weight:bold }
+.CodeRay .value { color: #088; }
+.CodeRay .variable  { color:#037 }
+
+.CodeRay .insert { background: hsla(120,100%,50%,0.12) }
+.CodeRay .delete { background: hsla(0,100%,50%,0.12) }
+.CodeRay .change { color: #bbf; background: #007; }
+.CodeRay .head { color: #f8f; background: #505 }
+.CodeRay .head .filename { color: white; }
+
+.CodeRay .delete .eyecatcher { background-color: hsla(0,100%,50%,0.2); border: 1px solid hsla(0,100%,45%,0.5); margin: -1px; border-bottom: none; border-top-left-radius: 5px; border-top-right-radius: 5px; }
+.CodeRay .insert .eyecatcher { background-color: hsla(120,100%,50%,0.2); border: 1px solid hsla(120,100%,25%,0.5); margin: -1px; border-top: none; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; }
+
+.CodeRay .insert .insert { color: #0c0; background:transparent; font-weight:bold }
+.CodeRay .delete .delete { color: #c00; background:transparent; font-weight:bold }
+.CodeRay .change .change { color: #88f }
+.CodeRay .head .head { color: #f4f }
+
+</style>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-1292368-37', 'juzuweb.org');
+    ga('send', 'pageview');
+
+</script>
+</head>
+<body class="book toc2">
+<div id="header">
+<h1>Step 4 -Like and comment Secret</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ol type="none" class="sectlevel0">
+<li><a href="#_models">Models</a></li>
+<li><a href="#_improve_secret_service">Improve Secret Service</a></li>
+<li><a href="#_present_like_and_comment">Present like and comment</a></li>
+<li><a href="#_template">Template</a></li>
+<li>
+<ol type="none" class="sectlevel1">
+<li><a href="#_javascript_handler">Javascript Handler</a></li>
+<li><a href="#_adding_validation">Adding validation</a></li>
+<li><a href="#_portlet_edit_mode">Portlet Edit Mode</a></li>
+</ol>
+</li>
+</ol>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>What would be a <strong>social feature</strong> without any user interaction ? Nothing&#8230;<br>
+It&#8217;s why during this step, we&#8217;ll add two very original social feature to our <strong>JuZcret</strong> application: A user can comment and "like" a secret&#8230; Crazy ! :D<br>
+By implementing these new features we will learn amongst other how to use <strong>Ajax</strong> with Juzu, <strong>interact with Portlet Container</strong> or add an <strong>EDIT mode</strong> to our Portlet.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s start by improving a little bit the application models.</p>
+</div>
+
+</div>
+</div>
+<h1 id="_models" class="sect0"><a class="anchor" href="#_models"></a>Models</h1>
+<div class="paragraph">
+<p>Here no Juzu Stuff, we will just <strong>improve our current model</strong>. Lets add the top of the tree, <strong>Model</strong>. This class contains common attributes for <strong>Secret</strong> and <strong>Comment</strong>:</p>
+</div>
+<div id="image:ClassDiagram-step4.png" class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/step4/ClassDiagram-step4.png" alt="Class Diagram" width="600">
+</div>
+
+</div>
+<div class="paragraph">
+<p>In <code>org.juzu.tutorial.models</code> package create <code>Model</code> class as below:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="keyword">package</span> <span class="namespace">org.juzu.tutorial.models</span>;
+
+<span class="keyword">import</span> <span class="include">java.io.Serializable</span>;
+<span class="keyword">import</span> <span class="include">java.util.Date</span>;
+
+<span class="directive">public</span> <span class="type">class</span> <span class="class">Model</span> <span class="directive">implements</span> <span class="predefined-type">Serializable</span> {
+    <span class="directive">private</span> <span class="predefined-type">String</span> id;
+    <span class="directive">private</span> <span class="predefined-type">Date</span> createdDate;
+
+    <span class="directive">public</span> <span class="predefined-type">String</span> getId() {
+        <span class="keyword">return</span> id;
+    }
+
+    <span class="directive">public</span> <span class="type">void</span> setId(<span class="predefined-type">String</span> id) {
+        <span class="local-variable">this</span>.id = id;
+    }
+
+    <span class="directive">public</span> <span class="predefined-type">Date</span> getCreatedDate() {
+        <span class="keyword">return</span> createdDate;
+    }
+
+    <span class="directive">public</span> <span class="type">void</span> setCreatedDate(<span class="predefined-type">Date</span> createdDate) {
+        <span class="local-variable">this</span>.createdDate = createdDate;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then <code>Comment</code> class:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="keyword">package</span> <span class="namespace">org.juzu.tutorial.models</span>;
+
+<span class="directive">public</span> <span class="type">class</span> <span class="class">Comment</span> <span class="directive">extends</span> Model {
+    <span class="directive">private</span> <span class="predefined-type">String</span> userId;
+    <span class="directive">private</span> <span class="predefined-type">String</span> content;
+
+    <span class="directive">public</span> <span class="predefined-type">String</span> getUserId() {
+        <span class="keyword">return</span> userId;
+    }
+
+    <span class="directive">public</span> <span class="type">void</span> setUserId(<span class="predefined-type">String</span> userId) {
+        <span class="local-variable">this</span>.userId = userId;
+    }
+
+    <span class="directive">public</span> <span class="predefined-type">String</span> getContent() {
+        <span class="keyword">return</span> content;
+    }
+
+    <span class="directive">public</span> <span class="type">void</span> setContent(<span class="predefined-type">String</span> content) {
+        <span class="local-variable">this</span>.content = content;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We also need to improve <code>Secret</code>:</p>
+</div>
+<div class="olist arabic">
+
+<ol class="arabic">
+<li>
+<p>Make Secret <strong>extends Model class</strong> to inherits the parent attributes.</p>
+</li>
+<li>
+<p>A Secret object will contains <strong>several Comment relationship</strong>, and <strong>several like</strong> (that consist of a simple list of userId):</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="keyword">package</span> <span class="namespace">org.juzu.tutorial.models</span>;
+
+<span class="keyword">import</span> <span class="include">java.util.HashSet</span>;
+<span class="keyword">import</span> <span class="include">java.util.LinkedList</span>;
+<span class="keyword">import</span> <span class="include">java.util.List</span>;
+<span class="keyword">import</span> <span class="include">java.util.Set</span>;
+
+<span class="directive">public</span> <span class="type">class</span> <span class="class">Secret</span> <span class="directive">extends</span> Model {
+
+    <span class="directive">private</span> <span class="predefined-type">String</span> message;
+
+    <span class="directive">private</span> <span class="predefined-type">String</span> imageURL;
+
+    <span class="directive">private</span> <span class="predefined-type">Set</span>&lt;<span class="predefined-type">String</span>&gt; likes;
+
+    <span class="directive">private</span> <span class="predefined-type">List</span>&lt;Comment&gt; comments;
+
+    <span class="directive">public</span> Secret() {
+        likes = <span class="keyword">new</span> <span class="predefined-type">HashSet</span>&lt;<span class="predefined-type">String</span>&gt;();
+        comments = <span class="keyword">new</span> <span class="predefined-type">LinkedList</span>&lt;Comment&gt;();
+    }
+
+    <span class="directive">public</span> <span class="predefined-type">Set</span>&lt;<span class="predefined-type">String</span>&gt; getLikes() {
+        <span class="predefined-type">Set</span>&lt;<span class="predefined-type">String</span>&gt; lks = <span class="keyword">new</span> <span class="predefined-type">HashSet</span>&lt;<span class="predefined-type">String</span>&gt;(likes);
+        <span class="keyword">return</span> lks;
+    }
+
+    <span class="directive">public</span> <span class="type">void</span> setLikes(<span class="predefined-type">Set</span>&lt;<span class="predefined-type">String</span>&gt; likes) {
+        <span class="local-variable">this</span>.likes = likes;
+    }
+
+    <span class="directive">public</span> <span class="predefined-type">List</span>&lt;Comment&gt; getComments() {
+        <span class="predefined-type">List</span>&lt;Comment&gt; cms = <span class="keyword">new</span> <span class="predefined-type">LinkedList</span>&lt;Comment&gt;(comments);
+        <span class="keyword">return</span> cms;
+    }
+
+    <span class="directive">public</span> <span class="type">void</span> setComments(<span class="predefined-type">List</span>&lt;Comment&gt; comments) {
+        <span class="local-variable">this</span>.comments = comments;
+    }
+
+    <span class="directive">public</span> <span class="predefined-type">String</span> getMessage() {
+        <span class="keyword">return</span> message;
+    }
+
+    <span class="directive">public</span> <span class="type">void</span> setMessage(<span class="predefined-type">String</span> message) {
+        <span class="local-variable">this</span>.message = message;
+    }
+
+    <span class="directive">public</span> <span class="predefined-type">String</span> getImageURL() {
+        <span class="keyword">return</span> imageURL;
+    }
+
+    <span class="directive">public</span> <span class="type">void</span> setImageURL(<span class="predefined-type">String</span> imageURL) {
+        <span class="local-variable">this</span>.imageURL = imageURL;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That&#8217;s enough ! Our model is <strong>ready for comment and like feature</strong>. Now we need to improve the Secret service by providing an API to add comments and like secrets.</p>
+</div>
+
+<h1 id="_improve_secret_service" class="sect0"><a class="anchor" href="#_improve_secret_service"></a>Improve Secret Service</h1>
+<div class="paragraph">
+<p>Our Secret Service need <strong>two more methods</strong> to manage the new functionalities. One for <strong>adding comment to secret</strong> (addComment method) and an other one to <strong>like a secret</strong> (addLike method).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-note" title="Note"></i>
+</td>
+<td class="content">
+
+Similarly to step-2, data is still saved in memory for now.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Firstly, declare these two method in the <code>SecretServie</code> interface:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="keyword">import</span> <span class="include">org.juzu.tutorial.models.Comment</span>;
+...
+import java.util.Set;
+
+...
+
+public Comment addComment(<span class="predefined-type">String</span> secretId, Comment comment);
+
+<span class="directive">public</span> <span class="predefined-type">Set</span>&lt;<span class="predefined-type">String</span>&gt; addLike(<span class="predefined-type">String</span> secretId, <span class="predefined-type">String</span> userId);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then implement these 2 methods in the <code>SecretServiceMemImpl</code> and update the <code>addSecret</code> function:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="keyword">import</span> <span class="include">org.juzu.tutorial.models.Comment</span>;
+[...]
+<span class="keyword">import</span> <span class="include">java.util</span>.*;
+[...]
+
+<span class="directive">public</span> <span class="type">void</span> addSecret(<span class="predefined-type">String</span> message, <span class="predefined-type">String</span> imageUrl) {
+    Secret secret = <span class="keyword">new</span> Secret();
+    secret.setId(<span class="predefined-type">UUID</span>.randomUUID().toString());
+    secret.setMessage(message);
+    secret.setImageURL(imageUrl);
+    secret.setCreatedDate(<span class="keyword">new</span> <span class="predefined-type">Date</span>());
+    secretsList.add(secret);
+  }
+
+<span class="directive">public</span> Comment addComment(<span class="predefined-type">String</span> secretId, Comment comment) {
+        Secret secret = getSecret(secretId);
+        <span class="keyword">if</span> (secret != <span class="predefined-constant">null</span>) {
+            comment.setId(<span class="predefined-type">UUID</span>.randomUUID().toString());
+            comment.setCreatedDate(<span class="keyword">new</span> <span class="predefined-type">Date</span>());
+
+            <span class="predefined-type">List</span>&lt;Comment&gt; comments = secret.getComments();
+            comments.add(comment);
+            secret.setComments(comments);
+        }
+        <span class="keyword">return</span> comment;
+    }
+
+    <span class="directive">public</span> <span class="predefined-type">Set</span>&lt;<span class="predefined-type">String</span>&gt; addLike(<span class="predefined-type">String</span> secretId, <span class="predefined-type">String</span> userId) {
+        Secret secret = getSecret(secretId);
+        <span class="keyword">if</span> (secret != <span class="predefined-constant">null</span>) {
+            <span class="predefined-type">Set</span>&lt;<span class="predefined-type">String</span>&gt; likes = secret.getLikes();
+            <span class="comment">// You can like only one time</span>
+            <span class="keyword">if</span> (!likes.contains(userId)) {
+                likes.add(userId);
+            }
+            secret.setLikes(likes);
+            <span class="keyword">return</span> likes;
+        }
+        <span class="keyword">return</span> <span class="predefined-constant">null</span>;
+    }
+
+    <span class="directive">private</span> Secret getSecret(<span class="predefined-type">String</span> secretId) {
+        Secret secret = <span class="predefined-constant">null</span>;
+        <span class="keyword">for</span> (Secret s : getSecrets()) {
+            <span class="keyword">if</span> (s.getId().equals(secretId)) {
+                secret = s;
+            }
+        }
+        <span class="keyword">return</span> secret;
+    }
+
+    ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Done for <strong>service layer</strong> !</p>
+</div>
+<div class="paragraph">
+<p>This two methods are pretty simple and self-explained so we don&#8217;t have to spend time on it.</p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s time to go back to Juzu and improve the <strong>presentation layer</strong>.</p>
+</div>
+
+<h1 id="_present_like_and_comment" class="sect0"><a class="anchor" href="#_present_like_and_comment"></a>Present like and comment</h1>
+<div class="paragraph">
+<p>The comment and like action will be manage using Ajax via the <strong>@Ajax</strong> Juzu annotation from the Juzu Ajax plugin. The Ajax plugin like the Binding plugin is already included in Juzu-core, so no need to add new dependencies in our pom.</p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s important to know that the <strong>Juzu-Ajax plugin</strong> depends on <strong>jQuery</strong>. So it&#8217;s mandatory to declare jQuery ad we do in the previous step if we want to use this plugin.</p>
+</div>
+<div class="paragraph">
+<p>Then you can <strong>use @Ajax in our controller</strong>. So lets add 2 new controller methods in <code>JuZcretApplication.java</code>:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="keyword">import</span> <span class="include">juzu</span>.*;
+<span class="keyword">import</span> <span class="include">juzu.plugin.ajax.Ajax</span>;
+<span class="keyword">import</span> <span class="include">juzu.request.SecurityContext</span>;
+<span class="keyword">import</span> <span class="include">org.json.JSONArray</span>;
+<span class="keyword">import</span> <span class="include">org.json.JSONObject</span>;
+<span class="keyword">import</span> <span class="include">org.juzu.tutorial.models.Comment</span>;
+<span class="keyword">import</span> <span class="include">org.juzu.tutorial.services.SecretService</span>;
+
+<span class="keyword">import</span> <span class="include">javax.inject.Inject</span>;
+<span class="keyword">import</span> <span class="include">java.security.Principal</span>;
+<span class="keyword">import</span> <span class="include">java.util.Set</span>;
+
+...
+
+  private <span class="directive">static</span> <span class="directive">final</span> <span class="predefined-type">String</span> ANONYMOUS = <span class="string"><span class="delimiter">&quot;</span><span class="content">Anonymous</span><span class="delimiter">&quot;</span></span>;
+
+  <span class="annotation">@Ajax</span>
+    <span class="annotation">@Resource</span>
+    <span class="directive">public</span> Response addComment(<span class="predefined-type">String</span> secretId, <span class="annotation">@Mapped</span> Comment comment, SecurityContext context) {
+      comment.setUserId(getCurrentUser(context));
+      Comment result = secretService.addComment(secretId, comment);
+      <span class="keyword">if</span> (result != <span class="predefined-constant">null</span>) {
+        <span class="keyword">return</span> Response.ok(<span class="keyword">new</span> JSONObject(result).toString()).withMimeType(<span class="string"><span class="delimiter">&quot;</span><span class="content">text/json</span><span class="delimiter">&quot;</span></span>);
+      } <span class="keyword">else</span> {
+        <span class="keyword">return</span> Response.status(<span class="integer">503</span>);
+      }
+    }
+
+    <span class="annotation">@Ajax</span>
+    <span class="annotation">@Resource</span>
+    <span class="directive">public</span> Response addLike(<span class="predefined-type">String</span> secretId, SecurityContext context) {
+      <span class="predefined-type">Set</span>&lt;<span class="predefined-type">String</span>&gt; likes = secretService.addLike(secretId, getCurrentUser(context));
+      <span class="keyword">if</span> (likes != <span class="predefined-constant">null</span>) {
+        <span class="keyword">return</span> Response.ok(<span class="keyword">new</span> JSONArray(likes).toString()).withMimeType(<span class="string"><span class="delimiter">&quot;</span><span class="content">text/json</span><span class="delimiter">&quot;</span></span>);
+      } <span class="keyword">else</span> {
+        <span class="keyword">return</span> Response.status(<span class="integer">503</span>);
+      }
+    }
+
+    <span class="directive">private</span> <span class="predefined-type">String</span> getCurrentUser(SecurityContext context) {
+        <span class="predefined-type">Principal</span> user = context.getUserPrincipal();
+        <span class="keyword">if</span> (user == <span class="predefined-constant">null</span>) {
+          <span class="keyword">return</span> ANONYMOUS;
+        } <span class="keyword">else</span> {
+          <span class="keyword">return</span> user.getName();
+        }
+      }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>@Ajax annotation</strong> comes from <strong>Juzu-Ajax plugin</strong>, it provide us convenient <strong>ajax calling method: jzLoad, jzAjax</strong>. We&#8217;ll use this later in secret.js.</p>
+</div>
+<div class="paragraph">
+<p><strong>@Resource</strong> is a new type of Controller. Resource controllers are pretty much like a view controller except that they must produce the entire response sent to the client and that is perfect for implementing ajax request.</p>
+</div>
+<div class="paragraph">
+<p><strong>@Mapped</strong> allow to map request parameter to Bean types. Juzu do automatically the conversion between the primary types and the request parameters but for a Bean, we need to declare it with <code>@Mapped</code>. Consequently the parameters of the add secret form will be automatically mapped to the attribute of the <code>@Mapped</code> Bean.</p>
+</div>
+<div class="paragraph">
+<p>Juzu also <strong>injects automatically</strong> some <strong>contextual useful objects</strong> that you can use:</p>
+</div>
+<div class="ulist">
+
+<ul>
+<li>
+<p><code>SecurityContext</code> (provide security info, like current logged in user)</p>
+</li>
+<li>
+<p><code>HttpContext</code></p>
+</li>
+<li>
+<p><code>RequestContext</code></p>
+</li>
+<li>
+<p><code>ApplicationContext</code></p>
+</li>
+<li>
+<p><code>UserContext</code></p>
+</li>
+<li>
+<p><code>ClientContext</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You just need to declare it in the <strong>method sign</strong> as we do above for <strong>SecurityContext</strong> and Juzu will <strong>inject them automatically</strong> at runtime.</p>
+</div>
+<div class="paragraph">
+<p>You notice that we response a Json data to our client by declaring the <strong>MimeType</strong> to <code>text/json</code>. Now we need to handled this response on the client side.</p>
+</div>
+
+<h1 id="_template" class="sect0"><a class="anchor" href="#_template"></a>Template</h1>
+<div class="paragraph">
+<p>We need to add two new buttons to <strong>like a secret</strong> and <strong>comment a secret</strong> in the <code>secretWall.gtmpl</code>. Then for <strong>Comment feature</strong> we need also to display a popover to show the list of current comments and add a new comment.</p>
+</div>
+<div class="paragraph">
+<p>Replace the current content of <code>&lt;ul class="secret-wall-list clearfix"&gt;</code> by this:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="html language-html">[...]
+            <span class="tag">&lt;ul</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secret-wall-list clearfix</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                    <span class="error">&lt;</span>% secretsList.each { secret -<span class="error">&gt;</span> %<span class="error">&gt;</span>
+                    <span class="tag">&lt;li</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secret</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-secretId</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">${secret.id}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                        <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secret-image</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">style</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">background-image: url('${secret.imageURL}')</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+
+                            <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secret-mesage</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>${secret.message}<span class="tag">&lt;/div&gt;</span>
+
+                            <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secret-action</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                                <span class="tag">&lt;a</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">btn-like secr-toggle-link toggle-like-comment</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">#</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;i</span>
+                                        <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">uiIconThumbUp uiIconWhite</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/i&gt;</span><span class="tag">&lt;span</span>
+                                        <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">numb</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/span&gt;</span><span class="tag">&lt;/a&gt;</span>
+                                <span class="tag">&lt;a</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">btn-popup-comment secr-toggle-link toggle-write-comment</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">#</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;i</span>
+                                        <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">uiIconComment uiIconWhite</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/i&gt;</span><span class="tag">&lt;span</span>
+                                        <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">numb</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/span&gt;</span><span class="tag">&lt;/a&gt;</span>
+                            <span class="tag">&lt;/div&gt;</span>
+
+                            <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">popover popover-secret fade top</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                                <span class="tag">&lt;button</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">closePopover close</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">button</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="entity">&amp;times;</span><span class="tag">&lt;/button&gt;</span>
+                                <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">arrow</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span>
+
+                                <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">popover-content</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                                    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secr-comments-box</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                                        <span class="tag">&lt;ul</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secr-comments-list</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                                            <span class="error">&lt;</span>% secret.getComments().each { comment -<span class="error">&gt;</span> %<span class="error">&gt;</span>
+                                            <span class="tag">&lt;li&gt;</span><span class="comment">&lt;!--Add class .open-popover to display popover --&gt;</span>
+                                                <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">media</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                                                    <span class="tag">&lt;a</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">pull-left</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://localhost:8080/portal/intranet/profile/${comment.userId}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                                                        <span class="tag">&lt;img</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://localhost:8080/social-resources/skin/images/ShareImages/UserAvtDefault.png</span><span class="delimiter">&quot;</span></span>
+                                                             <span class="attribute-name">alt</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">avatar</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                                                    <span class="tag">&lt;/a&gt;</span>
+
+                                                    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">media-body</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                                                        <span class="tag">&lt;div&gt;</span>
+                                                            <span class="tag">&lt;a</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">cm-user-name</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://localhost:8080/portal/intranet/profile/${comment.userId}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>${comment.userId}<span class="tag">&lt;/a&gt;</span> <span class="tag">&lt;span</span>
+                                                                <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">cm-time</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>${comment.createdDate}<span class="tag">&lt;/span&gt;</span>
+                                                        <span class="tag">&lt;/div&gt;</span>
+
+                                                        <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">cm-content</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>${comment.content}<span class="tag">&lt;/div&gt;</span>
+                                                    <span class="tag">&lt;/div&gt;</span>
+                                                <span class="tag">&lt;/div&gt;</span>
+                                            <span class="tag">&lt;/li&gt;</span>
+                                            <span class="error">&lt;</span>% } %<span class="error">&gt;</span>
+                                        <span class="tag">&lt;/ul&gt;</span>
+                                    <span class="tag">&lt;/div&gt;</span>
+                                    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secr-create-comment clearfix</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                                        <span class="tag">&lt;button</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">btn-comment btn btn-primary pull-right</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Comment<span class="tag">&lt;/button&gt;</span>
+
+                                        <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secr-write-comment </span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                                            <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">inner</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                                                <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">media</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                                                    <span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">#</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">pull-left</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;img</span>
+                                                            <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://localhost:8080/social-resources/skin/images/ShareImages/UserAvtDefault.png</span><span class="delimiter">&quot;</span></span>
+                                                            <span class="attribute-name">alt</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">avatar</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/a&gt;</span>
+
+                                                    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">media-body</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                                                        <span class="tag">&lt;textarea</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">comment</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secret-add-comment</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">placeholder</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Add your comment</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/textarea&gt;</span>
+                                                    <span class="tag">&lt;/div&gt;</span>
+                                                <span class="tag">&lt;/div&gt;</span>
+                                            <span class="tag">&lt;/div&gt;</span>
+                                        <span class="tag">&lt;/div&gt;</span>
+                                    <span class="tag">&lt;/div&gt;</span>
+                                <span class="tag">&lt;/div&gt;</span>
+                            <span class="tag">&lt;/div&gt;</span>
+                        <span class="tag">&lt;/div&gt;</span>
+                    <span class="tag">&lt;/li&gt;</span>
+                    <span class="error">&lt;</span>% } %<span class="error">&gt;</span>
+                <span class="tag">&lt;/ul&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After that we need to improve our <code>juzcret.less</code> file to manage new added class. Update the existing less file with these:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="css language-css">//<span class="type">Variables</span>
+//====================
+
+[<span class="attribute-name">...</span>]
+
+<span class="directive">@secretActionHeight</span>: <span class="float">43px</span>;
+
+//<span class="type">Mixins</span>
+//====================
+
+[<span class="attribute-name">...</span>]
+
+//<span class="type">Border</span> <span class="type">Radius</span> <span class="type">CSS3</span>
+<span class="class">.border-radius</span>(<span class="directive">@border-radius</span>) {
+  <span class="key">-webkit-border-radius</span>: <span class="directive">@border-radius</span>;
+  <span class="key">-moz-border-radius</span>: <span class="directive">@border-radius</span>;
+  <span class="key">-ms-border-radius</span>: <span class="directive">@border-radius</span>; //<span class="key">IE9</span> <span class="key">only</span>
+  <span class="key">border-radius</span>: <span class="directive">@border-radius</span>;
+}
+//<span class="type">Transform</span> <span class="type">CSS3</span>
+<span class="class">.transform</span>(<span class="directive">@transform</span>) {
+  <span class="key">-webkit-transform</span>: <span class="directive">@transform</span>;
+  <span class="key">-moz-transform</span>: <span class="directive">@transform</span>;
+  <span class="key">-ms-transform</span>: <span class="directive">@transform</span>; //<span class="key">IE9</span> <span class="key">only</span>
+  <span class="key">transform</span>: <span class="directive">@transform</span>;
+}
+//<span class="type">Transitions</span> <span class="type">CSS3</span>
+<span class="class">.transition</span>(<span class="directive">@transition</span>) {
+  <span class="key">-webkit-transition</span>: <span class="directive">@transition</span>;
+  <span class="key">-o-transition</span>: <span class="directive">@transition</span>;
+  <span class="key">transition</span>: <span class="directive">@transition</span>;
+}
+//<span class="type">Translate</span> <span class="type">CSS</span>
+<span class="class">.translate</span>(<span class="directive">@x</span>; <span class="directive">@y</span>) {
+  <span class="key">-webkit-transform</span>: <span class="error">t</span><span class="error">r</span><span class="error">a</span><span class="error">n</span><span class="error">s</span><span class="error">l</span><span class="error">a</span><span class="error">t</span><span class="error">e</span>(<span class="directive">@x</span>, <span class="directive">@y</span>);
+  <span class="key">-ms-transform</span>: <span class="error">t</span><span class="error">r</span><span class="error">a</span><span class="error">n</span><span class="error">s</span><span class="error">l</span><span class="error">a</span><span class="error">t</span><span class="error">e</span>(<span class="directive">@x</span>, <span class="directive">@y</span>); //<span class="key">IE9</span> <span class="key">only</span>
+  <span class="key">-o-transform</span>: <span class="error">t</span><span class="error">r</span><span class="error">a</span><span class="error">n</span><span class="error">s</span><span class="error">l</span><span class="error">a</span><span class="error">t</span><span class="error">e</span>(<span class="directive">@x</span>, <span class="directive">@y</span>);
+  <span class="key">transform</span>: <span class="error">t</span><span class="error">r</span><span class="error">a</span><span class="error">n</span><span class="error">s</span><span class="error">l</span><span class="error">a</span><span class="error">t</span><span class="error">e</span>(<span class="directive">@x</span>, <span class="directive">@y</span>);
+}
+
+//<span class="type">Common</span> <span class="type">Style</span>
+//====================
+
+[<span class="attribute-name">...</span>]
+
+//<span class="type">After</span> <span class="type">secret-wall-heading</span>, <span class="type">remove</span> <span class="type">the</span> <span class="type">secret-wall-list</span> <span class="type">section</span> <span class="type">and</span> <span class="type">replace</span> <span class="type">by</span>:
+//<span class="type">After</span> <span class="type">secret-wall-heading</span>, <span class="type">remove</span> <span class="type">the</span> <span class="type">secret-wall-list</span> <span class="type">section</span> <span class="type">and</span> <span class="type">replace</span> <span class="type">by</span>:
+<span class="class">.secret-wall-list</span> {
+  <span class="key">margin</span>: <span class="float">0</span> <span class="error">-</span><span class="directive">@secretItemGutter</span>;
+  &gt; <span class="key">li</span> {
+    <span class="key">float</span>: <span class="value">left</span>;
+    <span class="key">padding</span>: <span class="directive">@secretItemGutter</span>;
+    <span class="key">width</span>: <span class="float">100%</span> / <span class="float">3</span>;
+    .<span class="key">secret-image</span> {
+      <span class="key">background-repeat</span>: <span class="value">no-repeat</span>;
+      <span class="key">background-size</span>: <span class="value">cover</span>;
+      <span class="key">background-color</span>: <span class="color">#000</span>;
+      <span class="key">position</span>: <span class="value">relative</span>;
+      <span class="key">height</span>: <span class="directive">@heightSecretItem</span>;
+      <span class="key">width</span>: <span class="float">100%</span>;
+      <span class="key">display</span>: <span class="value">block</span>;
+      <span class="error">&amp;</span>:<span class="value">before</span> {
+        <span class="key">background</span>: <span class="value">none</span> <span class="value">repeat</span> <span class="value">scroll</span> <span class="float">0</span> <span class="float">0</span> <span class="color">rgba(0, 0, 0, 0.5)</span>;
+        <span class="key">content</span>: <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>;
+        <span class="key">display</span>: <span class="value">block</span>;
+        <span class="key">height</span>: <span class="float">100%</span>;
+        <span class="key">position</span>: <span class="value">absolute</span>;
+        <span class="key">width</span>: <span class="float">100%</span>;
+      }
+    }
+    .<span class="key">secret-mesage</span> {
+      <span class="key">bottom</span>: <span class="float">65px</span>;
+      <span class="key">color</span>: <span class="color">#fff</span>;
+      <span class="key">font-size</span>: <span class="float">20px</span>;
+      <span class="key">font-weight</span>: <span class="value">normal</span>;
+      <span class="key">left</span>: <span class="float">25px</span>;
+      <span class="key">line-height</span>: <span class="float">24px</span>;
+      <span class="key">position</span>: <span class="value">absolute</span>;
+      <span class="key">right</span>: <span class="float">25px</span>;
+      <span class="key">text-align</span>: <span class="value">center</span>;
+      <span class="key">top</span>: <span class="float">25px</span>;
+    }
+    .<span class="key">secret-action</span> {
+      <span class="key">border-top</span>: <span class="float">1px</span> <span class="value">solid</span> <span class="color">rgba(255, 255, 255, 0.5)</span>;
+      <span class="key">bottom</span>: <span class="float">0</span>;
+      <span class="key">height</span>: <span class="float">0</span>;
+      <span class="key">left</span>: <span class="float">0</span>;
+      <span class="key">line-height</span>: <span class="directive">@secretActionHeight</span>;
+      <span class="key">padding</span>: <span class="float">0</span> <span class="float">25px</span>;
+      <span class="key">position</span>: <span class="value">absolute</span>;
+      <span class="key">right</span>: <span class="float">0</span>;
+      <span class="key">text-align</span>: <span class="value">right</span>;
+      <span class="key">overflow</span>: <span class="value">hidden</span>;
+      .<span class="error">t</span><span class="error">r</span><span class="error">a</span><span class="error">n</span><span class="error">s</span><span class="error">i</span><span class="error">t</span><span class="error">i</span><span class="error">o</span><span class="error">n</span>(<span class="key">all</span> <span class="float">200</span><span class="key">ms</span> <span class="key">ease-out</span> <span class="float">0s</span>);
+
+      .<span class="key">secr-toggle-link</span> {
+        + .<span class="key">secr-toggle-link</span> {
+          <span class="key">margin-left</span>: <span class="float">15px</span>;
+        }
+        &gt; <span class="key">i</span> {
+          <span class="key">margin-right</span>: <span class="float">5px</span>;
+        }
+        .<span class="key">numb</span> {
+          <span class="key">color</span>: <span class="color">#fff</span>;
+          <span class="key">font-size</span>: <span class="float">13px</span>;
+        }
+        .<span class="key">uiIconComment</span> {
+          <span class="key">margin-top</span>: <span class="float">2px</span>;
+        }
+      }
+    }
+    .<span class="key">popover</span> {
+      <span class="key">max-width</span>: <span class="float">500px</span>;
+      <span class="key">top</span>: <span class="value">auto</span>;
+      <span class="key">bottom</span>: <span class="float">46px</span>;
+      <span class="key">left</span>: <span class="value">auto</span>;
+      <span class="key">right</span>: <span class="float">-205px</span>;
+      <span class="key">width</span>: <span class="float">500px</span>;
+      <span class="key">margin</span>: <span class="float">0px</span>;
+    }
+    .<span class="key">close</span> {
+      <span class="key">line-height</span>: <span class="float">16px</span>;
+      <span class="key">padding</span>: <span class="float">1px</span> <span class="float">5px</span>;
+      <span class="key">position</span>: <span class="value">absolute</span>;
+      <span class="key">right</span>: <span class="float">0</span>;
+      <span class="key">top</span>: <span class="float">0</span>;
+    }
+    .<span class="key">media</span> {
+      &gt; .<span class="key">pull-left</span> {
+        &gt; <span class="key">img</span> {
+          <span class="key">width</span>: <span class="float">36px</span>;
+          <span class="key">height</span>: <span class="float">36px</span>;
+          .<span class="error">b</span><span class="error">o</span><span class="error">r</span><span class="error">d</span><span class="error">e</span><span class="error">r</span><span class="error">-</span><span class="error">r</span><span class="error">a</span><span class="error">d</span><span class="error">i</span><span class="error">u</span><span class="error">s</span>(<span class="float">2px</span>);
+        }
+      }
+    }
+    <span class="error">&amp;</span>:<span class="value">hover</span>, <span class="error">&amp;</span>.<span class="value">open-popover</span> {
+      .<span class="key">secret-action</span> {
+        <span class="key">height</span>: <span class="directive">@secretActionHeight</span>;
+      }
+    }
+    <span class="error">&amp;</span>.<span class="key">open-popover</span> {
+      .<span class="key">popover-secret</span> {
+        .<span class="error">o</span><span class="error">p</span><span class="error">a</span><span class="error">c</span><span class="error">i</span><span class="error">t</span><span class="error">y</span>(<span class="float">1</span>);
+        <span class="key">display</span>: <span class="value">block</span>;
+      }
+    }
+    <span class="error">&amp;</span>:<span class="error">n</span><span class="error">t</span><span class="error">h</span><span class="error">-</span><span class="error">c</span><span class="error">h</span><span class="error">i</span><span class="error">l</span><span class="error">d</span>(<span class="float">3</span><span class="value">n</span>+<span class="float">3</span>) {
+      .<span class="key">popover</span>{
+        <span class="key">right</span>: <span class="float">-1px</span>;
+        .<span class="key">arrow</span> {
+          <span class="key">left</span>: <span class="value">auto</span>;
+          <span class="key">right</span>: <span class="float">34px</span>;
+        }
+      }
+    }
+  }
+}
+<span class="class">.secret-popup</span> {
+  <span class="key">width</span>: <span class="float">500</span>;
+  <span class="key">height</span>: <span class="float">280px</span>;
+  <span class="key">background</span>: <span class="color">#fff</span>;
+  <span class="key">border</span>: <span class="float">1px</span> <span class="value">solid</span> <span class="color">rgba(0, 0, 0, 0.5)</span>;
+  <span class="key">display</span>: <span class="value">none</span>;
+  <span class="error">&amp;</span>.<span class="key">in</span> {
+    <span class="key">display</span>: <span class="value">block</span>;
+  }
+}
+<span class="class">.popover-secret</span> {
+  .<span class="key">popover-content</span> {
+    <span class="key">padding</span>: <span class="float">15px</span>;
+  }
+}
+<span class="class">.secr-comments-box</span> {
+  .<span class="key">secr-viewall</span> {
+    <span class="key">font-size</span>: <span class="float">13px</span>;
+    <span class="key">margin-bottom</span>: <span class="float">15px</span>;
+  }
+}
+<span class="class">.secr-comments-list</span> {
+  <span class="key">margin-bottom</span>: <span class="float">20px</span>;
+  <span class="key">max-height</span>: <span class="float">150px</span>;
+  <span class="key">overflow</span>: <span class="value">auto</span>;
+  &gt; <span class="key">li</span> {
+    <span class="key">line-height</span>: <span class="float">18px</span>;
+    + <span class="key">li</span> {
+      <span class="key">margin-top</span>: <span class="float">20px</span>;
+    }
+    .<span class="key">media</span> {
+      &gt; .<span class="key">pull-left</span> {
+        <span class="key">display</span>: <span class="value">block</span>;
+      }
+    }
+    .<span class="key">cm-user-name</span> {
+      <span class="key">font-weight</span>: <span class="value">bold</span>;
+    }
+    .<span class="key">cm-time</span> {
+      <span class="key">color</span>: <span class="color">#999999</span>;
+      <span class="key">font-size</span>: <span class="float">12px</span>;
+      <span class="key">margin-left</span>: <span class="float">5px</span>;
+    }
+  }
+}
+<span class="class">.secr-create-comment</span> {
+  .<span class="key">btn-primary</span> {
+    <span class="key">float</span>: <span class="value">right</span>;
+    <span class="key">margin-left</span>: <span class="float">10px</span>;
+    <span class="key">margin-top</span>: <span class="float">3px</span>;
+  }
+  .<span class="key">secr-write-comment</span> {
+    .<span class="key">fluid-colum</span> {
+      <span class="key">float</span>: <span class="value">left</span>;
+      <span class="key">width</span>: <span class="float">100%</span>;
+      &gt; .<span class="key">inner</span> {
+        <span class="key">margin-left</span>: <span class="float">46px</span>;
+      }
+    }
+    .<span class="key">media</span> {
+      &gt; .<span class="key">media-body</span> {
+        <span class="key">margin-left</span>: <span class="float">46px</span>;
+        <span class="key">padding-top</span>: <span class="float">3px</span>;
+      }
+    }
+    <span class="key">textarea</span> {
+      <span class="key">height</span>: <span class="float">29px</span>;
+      <span class="key">resize</span>: <span class="value">none</span>;
+      <span class="key">width</span>: <span class="float">100%</span>;
+      <span class="error">&amp;</span>:<span class="value">focus</span> {
+        <span class="key">box-shadow</span>:<span class="value">none</span>;
+      }
+    }
+  }
+}
+
+[<span class="attribute-name">...</span>]</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-note" title="Note"></i>
+</td>
+<td class="content">
+
+[&#8230;] means sections already added in step 3.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Now we have 2 buttons for <strong>comment and like features</strong> and a popover to display the list of comments.</p>
+</div>
+<div class="paragraph">
+<p>Now that we finish the UI part, we need to add some <strong>js handlers</strong> to manage this two features using Ajax.</p>
+</div>
+<div class="sect1">
+<h2 id="_javascript_handler"><a class="anchor" href="#_javascript_handler"></a>Javascript Handler</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Update the <code>secret.js</code> file by adding the <strong>snippet</strong> in charge of the like feature:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="javascript language-javascript">(<span class="keyword">function</span> (<span class="predefined">$</span>) {
+
+    <span class="predefined">$</span>(document).ready(<span class="keyword">function</span> () {
+
+        [...]
+
+    });
+
+    <span class="comment">//Ajax for managing like function</span>
+    <span class="predefined">$</span>(document).on(<span class="string"><span class="delimiter">'</span><span class="content">click.juzu.secret.addLike</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">.btn-like</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> () {
+        <span class="keyword">var</span> jLike = <span class="predefined">$</span>(<span class="local-variable">this</span>);
+        <span class="keyword">var</span> jSecret = jLike.closest(<span class="string"><span class="delimiter">'</span><span class="content">.secret</span><span class="delimiter">'</span></span>);
+        <span class="keyword">var</span> secretId = jSecret.attr(<span class="string"><span class="delimiter">'</span><span class="content">data-secretId</span><span class="delimiter">'</span></span>);
+
+        jLike.jzAjax(<span class="string"><span class="delimiter">'</span><span class="content">JuZcretApplication.addLike()</span><span class="delimiter">'</span></span>, {
+            <span class="key">data</span>: {<span class="key"><span class="delimiter">'</span><span class="content">secretId</span><span class="delimiter">'</span></span>: secretId},
+            <span class="function">success</span>: <span class="keyword">function</span> (data) {
+                <span class="keyword">var</span> jLikeIcon = jSecret.find(<span class="string"><span class="delimiter">'</span><span class="content">.btn-like</span><span class="delimiter">'</span></span>);
+                jLikeIcon.find(<span class="string"><span class="delimiter">'</span><span class="content">.numb</span><span class="delimiter">'</span></span>).text(<span class="predefined">$</span>(data).size());
+            }
+        });
+        <span class="keyword">return</span> <span class="predefined-constant">false</span>;
+    });
+
+})(<span class="predefined">$</span>);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This snippet register an event on our <strong>Like</strong> button. The interesting line to notice here is</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="javascript language-javascript">jLike.jzAjax(<span class="string"><span class="delimiter">'</span><span class="content">JuZcretApplication.addLike()</span><span class="delimiter">'</span></span>, [...]);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>jzAjax and jzLoad</strong> functions are <strong>jQuery plugin</strong> provided by the Juzu Ajax plugin. They replace the standard Ajax and Load jQuery function. They accept the <strong>same arguments</strong> but the <strong>URL is replace by the controller method</strong>.<br>
+All we need is provide the controller method like <code>JuZcretApplication.addLike()</code> and Juzu take care to find the expected URL, and perform <strong>Ajax request</strong> (using jQuery).</p>
+</div>
+<div class="paragraph">
+<p>Similarly, we also have another three JS listener for the <strong>comment feature</strong>. Add them just after the snippet which just added above:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="javascript language-javascript">    <span class="comment">//Open the popover for displaying and adding comments</span>
+    <span class="predefined">$</span>(document).on(<span class="string"><span class="delimiter">'</span><span class="content">click.juzu.secret.openPopover</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">.btn-popup-comment</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> () {
+        <span class="keyword">var</span> jComment = <span class="predefined">$</span>(<span class="local-variable">this</span>);
+        <span class="keyword">var</span> jSecret = jComment.closest(<span class="string"><span class="delimiter">'</span><span class="content">.secret</span><span class="delimiter">'</span></span>);
+        jSecret.addClass(<span class="string"><span class="delimiter">'</span><span class="content">open-popover</span><span class="delimiter">'</span></span>);
+    });
+
+    <span class="comment">//Close the popover for displaying and adding comments</span>
+    <span class="predefined">$</span>(document).on(<span class="string"><span class="delimiter">'</span><span class="content">click.juzu.secret.closePopover</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">.closePopover</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> () {
+        <span class="keyword">var</span> jComment = <span class="predefined">$</span>(<span class="local-variable">this</span>);
+        <span class="keyword">var</span> jSecret = jComment.closest(<span class="string"><span class="delimiter">'</span><span class="content">.secret</span><span class="delimiter">'</span></span>);
+        jSecret.removeClass(<span class="string"><span class="delimiter">'</span><span class="content">open-popover</span><span class="delimiter">'</span></span>);
+    });
+
+    <span class="comment">//Ajax for managing comment function</span>
+    <span class="predefined">$</span>(document).on(<span class="string"><span class="delimiter">'</span><span class="content">click.juzu.secret.addComment</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">.btn-comment</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> () {
+        <span class="keyword">var</span> jComment = <span class="predefined">$</span>(<span class="local-variable">this</span>);
+        <span class="keyword">var</span> jSecret = jComment.closest(<span class="string"><span class="delimiter">'</span><span class="content">.secret</span><span class="delimiter">'</span></span>);
+        <span class="keyword">var</span> secretId = jSecret.attr(<span class="string"><span class="delimiter">'</span><span class="content">data-secretId</span><span class="delimiter">'</span></span>);
+
+        jComment.jzAjax(<span class="string"><span class="delimiter">'</span><span class="content">JuZcretApplication.addComment()</span><span class="delimiter">'</span></span>, {
+            <span class="key">data</span>: {<span class="key"><span class="delimiter">'</span><span class="content">secretId</span><span class="delimiter">'</span></span>: secretId, <span class="key"><span class="delimiter">'</span><span class="content">content</span><span class="delimiter">'</span></span>: jSecret.find(<span class="string"><span class="delimiter">'</span><span class="content">.secret-add-comment</span><span class="delimiter">'</span></span>).val()},
+            <span class="function">success</span>: <span class="keyword">function</span> (data) {
+                <span class="keyword">if</span> (<span class="keyword">typeof</span>(data) == <span class="string"><span class="delimiter">'</span><span class="content">string</span><span class="delimiter">'</span></span>) {
+                    <span class="comment">//error response</span>
+                    alert(data);
+                } <span class="keyword">else</span> {
+                    <span class="comment">//update html</span>
+                    <span class="keyword">var</span> cList = <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>;
+                    <span class="keyword">var</span> cCounter = <span class="integer">0</span>;
+                    <span class="predefined">$</span>(data).each(<span class="keyword">function</span> (idx, elem) {
+                        <span class="keyword">if</span> (elem.content) {
+                            cList +=
+                                <span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;div class='media'&gt;</span><span class="delimiter">&quot;</span></span> +
+                                <span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;a class='pull-left' href='http://localhost:8080/portal/intranet/profile/</span><span class="delimiter">&quot;</span></span> + elem.userId + <span class="string"><span class="delimiter">&quot;</span><span class="content">'&gt;</span><span class="delimiter">&quot;</span></span> +
+                                <span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;img src='http://localhost:8080/social-resources/skin/images/ShareImages/UserAvtDefault.png' alt='avatar'&gt;</span><span class="delimiter">&quot;</span></span> +
+                                <span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;/a&gt;</span><span class="delimiter">&quot;</span></span> +
+                                <span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;div class='media-body'&gt;</span><span class="delimiter">&quot;</span></span> +
+                                <span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;div&gt;</span><span class="delimiter">&quot;</span></span> +
+                                <span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;a class='cm-user-name' href='http://localhost:8080/portal/intranet/profile/</span><span class="delimiter">&quot;</span></span> + elem.userId + <span class="string"><span class="delimiter">&quot;</span><span class="content">'&gt;</span><span class="delimiter">&quot;</span></span> + elem.userId + <span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;/a&gt; </span><span class="delimiter">&quot;</span></span> +
+                                <span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;span class='cm-time'&gt;</span><span class="delimiter">&quot;</span></span> + elem.createdDate + <span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;/span&gt;</span><span class="delimiter">&quot;</span></span> +
+                                <span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;/div&gt;</span><span class="delimiter">&quot;</span></span> +
+                                <span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;div class='cm-content'&gt;</span><span class="delimiter">&quot;</span></span> + elem.content + <span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;/div&gt;</span><span class="delimiter">&quot;</span></span> +
+                                <span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;/div&gt;</span><span class="delimiter">&quot;</span></span> +
+                                <span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;/div&gt;</span><span class="delimiter">&quot;</span></span>;
+                            cCounter++;
+                        }
+                    });
+                    <span class="keyword">var</span> html = jSecret.find(<span class="string"><span class="delimiter">'</span><span class="content">.secr-comments-list</span><span class="delimiter">'</span></span>).html();
+                    jSecret.find(<span class="string"><span class="delimiter">'</span><span class="content">.secr-comments-list</span><span class="delimiter">'</span></span>).html(html + cList);
+                    <span class="keyword">var</span> jCommentIcon = jSecret.find(<span class="string"><span class="delimiter">'</span><span class="content">.btn-popup-comment</span><span class="delimiter">'</span></span>);
+                    <span class="keyword">var</span> jCommentNumb = jCommentIcon.find(<span class="string"><span class="delimiter">'</span><span class="content">.numb</span><span class="delimiter">'</span></span>).text();
+                    jCommentIcon.find(<span class="string"><span class="delimiter">'</span><span class="content">.numb</span><span class="delimiter">'</span></span>).text(jCommentNumb+cCounter);
+                }
+            }
+        });
+        <span class="keyword">return</span> <span class="predefined-constant">false</span>;
+    });</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There is one major difference in this second handler is that we <strong>handle error response</strong>. For which purpose ? To not allow user to submit empty comment.<br>
+It&#8217;s why our Juzu controller should be aware of invalid data that user submitted. Lets move to <strong>data validation</strong> and <strong>error handling</strong> provided by Juzu.</p>
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_adding_validation"><a class="anchor" href="#_adding_validation"></a>Adding validation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Juzu provides controller handler <strong>parameter validation</strong> via the <strong>Bean Validation framework</strong>. To use it we need to add the <code>juzu-validation</code> plugin in our <code>pom.xml</code>:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;dependency&gt;</span>
+  <span class="tag">&lt;groupId&gt;</span>org.juzu<span class="tag">&lt;/groupId&gt;</span>
+  <span class="tag">&lt;artifactId&gt;</span>juzu-plugins-validation<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;version&gt;</span>1.0.0<span class="tag">&lt;/version&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And now, all that we need is just adding annotation to model attribute. Update the <code>Comment</code> class as below:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="keyword">package</span> <span class="namespace">org.juzu.tutorial.models</span>;
+
+<span class="keyword">import</span> <span class="include">javax.validation.constraints.NotNull</span>;
+<span class="keyword">import</span> <span class="include">javax.validation.constraints.Pattern</span>;
+
+<span class="directive">public</span> <span class="type">class</span> <span class="class">Comment</span> <span class="directive">extends</span> Model {
+
+  <span class="directive">private</span> <span class="predefined-type">String</span> userId;
+  <span class="annotation">@Pattern</span>(regexp = <span class="string"><span class="delimiter">&quot;</span><span class="content">^.+$</span><span class="delimiter">&quot;</span></span>, message = <span class="string"><span class="delimiter">&quot;</span><span class="content">Comment content must not be empty</span><span class="delimiter">&quot;</span></span>)
+  <span class="annotation">@NotNull</span>(message = <span class="string"><span class="delimiter">&quot;</span><span class="content">Comment content is required</span><span class="delimiter">&quot;</span></span>)
+  <span class="directive">private</span> <span class="predefined-type">String</span>            content;
+
+  [...]
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Thanks to <strong>@Pattern and @NotNull annotation</strong>, the validation framework will validate the parameter and <strong>throw validation error</strong> if needed.</p>
+</div>
+<div class="paragraph">
+<p>We need also to declare to <strong>perform this validation</strong> in the controller. In our case we want to validate new comment coming from user. This is managed by the <code>addComment</code> Resource in <code>JuZcretApplication</code> where we need to add the <strong>@Valid annotation</strong> to the Comment parameter:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="keyword">import</span> <span class="include">javax.validation.Valid</span>;
+
+[...]
+
+  <span class="annotation">@Ajax</span>
+  <span class="annotation">@Resource</span>
+  <span class="directive">public</span> Response addComment(<span class="predefined-type">String</span> secretId, <span class="annotation">@Mapped</span> <span class="annotation">@Valid</span> Comment comment, SecurityContext context) {
+  [...]
+  }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now if a user try to enter an invalid comment, the validation framework will throw an error. Our job is not totally finish&#8230; We need also to cache properly this error.<br>
+Juzu provides <a href="http://juzuweb.org/reference/index.html#_handling_validation_errors" target="_blank">2 solutions for error handling</a>:</p>
+</div>
+<div class="olist arabic">
+
+<ol class="arabic">
+<li>
+<p>Using request lifecycle</p>
+</li>
+<li>
+<p>Using error handler</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>In our case we will use the request lifecycle that allow us to handle the error in the controller.<br>
+What we need is to <strong>analyze the Response</strong> and check if the type is ValidationError. If it is, we simply get the error message and update the response to send it properly to the client.<br>
+For doing this we need our controller <code>JuZcretApplication</code> to implement the interface <code>RequestLifeCycle</code> and override the <code>endRequest</code> method:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="keyword">import</span> <span class="include">juzu.plugin.validation.ValidationError</span>;
+<span class="keyword">import</span> <span class="include">juzu.request.RequestContext</span>;
+<span class="keyword">import</span> <span class="include">juzu.request.RequestLifeCycle</span>;
+[...]
+<span class="keyword">import</span> <span class="include">javax.validation.ConstraintViolation</span>;
+
+<span class="directive">public</span> <span class="type">class</span> <span class="class">JuZcretApplication</span> <span class="directive">implements</span> RequestLifeCycle {
+
+      <span class="annotation">@Override</span>
+      <span class="directive">public</span> <span class="type">void</span> endRequest(RequestContext context) {
+          Response response = context.getResponse();
+          <span class="keyword">if</span> (response <span class="keyword">instanceof</span> ValidationError) {
+              ValidationError error = (ValidationError)response;
+              <span class="predefined-type">Set</span>&lt;ConstraintViolation&lt;<span class="predefined-type">Object</span>&gt;&gt; violations = error.getViolations();
+
+              <span class="predefined-type">String</span> msg = violations.iterator().next().getMessage();
+              response = Response.ok(msg).withMimeType(<span class="string"><span class="delimiter">&quot;</span><span class="content">text/html</span><span class="delimiter">&quot;</span></span>);
+              context.setResponse(response);
+          }
+      }
+
+      <span class="annotation">@Override</span>
+      <span class="directive">public</span> <span class="type">void</span> beginRequest(RequestContext context) {
+      }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>On the client side, we already implement our JS handler to display the error message:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="javascript language-javascript">      ...
+
+      <span class="function">success</span>: <span class="keyword">function</span>(data) {
+        <span class="keyword">if</span> (<span class="keyword">typeof</span>(data) == <span class="string"><span class="delimiter">'</span><span class="content">string</span><span class="delimiter">'</span></span>) {
+          <span class="comment">//error response</span>
+          alert(data);
+        } <span class="keyword">else</span> {
+             ...
+        }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Our JuZcret app now provides pretty good feature for end user:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/step4/like-and-comment-feature.png" alt="Like and comment feature" width="800">
+</div>
+
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-note" title="Note"></i>
+</td>
+<td class="content">
+
+If you continue this step just after finishing the step 3, you just have to compile your project, paste the new created war in eXo Platform and start the server. Then access to <a href="http://localhost:8080/portal/intranet/JuZcret" target="_blank">your JuZcret page</a> and take a look at the result. If not, <a href="http://community.exoplatform.com/portal/g/:spaces:juzu/juzu/wiki/Develop_Juzu_Portlet_with_JRebel" target="_blank">configure your project to use JRebel</a>, compile it and deploy it in eXo Platform as explained in step-1.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>What is missing is an <strong>administration part</strong> to manage our application. An administrator must have the availability to configure the portlet. For instance, he may want to disable the comment feature.</p>
+</div>
+<div class="paragraph">
+<p>To doing this, what is better that adding a <strong>portlet edit mode</strong> ?</p>
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_portlet_edit_mode"><a class="anchor" href="#_portlet_edit_mode"></a>Portlet Edit Mode</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Juzu portlet is <strong>JSR286 compliant portlet</strong>. To provide edit mode, we need to tell portlet container that our portlet support to show <strong>edit mode</strong>. It&#8217;s why we need to modify our <strong>portlet.xml</strong> as below:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;portlet&gt;</span>
+  <span class="tag">&lt;portlet-name&gt;</span>JuzcretApplication<span class="tag">&lt;/portlet-name&gt;</span>
+   ...
+   <span class="tag">&lt;supports&gt;</span>
+       <span class="tag">&lt;mime-type&gt;</span>text/html<span class="tag">&lt;/mime-type&gt;</span>
+       <span class="tag">&lt;portlet-mode&gt;</span>edit<span class="tag">&lt;/portlet-mode&gt;</span>
+     <span class="tag">&lt;/supports&gt;</span>
+...
+<span class="tag">&lt;/portlet&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now JuZcret portlet have 2 modes: <strong>edit and view mode</strong>. We need to create a new template for the edit mode. in <code>templates</code> package add a new file <code>editMode.gtmpl</code> to display a checkbox to enable or not to comment secrets:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="html language-html">#{param name=enableComment/}
+<span class="tag">&lt;form</span> <span class="attribute-name">action</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{JuZcretApplication.enableComment()}</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">method</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">POST</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">role</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;h5&gt;</span>Configuration<span class="tag">&lt;/h5&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">checkbox</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">enableComment</span><span class="delimiter">&quot;</span></span> <span class="error">&lt;</span><span class="error">%</span><span class="error">=</span><span class="attribute-name">enableComment</span> <span class="error">?</span> <span class="error">&quot;</span><span class="attribute-name">checked</span><span class="error">&quot;</span> <span class="attribute-name">:</span> <span class="error">&quot;</span><span class="error">&quot;</span> <span class="error">%</span><span class="tag">&gt;</span>/<span class="error">&gt;</span>Enable Comment
+    <span class="tag">&lt;button</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">submit</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Save<span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;/form&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Our JuZcret application configuration will rely on the <strong>portlet preference mechanism</strong>.<br>
+Juzu framework provide a <strong>juzu-portlet plugin</strong> which help to bind portlet preference to our IOC container and allow use to inject and use <strong>PortletPreferences</strong> in our controller to store the configuration data of our portlet.<br>
+To use it we need to add <strong>juzu-plugins-portlet</strong> and <strong>portlet-api</strong> dependency in the <code>pom.xml</code>:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;dependency&gt;</span>
+      <span class="tag">&lt;groupId&gt;</span>javax.portlet<span class="tag">&lt;/groupId&gt;</span>
+      <span class="tag">&lt;artifactId&gt;</span>portlet-api<span class="tag">&lt;/artifactId&gt;</span>
+      <span class="tag">&lt;version&gt;</span>2.0<span class="tag">&lt;/version&gt;</span>
+      <span class="tag">&lt;scope&gt;</span>provided<span class="tag">&lt;/scope&gt;</span>
+    <span class="tag">&lt;/dependency&gt;</span>
+    <span class="tag">&lt;dependency&gt;</span>
+      <span class="tag">&lt;groupId&gt;</span>org.juzu<span class="tag">&lt;/groupId&gt;</span>
+      <span class="tag">&lt;artifactId&gt;</span>juzu-plugins-portlet<span class="tag">&lt;/artifactId&gt;</span>
+      <span class="tag">&lt;version&gt;</span>1.0.0<span class="tag">&lt;/version&gt;</span>
+    <span class="tag">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now we can inject in our <code>JuZcretApplication</code> controller PortletPreferences using <code>@Inject</code> annotation. We use it in a new <strong>action controller</strong> method named <code>enableComment</code> which manage the submit of the edit form:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">[...]
+<span class="keyword">import</span> <span class="include">juzu.bridge.portlet.JuzuPortlet</span>;
+[...]
+<span class="keyword">import</span> <span class="include">javax.portlet.PortletMode</span>;
+<span class="keyword">import</span> <span class="include">javax.portlet.PortletPreferences</span>;
+<span class="keyword">import</span> <span class="include">javax.portlet.ReadOnlyException</span>;
+<span class="keyword">import</span> <span class="include">javax.portlet.ValidatorException</span>;
+<span class="keyword">import</span> <span class="include">java.io.IOException</span>;
+[...]
+
+<span class="directive">public</span> <span class="type">class</span> <span class="class">JuZcretApplication</span>  <span class="directive">implements</span> RequestLifeCycle {
+
+    <span class="annotation">@Inject</span>
+    PortletPreferences prefs;
+
+    <span class="directive">public</span> <span class="directive">static</span> <span class="directive">final</span> <span class="predefined-type">String</span> ENABLE_COMMENT = <span class="string"><span class="delimiter">&quot;</span><span class="content">enableComment</span><span class="delimiter">&quot;</span></span>;
+
+    <span class="annotation">@Action</span>
+    <span class="directive">public</span> Response.View enableComment(<span class="predefined-type">String</span> enableComment) <span class="directive">throws</span> ReadOnlyException, ValidatorException, <span class="exception">IOException</span> {
+        <span class="keyword">if</span> (<span class="string"><span class="delimiter">&quot;</span><span class="content">on</span><span class="delimiter">&quot;</span></span>.equals(enableComment)) {
+            enableComment = <span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span>;
+        }
+        prefs.setValue(ENABLE_COMMENT, enableComment);
+        prefs.store();
+        <span class="keyword">return</span> JuZcretApplication_.index().with(JuzuPortlet.PORTLET_MODE, PortletMode.VIEW);
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After saving the portlet preference, notice that we <strong>redirect</strong> the portlet to the <strong>View mode</strong> by responding with a <strong>Juzu property</strong>, the <code>JuzuPortlet.PORTLET_MODE</code> property type with the value <code>PortletMode.VIEW</code>.</p>
+</div>
+<div class="paragraph">
+<p>Now JuZcret can be configure to <strong>disabled the comment feature</strong>. It means that we have to adapt our <code>secretWall.gtmpl</code> template to display or not the form for submitting comment by using the <code>enableComment</code> parameter:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="html language-html">#{param name=enableComment/}
+
+  […]
+
+  <span class="error">&lt;</span>% if (enableComment) { %<span class="error">&gt;</span>
+      <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">secret-action</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+      […]
+      <span class="tag">&lt;/div&gt;</span>
+  <span class="error">&lt;</span>% } %<span class="error">&gt;</span>
+
+  […]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>From security perspective, hiding the social toolbar on the bottom is not enough to prevent user from commenting, but for the sake of simplicity, we decide that it&#8217;s acceptable for this tutorial. So when you disabled comment you cannot like or comment secret. Social features are deactivated.</p>
+</div>
+<div class="paragraph">
+<p>Then the  last step is to inject the new <code>editMode.gtmpl</code> template to the controller and modify the <code>index</code> View controller to <strong>adapt the display</strong> accordingly to the current <strong>Portlet mode</strong>:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">  <span class="annotation">@Inject</span>
+  <span class="annotation">@Path</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">editMode.gtmpl</span><span class="delimiter">&quot;</span></span>)
+  org.juzu.tutorial.templates.editMode editMode;
+
+  <span class="annotation">@View</span>
+  <span class="directive">public</span> Response.Content index(RequestContext context) {
+    <span class="type">boolean</span> enableComment = <span class="predefined-type">Boolean</span>.parseBoolean(prefs.getValue(ENABLE_COMMENT, <span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span>));
+
+    <span class="keyword">if</span> (PortletMode.EDIT.equals(context.getProperty(JuzuPortlet.PORTLET_MODE))) {
+      <span class="keyword">return</span> editMode.with().enableComment(enableComment).ok();
+    } <span class="keyword">else</span> {
+      <span class="keyword">return</span> secretWall.with().enableComment(enableComment)
+.secretsList(secretService.getSecrets()).ok();
+    }
+   }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To know the current Portlet mode, we use the <code>RequestContext</code> object automatically injected by Juzu that allow us to check the property <code>JuzuPortlet.PORTLET_MODE</code>.</p>
+</div>
+<div class="paragraph">
+<p>Recompile your application with</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="text language-text">$ mvn clean install</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Stop eXo Platform, copy/paste the new created war in webapp folder and restart eXo Platform.</p>
+</div>
+<div class="paragraph">
+<p>Go to <a href="http://localhost:8080/portal/intranet/JuZcret" target="_blank">the JuZcret page</a>, click on Edit &#8594; Page &#8594; Edit Layout. Then mouse over the "Juzu Secret Application" and click on the "Edit Portlet" Icon.</p>
+</div>
+<div class="paragraph">
+<p>Here you can disabled comments:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/step4/edit-mode.png" alt="Portlet edit mode" width="800">
+</div>
+
+</div>
+<div class="paragraph">
+<p>After uncheck "enable comment", save and close the edit mode, you <strong>cannot add new comment</strong> via the secret wall:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/step4/cannot-add-comment.png" alt="Cannot add comment" width="800">
+</div>
+
+</div>
+<div class="paragraph">
+<p>We are at the end of the step 4 with a nice social application. But our JuZcret application miss an important thing from production. We <strong>don’t persist data</strong>, all is saved in memory… For fix it, <a href="./step5.html">go ahead to the step 5</a>!</p>
+</div>
+<script type="text/javascript">
+//Get the left menu
+var leftmenu = document.getElementsByClassName("sectlevel0")[0];
+
+//Create back to menu link
+var menuLink = document.createElement("a");
+menuLink.href = "./index.html";
+menuLink.appendChild(document.createTextNode("Menu"));
+var menu = document.createElement("li");
+menu.setAttribute("class", "menuStep");
+menu.appendChild(menuLink);
+
+//Create go to previous step link
+var previousStepLink = document.createElement("a");
+previousStepLink.href = "./step3.html";
+previousStepLink.appendChild(document.createTextNode("Back to previous Step"));
+var previousStep = document.createElement("li");
+previousStep.setAttribute("class", "previousStep");
+previousStep.appendChild(previousStepLink);
+
+//Create go to next step link
+var nextStepLink = document.createElement("a");
+nextStepLink.href = "./step5.html";
+nextStepLink.appendChild(document.createTextNode("Go to next Step"));
+var nextStep = document.createElement("li");
+nextStep.setAttribute("class", "nextStep");
+nextStep.appendChild(nextStepLink);
+
+//Add them to Left Menu
+leftmenu.insertBefore(previousStep, leftmenu.firstChild);
+leftmenu.insertBefore(menu, leftmenu.firstChild);
+leftmenu.appendChild(nextStep);
+</script>
+</div>
+</div>
+
+
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2015-04-24 14:06:58 CEST
+</div>
+</div>
+</body>
+</html>
